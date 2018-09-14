@@ -204,19 +204,21 @@
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
+        <form  name = "destinobusca"  id = "criarprojeto" action="${pageContext.request.contextPath}/Destaques" method="POST">
 
             <!-- The slideshow -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="img/portoseguro.jpg" alt="Porto Seguro" >
+                    <a href="/Destaques?destino=id1"><img src="img/portoseguro.jpg" alt="Porto Seguro" ></a>
                 </div>
                 <div class="carousel-item">
-                    <img src="img/angra.JPG" alt="Angra dos Reis" >
+                    <a href="/Destaques?destino=id2"><img src="img/angra.JPG" alt="Angra dos Reis" ></a>
                 </div>
                 <div class="carousel-item">
-                    <img src="img/saotome.jpg" alt="São Tomé das Letras">
+                    <a href="/Destaques?destino=id3"><img src="img/saotome.jpg" alt="São Tomé das Letras"></a>
                 </div>
             </div>
+        </form>
 
             <!-- Left and right controls -->
             <a class="carousel-control-prev" href="#demo" data-slide="prev">
