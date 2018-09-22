@@ -43,16 +43,6 @@ PRIMARY KEY (idcliente),
 FOREIGN KEY (idpayment) REFERENCES tbpayment (idpayment),
 FOREIGN KEY (idendereco) REFERENCES tbendereco (idendereco));
 
-
-CREATE TABLE tbvenda(
-idvenda  INT NOT NULL AUTO_INCREMENT,
-idcliente INT NOT NULL,
-dthvenda VARCHAR(20) NOT NULL,
-total FLOAT(10,2) NOT NULL,
-PRIMARY KEY (idvenda),
-FOREIGN KEY (idcliente) REFERENCES tbcliente (idcliente));
-
-
 CREATE TABLE tbpacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
 dthevento VARCHAR (20) NOT NULL,
@@ -63,6 +53,14 @@ localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
 PRIMARY KEY (idpacote));
 
+CREATE TABLE tbvenda(
+idvenda  INT NOT NULL AUTO_INCREMENT,
+idcliente INT NOT NULL,
+dthvenda VARCHAR(20) NOT NULL,
+total FLOAT(10,2) NOT NULL,
+PRIMARY KEY (idvenda),
+FOREIGN KEY (idcliente) REFERENCES tbcliente (idcliente));
+
 CREATE TABLE tbitemvenda(
 itemid INT NOT NULL AUTO_INCREMENT,
 idpacote INT NOT NULL,
@@ -72,6 +70,11 @@ dthvenda VARCHAR(20) NOT NULL,
 PRIMARY KEY (itemid),
 FOREIGN KEY (idpacote) REFERENCES tbpacote (idpacote),
 FOREIGN KEY (idvenda) REFERENCES tbvenda (idvenda));
+
+
+
+
+
 
 
 
