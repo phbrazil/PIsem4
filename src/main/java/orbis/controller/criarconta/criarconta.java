@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.destaques;
+package orbis.controller.criarconta;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +17,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/Destaques", urlPatterns = {"/Destaques"})
-public class Destaques extends HttpServlet {
+@WebServlet(name = "/CriarConta", urlPatterns = {"/CriarConta"})
+public class criarconta extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,11 +31,13 @@ public class Destaques extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
 
-        System.out.println("entrei aqui");
+        System.out.println("entrei no criar conta");
 
         HttpSession sessao = request.getSession(true);
 
-        String destino = request.getParameter("destino");
+        String email = request.getParameter("email");
+        String psw = request.getParameter("psw");
+        String pswrepeat = request.getParameter("psw-repeat");
 
     }
 

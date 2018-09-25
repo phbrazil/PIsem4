@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
     <head>
         <title>Orbis Eu Vou</title>
-        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -135,21 +136,21 @@
 
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-            <form class = "modal-content" name = "SignUp"  id = "criarprojeto" action="${pageContext.request.contextPath}/CriarConta" method="POST">
+            <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
                 <div class="container">
                     <h1>Criar Conta</h1>
                     <p>Preencha os dados para criar sua conta.</p>
                     <hr>
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Inserir Email" name="email" required>
+                    <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
 
                     <label for="psw"><b>Senha</b></label>
-                    <input type="password" placeholder="Insira a Senha" name="psw" required>
+                    <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
 
                     <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                    <input type="password" placeholder="Repetir Senha" name="psw-repeat" required>
+                    <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' onblur="ConfirmPassword()" required>
 
-                    <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+                    <p>Para criar sua conta vocÃª declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
 
                     <div class="clearfix">
                         <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
@@ -170,7 +171,7 @@
             }
         </script>
 
-        <form  name = "destinobusca"  id = "criarprojeto" action="${pageContext.request.contextPath}/PesquisarDestino" method="POST">
+        <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
             <div class="container">
                 <div class="row justify-content-center">
@@ -182,7 +183,7 @@
                                 </div>
                                 <!--end of col-->
                                 <div class="col">
-                                    <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="Pesquisar destinos" required>
+                                    <input class="form-control form-control-lg form-control-borderless" name="search" id ='search' type="search" placeholder="Pesquisar destinos" required>
                                 </div>
                                 <!--end of col-->
                                 <div class="col-auto">
@@ -196,38 +197,47 @@
             </div>
         </form>
 
-        <div id="demo" class="carousel slide" data-ride="carousel" style="height: 100%; width: 100%;">
+        <div align='center'>
 
-            <!-- Indicators -->
-            <ul class="carousel-indicators" >
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-        <form  name = "destinobusca"  id = "criarprojeto" action="${pageContext.request.contextPath}/Destaques" method="POST">
+            <div  id="demo" class="carousel slide" data-ride="carousel" style="height: 70%; width: 70%;">
 
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="/Destaques?destino=id1"><img src="img/portoseguro.jpg" alt="Porto Seguro" ></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="/Destaques?destino=id2"><img src="img/angra.JPG" alt="Angra dos Reis" ></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="/Destaques?destino=id3"><img src="img/saotome.jpg" alt="São Tomé das Letras"></a>
-                </div>
+                <!-- Indicators -->
+                <ul class="carousel-indicators">
+                    <li data-target="#demo" data-slide-to="0" class="active"></li>
+                    <li data-target="#demo" data-slide-to="1"></li>
+                    <li data-target="#demo" data-slide-to="2"></li>
+                </ul>
+                <form  name = "destinobusca"  id = "destaques" action="${pageContext.request.contextPath}/Destaques" method="POST">
+
+                    <!-- The slideshow -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id1' onclick="destinobusca.submit()"><img src="img/portoseguro.jpg" alt="Porto Seguro" ></a>
+                            <input type ='hidden' name ='destino' value='id1'>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id2' onclick="destinobusca.submit()"><img src="img/angra.JPG" alt="Angra dos Reis" ></a>
+                            <input type ='hidden' name ='destino' value='id2'>
+                        </div>
+                        <div class="carousel-item">
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id3' onclick="destinobusca.submit()"><img src="img/saotome.jpg" alt="SÃ£o TomÃ© das Letras"></a>
+                            <input type ='hidden' name ='destino' value='id3'>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
             </div>
-        </form>
-
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
         </div>
 
     </body>
+    
+    <script src="js/confirmarsenha.js"></script>
+
 </html>

@@ -2,21 +2,21 @@
 function ConfirmPassword() {
 
 
-    var password = document.getElementById('password').value;
-    var confirmpassword = document.getElementById('confirmpassword').value;
+    var password = document.getElementById('psw').value;
+    var confirmpassword = document.getElementById('psw-repeat').value;
 
     if (password.length < 5) {
 
         alert("Senha muito curta");
-        document.getElementById("password").focus();
+        document.getElementById("psw").focus();
 
     } else {
 
         if (password !== confirmpassword) {
 
-            alert("Senhas não combinam")
+            alert("Senhas não combinam");
 
-            document.getElementById("password").focus();
+            document.getElementById("psw").focus();
 
         }
     }
