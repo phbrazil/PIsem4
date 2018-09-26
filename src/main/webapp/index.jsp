@@ -212,15 +212,15 @@
                     <!-- The slideshow -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="javascript:;" name ='destino' id ='destino' value = 'id1' onclick="destinobusca.submit()"><img src="img/portoseguro.jpg" alt="Porto Seguro" ></a>
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id1' onclick="destinobusca.submit()"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
                             <input type ='hidden' name ='destino' value='id1'>
                         </div>
                         <div class="carousel-item">
-                            <a href="javascript:;" name ='destino' id ='destino' value = 'id2' onclick="destinobusca.submit()"><img src="img/angra.JPG" alt="Angra dos Reis" ></a>
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id2' onclick="destinobusca.submit()"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
                             <input type ='hidden' name ='destino' value='id2'>
                         </div>
                         <div class="carousel-item">
-                            <a href="javascript:;" name ='destino' id ='destino' value = 'id3' onclick="destinobusca.submit()"><img src="img/saotome.jpg" alt="São Tomé das Letras"></a>
+                            <a href="javascript:;" name ='destino' id ='destino' value = 'id3' onclick="destinobusca.submit()"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
                             <input type ='hidden' name ='destino' value='id3'>
                         </div>
                     </div>
