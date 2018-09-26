@@ -60,9 +60,7 @@
                         <a href="#" class="list-group-item active">Category 1</a>
                         <%for (int i = 2; i < 10; i++) {
                         %>
-
                         <a href="#" class="list-group-item">Category <%=i%></a>
-
                         <%}%>
                     </div>
                 </div>
