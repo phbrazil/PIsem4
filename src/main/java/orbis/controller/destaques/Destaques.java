@@ -31,12 +31,18 @@ public class Destaques extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-
-        System.out.println("entrei aqui");
+       
 
         HttpSession sessao = request.getSession(true);
 
         String destino = request.getParameter("destino");
+
+        System.out.println(destino);
+        
+        if (destino.equals("id1")) {
+            request.getRequestDispatcher("catalogo.jsp").forward(request, response);
+
+        }
 
     }
 
