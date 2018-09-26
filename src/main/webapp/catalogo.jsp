@@ -6,10 +6,10 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="site de pacotes de excursao senac">
+    <meta name="author" content="paulo bezerra, lucas medeiros, andre pereira">
 
-    <title>Shop Item - Start Bootstrap Template</title>
+    <title>Orbis Eu Vou</title>
 
     <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
