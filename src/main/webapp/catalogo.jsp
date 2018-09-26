@@ -22,7 +22,7 @@
     <body>
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" style="color: green;">
             <div class="container">
                 <a class="navbar-brand" href="#">Destino</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
                 <div class="col-lg-9">
 
                     <div class="card mt-4">
-                        <img class="card-img-top img-fluid" src="img/portoseguro.jpg" alt="">
+                        <img class="card-img-top img-fluid" src="img/destino1.jpg" alt="destino1">
                         <div class="card-body">
                             <h3 class="card-title">Product Name</h3>
                             <h4>$24.99</h4>
