@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.destinos.pesquisar;
+package orbis.controller.destinos;
 
 import orbis.controller.destaques.*;
 import java.io.IOException;
@@ -31,15 +31,20 @@ public class buscar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
         String search = request.getParameter("search");
 
-        System.out.println(search);
-
+        PrintWriter out = response.getWriter();
+        String path = "index.jsp";
+        String mensagem = "Nenhum destino encontrado";
+        request.setAttribute("path", path);
+        out.println("<script type='text/javascript'>");
+        out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+        out.println("</script>");
     }
 
     @Override

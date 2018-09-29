@@ -153,7 +153,7 @@
                 <label for="cpf"><b>CPF</b></label>
                 <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
 
-                <label for="cpf"><b>Nome</b></label>
+                <label for="nome"><b>Nome</b></label>
                 <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
 
                 <label for="sexo"><b>Sexo</b></label>
@@ -225,32 +225,31 @@
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
-            <form  name = "destinobusca"  id = "destaques" action="${pageContext.request.contextPath}/Destaques" method="POST">
+            <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/Destaques" method="POST">
 
                 <!-- The slideshow -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="javascript:;" name ='destino' id ='destino' value = 'id1' onclick="destinobusca.submit()"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
+                        <a href="javascript:;" onclick="destinobusca.submit()"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
                         <input type ='hidden' name ='destino' value='id1'>
                     </div>
                     <div class="carousel-item">
-                        <a href="javascript:;" name ='destino' id ='destino' value = 'id2' onclick="destinobusca.submit()"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
+                        <a href="javascript:;" name ='destino' onclick="destinobusca.submit()"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
                         <input type ='hidden' name ='destino' value='id2'>
                     </div>
                     <div class="carousel-item">
-                        <a href="javascript:;" name ='destino' id ='destino' value = 'id3' onclick="destinobusca.submit()"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
+                        <a href="javascript:;" name ='destino' onclick="destinobusca.submit()"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='id3'>
                     </div>
                 </div>
-            </form>
 
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
+                <!-- Left and right controls -->
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
         </div>
         <br>
         <div class="row" style="width: 90%; height: 90%;">
@@ -261,7 +260,8 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="javascript:" value="id<%=i%>" onclick="destinobusca.submit()"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <a href="javascript:" onclick="destinobusca.submit()"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <input type ='hidden' name ='destino' value="id<%=i%>">
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="#">Excursão <%=i%></a>
@@ -278,19 +278,21 @@
             %>
 
         </div>
-    </div>
+    </form>
+
+</div>
 
 
-    <footer class="my-5 pt-5 text-muted text-center text-small">
-        <a href="termo"><span class="text-primary">Sobre Orbis</span></a>
-        <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-        <a href="termo"><span class="text-primary">Política de Uso</span></a>
-        <p class="mb-0">&copy; Orbis Eu Vou</p>
-    </footer>
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <a href="termo"><span class="text-primary">Sobre Orbis</span></a>
+    <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
+    <a href="termo"><span class="text-primary">Política de Uso</span></a>
+    <p class="mb-0">&copy; Orbis Eu Vou</p>
+</footer>
 
-    <script src="js/confirmarsenha.js"></script>
-    <script src="js/mascaraCNPJ.js"></script>
-    <script src="js/confirmarsenha.js"></script>
+<script src="js/confirmarsenha.js"></script>
+<script src="js/mascaraCNPJ.js"></script>
+<script src="js/confirmarsenha.js"></script>
 
 
 </html>

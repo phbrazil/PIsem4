@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
  * @author paulo.bezerra
  */
 @WebServlet(name = "/Destaques", urlPatterns = {"/Destaques"})
-public class Destaques extends HttpServlet {
+public class destaques extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
