@@ -237,6 +237,11 @@
         </div>
 
     </body>
+            <footer class="my-5 pt-5 text-muted text-center text-small">
+                <span class="text-primary">Sobre Orbis</span>
+            </p>
+            <p class="mb-0">&copy; Orbis Eu Vou</p>
+        </footer>
     
     <script src="js/confirmarsenha.js"></script>
 
