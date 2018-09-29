@@ -130,7 +130,7 @@
         }
     </style>
 
-<body>
+<body style='background-color: lightgreen'>
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
 

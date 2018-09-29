@@ -24,17 +24,13 @@
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand" href="#">Destino</a>
+                <a class="navbar-brand" href="/Orbis">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="#">Sobre</a>
                         </li>
@@ -55,7 +51,7 @@
             <div class="row">
 
                 <div class="col-lg-3">
-                    <h1 class="my-4">Shop Name</h1>
+                    <h1 class="my-4">Orbis</h1>
                     <div class="list-group">
                         <a href="#" class="list-group-item active">Category 1</a>
                         <%for (int i = 2; i < 10; i++) {
@@ -76,7 +72,7 @@
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                             4.0 stars
-                            <a href="#" style='float: right;' class="btn btn-success">Comprar agora</a>
+                            <a href="#" style='float: right; ' class="btn btn-success">Comprar agora</a>
                         </div>
 
                     </div>
