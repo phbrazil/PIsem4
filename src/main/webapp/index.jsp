@@ -130,7 +130,7 @@
         }
     </style>
 
-<body style='background-color: lightgreen'>
+<body style='background-color: white;'>
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
 
@@ -154,7 +154,7 @@
                 <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
 
                 <label for="cpf"><b>Nome</b></label>
-                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson" name="nome" id = 'nome' required>
+                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
 
                 <label for="sexo"><b>Sexo</b></label>
                 <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
@@ -170,7 +170,9 @@
 
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
-                    <button type="submit" class="signupbtn">Criar</button>
+                    <button type="submit" class="signupbtn" onclick="{
+                                return ConfirmPassword();
+                            }">Criar</button>
                 </div>
             </div>
         </form>
@@ -289,6 +291,7 @@
 
 <script src="js/confirmarsenha.js"></script>
 <script src="js/mascaraCNPJ.js"></script>
+<script src="js/confirmarsenha.js"></script>
 
 
 </html>

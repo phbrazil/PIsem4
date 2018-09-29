@@ -1,7 +1,8 @@
 
 function ConfirmPassword() {
 
-
+    var criarconta = document.getElementById('criarconta');
+    
     var password = document.getElementById('psw').value;
     var confirmpassword = document.getElementById('psw-repeat').value;
 
@@ -10,14 +11,17 @@ function ConfirmPassword() {
         alert("Senha muito curta");
         document.getElementById("psw").focus();
 
-    } else {
-
-        if (password !== confirmpassword) {
+    } else if (password !== confirmpassword) {
 
             alert("Senhas não combinam");
 
             document.getElementById("psw").focus();
 
+        
+    }else {
+        var answer = confirm("Confirma seus dados?");
+        if (answer == true) {
+            criarconta.submit();
         }
     }
 
