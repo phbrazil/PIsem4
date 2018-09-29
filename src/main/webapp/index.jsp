@@ -226,19 +226,19 @@
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
             <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/Destaques" method="POST">
-
                 <!-- The slideshow -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <a href="javascript:;" onclick="destinobusca.submit()"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
+
+                        <a href="Destaques?destino=id1"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
                         <input type ='hidden' name ='destino' value='id1'>
                     </div>
                     <div class="carousel-item">
-                        <a href="javascript:;" name ='destino' onclick="destinobusca.submit()"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
+                        <a href="Destaques?destino=id2"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
                         <input type ='hidden' name ='destino' value='id2'>
                     </div>
                     <div class="carousel-item">
-                        <a href="javascript:;" name ='destino' onclick="destinobusca.submit()"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
+                        <a href="Destaques?destino=id3"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='id3'>
                     </div>
                 </div>
@@ -252,6 +252,7 @@
                 </a>
         </div>
         <br>
+        
         <div class="row" style="width: 90%; height: 90%;">
 
             <%for (int i = 1; i <= 50; i++) {

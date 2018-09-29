@@ -25,24 +25,24 @@ public class destaques extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-       
 
         HttpSession sessao = request.getSession(true);
 
         String destino = request.getParameter("destino");
 
         System.out.println(destino);
-        
-        if (destino.equals("id1")) {
+
+        //if (destino.equals("id1")) {
             request.getRequestDispatcher("catalogo.jsp").forward(request, response);
 
-        }
+        //}
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 
