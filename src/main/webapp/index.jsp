@@ -130,7 +130,7 @@
         }
     </style>
 
-<body style='background-color: white;'>
+<body class="bg-light">
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
 
@@ -285,13 +285,12 @@
         <a href="termo"><span class="text-primary">Sobre Orbis</span></a>
         <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
         <a href="termo"><span class="text-primary">Política de Uso</span></a>
-    </p>
-    <p class="mb-0">&copy; Orbis Eu Vou</p>
-</footer>
+        <p class="mb-0">&copy; Orbis Eu Vou</p>
+    </footer>
 
-<script src="js/confirmarsenha.js"></script>
-<script src="js/mascaraCNPJ.js"></script>
-<script src="js/confirmarsenha.js"></script>
+    <script src="js/confirmarsenha.js"></script>
+    <script src="js/mascaraCNPJ.js"></script>
+    <script src="js/confirmarsenha.js"></script>
 
 
 </html>

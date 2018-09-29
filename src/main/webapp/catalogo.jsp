@@ -19,7 +19,7 @@
 
     </head>
 
-    <body>
+    <body class="bg-light">
 
         <!-- Navigation -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -72,7 +72,7 @@
                             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
                             <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                             4.0 stars
-                            <a href="#" style='float: right; ' class="btn btn-success">Comprar agora</a>
+                            <a href="finalizarcompra.jsp" style='float: right; ' class="btn btn-success">Comprar agora</a>
                         </div>
 
                     </div>
