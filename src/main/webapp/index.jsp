@@ -148,7 +148,7 @@
                 <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
 
                 <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' onblur="ConfirmPassword()" required>
+                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
 
                 <label for="cpf"><b>CPF</b></label>
                 <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
@@ -257,11 +257,10 @@
 
             <%for (int i = 1; i <= 50; i++) {
 
-
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="javascript:" onclick="destinobusca.submit()"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <a href="Destaques?destino=id<%=i%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="id<%=i%>">
                     <div class="card-body">
                         <h4 class="card-title">
