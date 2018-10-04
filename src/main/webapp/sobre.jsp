@@ -29,8 +29,16 @@
 
         <div align ="center">
 
-            <embed src="img/sobre/" width="100%" height="500" type='application/pdf'>
-
+            <img src="img/sobre/Slide1.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide2.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide3.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide4.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide5.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide6.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide7.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide8.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide9.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
+            <img src="img/sobre/Slide10.PNG" id="mainImage" name="mainImage" width="100%" height="100%" alt="">
 
 
         </div>
