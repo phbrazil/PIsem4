@@ -28,6 +28,9 @@ public class tbPacotes implements Serializable {
     private String localSaida;
     private String localDestino;
     private String roteiro;
+    
+    
+    
 
     public String getDthevento() {
         return dthevento;

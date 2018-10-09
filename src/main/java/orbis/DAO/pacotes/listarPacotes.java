@@ -31,7 +31,7 @@ public class listarPacotes {
 
             java.sql.Statement st = conexao.createStatement();
 
-            selectgeral = "select * from tbpacote";
+            selectgeral = "select * from tbpacotes";
             ResultSet resultgeral = st.executeQuery(selectgeral);
             if (resultgeral != null) {
                 return resultgeral;
