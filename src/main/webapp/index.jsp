@@ -1,3 +1,16 @@
+<%@page import="orbis.DAO.controllerJPA.ClientesJpaController"%>
+<%@page import="orbis.DAO.pacotes.Clientes"%>
+
+<%Clientes clientes = new Clientes();
+
+    ClientesJpaController jpa = new ClientesJpaController(null,null);
+
+    clientes.setNome("paulo");
+    clientes.setIdade(27);
+    jpa.create(clientes);
+
+%>
+
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.ResultSet"%>
@@ -262,8 +275,7 @@
 
         <div class="row" style="width: 90%; height: 90%;">
 
-            <%
-                listarPacotes listar = new listarPacotes();
+            <%                listarPacotes listar = new listarPacotes();
 
                 ResultSet pacotes = listar.listar();
                 int linha = 1;
@@ -281,13 +293,13 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=id<%=pacotes.getInt("idpacote")%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <a href="Destaques?destino=id<%=pacotes.getInt("idpacote")%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="id<%=pacotes.getString("idpacote")%>">
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="#">Excursão <%=linha%></a>
                         </h4>
-                            <h5><%=formatoMoeda.format(pacotes.getDouble("valor"))%></h5>
+                        <h5><%=formatoMoeda.format(pacotes.getDouble("valor"))%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                     </div>
                     <div class="card-footer">
