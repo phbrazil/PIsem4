@@ -45,10 +45,13 @@ public class TesteHibernateInsertPacotes {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            session.save(pacotes);
+            Long idPacote = (Long) session.save(pacotes);
+
+            System.out.println("o id pacote criado foi " + idPacote);
 
             //comita as informacoes
             tx.commit();
+            session.close();
 
         }
 

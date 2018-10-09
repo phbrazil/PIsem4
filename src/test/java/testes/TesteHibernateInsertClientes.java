@@ -43,10 +43,14 @@ public class TesteHibernateInsertClientes {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            session.save(clientes);
+            Long idCliente = (Long) session.save(clientes);
+
+            System.out.println("id criado foi " + idCliente);
 
             //comita as informacoes
             tx.commit();
+
+            session.close();
 
         }
 
