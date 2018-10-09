@@ -1,3 +1,5 @@
+<%@page import="java.sql.ResultSet"%>
+<%@page import="orbis.DAO.pacotes.listarPacotes"%>
 <!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -133,6 +135,9 @@
 <body class="bg-light">
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
+    <button onclick="{
+                location = 'acessar.jsp';
+            }" style="width:auto; float: right">Já tenho Conta</button>
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -252,19 +257,30 @@
                 </a>
         </div>
         <br>
-        
+
         <div class="row" style="width: 90%; height: 90%;">
 
-            <%for (int i = 1; i <= 50; i++) {
+            <%
+                listarPacotes listar = new listarPacotes();
+
+                ResultSet pacotes = listar.listar();
+                int linha = 1;
+
+                if (pacotes != null) {
+
+                    if (pacotes.next() == false) {
+
+                    } else {
+                        do {
 
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=id<%=i%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
-                    <input type ='hidden' name ='destino' value="id<%=i%>">
+                    <a href="Destaques?destino=id<%=pacotes.getString("idpacote")%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <input type ='hidden' name ='destino' value="id<%=pacotes.getString("idpacote")%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Excursão <%=i%></a>
+                            <a href="#">Excursão <%=linha%></a>
                         </h4>
                         <h5>R$50,99</h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
@@ -274,7 +290,13 @@
                     </div>
                 </div>
             </div>
-            <%}
+            <%
+                            linha++;
+
+                        } while (pacotes.next());
+                    }
+                }
+
             %>
 
         </div>

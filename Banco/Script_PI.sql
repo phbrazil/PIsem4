@@ -53,6 +53,9 @@ localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
 PRIMARY KEY (idpacote));
 
+INSERT INTO tbpacote(dthevento,qtdmax,valor,localsaida,localdestino,roteiro) values(now(),100,100.00, 'SAO PAULO', 'BAHIA', 'ROTEIRO');
+
+
 CREATE TABLE tbvenda(
 idvenda  INT NOT NULL AUTO_INCREMENT,
 idcliente INT NOT NULL,
