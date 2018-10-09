@@ -1,16 +1,3 @@
-<%@page import="orbis.DAO.controllerJPA.ClientesJpaController"%>
-<%@page import="orbis.DAO.pacotes.Clientes"%>
-
-<%Clientes clientes = new Clientes();
-
-    ClientesJpaController jpa = new ClientesJpaController(null,null);
-
-    clientes.setNome("paulo");
-    clientes.setIdade(27);
-    jpa.create(clientes);
-
-%>
-
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.ResultSet"%>
@@ -170,6 +157,9 @@
                 <label for="psw-repeat"><b>Confirmar Senha</b></label>
                 <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
 
+                <label for="cpf"><b>RG</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="14" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+
                 <label for="cpf"><b>CPF</b></label>
                 <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
 
@@ -183,8 +173,10 @@
                 </div>
 
                 <label for="telefone"><b>Telefone</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="telefone" id = 'telefone' required>
+                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="telefone" id = 'telefone'>
 
+                <label for="celular"><b>Celular</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
 
                 <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
 

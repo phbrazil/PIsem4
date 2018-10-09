@@ -13,7 +13,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import orbis.DAO.cliente.tbCliente;
 import orbis.model.criarconta.mcriarconta;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -31,21 +36,27 @@ public class criarconta extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        String email = request.getParameter("email");
-        String psw = request.getParameter("psw");
-        String pswrepeat = request.getParameter("psw-repeat");
-        String cpf = request.getParameter("cpf");
-        String nome = request.getParameter("nome");
-        String sexo = request.getParameter("sexo");
-        String telefone = request.getParameter("telefone");
+        tbCliente clientes = new tbCliente();
 
-        if (!psw.equals(pswrepeat) || cpf.equals("")|| nome.equals("")
-                || telefone.equals("")|| sexo.equals("")|| email.equals("")) {
+        clientes.setIdEndereco(0);
+        clientes.setEmailCliente(request.getParameter("email"));
+        clientes.setNomeCliente(request.getParameter("nome"));
+        clientes.setRgCliente(request.getParameter("rg"));
+        clientes.setCpfCliente(request.getParameter("cpf"));
+        clientes.setTelCliente(request.getParameter("telefone"));
+        clientes.setCelCliente(request.getParameter("celular"));
+        clientes.setPasswordCliente(request.getParameter("psw"));
+        String psw = request.getParameter("psw-repeat");
+        String pswrepeat = request.getParameter("psw-repeat");
+        clientes.setChangePassword(false);
+        clientes.setIdPayment(0);
+
+        if (!psw.equals(pswrepeat)) {
             PrintWriter out = response.getWriter();
             String path = "index.jsp";
             String mensagem = "Ocorreu um erro. Favor tentar novamente";
@@ -54,13 +65,22 @@ public class criarconta extends HttpServlet {
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
             out.println("</script>");
 
-        }else{
-            
-            mcriarconta criarconta = new mcriarconta(email, psw, cpf, nome, sexo, telefone);
-            
-            System.out.println(criarconta.getNome());
-            
-            
+        } else {
+
+            //indica as configuracoes do banco
+            Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
+            SessionFactory sf = con.buildSessionFactory();
+
+            //abre sessao com o banco
+            Session session = sf.openSession();
+
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
+            session.save(clientes);
+
+            //comita as informacoes
+            tx.commit();
+
         }
 
     }
