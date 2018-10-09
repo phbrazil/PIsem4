@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.DAO.controllerJPA;
+package orbis.DAO.ClienteJPA;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,8 +14,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
-import orbis.DAO.controllerJPA.exceptions.NonexistentEntityException;
-import orbis.DAO.controllerJPA.exceptions.RollbackFailureException;
+import orbis.DAO.ClienteJPA.exceptions.NonexistentEntityException;
+import orbis.DAO.ClienteJPA.exceptions.RollbackFailureException;
 import orbis.DAO.cliente.tbCliente;
 
 /**

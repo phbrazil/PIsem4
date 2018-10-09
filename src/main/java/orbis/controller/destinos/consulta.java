@@ -8,7 +8,7 @@ package orbis.controller.destinos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import orbis.DAO.conexao.conexaoDAO;
-import orbis.model.pacotes.pacotes;
+import orbis.DAO.pacotes.tbPacotes;
 
 /**
  *
@@ -19,13 +19,13 @@ public class consulta {
         private Connection conexao = null;
 
     
-        public pacotes pacotes(int idpacote) {
+        public tbPacotes pacotes(int idpacote) {
             
         String select = "";
 
         conexaoDAO bancoconexao = new conexaoDAO();
         
-        pacotes produtos = new pacotes(0, null, null, 0, 0, 0, false, null);
+        tbPacotes pacotes = new tbPacotes();
 
         try {
 
@@ -35,17 +35,16 @@ public class consulta {
 
             java.sql.Statement st = conexao.createStatement();
 
-            select = "select * from produto where id = " + idpacote;
+            select = "select * from tbpacote where idpacote= " + idpacote;
             ResultSet resultado = st.executeQuery(select);
             while (resultado.next()) {
 
-                produtos.setId(Integer.valueOf(resultado.getString("id")));
-                produtos.setNome(String.valueOf(resultado.getString("nome")));
-                produtos.setDescricao(String.valueOf(resultado.getString("descricao")));
-                produtos.setPreco_compra(Double.valueOf(resultado.getString("preco_compra")));
-                produtos.setPreco_venda(Double.valueOf(resultado.getString("preco_venda")));
-                produtos.setQuantidade(Integer.valueOf(resultado.getString("quantidade")));
-                produtos.setDisponivel(Boolean.valueOf(resultado.getString("disponivel")));
+                pacotes.setDthevento(String.valueOf(resultado.getString("dthevento")));
+                pacotes.setQtdMax(Integer.valueOf(resultado.getString("qtdmax")));
+                pacotes.setValor(Double.valueOf(resultado.getString("valor")));
+                pacotes.setLocalSaida(String.valueOf(resultado.getString("localsaida")));
+                pacotes.setLocalDestino(String.valueOf(resultado.getString("localdestino")));
+                pacotes.setRoteiro(String.valueOf(resultado.getString("roteiro")));
 
             }
             conexao.close();
@@ -55,6 +54,6 @@ public class consulta {
             System.out.println("Error: " + e.getMessage());
 
         }
-        return produtos;
+        return pacotes;
     }
 }

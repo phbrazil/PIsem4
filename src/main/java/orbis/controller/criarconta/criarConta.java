@@ -25,7 +25,7 @@ import org.hibernate.cfg.Configuration;
  * @author paulo.bezerra
  */
 @WebServlet(name = "/CriarConta", urlPatterns = {"/CriarConta"})
-public class criarconta extends HttpServlet {
+public class criarConta extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +80,8 @@ public class criarconta extends HttpServlet {
 
             //comita as informacoes
             tx.commit();
+            
+            
 
         }
 

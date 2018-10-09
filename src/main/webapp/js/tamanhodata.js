@@ -1,13 +1,12 @@
 function TamanhoData() {
 
-    var propreqdate = document.getElementById("propreqdate").value;
-    var eventstartdate = document.getElementById("eventstartdate").value;
-    var eventclosingdate = document.getElementById("eventclosingdate").value;
+    var dthevento = document.getElementById("dthevento").value;
 
 
 
-    if (propreqdate.length > 10 || eventstartdate.length > 10 || eventclosingdate.length > 10) {
-        alert("Data no formato inválido")
+    if (dthevento.length > 10) {
+        alert("Data no formato inválido");
+        document.getElementById("dthevento").focus();
     }
 
 }

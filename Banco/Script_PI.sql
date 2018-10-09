@@ -45,7 +45,7 @@ FOREIGN KEY (idendereco) REFERENCES tbendereco (idendereco));
 
 CREATE TABLE tbpacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
-dthevento VARCHAR (20) NOT NULL,
+dtevento VARCHAR (20) NOT NULL,
 qtdmax INT NOT NULL,
 valor FLOAT(10,2) NOT NULL,
 localsaida VARCHAR(100) NOT NULL,

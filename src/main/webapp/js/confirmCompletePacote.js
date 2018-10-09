@@ -1,5 +1,5 @@
 
-function confirmCompleteProjeto() {
+function confirmCompletePacote() {
 
     var criarprojeto = document.getElementById('criarprojeto');
 

@@ -1,4 +1,4 @@
-package orbis.DAO.controllerJPA.exceptions;
+package orbis.DAO.PacotesJPA.exceptions;
 
 import java.util.ArrayList;
 import java.util.List;

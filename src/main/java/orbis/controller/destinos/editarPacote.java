@@ -8,7 +8,7 @@ package orbis.controller.destinos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import orbis.DAO.conexao.conexaoDAO;
-import orbis.model.pacotes.pacotes;
+import orbis.DAO.pacotes.tbPacotes;
 
 /**
  *
@@ -16,7 +16,7 @@ import orbis.model.pacotes.pacotes;
  */
 public class editarPacote {
 
-    public boolean editar(pacotes pacotes) {
+    public boolean editar(tbPacotes pacotes) {
         
         boolean success = false;
 
@@ -26,18 +26,18 @@ public class editarPacote {
 
             Connection conexao = bancoconexao.getConnection();
 
-            String query = ("update produto set nome=?, descricao =?,"
-                    + "preco_compra =?, preco_venda=?, quantidade=?, disponivel=? where"
-                    + " id= ?;");
+            String query = ("update tbpacote set dthevento=?, qtdmax =?,"
+                    + "valor =?, localsaida=?, localdestino=?, roteiro=? where"
+                    + " idpacote= ?;");
 
             PreparedStatement preparedStmt = conexao.prepareStatement(query);
-            preparedStmt.setString(1, pacotes.getNome());
-            preparedStmt.setString(2, pacotes.getDescricao());
-            preparedStmt.setDouble(3, pacotes.getPreco_compra());
-            preparedStmt.setDouble(4, pacotes.getPreco_venda());
-            preparedStmt.setInt(5, pacotes.getQuantidade());
-            preparedStmt.setBoolean(6, pacotes.isDisponivel());
-            preparedStmt.setInt(7, pacotes.getId());
+            preparedStmt.setString(1, pacotes.getDthevento());
+            preparedStmt.setInt(2, pacotes.getQtdMax());
+            preparedStmt.setDouble(3, pacotes.getValor());
+            preparedStmt.setString(4, pacotes.getLocalSaida());
+            preparedStmt.setString(5, pacotes.getLocalDestino());
+            preparedStmt.setString(6, pacotes.getRoteiro());
+            preparedStmt.setLong(7, pacotes.getIdPacote());
             
             preparedStmt.execute();
 

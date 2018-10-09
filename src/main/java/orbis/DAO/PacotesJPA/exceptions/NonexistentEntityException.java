@@ -1,4 +1,4 @@
-package orbis.DAO.controllerJPA.exceptions;
+package orbis.DAO.PacotesJPA.exceptions;
 
 public class NonexistentEntityException extends Exception {
     public NonexistentEntityException(String message, Throwable cause) {

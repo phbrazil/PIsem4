@@ -1,4 +1,4 @@
-package orbis.DAO.controllerJPA.exceptions;
+package orbis.DAO.PacotesJPA.exceptions;
 
 public class PreexistingEntityException extends Exception {
     public PreexistingEntityException(String message, Throwable cause) {
