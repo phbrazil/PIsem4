@@ -1,3 +1,5 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="orbis.DAO.pacotes.listarPacotes"%>
 <!DOCTYPE html>
@@ -266,6 +268,9 @@
                 ResultSet pacotes = listar.listar();
                 int linha = 1;
 
+                NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                        new Locale("pt", "BR"));
+
                 if (pacotes != null) {
 
                     if (pacotes.next() == false) {
@@ -276,13 +281,13 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=id<%=pacotes.getString("idpacote")%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
+                    <a href="Destaques?destino=id<%=pacotes.getInt("idpacote")%>"><img class="card-img-top" src="img/destino2.JPG" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="id<%=pacotes.getString("idpacote")%>">
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="#">Excursão <%=linha%></a>
                         </h4>
-                        <h5>R$50,99</h5>
+                            <h5><%=formatoMoeda.format(pacotes.getDouble("valor"))%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                     </div>
                     <div class="card-footer">
