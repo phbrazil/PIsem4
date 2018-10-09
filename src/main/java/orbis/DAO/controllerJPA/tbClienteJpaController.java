@@ -16,15 +16,15 @@ import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import orbis.DAO.controllerJPA.exceptions.NonexistentEntityException;
 import orbis.DAO.controllerJPA.exceptions.RollbackFailureException;
-import orbis.DAO.pacotes.Clientes;
+import orbis.DAO.cliente.tbCliente;
 
 /**
  *
  * @author ASAPH-001
  */
-public class ClientesJpaController implements Serializable {
+public class tbClienteJpaController implements Serializable {
 
-    public ClientesJpaController(UserTransaction utx, EntityManagerFactory emf) {
+    public tbClienteJpaController(UserTransaction utx, EntityManagerFactory emf) {
         this.utx = utx;
         this.emf = emf;
     }
@@ -35,7 +35,7 @@ public class ClientesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(Clientes clientes) throws RollbackFailureException, Exception {
+    public void create(tbCliente clientes) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -56,7 +56,7 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
-    public void edit(Clientes clientes) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(tbCliente clientes) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -71,7 +71,7 @@ public class ClientesJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = clientes.getId();
+                Long id = clientes.getIdCliente();
                 if (findClientes(id) == null) {
                     throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.");
                 }
@@ -89,10 +89,10 @@ public class ClientesJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            Clientes clientes;
+            tbCliente clientes;
             try {
-                clientes = em.getReference(Clientes.class, id);
-                clientes.getId();
+                clientes = em.getReference(tbCliente.class, id);
+                clientes.getIdCliente();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.", enfe);
             }
@@ -112,19 +112,19 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
-    public List<Clientes> findClientesEntities() {
+    public List<tbCliente> findClientesEntities() {
         return findClientesEntities(true, -1, -1);
     }
 
-    public List<Clientes> findClientesEntities(int maxResults, int firstResult) {
+    public List<tbCliente> findClientesEntities(int maxResults, int firstResult) {
         return findClientesEntities(false, maxResults, firstResult);
     }
 
-    private List<Clientes> findClientesEntities(boolean all, int maxResults, int firstResult) {
+    private List<tbCliente> findClientesEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(Clientes.class));
+            cq.select(cq.from(tbCliente.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -136,10 +136,10 @@ public class ClientesJpaController implements Serializable {
         }
     }
 
-    public Clientes findClientes(Long id) {
+    public tbCliente findClientes(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Clientes.class, id);
+            return em.find(tbCliente.class, id);
         } finally {
             em.close();
         }
@@ -149,7 +149,7 @@ public class ClientesJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<Clientes> rt = cq.from(Clientes.class);
+            Root<tbCliente> rt = cq.from(tbCliente.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
