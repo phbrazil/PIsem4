@@ -8,7 +8,7 @@ package orbis.controller.destinos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import orbis.DAO.conexao.conexaoDAO;
-import orbis.DAO.pacotes.tbPacotes;
+import orbis.DAO.pacote.tbPacote;
 
 /**
  *
@@ -19,13 +19,13 @@ public class consulta {
         private Connection conexao = null;
 
     
-        public tbPacotes pacotes(int idpacote) {
+        public tbPacote pacotes(int idpacote) {
             
         String select = "";
 
         conexaoDAO bancoconexao = new conexaoDAO();
         
-        tbPacotes pacotes = new tbPacotes();
+        tbPacote pacotes = new tbPacote();
 
         try {
 

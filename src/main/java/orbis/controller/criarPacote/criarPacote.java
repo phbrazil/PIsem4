@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import orbis.DAO.cliente.tbCliente;
-import orbis.DAO.pacotes.tbPacotes;
+import orbis.DAO.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -41,10 +41,10 @@ public class criarPacote extends HttpServlet {
 
         HttpSession sessao = request.getSession(true);
 
-        tbPacotes pacote = new tbPacotes();
+        tbPacote pacote = new tbPacote();
 
         //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacotes.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco

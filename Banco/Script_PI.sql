@@ -32,11 +32,11 @@ idcliente INT NOT NULL AUTO_INCREMENT,
 idendereco INT NOT NULL,
 emailcliente VARCHAR (50) UNIQUE NOT NULL,
 nomecliente VARCHAR (50) NOT NULL,
-rgcliente VARCHAR (11) UNIQUE NOT NULL,
+rgcliente VARCHAR (12) UNIQUE NOT NULL,
 cpfcliente VARCHAR (14) UNIQUE NOT NULL,
 telcliente VARCHAR (13) NOT NULL,
 celcliente VARCHAR (14),
-password VARCHAR (30) NOT NULL,
+passwordCliente VARCHAR (30) NOT NULL,
 changepassword boolean NOT NULL,
 idpayment INT NOT NULL,
 PRIMARY KEY (idcliente),
@@ -45,7 +45,7 @@ FOREIGN KEY (idendereco) REFERENCES tbendereco (idendereco));
 
 CREATE TABLE tbpacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
-dtevento VARCHAR (20) NOT NULL,
+dthevento VARCHAR (20) NOT NULL,
 qtdmax INT NOT NULL,
 valor FLOAT(10,2) NOT NULL,
 localsaida VARCHAR(100) NOT NULL,
@@ -53,7 +53,6 @@ localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
 PRIMARY KEY (idpacote));
 
-INSERT INTO tbpacote(dthevento,qtdmax,valor,localsaida,localdestino,roteiro) values(now(),100,100.00, 'SAO PAULO', 'BAHIA', 'ROTEIRO');
 
 
 CREATE TABLE tbvenda(

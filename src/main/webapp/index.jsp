@@ -1,7 +1,11 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="orbis.DAO.pacote.tbPacote"%>
+<%@page import="orbis.DAO.cliente.tbCliente"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.ResultSet"%>
-<%@page import="orbis.DAO.pacotes.listarPacotes"%>
+<%@page import="orbis.DAO.pacote.listarPacotes"%>
 <!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
@@ -269,7 +273,7 @@
 
             <%                listarPacotes listar = new listarPacotes();
 
-                ResultSet pacotes = listar.listar();
+                List<tbPacote> pacotes = listar.listar();
                 int linha = 1;
 
                 NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
@@ -277,21 +281,20 @@
 
                 if (pacotes != null) {
 
-                    if (pacotes.next() == false) {
+                    for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                        tbPacote pacote = (tbPacote) iterator.next();
 
-                    } else {
-                        do {
 
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=id<%=pacotes.getInt("idpacote")%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
-                    <input type ='hidden' name ='destino' value="id<%=pacotes.getString("idpacote")%>">
+                    <a href="Destaques?destino=id<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                    <input type ='hidden' name ='destino' value="id<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
                             <a href="#">Excursão <%=linha%></a>
                         </h4>
-                        <h5><%=formatoMoeda.format(pacotes.getDouble("valor"))%></h5>
+                        <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
                     </div>
                     <div class="card-footer">
@@ -300,9 +303,8 @@
                 </div>
             </div>
             <%
-                            linha++;
+                        linha++;
 
-                        } while (pacotes.next());
                     }
                 }
 

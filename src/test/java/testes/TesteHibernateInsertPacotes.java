@@ -8,7 +8,7 @@ package testes;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import orbis.DAO.cliente.tbCliente;
-import orbis.DAO.pacotes.tbPacotes;
+import orbis.DAO.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -27,7 +27,7 @@ public class TesteHibernateInsertPacotes {
         for (int i = 0; i < 100; i++) {
 
             //popula o model com os dados
-            tbPacotes pacotes = new tbPacotes();
+            tbPacote pacotes = new tbPacote();
 
             pacotes.setDthevento(dataatual);
             pacotes.setQtdMax(100);
@@ -37,7 +37,7 @@ public class TesteHibernateInsertPacotes {
             pacotes.setValor(Math.random() * 100);
 
             //indica as configuracoes do banco
-            Configuration con = new Configuration().configure().addAnnotatedClass(tbPacotes.class);
+            Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
             SessionFactory sf = con.buildSessionFactory();
 
             //abre sessao com o banco

@@ -16,7 +16,7 @@ import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import orbis.DAO.PacotesJPA.exceptions.NonexistentEntityException;
 import orbis.DAO.PacotesJPA.exceptions.RollbackFailureException;
-import orbis.DAO.pacotes.tbPacotes;
+import orbis.DAO.pacote.tbPacote;
 
 /**
  *
@@ -35,7 +35,7 @@ public class tbPacotesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(tbPacotes tbPacotes) throws RollbackFailureException, Exception {
+    public void create(tbPacote tbPacotes) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -56,7 +56,7 @@ public class tbPacotesJpaController implements Serializable {
         }
     }
 
-    public void edit(tbPacotes tbPacotes) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(tbPacote tbPacotes) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -89,9 +89,9 @@ public class tbPacotesJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            tbPacotes tbPacotes;
+            tbPacote tbPacotes;
             try {
-                tbPacotes = em.getReference(tbPacotes.class, id);
+                tbPacotes = em.getReference(tbPacote.class, id);
                 tbPacotes.getIdPacote();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tbPacotes with id " + id + " no longer exists.", enfe);
@@ -112,19 +112,19 @@ public class tbPacotesJpaController implements Serializable {
         }
     }
 
-    public List<tbPacotes> findtbPacotesEntities() {
+    public List<tbPacote> findtbPacotesEntities() {
         return findtbPacotesEntities(true, -1, -1);
     }
 
-    public List<tbPacotes> findtbPacotesEntities(int maxResults, int firstResult) {
+    public List<tbPacote> findtbPacotesEntities(int maxResults, int firstResult) {
         return findtbPacotesEntities(false, maxResults, firstResult);
     }
 
-    private List<tbPacotes> findtbPacotesEntities(boolean all, int maxResults, int firstResult) {
+    private List<tbPacote> findtbPacotesEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(tbPacotes.class));
+            cq.select(cq.from(tbPacote.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -136,10 +136,10 @@ public class tbPacotesJpaController implements Serializable {
         }
     }
 
-    public tbPacotes findtbPacotes(Long id) {
+    public tbPacote findtbPacotes(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(tbPacotes.class, id);
+            return em.find(tbPacote.class, id);
         } finally {
             em.close();
         }
@@ -149,7 +149,7 @@ public class tbPacotesJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<tbPacotes> rt = cq.from(tbPacotes.class);
+            Root<tbPacote> rt = cq.from(tbPacote.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();

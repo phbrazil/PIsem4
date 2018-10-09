@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.DAO.pacotes;
+package orbis.DAO.pacote;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
@@ -16,7 +16,7 @@ import javax.persistence.Id;
  * @author ASAPH-001
  */
 @Entity
-public class tbPacotes implements Serializable {
+public class tbPacote implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -101,10 +101,10 @@ public class tbPacotes implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof tbPacotes)) {
+        if (!(object instanceof tbPacote)) {
             return false;
         }
-        tbPacotes other = (tbPacotes) object;
+        tbPacote other = (tbPacote) object;
         if ((this.idPacote == null && other.idPacote != null) || (this.idPacote != null && !this.idPacote.equals(other.idPacote))) {
             return false;
         }

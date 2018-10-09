@@ -8,7 +8,7 @@ package orbis.controller.destinos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import orbis.DAO.conexao.conexaoDAO;
-import orbis.DAO.pacotes.tbPacotes;
+import orbis.DAO.pacote.tbPacote;
 
 /**
  *
@@ -16,7 +16,7 @@ import orbis.DAO.pacotes.tbPacotes;
  */
 public class editarPacote {
 
-    public boolean editar(tbPacotes pacotes) {
+    public boolean editar(tbPacote pacotes) {
         
         boolean success = false;
 
