@@ -6,11 +6,7 @@
 package orbis.DAO.pacote;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.Iterator;
 import java.util.List;
-import orbis.DAO.cliente.tbCliente;
-import orbis.DAO.conexao.conexaoDAO;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -7,7 +7,6 @@ package testes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import orbis.DAO.cliente.tbCliente;
 import orbis.DAO.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
@@ -23,7 +22,14 @@ public class TesteHibernateInsertPacotes {
     public static void main(String[] args) {
 
         String dataatual = new SimpleDateFormat("dd-MM-yyyy_hh:mm:ss").format(Calendar.getInstance().getTime());
+        //indica as configuracoes do banco
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        SessionFactory sf = con.buildSessionFactory();
 
+        //abre sessao com o banco
+        Session session = sf.openSession();
+
+        //inicia a transacao com o banco
         for (int i = 0; i < 100; i++) {
 
             //popula o model com os dados
@@ -36,24 +42,19 @@ public class TesteHibernateInsertPacotes {
             pacotes.setRoteiro("role zueiro");
             pacotes.setValor(Math.random() * 100);
 
-            //indica as configuracoes do banco
-            Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
-            SessionFactory sf = con.buildSessionFactory();
-
-            //abre sessao com o banco
-            Session session = sf.openSession();
-
-            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
+
             Long idPacote = (Long) session.save(pacotes);
 
             System.out.println("o id pacote criado foi " + idPacote);
 
             //comita as informacoes
             tx.commit();
-            session.close();
 
         }
+
+        session.close();
+        System.out.println("Conexao fechada");
 
     }
 

@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import orbis.DAO.cliente.tbCliente;
-import orbis.model.criarconta.mcriarconta;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -43,7 +42,7 @@ public class criarConta extends HttpServlet {
 
         tbCliente clientes = new tbCliente();
 
-        clientes.setIdEndereco(0);
+        clientes.setIdEndereco(1);
         clientes.setEmailCliente(request.getParameter("email"));
         clientes.setNomeCliente(request.getParameter("nome"));
         clientes.setRgCliente(request.getParameter("rg"));
@@ -54,7 +53,7 @@ public class criarConta extends HttpServlet {
         String psw = request.getParameter("psw-repeat");
         String pswrepeat = request.getParameter("psw-repeat");
         clientes.setChangePassword(false);
-        clientes.setIdPayment(0);
+        clientes.setIdPayment(1);
 
         if (!psw.equals(pswrepeat)) {
             PrintWriter out = response.getWriter();
@@ -80,6 +79,8 @@ public class criarConta extends HttpServlet {
 
             //comita as informacoes
             tx.commit();
+            
+            session.close();
             
             
 
