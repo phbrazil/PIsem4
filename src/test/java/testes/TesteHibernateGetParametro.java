@@ -31,6 +31,7 @@ public class TesteHibernateGetParametro {
         //abre sessao com o banco
         Session session = sf.openSession();
         
+        //pega o parametro
         String parametro = JOptionPane.showInputDialog("Insira o parametro");
 
         //inicia a transacao com o banco
