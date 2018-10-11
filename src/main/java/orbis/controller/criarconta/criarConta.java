@@ -73,17 +73,21 @@ public class criarConta extends HttpServlet {
             //abre sessao com o banco
             Session session = sf.openSession();
 
-            //inicia a transacao com o banco
-            Transaction tx = session.beginTransaction();
-            session.save(clientes);
+            try {
 
-            //comita as informacoes
-            tx.commit();
-            
-            session.close();
-            
-            
+                //inicia a transacao com o banco
+                Transaction tx = session.beginTransaction();
+                session.save(clientes);
 
+                //comita as informacoes
+                tx.commit();
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
+
+            }
         }
 
     }

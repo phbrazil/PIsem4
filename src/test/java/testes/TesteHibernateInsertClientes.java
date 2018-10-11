@@ -5,7 +5,6 @@
  */
 package testes;
 
-import com.sun.xml.internal.txw2.TXW;
 import orbis.DAO.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
@@ -32,10 +31,10 @@ public class TesteHibernateInsertClientes {
             tbCliente clientes = new tbCliente();
 
             clientes.setIdEndereco(1);
-            clientes.setEmailCliente("pauloh2012sul@gmail.com"+i);
+            clientes.setEmailCliente("pauloh2012sul@gmail.com" + i);
             clientes.setNomeCliente("Paulo Bezerra");
-            clientes.setRgCliente("46.682.5"+i+"-3");
-            clientes.setCpfCliente("375.197.588-"+i);
+            clientes.setRgCliente("46.682.5" + i + "-3");
+            clientes.setCpfCliente("375.197.588-" + i);
             clientes.setTelCliente("1156633578");
             clientes.setCelCliente("11981997228");
             clientes.setPasswordCliente("0c24a188a9");
@@ -50,13 +49,12 @@ public class TesteHibernateInsertClientes {
 
             //comita as informacoes
             tx.commit();
-            
+            sf.close();
 
+        }
 
-        }   
-            
-            session.close();
-            System.out.println("Conexao fechada");
+        session.close();
+        System.out.println("Conexao fechada");
     }
 
 }

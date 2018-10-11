@@ -39,6 +39,7 @@ public class TesteHibernateGetCliente {
         //comita as informacoes
         tx.commit();
         session.close();
+        sf.close();
 
     }
 

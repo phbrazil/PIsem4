@@ -50,6 +50,7 @@ public class TesteHibernateInsertPacotes {
 
             //comita as informacoes
             tx.commit();
+            sf.close();
 
         }
 

@@ -49,12 +49,20 @@ public class criarPacote extends HttpServlet {
         //abre sessao com o banco
         Session session = sf.openSession();
 
-        //inicia a transacao com o banco
-        Transaction tx = session.beginTransaction();
-        session.save(pacote);
+        try {
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
+            session.save(pacote);
 
-        //comita as informacoes
-        tx.commit();
+            //comita as informacoes
+            tx.commit();
+
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
+            }
+        }
 
     }
 

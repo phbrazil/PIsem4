@@ -49,6 +49,7 @@ public class TesteHibernateGetParametro {
         //comita as informacoes
         tx.commit();
         session.close();
+        sf.close();
 
     }
 
