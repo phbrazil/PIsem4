@@ -13,9 +13,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
-    <script type="text/javascript" 
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--script type="text/javascript" 
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script-->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -244,20 +248,20 @@
                 <li data-target="#demo" data-slide-to="1"></li>
                 <li data-target="#demo" data-slide-to="2"></li>
             </ul>
-            <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/Destaques" method="POST">
+            <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/pacote" method="GET">
                 <!-- The slideshow -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
 
-                        <a href="Destaques?destino=1"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
+                        <a href="pacote?destino=2"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
                         <input type ='hidden' name ='destino' value='1'>
                     </div>
                     <div class="carousel-item">
-                        <a href="Destaques?destino=2"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
+                        <a href="pacote?destino=3"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
                         <input type ='hidden' name ='destino' value='2'>
                     </div>
                     <div class="carousel-item">
-                        <a href="Destaques?destino=3"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
+                        <a href="pacote?destino=4"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                 </div>
@@ -291,11 +295,11 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                    <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="Destaques?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
+                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
@@ -341,11 +345,19 @@
 <script src="js/confirmarsenha.js"></script>
 <script src="js/mascaraCNPJ.js"></script>
 <script src="js/confirmarsenha.js"></script>
-<script src="js/jquery.autocomplete.js"></script>
-<script>
+<!--script src="js/jquery.autocomplete.js"></script-->
+<!--script>
         $("#query").autocomplete("getDataDestinos.jsp");
-</script>
+</script-->
 
+<script>
+        $(function () {
+            var availableTags = ["getDataDestinos.jsp"];
+            $("#query").autocomplete({
+                source: availableTags
+            });
+        });
+</script>
 
 
 </html>

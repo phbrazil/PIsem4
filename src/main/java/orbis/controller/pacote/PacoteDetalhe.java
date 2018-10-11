@@ -23,18 +23,21 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/Destaques", urlPatterns = {"/Destaques"})
+@WebServlet(name = "/pacote", urlPatterns = {"/pacote"})
 public class PacoteDetalhe extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
 
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
         Integer destino = Integer.valueOf(request.getParameter("destino"));
+        
+        System.out.println("chegou aqui "+destino);
 
         //popula o model com os dados
         tbPacote pacote;

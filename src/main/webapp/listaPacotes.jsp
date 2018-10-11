@@ -252,11 +252,11 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="Destaques?destino=id<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                    <a href="pacote?destino=id<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="Destaques?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
+                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
