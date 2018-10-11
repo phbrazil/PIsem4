@@ -38,7 +38,7 @@ public class TesteHibernateInsertPacotes {
             pacotes.setDthevento(dataatual);
             pacotes.setQtdMax(100);
             pacotes.setLocalSaida("Sao Paulo");
-            pacotes.setLocalDestino("Bahia");
+            pacotes.setLocalDestino("Bahia teste " + i);
             pacotes.setRoteiro("role zueiro");
             pacotes.setValor(Math.random() * 100);
 
@@ -50,11 +50,10 @@ public class TesteHibernateInsertPacotes {
 
             //comita as informacoes
             tx.commit();
-            sf.close();
 
         }
-
         session.close();
+        sf.close();
         System.out.println("Conexao fechada");
 
     }

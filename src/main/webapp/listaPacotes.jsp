@@ -244,7 +244,7 @@
                 NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                         new Locale("pt", "BR"));
 
-                if (pacotes != null) {
+                if (pacotes.size() > 0) {
 
                     for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
                         tbPacote pacote = (tbPacote) iterator.next();
@@ -267,6 +267,7 @@
                     </div>
                 </div>
             </div>
+
             <%
                     linha++;
 
@@ -274,26 +275,37 @@
             } else {
 
             %>
-            <h3 class="text-muted">Nenhum pacote em destaque encontrado</h3>
 
+            <style>
+                .center {
+                    margin: auto;
+                    width: 60%;
+                    border: 3px solid #73AD21;
+                    padding: 10px;
+                }
+            </style>
+            <div class='center'>
+                <h3 class="text-muted">Nenhum pacote encontrado</h3>
+                <button onclick="{
+                        location = 'index.jsp';
+                    }" style="width:auto;">Página inicial</button>    
+            </div>
             <%}%>
-
         </div>
-    </form>
 
-</div>
+    </div>
 
 
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
-    <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-    <a href="termo"><span class="text-primary">Política de Uso</span></a>
-    <p class="mb-0">&copy; Orbis Eu Vou</p>
-</footer>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
+        <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
+        <a href="termo"><span class="text-primary">Política de Uso</span></a>
+        <p class="mb-0">&copy; Orbis Eu Vou</p>
+    </footer>
 
-<script src="js/confirmarsenha.js"></script>
-<script src="js/mascaraCNPJ.js"></script>
-<script src="js/confirmarsenha.js"></script>
+    <script src="js/confirmarsenha.js"></script>
+    <script src="js/mascaraCNPJ.js"></script>
+    <script src="js/confirmarsenha.js"></script>
 
 
 </html>

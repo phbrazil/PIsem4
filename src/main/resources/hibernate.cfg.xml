@@ -46,6 +46,6 @@ Contributor(s):
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">admin</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="hbm2ddl.auto">update</property>
+    <property name="hbm2ddl.auto"></property>
   </session-factory>
 </hibernate-configuration>

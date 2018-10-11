@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.destinos;
+package orbis.controller.pacotes;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -44,7 +44,7 @@ public class buscar extends HttpServlet {
 
         HttpSession sessao = request.getSession(true);
 
-        String search = request.getParameter("search");
+        String busca = request.getParameter("busca");
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
@@ -58,7 +58,7 @@ public class buscar extends HttpServlet {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            String hql = "from tbPacote where localDestino like '%" + search + "%'";
+            String hql = "from tbPacote where localDestino like '%" + busca + "%'";
 
             pacotes = session.createQuery(hql).list();
 
