@@ -7,7 +7,12 @@ package orbis.DAO.pacote;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.List;
 import orbis.DAO.conexao.Conexao;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 /**
  *
@@ -15,41 +20,34 @@ import orbis.DAO.conexao.Conexao;
  */
 public class destinosAutoCompleteDAO {
 
-    private Connection conexao = null;
-
-    public String AutoComplete() {
+    public List<tbPacote> AutoComplete() {
         
-        System.out.println("entrei na DAO");
+        System.out.println("entrei aqui");
 
-        String selectgeral = "";
-        String projetos = "";
+        //popula o model com os dados
+        //indica as configuracoes do banco
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        SessionFactory sf = con.buildSessionFactory();
 
-        Conexao bancoconexao = new Conexao();
-
+        //abre sessao com o banco
+        Session session = sf.openSession();
+        List<tbPacote> pacotes;
         try {
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
 
-            Class.forName("com.mysql.jdbc.Driver");
+            pacotes = session.createQuery("FROM tbPacote").list();
 
-            conexao = bancoconexao.getConnection();
-
-            java.sql.Statement st = conexao.createStatement();
-
-            selectgeral = "select localdestino from tbpacote";
-            ResultSet resultgeral = st.executeQuery(selectgeral);
-            while (resultgeral.next()) {
-
-                projetos = projetos + "," + resultgeral.getString("localdestino");
-
+            //comita as informacoes
+            tx.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
             }
-
-            conexao.close();
-
-        } catch (Exception e) {
-
-            System.out.println("Error: " + e.getMessage());
-
         }
-        return projetos;
+
+        return pacotes;
     }
 
 }

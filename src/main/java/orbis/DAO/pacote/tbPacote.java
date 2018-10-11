@@ -79,9 +79,6 @@ public class tbPacote implements Serializable {
     public void setRoteiro(String roteiro) {
         this.roteiro = roteiro;
     }
-    
-    
-    
 
     public Long getIdPacote() {
         return idPacote;

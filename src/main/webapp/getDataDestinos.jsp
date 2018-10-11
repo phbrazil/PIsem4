@@ -2,9 +2,7 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%
-    
-    System.out.println("entrei no jsp");
-    destinos db = new destinos();
+        destinos db = new destinos();
 
     String query = request.getParameter("q");
 
