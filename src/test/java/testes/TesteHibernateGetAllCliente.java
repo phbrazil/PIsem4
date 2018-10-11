@@ -7,7 +7,7 @@ package testes;
 
 import java.util.Iterator;
 import java.util.List;
-import orbis.DAO.cliente.tbCliente;
+import orbis.model.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;

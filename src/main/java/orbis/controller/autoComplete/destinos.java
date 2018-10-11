@@ -15,7 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 import orbis.DAO.pacote.destinosAutoCompleteDAO;
-import orbis.DAO.pacote.tbPacote;
+import orbis.model.pacote.tbPacote;
 
 public class destinos {
 

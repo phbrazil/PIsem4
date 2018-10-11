@@ -7,7 +7,7 @@ package testes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import orbis.DAO.pacote.tbPacote;
+import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;

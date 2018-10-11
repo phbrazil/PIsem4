@@ -5,10 +5,8 @@
  */
 package orbis.DAO.pacote;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.util.List;
-import orbis.DAO.conexao.Conexao;
+import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -22,8 +20,6 @@ public class destinosAutoCompleteDAO {
 
     public List<tbPacote> AutoComplete() {
         
-        System.out.println("entrei aqui");
-
         //popula o model com os dados
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);

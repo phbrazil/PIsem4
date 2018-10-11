@@ -7,6 +7,7 @@ package orbis.DAO.pacote;
 
 import java.sql.Connection;
 import java.util.List;
+import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
