@@ -28,7 +28,10 @@ public class destinos {
 
     public destinos() {
         
-        //aqui faz  uma gambis de converter uma lista de Pacote para uma lista de String do destino
+        //aqui faz  uma gambis de converter
+        //uma lista de Pacote para uma lista 
+        //de String do destino
+        
         for (Iterator iterator = data.iterator(); iterator.hasNext();) {
             tbPacote pacote = (tbPacote) iterator.next();
             destinos = destinos + "," + pacote.getLocalDestino();

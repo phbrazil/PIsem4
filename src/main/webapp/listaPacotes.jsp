@@ -257,7 +257,7 @@
                     <input type ='hidden' name ='destino' value="id<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="#">Excursão <%=linha%></a>
+                            <a href="Destaques?destino=id<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
