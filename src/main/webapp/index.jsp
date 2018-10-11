@@ -1,7 +1,6 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="orbis.DAO.pacote.tbPacote"%>
-<%@page import="orbis.DAO.cliente.tbCliente"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.sql.ResultSet"%>
@@ -280,7 +279,7 @@
                 NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                         new Locale("pt", "BR"));
 
-                if (pacotes != null) {
+                if (pacotes.size() > 0) {
 
                     for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
                         tbPacote pacote = (tbPacote) iterator.next();
@@ -310,8 +309,17 @@
             } else {
 
             %>
-            <h3 class="text-muted">Nenhum pacote em destaque encontrado</h3>
-
+            <style>
+                .center {
+                    margin: auto;
+                    width: 60%;
+                    border: 3px solid #73AD21;
+                    padding: 10px;
+                }
+            </style>
+            <div class='center'>
+                <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
+            </div>
             <%}%>
 
         </div>
@@ -333,7 +341,7 @@
 <script src="js/jquery.autocomplete.js"></script>
 <script src="js/jquery.js"></script>
 <script>
-        $("#busca").autocomplete("getdataDestinos.jsp");
+        $("#busca").autocomplete("getDataDestinos.jsp");
 </script>
 
 

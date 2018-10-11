@@ -12,7 +12,7 @@ bandeira VARCHAR (20) NOT NULL,
 nomecliente VARCHAR (60) NOT NULL,
 PRIMARY KEY (idpayment));
 
-insert into tbpayment (tipo,numero_cartao,validade,codseg,bandeira,nomecliente) values ('Não Cadastrado','000000','0000',0,'','');
+insert into tbpayment(tipo, numero_cartao,validade,codseg,bandeira,nomecliente) values ('Não Cadastrado',0,'',0,'','');
 
 
 CREATE TABLE tbendereco(
@@ -28,9 +28,7 @@ pais VARCHAR (60) NOT NULL,
 referencia VARCHAR(30),
 PRIMARY KEY (idendereco));
 
-use orbis;
-
-insert into tbendereco(rua,numero,cep,complemento,bairro,cidade,UF,pais,referencia) values ('','','','','','','','','');
+insert into tbendereco (rua,numero,cep,complemento,bairro,cidade,UF,pais,referencia) values ('Não Cadastrado','',0,'','','','','','');
 
 
 CREATE TABLE tbcliente(
@@ -38,9 +36,9 @@ idcliente INT NOT NULL AUTO_INCREMENT,
 idendereco INT NOT NULL,
 emailcliente VARCHAR (50) UNIQUE NOT NULL,
 nomecliente VARCHAR (50) NOT NULL,
-rgcliente VARCHAR (12) UNIQUE NOT NULL,
+rgcliente VARCHAR (13) UNIQUE NOT NULL,
 cpfcliente VARCHAR (14) UNIQUE NOT NULL,
-telcliente VARCHAR (14) NOT NULL,
+telcliente VARCHAR (13) NOT NULL,
 celcliente VARCHAR (14),
 passwordCliente VARCHAR (30) NOT NULL,
 changepassword boolean NOT NULL,

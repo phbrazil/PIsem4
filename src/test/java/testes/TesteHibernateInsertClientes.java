@@ -30,16 +30,16 @@ public class TesteHibernateInsertClientes {
             //popula o model com os dados
             tbCliente clientes = new tbCliente();
 
-            clientes.setIdEndereco(1);
+            clientes.setIdEndereco(2);
             clientes.setEmailCliente("pauloh2012sul@gmail.com" + i);
-            clientes.setNomeCliente("Paulo Bezerra");
+            clientes.setNomeCliente("Paulo Bezerra teste "+i);
             clientes.setRgCliente("46.682.5" + i + "-3");
             clientes.setCpfCliente("375.197.588-" + i);
             clientes.setTelCliente("1156633578");
             clientes.setCelCliente("11981997228");
             clientes.setPasswordCliente("0c24a188a9");
             clientes.setChangePassword(false);
-            clientes.setIdPayment(1);
+            clientes.setIdPayment(2);
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
@@ -49,11 +49,11 @@ public class TesteHibernateInsertClientes {
 
             //comita as informacoes
             tx.commit();
-            sf.close();
 
         }
 
         session.close();
+        sf.close();
         System.out.println("Conexao fechada");
     }
 
