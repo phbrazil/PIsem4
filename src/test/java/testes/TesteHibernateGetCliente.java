@@ -32,12 +32,13 @@ public class TesteHibernateGetCliente {
         //inicia a transacao com o banco
         Transaction tx = session.beginTransaction();
 
-        clientes = (tbCliente) session.get(tbCliente.class, new Long(1));
+        clientes = (tbCliente) session.get(tbCliente.class, new Long(100));
 
         System.out.println("resultado do select foi " + clientes.getNomeCliente());
 
         //comita as informacoes
         tx.commit();
+
         session.close();
 
     }
