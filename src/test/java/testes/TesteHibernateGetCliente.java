@@ -5,7 +5,7 @@
  */
 package testes;
 
-import orbis.DAO.cliente.tbCliente;
+import orbis.model.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -40,6 +40,7 @@ public class TesteHibernateGetCliente {
         tx.commit();
 
         session.close();
+        sf.close();
 
     }
 

@@ -7,7 +7,7 @@ package testes;
 
 import java.util.Iterator;
 import java.util.List;
-import orbis.DAO.cliente.tbCliente;
+import orbis.model.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -22,7 +22,6 @@ public class TesteHibernateGetAllCliente {
     public static void main(String[] args) {
 
         //popula o model com os dados
-
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
         SessionFactory sf = con.buildSessionFactory();
@@ -36,14 +35,13 @@ public class TesteHibernateGetAllCliente {
         List clientes = session.createQuery("FROM tbCliente").list();
         for (Iterator iterator = clientes.iterator(); iterator.hasNext();) {
             tbCliente cliente = (tbCliente) iterator.next();
-            System.out.println(cliente.getCpfCliente()+"\n");
+            System.out.println(cliente.getCpfCliente() + "\n");
         }
-        
-        
 
         //comita as informacoes
         tx.commit();
         session.close();
+        sf.close();
 
     }
 

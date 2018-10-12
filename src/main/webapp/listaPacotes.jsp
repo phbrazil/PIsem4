@@ -14,16 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!--script type="text/javascript" 
-    src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script-->
-
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
     <style>
         /* Make the image fully responsive */
         .carousel-inner img {
@@ -224,7 +216,7 @@
                             </div>
                             <!--end of col-->
                             <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" name="busca" id ='query' type="search" placeholder="Vai aonde?" required>
+                                <input class="form-control form-control-lg form-control-borderless" name="search" id ='search' type="search" placeholder="Vai aonde?" required>
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
@@ -240,47 +232,12 @@
 
     <div align='center'>
 
-        <div  id="demo" class="carousel slide" data-ride="carousel" style="height: 70%; width: 70%;">
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-            <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/pacote" method="GET">
-                <!-- The slideshow -->
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-
-                        <a href="pacote?destino=2"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
-                        <input type ='hidden' name ='destino' value='1'>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="pacote?destino=3"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
-                        <input type ='hidden' name ='destino' value='2'>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="pacote?destino=4"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
-                        <input type ='hidden' name ='destino' value='3'>
-                    </div>
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                    <span class="carousel-control-prev-icon"></span>
-                </a>
-                <a class="carousel-control-next" href="#demo" data-slide="next">
-                    <span class="carousel-control-next-icon"></span>
-                </a>
-        </div>
         <br>
 
         <div class="row" style="width: 90%; height: 90%;">
 
-            <%                listarPacotes listar = new listarPacotes();
-
-                List<tbPacote> pacotes = listar.listar();
+            <%
+                List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("listaPacotes");
                 int linha = 1;
 
                 NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
@@ -295,11 +252,11 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                    <a href="pacote?destino=id<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
@@ -309,6 +266,7 @@
                     </div>
                 </div>
             </div>
+
             <%
                     linha++;
 
@@ -316,6 +274,7 @@
             } else {
 
             %>
+
             <style>
                 .center {
                     margin: auto;
@@ -325,39 +284,27 @@
                 }
             </style>
             <div class='center'>
-                <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
+                <h3 class="text-muted">Nenhum pacote encontrado</h3>
+                <button onclick="{
+                        location = 'index.jsp';
+                    }" style="width:auto;">Página inicial</button>    
             </div>
             <%}%>
-
         </div>
-    </form>
 
-</div>
+    </div>
 
 
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
-    <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-    <a href="termo"><span class="text-primary">Política de Uso</span></a>
-    <p class="mb-0">&copy; Orbis Eu Vou</p>
-</footer>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
+        <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
+        <a href="termo"><span class="text-primary">Política de Uso</span></a>
+        <p class="mb-0">&copy; Orbis Eu Vou</p>
+    </footer>
 
-<script src="js/confirmarsenha.js"></script>
-<script src="js/mascaraCNPJ.js"></script>
-<script src="js/confirmarsenha.js"></script>
-<!--script src="js/jquery.autocomplete.js"></script-->
-<!--script>
-        $("#query").autocomplete("getDataDestinos.jsp");
-</script-->
-
-<script>
-        $(function () {
-            var availableTags = ["getDataDestinos.jsp"];
-            $("#query").autocomplete({
-                source: availableTags
-            });
-        });
-</script>
+    <script src="js/confirmarsenha.js"></script>
+    <script src="js/mascaraCNPJ.js"></script>
+    <script src="js/confirmarsenha.js"></script>
 
 
 </html>

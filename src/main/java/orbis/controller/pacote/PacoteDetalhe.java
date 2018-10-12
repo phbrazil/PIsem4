@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.criarPacote;
+package orbis.controller.pacote;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,24 +23,24 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/CriarConta", urlPatterns = {"/CriarConta"})
-public class criarPacote extends HttpServlet {
+@WebServlet(name = "/pacote", urlPatterns = {"/pacote"})
+public class PacoteDetalhe extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+        
 
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        tbPacote pacote = new tbPacote();
+        Integer destino = Integer.valueOf(request.getParameter("destino"));
+        
+        System.out.println("chegou aqui "+destino);
+
+        //popula o model com os dados
+        tbPacote pacote;
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
@@ -52,7 +52,8 @@ public class criarPacote extends HttpServlet {
         try {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            session.save(pacote);
+
+            pacote = (tbPacote) session.get(tbPacote.class, destino);
 
             //comita as informacoes
             tx.commit();
@@ -61,8 +62,17 @@ public class criarPacote extends HttpServlet {
             if (session != null) {
                 session.close();
                 sf.close();
+
             }
         }
+
+        request.setAttribute("pacote", pacote);
+        request.getRequestDispatcher("pacoteDetalhe.jsp").forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
     }
 

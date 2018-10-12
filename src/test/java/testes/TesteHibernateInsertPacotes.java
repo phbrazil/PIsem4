@@ -7,7 +7,7 @@ package testes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import orbis.DAO.pacote.tbPacote;
+import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -38,7 +38,7 @@ public class TesteHibernateInsertPacotes {
             pacotes.setDthevento(dataatual);
             pacotes.setQtdMax(100);
             pacotes.setLocalSaida("Sao Paulo");
-            pacotes.setLocalDestino("Bahia");
+            pacotes.setLocalDestino("Bahia teste " + i);
             pacotes.setRoteiro("role zueiro");
             pacotes.setValor(Math.random() * 100);
 
@@ -52,8 +52,8 @@ public class TesteHibernateInsertPacotes {
             tx.commit();
 
         }
-
         session.close();
+        sf.close();
         System.out.println("Conexao fechada");
 
     }

@@ -8,7 +8,7 @@ package testes;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
-import orbis.DAO.cliente.tbCliente;
+import orbis.model.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -49,6 +49,7 @@ public class TesteHibernateGetParametro {
         //comita as informacoes
         tx.commit();
         session.close();
+        sf.close();
 
     }
 

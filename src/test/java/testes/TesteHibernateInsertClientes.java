@@ -5,8 +5,7 @@
  */
 package testes;
 
-import com.sun.xml.internal.txw2.TXW;
-import orbis.DAO.cliente.tbCliente;
+import orbis.model.cliente.tbCliente;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
@@ -31,16 +30,16 @@ public class TesteHibernateInsertClientes {
             //popula o model com os dados
             tbCliente clientes = new tbCliente();
 
-            clientes.setIdEndereco(1);
-            clientes.setEmailCliente("pauloh2012sul@gmail.com"+i);
-            clientes.setNomeCliente("Paulo Bezerra");
-            clientes.setRgCliente("46.682.5"+i+"-3");
-            clientes.setCpfCliente("375.197.588-"+i);
+            clientes.setIdEndereco(2);
+            clientes.setEmailCliente("pauloh2012sul@gmail.com" + i);
+            clientes.setNomeCliente("Paulo Bezerra teste "+i);
+            clientes.setRgCliente("46.682.5" + i + "-3");
+            clientes.setCpfCliente("375.197.588-" + i);
             clientes.setTelCliente("1156633578");
             clientes.setCelCliente("11981997228");
             clientes.setPasswordCliente("0c24a188a9");
             clientes.setChangePassword(false);
-            clientes.setIdPayment(1);
+            clientes.setIdPayment(2);
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
@@ -50,13 +49,12 @@ public class TesteHibernateInsertClientes {
 
             //comita as informacoes
             tx.commit();
-            
 
+        }
 
-        }   
-            
-            session.close();
-            System.out.println("Conexao fechada");
+        session.close();
+        sf.close();
+        System.out.println("Conexao fechada");
     }
 
 }
