@@ -237,7 +237,7 @@
         <div class="row" style="width: 90%; height: 90%;">
 
             <%
-                List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("listaPacotes");
+                List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("pacoteLista");
                 int linha = 1;
 
                 NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
@@ -256,7 +256,7 @@
                     <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Excursão <%=linha%></a>
+                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>

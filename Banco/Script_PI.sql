@@ -1,3 +1,5 @@
+    CREATE USER 'orbis'@'localhost' IDENTIFIED BY '0c24a188a9';    
+    GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
 DROP DATABASE orbis;
 CREATE DATABASE orbis;
 USE orbis;

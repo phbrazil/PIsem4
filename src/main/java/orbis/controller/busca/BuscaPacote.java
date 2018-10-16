@@ -70,9 +70,9 @@ public class BuscaPacote extends HttpServlet {
                 sf.close();
             }
         }
-        request.setAttribute("listaPacotes", pacotes);
+        request.setAttribute("pacoteLista", pacotes);
 
-        request.getRequestDispatcher("listaPacotes.jsp").forward(request, response);
+        request.getRequestDispatcher("pacoteLista.jsp").forward(request, response);
     }
 
     @Override
