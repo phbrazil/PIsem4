@@ -138,11 +138,13 @@
     </style>
 
 <body class="bg-light">
-
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
     <button onclick="{
                 location = 'acessar.jsp';
             }" style="width:auto; float: right">Já tenho Conta</button>
+    <button onclick="{
+            location = 'index.jsp';
+        }" style="width:auto; float: right">Início</button>    
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -207,6 +209,8 @@
     <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
         <div class="container">
+            <br>
+            <br>
             <div class="row justify-content-center">
                 <div class="col-12 col-md-10 col-lg-8">
                     <form class="card card-sm">
@@ -216,7 +220,7 @@
                             </div>
                             <!--end of col-->
                             <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" name="search" id ='search' type="search" placeholder="Vai aonde?" required>
+                                <input class="form-control form-control-lg form-control-borderless" style="width: auto; height: auto;" type="search" name='busca' id='query' placeholder="Vai aonde?" required>
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
@@ -231,8 +235,6 @@
     </form>
 
     <div align='center'>
-
-        <br>
 
         <div class="row" style="width: 90%; height: 90%;">
 
@@ -252,7 +254,7 @@
             %>
             <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card h-100">
-                    <a href="pacote?destino=id<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                    <a href="pacote?destino=<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
                     <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                     <div class="card-body">
                         <h4 class="card-title">
@@ -286,8 +288,8 @@
             <div class='center'>
                 <h3 class="text-muted">Nenhum pacote encontrado</h3>
                 <button onclick="{
-                        location = 'index.jsp';
-                    }" style="width:auto;">Página inicial</button>    
+                            location = 'index.jsp';
+                        }" style="width:auto;">Página inicial</button>    
             </div>
             <%}%>
         </div>
