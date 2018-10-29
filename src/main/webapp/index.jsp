@@ -7,6 +7,21 @@
 <%@page import="orbis.DAO.pacote.listarPacotes"%>
 <!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String userAgent = request.getHeader("user-agent");
+
+    boolean mobile = false;
+    if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+            || userAgent.toUpperCase().contains("MOBILE")) {
+        mobile = true;
+    } else {
+        mobile = false;
+
+    }
+    session.setAttribute("mobile", mobile);
+
+%>
+
 
 <head>
     <title>Orbis Eu Vou</title>
@@ -213,26 +228,28 @@
     </script>
 
     <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-
         <div class="container">
+            <br>
+            <br>
             <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <form class="card card-sm">
-                        <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <i class="fas fa-search h4 text-body"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" name="busca" id ='query' type="search" placeholder="Vai aonde?" required>
-                            </div>
-                            <!--end of col-->
-                            <div class="col-auto">
-                                <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                            </div>
-                            <!--end of col-->
+                        <div class="col-12 col-md-10 col-lg-8">
+                            <form class="card card-sm">
+                                <div class="card-body row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <i class="fas fa-search h4 text-body"></i>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col">
+                                <input class="form-control form-control-lg form-control-borderless" style="width: auto; height: auto;" type="search" name='busca' id='query' placeholder="Vai aonde?" required>
+                                    </div>
+                                    <!--end of col-->
+                                    <div class="col-auto">
+                                        <button class="btn btn-lg btn-success" type="submit">Buscar</button>
+                                    </div>
+                                    <!--end of col-->
+                                </div>
+                            </form>
                         </div>
-                </div>
                 <!--end of col-->
             </div>
         </div>

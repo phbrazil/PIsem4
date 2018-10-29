@@ -44,7 +44,11 @@ public class TesteHibernateInsertPacotes {
 
             Transaction tx = session.beginTransaction();
 
+<<<<<<< HEAD
             Integer idPacote = (Integer) session.save(pacotes);
+=======
+            int idPacote = (Integer) session.save(pacotes);
+>>>>>>> d0e1a9f062b3a138572f37a10320b776390cdd97
 
             System.out.println("o id pacote criado foi " + idPacote);
 
