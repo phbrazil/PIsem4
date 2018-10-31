@@ -143,8 +143,8 @@
                 location = 'acessar.jsp';
             }" style="width:auto; float: right">Já tenho Conta</button>
     <button onclick="{
-            location = 'index.jsp';
-        }" style="width:auto; float: right">Início</button>    
+                location = 'index.jsp';
+            }" style="width:auto; float: right">Início</button>    
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -234,67 +234,71 @@
         </div>
     </form>
 
-    <div align='center'>
-
-        <div class="row" style="width: 90%; height: 90%;">
-
-            <%
-                List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("pacoteLista");
-                int linha = 1;
-
-                NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
-                        new Locale("pt", "BR"));
-
-                if (pacotes.size() > 0) {
-
-                    for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                        tbPacote pacote = (tbPacote) iterator.next();
+    <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 
 
-            %>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="pacote?destino=<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
-                    <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                        </h4>
-                        <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+        <div align='center'>
+
+            <div class="row" style="width: 90%; height: 90%;">
+
+                <%
+                    List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("pacoteLista");
+                    int linha = 1;
+
+                    NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                            new Locale("pt", "BR"));
+
+                    if (pacotes.size() > 0) {
+
+                        for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                            tbPacote pacote = (tbPacote) iterator.next();
+
+
+                %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="pacote?destino=<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                        <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                            </h4>
+                            <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
                     </div>
                 </div>
+
+                <%
+                        linha++;
+
+                    }
+                } else {
+
+                %>
+
+                <style>
+                    .center {
+                        margin: auto;
+                        width: 60%;
+                        border: 3px solid #73AD21;
+                        padding: 10px;
+                    }
+                </style>
+                <div class='center'>
+                    <h3 class="text-muted">Nenhum pacote encontrado</h3>
+                    <button onclick="{
+                                location = 'index.jsp';
+                            }" style="width:auto;">Página inicial</button>    
+                </div>
+                <%}%>
             </div>
 
-            <%
-                    linha++;
-
-                }
-            } else {
-
-            %>
-
-            <style>
-                .center {
-                    margin: auto;
-                    width: 60%;
-                    border: 3px solid #73AD21;
-                    padding: 10px;
-                }
-            </style>
-            <div class='center'>
-                <h3 class="text-muted">Nenhum pacote encontrado</h3>
-                <button onclick="{
-                            location = 'index.jsp';
-                        }" style="width:auto;">Página inicial</button>    
-            </div>
-            <%}%>
         </div>
-
-    </div>
+    </form>
 
 
     <footer class="my-5 pt-5 text-muted text-center text-small">

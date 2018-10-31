@@ -228,36 +228,35 @@
     </script>
 
     <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-        <div class="container">
-            <br>
-            <br>
-            <div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <form class="card card-sm">
-                                <div class="card-body row no-gutters align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fas fa-search h4 text-body"></i>
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" style="width: auto; height: auto;" type="search" name='busca' id='query' placeholder="Vai aonde?" required>
-                                    </div>
-                                    <!--end of col-->
-                                    <div class="col-auto">
-                                        <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                                    </div>
-                                    <!--end of col-->
-                                </div>
-                            </form>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
                         </div>
-                <!--end of col-->
+                        <!--end of col-->
+                        <div class="col">
+                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Vai aonde?">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
             </div>
+            <!--end of col-->
         </div>
-    </form>
+</form>
 
-    <div align='center'>
-        <%@include  file="carrocel.jsp" %>
-        <br>
+
+<%@include  file="carrocel.jsp"%>
+
+<div align='center'>
+    <br>
+    <form  name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
 
         <div class="row" style="width: 90%; height: 90%;">
 
@@ -330,7 +329,7 @@
 <script src="js/confirmarsenha.js"></script>
 <script src="js/jquery.autocomplete.js"></script>
 <script>
-        $("#query").autocomplete("getDataDestinos.jsp");
+    $("#query").autocomplete("getDataDestinos.jsp");
 </script>
 
 

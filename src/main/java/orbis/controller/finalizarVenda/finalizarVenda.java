@@ -7,6 +7,10 @@ package orbis.controller.finalizarVenda;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,12 +45,18 @@ public class finalizarVenda extends HttpServlet {
 
         HttpSession sessao = request.getSession(true);
 
+        String datavenda = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss").format(Calendar.getInstance().getTime());
+
         tbVenda venda = new tbVenda();
+        double total = Double.valueOf(request.getParameter("total"));
 
-        venda.setIdcliente(1);
-        
+        venda.setIdcliente(3);
+        venda.setDthvenda(String.valueOf(datavenda));
+        venda.setTotal(total);
 
-        if (venda.getTotal()>0) {
+        System.out.println("total " + venda.getTotal());
+
+        if (venda.getTotal() <= 0) {
             PrintWriter out = response.getWriter();
             String path = "index.jsp";
             String mensagem = "Ocorreu um erro. Favor tentar novamente";
@@ -58,7 +68,7 @@ public class finalizarVenda extends HttpServlet {
         } else {
 
             //indica as configuracoes do banco
-            Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
+            Configuration con = new Configuration().configure().addAnnotatedClass(tbVenda.class);
             SessionFactory sf = con.buildSessionFactory();
 
             //abre sessao com o banco
@@ -80,6 +90,13 @@ public class finalizarVenda extends HttpServlet {
 
             }
         }
+        PrintWriter out = response.getWriter();
+        String path = "index.jsp";
+        String mensagem = "Venda Efetuada com sucesso!";
+        request.setAttribute("path", path);
+        out.println("<script type='text/javascript'>");
+        out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+        out.println("</script>");
 
     }
 

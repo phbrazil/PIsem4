@@ -40,12 +40,41 @@ public class checkout extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        System.out.println("chegou no checkout+++++");
 
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        System.out.println("heuheuehuehue");
+        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
+
+        //indica as configuracoes do banco
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        SessionFactory sf = con.buildSessionFactory();
+
+        //abre sessao com o banco
+        Session session = sf.openSession();
+        tbPacote pacote;
+
+        try {
+
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
+
+            pacote = (tbPacote) session.get(tbPacote.class, idpacote);
+
+            //comita as informacoes
+            tx.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
+            }
+        }
+        
+        request.setAttribute("pacote", pacote);
+
 
         request.getRequestDispatcher("finalizarCompra.jsp").forward(request, response);
 
