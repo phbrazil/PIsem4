@@ -9,10 +9,10 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     String userAgent = request.getHeader("user-agent");
-    
-    String nomeuser = (String) session.getAttribute("nomeuser");
-    
-    System.out.println(nomeuser+"++++++");
+
+    HttpSession sessao = request.getSession();
+
+    String nomeUser = (String) sessao.getAttribute("nomeUser");
 
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
@@ -22,7 +22,7 @@
         mobile = false;
 
     }
-    session.setAttribute("mobile", mobile);
+    sessao.setAttribute("mobile", mobile);
 
 %>
 
@@ -164,6 +164,10 @@
         }
     </style>
 
+    <%if (nomeUser == null) {
+
+    %>
+
 <body class="bg-light">
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
@@ -219,7 +223,7 @@
             </div>
         </form>
     </div>
-
+    <%}%>
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
@@ -253,88 +257,88 @@
             </div>
             <!--end of col-->
         </div>
-</form>
-
-
-<%@include  file="carrocel.jsp"%>
-
-<div align='center'>
-    <br>
-    <form  name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
-
-        <div class="row" style="width: 90%; height: 90%;">
-
-            <%                listarPacotes listar = new listarPacotes();
-
-                List<tbPacote> pacotes = listar.listar();
-                int linha = 1;
-
-                NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
-                        new Locale("pt", "BR"));
-
-                if (pacotes.size() > 0) {
-
-                    for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                        tbPacote pacote = (tbPacote) iterator.next();
-
-
-            %>
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
-                    <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                        </h4>
-                        <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
-                </div>
-            </div>
-            <%
-                    linha++;
-
-                }
-            } else {
-
-            %>
-            <style>
-                .center {
-                    margin: auto;
-                    width: 60%;
-                    border: 3px solid #73AD21;
-                    padding: 10px;
-                }
-            </style>
-            <div class='center'>
-                <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
-            </div>
-            <%}%>
-
-        </div>
     </form>
 
-</div>
+
+    <%@include  file="carrocel.jsp"%>
+
+    <div align='center'>
+        <br>
+        <form  name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
+
+            <div class="row" style="width: 90%; height: 90%;">
+
+                <%                listarPacotes listar = new listarPacotes();
+
+                    List<tbPacote> pacotes = listar.listar();
+                    int linha = 1;
+
+                    NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                            new Locale("pt", "BR"));
+
+                    if (pacotes.size() > 0) {
+
+                        for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                            tbPacote pacote = (tbPacote) iterator.next();
 
 
-<footer class="my-5 pt-5 text-muted text-center text-small">
-    <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
-    <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-    <a href="termo"><span class="text-primary">Política de Uso</span></a>
-    <p class="mb-0">&copy; Orbis Eu Vou</p>
-</footer>
+                %>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                        <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                            </h4>
+                            <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
+                    </div>
+                </div>
+                <%
+                        linha++;
 
-<script src="js/confirmarsenha.js"></script>
-<script src="js/mascaraCNPJ.js"></script>
-<script src="js/confirmarsenha.js"></script>
-<script src="js/jquery.autocomplete.js"></script>
-<script>
-    $("#query").autocomplete("getDataDestinos.jsp");
-</script>
+                    }
+                } else {
+
+                %>
+                <style>
+                    .center {
+                        margin: auto;
+                        width: 60%;
+                        border: 3px solid #73AD21;
+                        padding: 10px;
+                    }
+                </style>
+                <div class='center'>
+                    <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
+                </div>
+                <%}%>
+
+            </div>
+        </form>
+
+    </div>
+
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
+        <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
+        <a href="termo"><span class="text-primary">Política de Uso</span></a>
+        <p class="mb-0">&copy; Orbis Eu Vou</p>
+    </footer>
+
+    <script src="js/confirmarsenha.js"></script>
+    <script src="js/mascaraCNPJ.js"></script>
+    <script src="js/confirmarsenha.js"></script>
+    <script src="js/jquery.autocomplete.js"></script>
+    <script>
+        $("#query").autocomplete("getDataDestinos.jsp");
+    </script>
 
 
 </html>
