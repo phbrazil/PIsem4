@@ -41,43 +41,56 @@ public class checkout extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        System.out.println("chegou no checkout+++++");
+                PrintWriter out = response.getWriter();
+
 
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
+        String nomeUser = (String) sessao.getAttribute("nomeUser");
 
-        //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
-        SessionFactory sf = con.buildSessionFactory();
+        if (nomeUser == null) {
 
-        //abre sessao com o banco
-        Session session = sf.openSession();
-        tbPacote pacote;
+            String path = "login.jsp";
+            String mensagem = "Favor efetuar o acesso ao sistema antes da compra";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
 
-        try {
+        } else {
 
-            //inicia a transacao com o banco
-            Transaction tx = session.beginTransaction();
+            int idpacote = Integer.valueOf(request.getParameter("idpacote"));
 
-            pacote = (tbPacote) session.get(tbPacote.class, idpacote);
+            //indica as configuracoes do banco
+            Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+            SessionFactory sf = con.buildSessionFactory();
 
-            //comita as informacoes
-            tx.commit();
-        } finally {
-            if (session != null) {
-                session.close();
-                sf.close();
+            //abre sessao com o banco
+            Session session = sf.openSession();
+            tbPacote pacote;
+
+            try {
+
+                //inicia a transacao com o banco
+                Transaction tx = session.beginTransaction();
+
+                pacote = (tbPacote) session.get(tbPacote.class, idpacote);
+
+                //comita as informacoes
+                tx.commit();
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
             }
+
+            request.setAttribute("pacote", pacote);
+
+            request.getRequestDispatcher("finalizarCompra.jsp").forward(request, response);
         }
-        
-        request.setAttribute("pacote", pacote);
-
-
-        request.getRequestDispatcher("finalizarCompra.jsp").forward(request, response);
-
     }
 
     @Override
