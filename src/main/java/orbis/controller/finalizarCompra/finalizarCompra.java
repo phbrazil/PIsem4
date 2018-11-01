@@ -59,12 +59,7 @@ public class finalizarCompra extends HttpServlet {
         String data = (String) request.getParameter("data");
         String roteiro = (String) request.getParameter("roteiro");
         
-        System.out.println(valor);
-        System.out.println(localDestino);
-        System.out.println(localSaida);
-        System.out.println(data);
-
-        venda.setIdcliente(4);
+        venda.setIdcliente(1);
         venda.setDthvenda(String.valueOf(datavenda));
         venda.setTotal(valor);
 
