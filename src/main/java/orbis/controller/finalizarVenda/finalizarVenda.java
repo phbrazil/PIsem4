@@ -50,11 +50,9 @@ public class finalizarVenda extends HttpServlet {
         tbVenda venda = new tbVenda();
         double total = Double.valueOf(request.getParameter("total"));
 
-        venda.setIdcliente(3);
+        venda.setIdcliente(4);
         venda.setDthvenda(String.valueOf(datavenda));
         venda.setTotal(total);
-
-        System.out.println("total " + venda.getTotal());
 
         if (venda.getTotal() <= 0) {
             PrintWriter out = response.getWriter();
@@ -90,13 +88,17 @@ public class finalizarVenda extends HttpServlet {
 
             }
         }
-        PrintWriter out = response.getWriter();
-        String path = "index.jsp";
-        String mensagem = "Venda Efetuada com sucesso!";
-        request.setAttribute("path", path);
-        out.println("<script type='text/javascript'>");
-        out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
-        out.println("</script>");
+
+        request.setAttribute("to1", "pauloh2012sul@gmail.com");
+        request.setAttribute("subject", "Compra Efetuada com Sucesso");
+        request.setAttribute("body", "Sua compra foi finalizada");
+        request.setAttribute("projectname", "Venda Bahia");
+        request.setAttribute("subarea", "comprador");
+        request.setAttribute("projectcode", "1");
+        request.setAttribute("client_name", "Paulo");
+        request.setAttribute("year", "2018");
+
+        request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
 
     }
 

@@ -30,7 +30,7 @@ public class TesteHibernateInsertClientes {
             //popula o model com os dados
             tbCliente clientes = new tbCliente();
 
-            clientes.setIdEndereco(2);
+            clientes.setIdEndereco(1);
             clientes.setEmailCliente("pauloh2012sul@gmail.com" + i);
             clientes.setNomeCliente("Paulo Bezerra teste "+i);
             clientes.setRgCliente("46.682.5" + i + "-3");
@@ -39,7 +39,7 @@ public class TesteHibernateInsertClientes {
             clientes.setCelCliente("11981997228");
             clientes.setPasswordCliente("0c24a188a9");
             clientes.setChangePassword(false);
-            clientes.setIdPayment(2);
+            clientes.setIdPayment(1);
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();

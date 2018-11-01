@@ -53,6 +53,10 @@ PRIMARY KEY (idcliente),
 FOREIGN KEY (idpayment) REFERENCES tbPayment (idpayment),
 FOREIGN KEY (idendereco) REFERENCES tbEndereco (idendereco));
 
+insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment) values (2,'pauloh2012sul@gmail.com','Paulo Henrique Bezerra','46.682.552-3','375.175.588-85','11981997228','981997228',
+'senac',false,3);
+
 CREATE TABLE tbPacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
 dthevento VARCHAR (20) NOT NULL,
