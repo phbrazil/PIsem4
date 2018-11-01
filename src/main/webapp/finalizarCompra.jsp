@@ -83,45 +83,47 @@
 
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
-                                <input id="credito" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <input id="credito" onclick="show1();" name="paymentMethod" type="radio" class="custom-control-input" checked required>
                                 <label class="custom-control-label" for="credito">Cartão de Crédito</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="boleto" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <input id="boleto" onclick="show2();" name="paymentMethod" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="boleto">Boleto</label>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-name">Nome no cartão</label>
-                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                                <small class="text-muted">Nome completo no cartão</small>
-                                <div class="invalid-feedback">
-                                    Nome necesário
+                        <div id ="div1">
+                            <div  class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Nome no cartão</label>
+                                    <input type="text" id='cardname' class="form-control" id="cc-name" placeholder="" required>
+                                    <small class="text-muted">Nome completo no cartão</small>
+                                    <div class="invalid-feedback">
+                                        Nome necesário
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Número do cartão</label>
+                                    <input type="text" id ='cardnumber' class="form-control" id="cc-number" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Número do cartão necessário
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mb-3">
-                                <label for="cc-number">Número do cartão</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Número do cartão necessário
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <label for="cc-expiration">Expira em</label>
+                                    <input type="date" id = 'expdate' class="form-control" id="cc-expiration" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Data necessária
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-4 mb-3">
-                                <label for="cc-expiration">Expira em</label>
-                                <input type="date" class="form-control" id="cc-expiration" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Data necessária
-                                </div>
-                            </div>
-                            <div class="col-md-3 mb-3">
-                                <label for="cc-cvv">Código de Segurança</label>
-                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                                <div class="invalid-feedback">
-                                    Código necessário
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-cvv">Código de Segurança</label>
+                                    <input type="text" id = 'codesec' class="form-control" id="cc-cvv" placeholder="" required>
+                                    <div class="invalid-feedback">
+                                        Código necessário
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,26 +153,61 @@
     <script src="../../assets/js/vendor/holder.min.js"></script>
 
     <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
+                                    // Example starter JavaScript for disabling form submissions if there are invalid fields
+                                    (function () {
+                                        'use strict';
 
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
+                                        window.addEventListener('load', function () {
+                                            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                            var forms = document.getElementsByClassName('needs-validation');
 
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+                                            // Loop over them and prevent submission
+                                            var validation = Array.prototype.filter.call(forms, function (form) {
+                                                form.addEventListener('submit', function (event) {
+                                                    if (form.checkValidity() === false) {
+                                                        event.preventDefault();
+                                                        event.stopPropagation();
+                                                    }
+                                                    form.classList.add('was-validated');
+                                                }, false);
+                                            });
+                                        }, false);
+                                    })();
+    </script>
+
+    <style>
+
+        body{
+            font-family: arial;
+
+
+        }
+        .hide{
+            display:none;
+        }
+        p{
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+
+        function show1() {
+            document.getElementById('div1').style.display = 'block';
+            document.getElementById('cardname').required = true;
+            document.getElementById('cardnumber').required = true;
+            document.getElementById('expdate').required = true;
+            document.getElementById('codesec').required = true;
+
+        }
+        function show2() {
+            document.getElementById('div1').style.display = 'none';
+            document.getElementById('cardname').required = false;
+            document.getElementById('cardnumber').required = false;
+            document.getElementById('expdate').required = false;
+            document.getElementById('codesec').required = false;
+
+        }
     </script>
 </body>
 </html>
