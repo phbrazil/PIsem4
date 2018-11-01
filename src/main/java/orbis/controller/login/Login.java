@@ -45,11 +45,8 @@ public class Login extends HttpServlet {
 
         HttpSession sessao = request.getSession();
 
-        String userName = request.getParameter("userName");
+        String emailCliente = request.getParameter("userName");
         String passwordCliente = request.getParameter("password");
-        
-        System.out.println(userName);
-        System.out.println(passwordCliente);
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
@@ -59,15 +56,13 @@ public class Login extends HttpServlet {
         Session session = sf.openSession();
         List<tbCliente> cliente;
 
-        String user = "";
-        String password = "";
-
         try {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            user = (String) session.get(tbCliente.class, userName);
-            password = (String) session.get(tbCliente.class, passwordCliente);
+            String hql = "from tbCliente where emailcliente = '" + emailCliente + "' and passwordCliente ='" + passwordCliente+"'";
+
+            cliente = session.createQuery(hql).list();
 
             //comita as informacoes
             tx.commit();
@@ -78,15 +73,14 @@ public class Login extends HttpServlet {
             }
         }
 
-        if (user.equals(userName)) {
-            System.out.println("funcionou");
-        sessao.setAttribute("nomeUser", "Funcionou");
+        if (cliente.size() > 0) {
+            sessao.setAttribute("nomeUser", "Funcionou");
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
-        }else{
+        } else {
             System.out.println("deu ruim");
-            
+
         }
 
     }

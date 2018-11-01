@@ -5,30 +5,18 @@
 <!doctype html>
 <html lang="en">
     <head>
-
-        <meta charset="utf-8">
-        <meta name="viewport" content="width-device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Acessar Orbis</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
     </head>
 
     <body class="text-center" style="background-color: white;">
-    <form class="needs-validation" novalidate name = "login"  id = "login" action="${pageContext.request.contextPath}/Login" method="POST">
-            <style>
-                img{
-                    max-width: 100%;
-                    /*border: 20px solid #ff0080;
-                    padding: 20px;*/
-                    
-                }
-
-            </style>
+        <form name = "login"  id = "login" action="${pageContext.request.contextPath}/Login" method="POST">
 
             <br>
             <br>
@@ -39,7 +27,7 @@
             </h5>
             <br>
             <label for="inputEmail" class="sr-only">Email</label>
-            <input type="email" autocomplete="off" id="inputEmail" class="form-control" placeholder="Email address" name = "username" required autofocus>
+            <input type="email" autocomplete="off" id="inputEmail" class="form-control" placeholder="Email address" name = "userName" required autofocus>
             <label for="inputPassword" class="sr-only">Senha</label>
             <input type="password" autocomplete="off" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
             <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
