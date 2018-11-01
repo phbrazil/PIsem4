@@ -67,11 +67,11 @@ localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
 PRIMARY KEY (idpacote));
 
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values ('now()',100,200.00,'sao paulo', 'Bahia','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values ('now()',100,400.00,'sao paulo', 'Ceara','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values ('now()',100,100.00,'sao paulo', 'Brotas','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values ('now()',100,210.00,'sao paulo', 'Canoas','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values ('now()',100,50.00,'sao paulo', 'HueHue','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,400.00,'sao paulo', 'Ceara','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,100.00,'sao paulo', 'Brotas','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,210.00,'sao paulo', 'Canoas','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,50.00,'sao paulo', 'HueHue','A definir');
 
 
 

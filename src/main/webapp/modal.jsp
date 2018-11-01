@@ -23,7 +23,7 @@
                             <h4 class="modal-title" style="color: black;"><strong><img src="img/orbis_logo.png" style="width: 20%;height: 20%"> Orbis</strong></h4>
                         </div>
                         <div class="modal-body">
-                            <p>${mensagem}</p>
+                            <p><strong>${mensagem}</strong></p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>

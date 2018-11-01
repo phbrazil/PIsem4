@@ -80,14 +80,13 @@ public class EmailAlertaVenda extends HttpServlet {
                 ex.printStackTrace();
             }
         } while (emailenviado == false);
-        
-        System.out.println("retornou "+emailenviado);
+
+        System.out.println("retornou " + emailenviado);
 
         if (emailenviado == true) {
 
             String path = "index.jsp";
-            String mensagem = "Compra no valor de " +formatoMoeda.format(valor)+" efetuada com sucesso! Protocolo "+protocolo+
-                    ".\n Dados da compra enviados por e-mail";
+            String mensagem = "Compra efetuada com sucesso. Protocolo " + protocolo +" enviado por e-mail.";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
