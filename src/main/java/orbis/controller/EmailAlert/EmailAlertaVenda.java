@@ -66,7 +66,7 @@ public class EmailAlertaVenda extends HttpServlet {
             out.println("<meta contentType=\"text/html\" pageEncoding=\"UTF-8\"");
             out.println("</head><body style='background-color: #0fd0d0;color: white;'>");
             out.println("<br><br><br>");
-            out.println("<center><h1><strong>Sua Venda está sendo concluída!</strong><br>");
+            out.println("<center><h1><strong>Sua compra está sendo concluída!</strong><br>");
             out.println("<br>");
             out.println("<img src='img/loading.gif'  width='200' height'200'");
             out.println("Favor aguardar....</h1>");
@@ -80,12 +80,14 @@ public class EmailAlertaVenda extends HttpServlet {
                 ex.printStackTrace();
             }
         } while (emailenviado == false);
+        
+        System.out.println("retornou "+emailenviado);
 
         if (emailenviado == true) {
 
             String path = "index.jsp";
             String mensagem = "Compra no valor de " +formatoMoeda.format(valor)+" efetuada com sucesso! Protocolo "+protocolo+
-                    ".\n Dados da compra enviados por e - mail";
+                    ".\n Dados da compra enviados por e-mail";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");

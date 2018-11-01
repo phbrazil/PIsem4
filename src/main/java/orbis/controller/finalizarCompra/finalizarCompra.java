@@ -58,6 +58,11 @@ public class finalizarCompra extends HttpServlet {
         String localDestino = (String) request.getParameter("localDestino");
         String data = (String) request.getParameter("data");
         String roteiro = (String) request.getParameter("roteiro");
+        
+        System.out.println(valor);
+        System.out.println(localDestino);
+        System.out.println(localSaida);
+        System.out.println(data);
 
         venda.setIdcliente(4);
         venda.setDthvenda(String.valueOf(datavenda));
@@ -101,7 +106,7 @@ public class finalizarCompra extends HttpServlet {
         }
 
         request.setAttribute("to1", "pauloh2012sul@gmail.com");
-        request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destinno " + localDestino);
+        request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino " + localDestino);
         request.setAttribute("body", "Sua compra foi finalizada para o Destino " + localDestino + ". \n A data de "
                 + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda);
         request.setAttribute("localSaida", "Venda Bahia");

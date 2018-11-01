@@ -241,7 +241,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">Search</button>
+                            <button class="btn btn-lg btn-success" type="submit">Buscar</button>
                         </div>
                         <!--end of col-->
                     </div>

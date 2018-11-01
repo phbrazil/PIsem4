@@ -207,32 +207,28 @@
     </script>
 
     <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-
-        <div class="container">
-            <br>
-            <br>
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-10 col-lg-8">
-                    <form class="card card-sm">
-                        <div class="card-body row no-gutters align-items-center">
-                            <div class="col-auto">
-                                <i class="fas fa-search h4 text-body"></i>
-                            </div>
-                            <!--end of col-->
-                            <div class="col">
-                                <input class="form-control form-control-lg form-control-borderless" style="width: auto; height: auto;" type="search" name='busca' id='query' placeholder="Vai aonde?" required>
-                            </div>
-                            <!--end of col-->
-                            <div class="col-auto">
-                                <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                            </div>
-                            <!--end of col-->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <form class="card card-sm">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
                         </div>
-                </div>
-                <!--end of col-->
+                        <!--end of col-->
+                        <div class="col">
+                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Vai aonde?">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button class="btn btn-lg btn-success" type="submit">Buscar</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
             </div>
+            <!--end of col-->
         </div>
-    </form>
+</form>
 
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 

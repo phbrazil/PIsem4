@@ -67,7 +67,7 @@ public class EmailSessionBean {
             message.setText(body);
             Transport.send(message);
             emailenviado = true;
-
+            
         } catch (MessagingException ex) {
             ex.printStackTrace();
         }
