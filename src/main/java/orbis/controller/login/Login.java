@@ -41,6 +41,8 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        PrintWriter out = response.getWriter();
+
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession();
@@ -60,8 +62,7 @@ public class Login extends HttpServlet {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            String hql = "from tbCliente where emailcliente = '" + emailCliente + "' and passwordCliente ='" + passwordCliente+"'";
-
+            String hql = "from tbCliente where emailcliente = '" + emailCliente + "' and passwordCliente ='" + passwordCliente + "'";
             cliente = session.createQuery(hql).list();
 
             //comita as informacoes
@@ -72,14 +73,39 @@ public class Login extends HttpServlet {
                 sf.close();
             }
         }
+        String primeironome = "";
 
         if (cliente.size() > 0) {
-            sessao.setAttribute("nomeUser", "Funcionou");
+
+            for (int i = 0; i < cliente.get(0).getNomeCliente().length(); i++) {
+
+                if (i == 0) {
+                    primeironome = primeironome + cliente.get(0).getNomeCliente().toUpperCase().charAt(i);
+
+                } else {
+                    primeironome = primeironome + cliente.get(0).getNomeCliente().toLowerCase().charAt(i);
+
+                }
+
+                if (String.valueOf(cliente.get(0).getNomeCliente().charAt(i)).equals(" ")) {
+
+                    break;
+
+                }
+
+            }
+            sessao.setAttribute("nomeUser", primeironome);
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
         } else {
-            System.out.println("deu ruim");
+
+            String path = "login.jsp";
+            String mensagem = "Acesso negado!";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
 
         }
 

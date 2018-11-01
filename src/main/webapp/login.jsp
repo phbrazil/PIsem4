@@ -5,18 +5,47 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <%
+            String userAgent = request.getHeader("user-agent");
+
+            boolean mobile = false;
+            if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+                    || userAgent.toUpperCase().contains("MOBILE")) {
+                mobile = true;
+            } else {
+                mobile = false;
+
+            }
+
+        %>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
 
         <title>Acessar Orbis</title>
 
         <!-- Bootstrap core CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+        <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- Custom styles for this template -->
+        <link href="css/signin.css" rel="stylesheet">
     </head>
 
     <body class="text-center" style="background-color: white;">
-        <form name = "login"  id = "login" action="${pageContext.request.contextPath}/Login" method="POST">
+        <form class="form-signin" action="Login"  method="POST">
+            <input type="hidden" name ="mobile" value ="<%=mobile%>">
+
+            <style>
+                img{
+                    max-width: 100%;
+                    /*border: 20px solid #ff0080;
+                    padding: 20px;*/
+                    
+                }
+
+            </style>
 
             <br>
             <br>

@@ -172,7 +172,7 @@
 
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
     <button onclick="{
-                location = 'acessar.jsp';
+                location = 'login.jsp';
             }" style="width:auto; float: right">Já tenho Conta</button>
 
     <div id="id01" class="modal">
@@ -223,7 +223,12 @@
             </div>
         </form>
     </div>
+    <%} else {%>
+
+    <button style="width:auto; float: right">Olá <%=nomeUser%></button>
+    
     <%}%>
+
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
