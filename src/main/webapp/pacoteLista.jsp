@@ -8,6 +8,25 @@
 <!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
+<%
+    String userAgent = request.getHeader("user-agent");
+
+    HttpSession sessao = request.getSession();
+
+    String nomeUser = (String) sessao.getAttribute("nomeUser");
+
+    boolean mobile = false;
+    if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+            || userAgent.toUpperCase().contains("MOBILE")) {
+        mobile = true;
+    } else {
+        mobile = false;
+
+    }
+    sessao.setAttribute("mobile", mobile);
+
+%>
+
 <head>
     <title>Orbis Eu Vou</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -136,6 +155,11 @@
             }
         }
     </style>
+    <%if (nomeUser == null) {
+
+    %>
+
+
 
 <body class="bg-light">
     <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
@@ -195,6 +219,20 @@
         </form>
     </div>
 
+    <%} else {%>
+
+    <button onclick="{
+                location = 'sair.jsp';
+            }" style="width:auto; float: right">Sair</button>
+    <button style="width:auto; float: right">Olá <%=nomeUser%></button>
+    <button onclick="{
+                location = 'index.jsp';
+            }" style="width:auto; float: right">Início</button>    
+
+
+
+    <%}%>
+
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
@@ -216,7 +254,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Vai aonde?">
+                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" required placeholder="Vai aonde?">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
@@ -228,7 +266,7 @@
             </div>
             <!--end of col-->
         </div>
-</form>
+    </form>
 
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 

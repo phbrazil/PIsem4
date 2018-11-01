@@ -47,20 +47,7 @@ public class finalizarCompra extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
-        HttpSession sessao = request.getSession(true);
 
-        String nomeUser = (String) sessao.getAttribute("nomeUser");
-
-        if (nomeUser == null) {
-
-            String path = "login.jsp";
-            String mensagem = "Favor efetuar o acesso ao sistema antes da compra";
-            request.setAttribute("path", path);
-            out.println("<script type='text/javascript'>");
-            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
-            out.println("</script>");
-
-        } else {
 
             String datavenda = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss").format(Calendar.getInstance().getTime());
 
@@ -126,7 +113,7 @@ public class finalizarCompra extends HttpServlet {
             request.setAttribute("valor", valor);
 
             request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
-        }
+        
     }
 
     @Override

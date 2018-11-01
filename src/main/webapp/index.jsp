@@ -253,7 +253,7 @@
                         </div>
                         <!--end of col-->
                         <div class="col">
-                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" placeholder="Vai aonde?">
+                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" required placeholder="Vai aonde?">
                         </div>
                         <!--end of col-->
                         <div class="col-auto">
