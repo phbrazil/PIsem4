@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class EmailAlertaVenda extends HttpServlet {
 
     @EJB
-    private EmailSessionBean emailBean;
+    private EmailSessionBeanOrbis emailBeanOrbis;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -74,7 +74,7 @@ public class EmailAlertaVenda extends HttpServlet {
             out.flush();
 
             try {
-                emailenviado = emailBean.sendEmail(to1, subject, body);
+                emailenviado = emailBeanOrbis.sendEmail(to1, subject, body);
 
             } catch (RuntimeException ex) {
                 ex.printStackTrace();

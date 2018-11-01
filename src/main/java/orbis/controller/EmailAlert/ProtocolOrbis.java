@@ -9,7 +9,7 @@ package orbis.controller.EmailAlert;
  *
  * @author ASAPH-001
  */
-public enum Protocol {
+public enum ProtocolOrbis {
     
     SMTP,
     SMTPS,

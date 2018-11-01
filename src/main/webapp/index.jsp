@@ -9,6 +9,10 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     String userAgent = request.getHeader("user-agent");
+    
+    String nomeuser = (String) session.getAttribute("nomeuser");
+    
+    System.out.println(nomeuser+"++++++");
 
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")

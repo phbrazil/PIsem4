@@ -21,7 +21,7 @@ import javax.mail.internet.MimeMessage;
  * @author paulo.bezerra
  */
 @Stateless
-public class EmailSessionBean {
+public class EmailSessionBeanOrbis {
 
     // private int port = 465; // 587;
     // private String host = "smtp.gmail.com";
