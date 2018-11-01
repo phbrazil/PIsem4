@@ -224,7 +224,10 @@
         </form>
     </div>
     <%} else {%>
-
+    
+    <button onclick="{
+                location = 'sair.jsp';
+            }" style="width:auto; float: right">Sair</button>
     <button style="width:auto; float: right">Olá <%=nomeUser%></button>
     
     <%}%>

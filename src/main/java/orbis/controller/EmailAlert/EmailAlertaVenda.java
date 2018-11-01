@@ -47,7 +47,7 @@ public class EmailAlertaVenda extends HttpServlet {
         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                 new Locale("pt", "BR"));
 
-        String to1 = (String) request.getParameter("to1");
+        String to1 = (String) sessao.getAttribute("emailCliente");
         String body = (String) request.getParameter("body");
         String subject = (String) request.getParameter("subject");
         String localSaida = (String) request.getParameter("localSaida");

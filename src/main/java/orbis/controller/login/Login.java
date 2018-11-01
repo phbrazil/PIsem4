@@ -95,6 +95,7 @@ public class Login extends HttpServlet {
 
             }
             sessao.setAttribute("nomeUser", primeironome);
+            sessao.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
 
             request.getRequestDispatcher("index.jsp").forward(request, response);
 

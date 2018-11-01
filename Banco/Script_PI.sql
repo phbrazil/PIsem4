@@ -57,6 +57,15 @@ insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,t
 changepassword,idpayment) values (2,'pauloh2012sul@gmail.com','Paulo Henrique Bezerra','46.682.552-3','375.175.588-85','11981997228','981997228',
 'senac',false,3);
 
+insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment) values (2,'luucasmeedeiros@gmail.com','Lucas Medeiros','46.682.552-4','375.175.588-86','11981997228','981997228',
+'doc@123',false,3);
+
+insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment) values (2,'andremartins98@hotmail.com','Andre Martins','46.682.552-5','375.175.588-87','11981997228','981997228',
+'210498',false,3);
+
+
 CREATE TABLE tbPacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
 dthevento VARCHAR (20) NOT NULL,
