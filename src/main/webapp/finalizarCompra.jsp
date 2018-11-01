@@ -21,7 +21,7 @@
     </head>
 
     <body class="bg-light">
-        <form class="needs-validation" novalidate name = "FinalizarVenda"  id = "finalizarvenda" action="${pageContext.request.contextPath}/FinalizarVenda" method="POST">
+        <form class="needs-validation" novalidate name = "FinalizarCompra"  id = "finalizarvenda" action="${pageContext.request.contextPath}/FinalizarCompra" method="POST">
 
             <div class="container">
                 <div class="py-5 text-center">
@@ -34,7 +34,6 @@
                     NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                             new Locale("pt", "BR"));
                 %>
-                <form class = "modal-content" name = "finalizarvenda"  id = "criarconta" action="${pageContext.request.contextPath}/FinalizarVenda" method="POST">
                     <div class="row">
                         <div class="col-md-4 order-md-2 mb-4">
                             <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -60,7 +59,11 @@
                                 <li class="list-group-item d-flex justify-content-between">
                                     <span>Total (BRL)</span>
                                     <strong><%=formatoMoeda.format(pacote.getValor())%></strong>
-                                    <input type="hidden" name="total" value="<%=pacote.getValor()%>"
+                                    <input type="hidden" name="valor" value="<%=pacote.getValor()%>"
+                                    <input type="hidden" name="localSaida" value="<%=pacote.getLocalSaida()%>"
+                                    <input type="hidden" name="localDestino" value="<%=pacote.getLocalDestino()%>"
+                                    <input type="hidden" name="roteiro" value="<%=pacote.getRoteiro()%>"
+                                    <input type="hidden" name="data" value="<%=pacote.getDthevento()%>"
                                 </li>
                             </ul>
 
@@ -125,7 +128,6 @@
                             <hr class="mb-4">
                             <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar</button>
                         </div>
-                </form>
             </div>
 
 

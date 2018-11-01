@@ -7,6 +7,8 @@ package orbis.controller.EmailAlert;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
+import java.util.Locale;
 import javax.ejb.EJB;
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -42,15 +44,18 @@ public class EmailAlertaVenda extends HttpServlet {
 
         boolean emailenviado = false;
 
-        String to1 = (String) request.getParameter("to1");
-        String subarea = (String) request.getParameter("subarea");
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                new Locale("pt", "BR"));
 
-        String subject = (String) request.getParameter("subject");
+        String to1 = (String) request.getParameter("to1");
         String body = (String) request.getParameter("body");
-        String projectname = (String) request.getParameter("projectname");
-        int projectcode = Integer.valueOf(request.getParameter("projectcode"));
-        String client_name = (String) request.getParameter("client_name");
-        int year = Integer.valueOf(request.getParameter("year"));
+        String subject = (String) request.getParameter("subject");
+        String localSaida = (String) request.getParameter("localSaida");
+        String localDestino = (String) request.getParameter("localDestino");
+        String roteiro = (String) request.getParameter("roteiro");
+        String protocolo = (String) request.getParameter("protocolo");
+        double valor = Double.valueOf(request.getParameter("valor"));
+        String data = (String) request.getParameter("data");
 
         PrintWriter out = response.getWriter();
 
@@ -79,7 +84,8 @@ public class EmailAlertaVenda extends HttpServlet {
         if (emailenviado == true) {
 
             String path = "index.jsp";
-            String mensagem = "Venda Efetuada com sucesso!";
+            String mensagem = "Compra no valor de " +formatoMoeda.format(valor)+" efetuada com sucesso! Protocolo "+protocolo+
+                    ".\n Dados da compra enviados por e - mail";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");

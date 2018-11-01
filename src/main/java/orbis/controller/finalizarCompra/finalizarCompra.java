@@ -3,14 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.finalizarVenda;
+package orbis.controller.finalizarCompra;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +30,8 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/FinalizarVenda", urlPatterns = {"/FinalizarVenda"})
-public class finalizarVenda extends HttpServlet {
+@WebServlet(name = "/FinalizarCompra", urlPatterns = {"/FinalizarCompra"})
+public class finalizarCompra extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,12 +49,21 @@ public class finalizarVenda extends HttpServlet {
 
         String datavenda = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss").format(Calendar.getInstance().getTime());
 
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                new Locale("pt", "BR"));
+        
         tbVenda venda = new tbVenda();
-        double total = Double.valueOf(request.getParameter("total"));
+        double valor = Double.valueOf(request.getParameter("valor"));
+        String localSaida = (String) request.getParameter("localSaida");
+        String localDestino = (String) request.getParameter("localDestino");
+        String data = (String) request.getParameter("data");
+        String roteiro = (String) request.getParameter("roteiro");
 
         venda.setIdcliente(4);
         venda.setDthvenda(String.valueOf(datavenda));
-        venda.setTotal(total);
+        venda.setTotal(valor);
+
+        int idvenda = 0;
 
         if (venda.getTotal() <= 0) {
             PrintWriter out = response.getWriter();
@@ -76,7 +87,7 @@ public class finalizarVenda extends HttpServlet {
 
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
-                int idvenda = (Integer) session.save(venda);
+                idvenda = (Integer) session.save(venda);
 
                 //comita as informacoes
                 tx.commit();
@@ -90,13 +101,15 @@ public class finalizarVenda extends HttpServlet {
         }
 
         request.setAttribute("to1", "pauloh2012sul@gmail.com");
-        request.setAttribute("subject", "Compra Efetuada com Sucesso");
-        request.setAttribute("body", "Sua compra foi finalizada");
-        request.setAttribute("projectname", "Venda Bahia");
-        request.setAttribute("subarea", "comprador");
-        request.setAttribute("projectcode", "1");
-        request.setAttribute("client_name", "Paulo");
-        request.setAttribute("year", "2018");
+        request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destinno " + localDestino);
+        request.setAttribute("body", "Sua compra foi finalizada para o Destino " + localDestino + ". \n A data de "
+                + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda);
+        request.setAttribute("localSaida", "Venda Bahia");
+        request.setAttribute("localDestino", "comprador");
+        request.setAttribute("protocolo", idvenda);
+        request.setAttribute("roteiro", "Rolezinho");
+        request.setAttribute("data", data);
+        request.setAttribute("valor", valor);
 
         request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
 

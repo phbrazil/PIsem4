@@ -30,11 +30,12 @@
             <input type ="hidden" id = "to1"  name = "to1" value="${to1}" </input>
             <input type ="hidden" id = "body"  name = "body" value="${body}" </input>
             <input type ="hidden" id = "subject"  name = "subject" value="${subject}" </input>
-            <input type ="hidden" id = "projectname"  name = "projectname" value="${projectname}" </input>
-            <input type ="hidden" id = "subarea"  name = "subarea" value="${subarea}" </input>
-            <input type ="hidden" id = "projectcode"  name = "projectcode" value="${projectcode}" </input>
-            <input type ="hidden" id = "client_name"  name = "client_name" value="${client_name}" </input>
-            <input type ="hidden" id = "year"  name = "year" value="${year}" </input>
+            <input type ="hidden" id = "localSaida"  name = "localSaida" value="${localSaida}" </input>
+            <input type ="hidden" id = "localDestino"  name = "localDestino" value="${localDestino}" </input>
+            <input type ="hidden" id = "roteiro"  name = "roteiro" value="${roteiro}" </input>
+            <input type ="hidden" id = "protocolo"  name = "protocolo" value="${protocolo}" </input>
+            <input type ="hidden" id = "valor"  name = "valor" value="${valor}" </input>
+            <input type ="hidden" id = "data"  name = "data" value="${data}" </input>
 
         </form>    
 
