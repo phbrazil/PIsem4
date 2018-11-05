@@ -85,11 +85,14 @@ insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) va
 
 
 CREATE TABLE tbVenda(
-idvenda  INT NOT NULL AUTO_INCREMENT,
+id  INT NOT NULL AUTO_INCREMENT,
 idcliente INT NOT NULL,
 dthvenda VARCHAR(20) NOT NULL,
 total FLOAT(10,2) NOT NULL,
+idpacote INT NOT NULL,
+tipoPagamento varchar(20) NOT NULL,
 PRIMARY KEY (idvenda),
+FOREIGN KEY (idpacote) REFERENCES tbPacote (idpacote),
 FOREIGN KEY (idcliente) REFERENCES tbCliente (idcliente));
 
 CREATE TABLE tbItemVenda(

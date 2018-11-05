@@ -64,6 +64,7 @@
                                 <input type="hidden" name="localDestino" value="<%=pacote.getLocalDestino()%>"/>
                                 <input type="hidden" name="roteiro" value="<%=pacote.getRoteiro()%>"/>
                                 <input type="hidden" name="data" value="<%=pacote.getDthevento()%>"/>
+                                <input type="hidden" name="idpacote" value="<%=pacote.getIdPacote()%>"/>
                             </li>
                         </ul>
 
@@ -83,11 +84,11 @@
 
                         <div class="d-block my-3">
                             <div class="custom-control custom-radio">
-                                <input id="credito" onclick="show1();" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <input id="credito" onclick="show1();" name="paymentMethod" value = "Crédito" type="radio" class="custom-control-input" checked required>
                                 <label class="custom-control-label" for="credito">Cartão de Crédito</label>
                             </div>
                             <div class="custom-control custom-radio">
-                                <input id="boleto" onclick="show2();" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <input id="boleto" onclick="show2();" name="paymentMethod" value= "Boleto" type="radio" class="custom-control-input" required>
                                 <label class="custom-control-label" for="boleto">Boleto</label>
                             </div>
                         </div>
@@ -151,6 +152,7 @@
     <script src="js/vendor/popper.min.js"></script>
     <script src="dist/js/"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script src="js/boletoCredito.js"></script>
 
     <script>
                                     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -190,24 +192,5 @@
         }
     </style>
 
-    <script>
-
-        function show1() {
-            document.getElementById('div1').style.display = 'block';
-            document.getElementById('cardname').required = true;
-            document.getElementById('cardnumber').required = true;
-            document.getElementById('expdate').required = true;
-            document.getElementById('codesec').required = true;
-
-        }
-        function show2() {
-            document.getElementById('div1').style.display = 'none';
-            document.getElementById('cardname').required = false;
-            document.getElementById('cardnumber').required = false;
-            document.getElementById('expdate').required = false;
-            document.getElementById('codesec').required = false;
-
-        }
-    </script>
 </body>
 </html>

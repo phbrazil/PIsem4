@@ -71,7 +71,7 @@ public class tbClienteJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = clientes.getIdCliente();
+                int id = clientes.getId();
                 if (findClientes(id) == null) {
                     throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.");
                 }
@@ -92,7 +92,7 @@ public class tbClienteJpaController implements Serializable {
             tbCliente clientes;
             try {
                 clientes = em.getReference(tbCliente.class, id);
-                clientes.getIdCliente();
+                clientes.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The clientes with id " + id + " no longer exists.", enfe);
             }
@@ -136,7 +136,7 @@ public class tbClienteJpaController implements Serializable {
         }
     }
 
-    public tbCliente findClientes(Long id) {
+    public tbCliente findClientes(int id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(tbCliente.class, id);

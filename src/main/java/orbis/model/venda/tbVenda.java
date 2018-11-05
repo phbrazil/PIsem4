@@ -22,10 +22,30 @@ public class tbVenda implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    
+    private int idpacote;
     private int idcliente;
     private String dthvenda;
     private double total;
+    String tipoPagamento;
+
+    public String getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(String tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+    
+
+    public int getIdpacote() {
+        return idpacote;
+    }
+
+    public void setIdpacote(int idpacote) {
+        this.idpacote = idpacote;
+    }
+    
+    
 
     public int getIdcliente() {
         return idcliente;

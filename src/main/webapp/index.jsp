@@ -228,7 +228,9 @@
     <button onclick="{
                 location = 'sair.jsp';
             }" style="width:auto; float: right">Sair</button>
-    <button style="width:auto; float: right">Olá <%=nomeUser%></button>
+    <button onclick="{
+                location = 'minhasCompras';
+            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
     
     <%}%>
 

@@ -1,3 +1,4 @@
+<%@page import="orbis.model.venda.tbVenda"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -225,7 +226,7 @@
                 location = 'sair.jsp';
             }" style="width:auto; float: right">Sair</button>
     <button onclick="{
-                location = 'minhasCompras';
+                location = 'minhasCompras?';
             }" style="width:auto; float: right">Olá <%=nomeUser%></button>
     <button onclick="{
                 location = 'index.jsp';
@@ -270,40 +271,46 @@
         </div>
     </form>
 
+    <div class="py-5 text-center">
+        <h2 class="text-muted">Minhas Compras</h2>
+    </div>
+
+
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 
 
         <div align='center'>
 
+
             <div class="row" style="width: 90%; height: 90%;">
 
                 <%
-                    List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("pacoteLista");
+                    List<tbVenda> compras = (List<tbVenda>) request.getAttribute("minhasCompras");
                     int linha = 1;
 
                     NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                             new Locale("pt", "BR"));
 
-                    if (pacotes.size() > 0) {
+                    if (compras.size() > 0) {
 
-                        for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                            tbPacote pacote = (tbPacote) iterator.next();
+                        for (Iterator iterator = compras.iterator(); iterator.hasNext();) {
+                            tbVenda compra = (tbVenda) iterator.next();
 
 
                 %>
+
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <a href="pacote?destino=<%=pacote.getIdPacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
-                        <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                        <a href="pacote?destino=<%=compra.getIdpacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                        <input type ='hidden' name ='destino' value="<%=compra.getIdpacote()%>">
                         <div class="card-body">
                             <h4 class="card-title">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                                <a href="pacote?destino=<%=compra.getIdpacote()%>" style="text-decoration: none">Ver Detalhe</a>
                             </h4>
-                            <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                        </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                            <h5>Valor do Pacote: <%=formatoMoeda.format(compra.getTotal())%></h5>
+                            <h5>Data da compra: <%=compra.getDthvenda()%></h5>
+                            <h5>Protocolo: <%=compra.getId()%></h5>
+                            <h5>Tipo Pagamento: <%=compra.getTipoPagamento()%></h5>
                         </div>
                     </div>
                 </div>
@@ -325,7 +332,7 @@
                     }
                 </style>
                 <div class='center'>
-                    <h3 class="text-muted">Nenhum pacote encontrado</h3>
+                    <h3 class="text-muted">Nenhuma compra efetuada</h3>
                     <button onclick="{
                                 location = 'index.jsp';
                             }" style="width:auto;">Página inicial</button>    
