@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author ASAPH-001
+ * @author killuminatti08
  */
 @Entity
 public class tbCliente implements Serializable {
@@ -21,7 +21,7 @@ public class tbCliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idCliente;
+    private Integer id;
     private int idEndereco;
     private String emailCliente;
     private String nomeCliente;
@@ -112,22 +112,22 @@ public class tbCliente implements Serializable {
     public void setIdPayment(long idPayment) {
         this.idPayment = idPayment;
     }
-    
-    
+
     
 
-    public Long getIdCliente() {
-        return idCliente;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCliente(Long idCliente) {
-        this.idCliente = idCliente;
+    public void setId(Integer id) {
+        this.id = id;
+        
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idCliente != null ? idCliente.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -138,7 +138,7 @@ public class tbCliente implements Serializable {
             return false;
         }
         tbCliente other = (tbCliente) object;
-        if ((this.idCliente == null && other.idCliente != null) || (this.idCliente != null && !this.idCliente.equals(other.idCliente))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;
@@ -146,7 +146,7 @@ public class tbCliente implements Serializable {
 
     @Override
     public String toString() {
-        return "orbis.DAO.pacotes.Clientes[ id=" + idCliente + " ]";
+        return "orbis.model.cliente.tbCliente[ id=" + id + " ]";
     }
     
 }

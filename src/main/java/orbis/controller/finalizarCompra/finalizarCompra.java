@@ -47,73 +47,78 @@ public class finalizarCompra extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
 
+        HttpSession sessao = request.getSession();
 
+        String datavenda = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
 
-            String datavenda = new SimpleDateFormat("yyyy-MM-dd_hh:mm:ss").format(Calendar.getInstance().getTime());
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                new Locale("pt", "BR"));
 
-            NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
-                    new Locale("pt", "BR"));
-
-            tbVenda venda = new tbVenda();
-            double valor = Double.valueOf(request.getParameter("valor"));
-            String localSaida = (String) request.getParameter("localSaida");
-            String localDestino = (String) request.getParameter("localDestino");
-            String data = (String) request.getParameter("data");
-            String roteiro = (String) request.getParameter("roteiro");
-
-            venda.setIdcliente(1);
-            venda.setDthvenda(String.valueOf(datavenda));
-            venda.setTotal(valor);
-
-            int idvenda = 0;
-
-            if (venda.getTotal() <= 0) {
-                String path = "index.jsp";
-                String mensagem = "Ocorreu um erro. Favor tentar novamente";
-                request.setAttribute("path", path);
-                out.println("<script type='text/javascript'>");
-                out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
-                out.println("</script>");
-
-            } else {
-
-                //indica as configuracoes do banco
-                Configuration con = new Configuration().configure().addAnnotatedClass(tbVenda.class);
-                SessionFactory sf = con.buildSessionFactory();
-
-                //abre sessao com o banco
-                Session session = sf.openSession();
-
-                try {
-
-                    //inicia a transacao com o banco
-                    Transaction tx = session.beginTransaction();
-                    idvenda = (Integer) session.save(venda);
-
-                    //comita as informacoes
-                    tx.commit();
-                } finally {
-                    if (session != null) {
-                        session.close();
-                        sf.close();
-                    }
-
-                }
-            }
-
-            request.setAttribute("to1", "pauloh2012sul@gmail.com");
-            request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino " + localDestino);
-            request.setAttribute("body", "Sua compra foi finalizada para o Destino " + localDestino + ". \n A data de "
-                    + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda);
-            request.setAttribute("localSaida", "Venda Bahia");
-            request.setAttribute("localDestino", "comprador");
-            request.setAttribute("protocolo", idvenda);
-            request.setAttribute("roteiro", "Rolezinho");
-            request.setAttribute("data", data);
-            request.setAttribute("valor", valor);
-
-            request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
+        tbVenda venda = new tbVenda();
+        double valor = Double.valueOf(request.getParameter("valor"));
+        String localSaida = (String) request.getParameter("localSaida");
+        String localDestino = (String) request.getParameter("localDestino");
+        String data = (String) request.getParameter("data");
+        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
+        String tipoPagamento = String.valueOf(request.getParameter("paymentMethod"));
         
+        Integer idcliente = (Integer) sessao.getAttribute("idcliente");
+
+        venda.setIdcliente(idcliente);
+        venda.setDthvenda(String.valueOf(datavenda));
+        venda.setTotal(valor);
+        venda.setIdpacote(idpacote);
+        venda.setTipoPagamento(tipoPagamento);
+
+        int idvenda = 0;
+
+        if (venda.getTotal() <= 0) {
+            String path = "index.jsp";
+            String mensagem = "Ocorreu um erro. Favor tentar novamente";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+
+        } else {
+
+            //indica as configuracoes do banco
+            Configuration con = new Configuration().configure().addAnnotatedClass(tbVenda.class);
+            SessionFactory sf = con.buildSessionFactory();
+
+            //abre sessao com o banco
+            Session session = sf.openSession();
+
+            try {
+
+                //inicia a transacao com o banco
+                Transaction tx = session.beginTransaction();
+                idvenda = (Integer) session.save(venda);
+
+                //comita as informacoes
+                tx.commit();
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
+
+            }
+        }
+
+        request.setAttribute("to1", "pauloh2012sul@gmail.com");
+        request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino " + localDestino);
+        request.setAttribute("body", "Sua compra foi finalizada para o Destino " + localDestino + ". \n A data de "
+                + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda);
+        request.setAttribute("localSaida", "Venda Bahia");
+        request.setAttribute("localDestino", "comprador");
+        request.setAttribute("protocolo", idvenda);
+        request.setAttribute("roteiro", "Rolezinho");
+        request.setAttribute("data", data);
+        request.setAttribute("valor", valor);
+
+        request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
+
     }
 
     @Override
