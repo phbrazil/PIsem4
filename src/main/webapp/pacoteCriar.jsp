@@ -103,10 +103,26 @@
                             </div>
                         </div>
                         <br>
+                        <div class="col-md-12 mb-3">
+
+                            <h5 class="mb-0">
+                                <span class="text-primary">Fotos</span>
+                            </h5>                    
+                            <form action="upload" method="post" enctype="multipart/form-data">
+
+                                <input type="file" name="file" id="i_file" required />
+
+                                <input type="submit" value="Enviar" id="i_submit"  />
+                                <br>
+
+                                <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
+
+                            </form>  
+                        </div>
                     </div>
                     <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
-                                                        return confirmCompletePacote();
-                                                    }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+                                return confirmCompletePacote();
+                            }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
 
                 </div>
 
@@ -135,9 +151,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
         <script>
-                                                $(document).ready(function () {
-                                                    $('[data-toggle="tooltip"]').tooltip();
-                                                });
+                        $(document).ready(function () {
+                            $('[data-toggle="tooltip"]').tooltip();
+                        });
         </script>
 
         <script>

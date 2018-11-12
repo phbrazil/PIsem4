@@ -13,8 +13,8 @@
     HttpSession sessao = request.getSession();
 
     String nomeUser = (String) sessao.getAttribute("nomeUser");
-    int idgrupo = (Integer) sessao.getAttribute("idgrupo");
-    
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
+        
     
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
@@ -236,8 +236,8 @@
             
             <%if(idgrupo==1){%>
                 <button onclick="{
-                location = 'gerenciarPacotes.jsp';
-            }" style="width:auto; float: right">Gerenciar Pacotes</button>
+                location = 'pacoteCriar.jsp';
+            }" style="width:auto; float: right">Gerenciar Projetos</button>
             <%}%>
     
     <%}%>
