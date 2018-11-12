@@ -36,6 +36,15 @@ PRIMARY KEY (idendereco));
 
 insert into tbEndereco (rua,numero,cep,complemento,bairro,cidade,UF,pais,referencia) values ('Não Cadastrado','',0,'','','','','','');
 
+CREATE TABLE tbGrupos(
+idgrupo INT NOT NULL AUTO_INCREMENT,
+nomegrupo VARCHAR(20) NOT NULL,
+descricao VARCHAR(50) NOT NULL,
+PRIMARY KEY (idgrupo));
+
+INSERT INTO tbGrupos(nomegrupo, descricao) values ('Administradores', 'Responsavel por gerenciar os pacotes');
+INSERT INTO tbGrupos(nomegrupo, descricao) values ('Compradores', 'Usuarios compradores / Clientes');
+
 
 CREATE TABLE tbCliente(
 idcliente INT NOT NULL AUTO_INCREMENT,
@@ -49,8 +58,10 @@ celcliente VARCHAR (14),
 passwordCliente VARCHAR (30) NOT NULL,
 changepassword boolean NOT NULL,
 idpayment INT NOT NULL,
+idgrupo iNT NOT NULL,
 PRIMARY KEY (idcliente),
 FOREIGN KEY (idpayment) REFERENCES tbPayment (idpayment),
+FOREIGN KEY (idgrupo) REFERENCES tbGrupos (idgrupo),
 FOREIGN KEY (idendereco) REFERENCES tbEndereco (idendereco));
 
 insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,

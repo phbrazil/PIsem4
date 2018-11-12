@@ -32,6 +32,17 @@ public class tbCliente implements Serializable {
     private String passwordCliente;
     private boolean changePassword;
     private long idPayment;
+    private int idgrupo;
+
+    public int getIdgrupo() {
+        return idgrupo;
+    }
+
+    public void setIdgrupo(int idgrupo) {
+        this.idgrupo = idgrupo;
+    }
+    
+    
 
     public int getIdEndereco() {
         return idEndereco;
