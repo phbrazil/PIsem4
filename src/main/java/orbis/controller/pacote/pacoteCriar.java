@@ -45,7 +45,7 @@ public class pacoteCriar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
+        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
 
         response.setContentType(
                 "text/html");
@@ -105,14 +105,15 @@ public class pacoteCriar extends HttpServlet {
         }
 
         //if (ServletFileUpload.isMultipartContent(request)) {
-        if (id
-                != null) {
+        if (id != null) {
             try {
                 List<FileItem> multiparts = new ServletFileUpload(
                         new DiskFileItemFactory()).parseRequest(request);
 
-                //criar pasta com id do banco
-                File file = new File(UPLOAD_DIRECTORY + id);
+                //criar pasta com id do banco                
+                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+
+                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -123,17 +124,12 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //inserir na nova pasta criada
-                UPLOAD_DIRECTORY = UPLOAD_DIRECTORY + id;
-                //UPLOAD_DIRECTORY = novodiretorio;
+                File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
 
-                for (FileItem item : multiparts) {
-                    if (!item.isFormField()) {
-                        String name = new File(item.getName()).getName();
-                        item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-                        System.out.println("inserido no caminho " + UPLOAD_DIRECTORY);
-                    }
+                fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
 
-                }
+                File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                temp.mkdir();
 
                 //ATUALIZAR PATH NO BANCO
                 pacote.setImagePath(UPLOAD_DIRECTORY);
@@ -153,8 +149,12 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //File uploaded successfully
-                System.out.println("Upload feito com sucesso");
-                //request.setAttribute("message", "Upload feito com Sucesso!");
+                String pathModal = "gerenciarPacotes.jsp";
+                String mensagem = "Novo pacote criado com sucesso!";
+                request.setAttribute("path", pathModal);
+                out.println("<script type='text/javascript'>");
+                out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+                out.println("</script>");
 
             } catch (Exception ex) {
                 System.out.println("erro " + ex);

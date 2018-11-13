@@ -59,8 +59,8 @@
           <h3>Criar Pacotes
           </h3>
         </a></div>
-          <div class="col-lg-3 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacote.jsp">
-            <img class="rounded-circle img-fluid d-block mx-auto" src="img/editPacote.png" alt="">
+          <div class="col-lg-2 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacote.jsp">
+                  <img class="rounded-circle img-fluid d-block mx-auto" src="img/editPacote.png" alt="">
           <h3>Alterar Pacotes
           </h3>
         </a></div>
@@ -69,7 +69,7 @@
           <h3>Excluir Pacotes
           </h3>
         </div>
-        <div class="col-lg-3 col-sm-6 text-center mb-4">
+        <div class="col-lg-2 col-sm-6 text-center mb-4">
             <img class="rounded-circle img-fluid d-block mx-auto" src="img/reportsPacotes.jpeg" alt="">
           <h3>Relatórios
           </h3>
