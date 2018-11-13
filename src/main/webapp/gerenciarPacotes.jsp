@@ -47,31 +47,29 @@
         </div>
       </div>
     </nav>
+    <br>
 
     <!-- Page Content -->
     <div class="container">
 
       <!-- Team Members Row -->
       <div class="row">
-        <div class="col-lg-12">
-          <h2 class="my-4">Selecione uma opção</h2>
-        </div>
-          <div class="col-lg-3 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="pacoteCriar.jsp">
+          <div class="col-lg-2 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="pacoteCriar.jsp">
                   <img class="rounded-circle img-fluid d-block mx-auto" src="img/criarPacote.png" alt="">
           <h3>Criar Pacotes
           </h3>
         </a></div>
-          <div class="col-lg-4 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacote.jsp">
+          <div class="col-lg-3 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacote.jsp">
             <img class="rounded-circle img-fluid d-block mx-auto" src="img/editPacote.png" alt="">
           <h3>Alterar Pacotes
           </h3>
         </a></div>
-        <div class="col-lg-3 col-sm-6 text-center mb-4">
+        <div class="col-lg-2 col-sm-6 text-center mb-4">
             <img class="rounded-circle img-fluid d-block mx-auto" src="img/deletePacote.png" alt="">
           <h3>Excluir Pacotes
           </h3>
         </div>
-        <div class="col-lg-4 col-sm-6 text-center mb-4">
+        <div class="col-lg-3 col-sm-6 text-center mb-4">
             <img class="rounded-circle img-fluid d-block mx-auto" src="img/reportsPacotes.jpeg" alt="">
           <h3>Relatórios
           </h3>

@@ -34,8 +34,7 @@ import org.hibernate.cfg.Configuration;
 @WebServlet(name = "/criar", urlPatterns = {"/criar"})
 public class pacoteCriar extends HttpServlet {
 
-    private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
-
+    //private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,14 +44,18 @@ public class pacoteCriar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                   response.setContentType("text/html");  
-           PrintWriter out=response.getWriter();  
-           MultipartRequest m=new MultipartRequest(request, UPLOAD_DIRECTORY);  
-                   
+
+        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
+
+        response.setContentType(
+                "text/html");
+        PrintWriter out = response.getWriter();
+        MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
+
         String path = "";
 
-        request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding(
+                "UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
@@ -66,16 +69,19 @@ public class pacoteCriar extends HttpServlet {
         pacote.setLocalSaida(m.getParameter("localsaida"));
         pacote.setLocalDestino(m.getParameter("localdestino"));
         pacote.setRoteiro(m.getParameter("roteiro"));
-        if (m.getParameter("ativo").equals("Sim")) {
+        if (m.getParameter(
+                "ativo").equals("Sim")) {
             pacote.setAtivo(true);
         } else {
             pacote.setAtivo(false);
 
         }
+
         pacote.setDthCadastro(data);
 
         Integer id;
 
+        //GRAVAR NO BANCO
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
         SessionFactory sf = con.buildSessionFactory();
@@ -92,37 +98,25 @@ public class pacoteCriar extends HttpServlet {
             tx.commit();
 
         } finally {
-            if (session != null) {
-                session.close();
-                sf.close();
-            }
+//            if (session != null) {
+//                session.close();
+//                sf.close();
+//            }
         }
 
-        //-----
         //if (ServletFileUpload.isMultipartContent(request)) {
-        if (id != null) {
+        if (id
+                != null) {
             try {
                 List<FileItem> multiparts = new ServletFileUpload(
                         new DiskFileItemFactory()).parseRequest(request);
-//
-//                //gravar na pasta temp
-//                for (FileItem item : multiparts) {
-//                    if (!item.isFormField()) {
-//                        String name = new File(item.getName()).getName();
-//                        item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-//                        path = UPLOAD_DIRECTORY + File.separator + name;
-//                    }
-//                }
 
                 //criar pasta com id do banco
-                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + id);
-                //File file = new File("/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/files/" + id);
+                File file = new File(UPLOAD_DIRECTORY + id);
 
-                String novodiretorio = "";
                 if (!file.exists()) {
                     if (file.mkdir()) {
                         System.out.println("Directory is created!");
-                        novodiretorio = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + id;
                     } else {
                         System.out.println("Failed to create directory!");
                     }
@@ -131,28 +125,32 @@ public class pacoteCriar extends HttpServlet {
                 //inserir na nova pasta criada
                 UPLOAD_DIRECTORY = UPLOAD_DIRECTORY + id;
                 //UPLOAD_DIRECTORY = novodiretorio;
+
                 for (FileItem item : multiparts) {
                     if (!item.isFormField()) {
                         String name = new File(item.getName()).getName();
                         item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
-                        System.out.println("inserido");
+                        System.out.println("inserido no caminho " + UPLOAD_DIRECTORY);
                     }
+
                 }
 
-                //deletar arquivos na pasta temp
-                System.out.println("deletar temp");
+                //ATUALIZAR PATH NO BANCO
+                pacote.setImagePath(UPLOAD_DIRECTORY);
+                try {
+                    //inicia a transacao com o banco
+                    Transaction tx = session.beginTransaction();
+                    session.update(pacote);
 
-//                //File tempfolder = new File("/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/files/temp");
-//                File tempfolder = new File("C:\\Users\\ASAPH-001\\Desktop\\uploads\\temp");
-//                File[] filestemp = tempfolder.listFiles();
-//
-//                if (filestemp != null) {
-//                    for (File f : filestemp) {
-//                        System.out.println("deletando temp");
-//                        f.delete();
-//                    }
-//                }
-                UPLOAD_DIRECTORY = null;
+                    //comita as informacoes
+                    tx.commit();
+
+                } finally {
+                    if (session != null) {
+                        session.close();
+                        sf.close();
+                    }
+                }
 
                 //File uploaded successfully
                 System.out.println("Upload feito com sucesso");
