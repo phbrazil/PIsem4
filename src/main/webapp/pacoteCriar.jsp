@@ -144,7 +144,7 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
 
-                    <input type="file" name="file" id="i_file" required />
+                    <input type="file" name="file" id="i_file" required multiple="true" />
 
                     <!--input type="submit" value="Enviar" id="i_submit"  /-->
                     <br>
@@ -153,7 +153,7 @@
 
 
 
-                    <button class="btn btn-lg btn-outline-success" id='gravar' type="submit" onclick="{
+                    <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
                             return confirmCompletePacote();
                         }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
 
@@ -209,26 +209,5 @@
         });
     </script>
 
-    <script>
-        $('#i_submit').click(function () {
-            //check whether browser fully supports all File API
-            if (window.File && window.FileReader && window.FileList && window.Blob)
-            {
-                //get the file size and file type from file input field
-                var fsize = $('#i_file')[0].files[0].size;
-
-                if (fsize > 1048576) //do something if file size more than 1 mb (1048576)
-                {
-                    //alert(fsize + " bites\nArquivo muito grande!");
-                    document.getElementById('filestatus').value = "Arquivo com " + fsize + " bytes é muito grande";
-                    return false;
-                } else {
-                    alert(fsize + " bites\nArquivo com tamanho aceito!");
-                }
-            } else {
-                alert("Favor atualizar seu navegador, pois seu navegador atual não possui alguns atributos necessários!");
-            }
-        });
-    </script>
 
 </html>

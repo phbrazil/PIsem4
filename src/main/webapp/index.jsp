@@ -317,6 +317,17 @@
                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                         </div>
                     </div>
+                    <c:forEach items="${images}" var="image" varStatus="imgCount">
+                        <c:if test="${(imgCount.count-1) mod 3 eq 0}">
+                            <div class="${gridImage.displayposition}">
+                                <img src="${imagePath}${image}"/>
+                                <img src="${imagePath}${images[imgCount.count]}"/>
+                                <img src="${imagePath}${images[imgCount.count+1]}"/>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+
+
                 </div>
                 <%
                         linha++;

@@ -11,7 +11,7 @@ $('#i_submit').click(function () {
             document.getElementById('filestatus').value = "Arquivo com " + fsize + " bytes é muito grande";
             return false;
         } else {
-            alert(fsize + " bites\nArquivo com tamanho aceito!");
+            console.log(fsize + " bites\nArquivo com tamanho aceito!");
         }
     } else {
         alert("Favor atualizar seu navegador, pois seu navegador atual não possui alguns atributos necessários!");
