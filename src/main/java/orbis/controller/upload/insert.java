@@ -17,11 +17,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import orbis.model.cliente.tbCliente;
+import orbis.model.pacote.tbPacote;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 public class insert {
 
     public int insert(String filePath) {
         
+                //indica as configuracoes do banco
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        SessionFactory sf = con.buildSessionFactory();
+
+        //abre sessao com o banco
+        Session session = sf.openSession();
 
         int lastid = 0;
         conexao bancoconexao = new conexao();

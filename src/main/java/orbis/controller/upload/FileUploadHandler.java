@@ -18,8 +18,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  */
 public class FileUploadHandler extends HttpServlet {
 
-    //private final String UPLOAD_DIRECTORY = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/files/temp";
-    private String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Desktop\\uploads\\temp";
+    private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -49,14 +48,14 @@ public class FileUploadHandler extends HttpServlet {
                 int id = insert.insert(path);
 
                 //criar pasta com id do banco
-                File file = new File("C:\\Users\\ASAPH-001\\Desktop\\uploads\\" + id);
+                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + id);
                 //File file = new File("/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/files/" + id);
 
-                //String novodiretorio = "";
+                String novodiretorio = "";
                 if (!file.exists()) {
                     if (file.mkdir()) {
                         System.out.println("Directory is created!");
-                        // novodiretorio = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/files/" + id;
+                        novodiretorio = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + id;
                     } else {
                         System.out.println("Failed to create directory!");
                     }
