@@ -85,6 +85,7 @@ valor FLOAT(10,2) NOT NULL,
 localsaida VARCHAR(100) NOT NULL,
 localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
+ativo BOOLEAN default TRUE,
 PRIMARY KEY (idpacote));
 
 insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir');

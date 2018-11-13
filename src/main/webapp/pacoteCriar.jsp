@@ -36,6 +36,29 @@
     </head>
     <body id="page-top">
 
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="index.jsp">Início</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mais pacotes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contato</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
 
 
         <style>
@@ -65,7 +88,7 @@
                 </h5>
                 <br>
 
-                <div class="col-md-6 order-md-1">
+                <div class="col-md-8 order-md-1">
                     <div class="row">
                         <div class="col-md-5 mb-3">
                             <label>Data da Viagem</label>
@@ -82,7 +105,7 @@
                         </div>
                         <div class="col-md-4 mb-3">
                             <label>Valor</label>
-                            <input name = "valor" data-toggle="tooltip" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "" required>
+                            <input name = "valor" data-toggle="tooltip" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Local de saída</label>
@@ -103,7 +126,14 @@
                             </div>
                         </div>
                         <br>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <label>Pacote ativo?</label>
+                            <select name = "pctAtivo" class="custom-select d-block w-100" id="finanstatus"  required>
+                                <option>Sim</option>
+                                <option>Não</option>
+                            </select>
+                        </div> 
+                        <div class="col-md-9 mb-3">
 
                             <h5 class="mb-0">
                                 <span class="text-primary">Fotos</span>
@@ -119,6 +149,7 @@
 
                             </form>  
                         </div>
+
                     </div>
                     <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
                                 return confirmCompletePacote();
