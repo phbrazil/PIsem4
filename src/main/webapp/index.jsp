@@ -236,8 +236,8 @@
             
             <%if(idgrupo==1){%>
                 <button onclick="{
-                location = 'pacoteCriar.jsp';
-            }" style="width:auto; float: right">Gerenciar Projetos</button>
+                location = 'gerenciarPacotes.jsp';
+            }" style="width:auto; float: right">Gerenciar Pacotes</button>
             <%}%>
     
     <%}%>
