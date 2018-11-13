@@ -14,8 +14,7 @@
 
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
-        
-    
+
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
             || userAgent.toUpperCase().contains("MOBILE")) {
@@ -226,20 +225,22 @@
         </form>
     </div>
     <%} else {%>
-    
+
+
     <button onclick="{
                 location = 'sair.jsp';
             }" style="width:auto; float: right">Sair</button>
+    <%if (idgrupo == 1) {%>
+    <button onclick="{
+                location = 'gerenciarPacotes.jsp';
+            }" style="width:auto; float: right">Gerenciar Pacotes</button>
+    <%}%>
+
+
     <button onclick="{
                 location = 'minhasCompras';
             }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-            
-            <%if(idgrupo==1){%>
-                <button onclick="{
-                location = 'gerenciarPacotes.jsp';
-            }" style="width:auto; float: right">Gerenciar Pacotes</button>
-            <%}%>
-    
+
     <%}%>
 
     <script>

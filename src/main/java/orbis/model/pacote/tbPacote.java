@@ -28,6 +28,17 @@ public class tbPacote implements Serializable {
     private String localSaida;
     private String localDestino;
     private String roteiro;
+    private boolean ativo;
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
+    
 
     public String getDthevento() {
         return dthevento;
@@ -84,8 +95,6 @@ public class tbPacote implements Serializable {
     public void setIdPacote(Integer idPacote) {
         this.idPacote = idPacote;
     }
-    
-    
 
     @Override
     public int hashCode() {
