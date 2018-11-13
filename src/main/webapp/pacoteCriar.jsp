@@ -77,9 +77,9 @@
 
 
         <br>
-        <form enctype="multipart/form-data" name = "pacoteCriar"  id = "pacote" action="${pageContext.request.contextPath}/teste" method="POST">
 
-            <div align ="center">
+        <div align ="center">
+            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/criar" method="POST">
                 <div align = "center" >
                     <h4>Criar Pacote</h4>
                 </div>
@@ -134,32 +134,34 @@
                                 <option>Não</option>
                             </select>
                         </div> 
-                        <div class="col-md-9 mb-3">
-
-                            <h5 class="mb-0">
-                                <span class="text-primary">Fotos</span>
-                            </h5>                    
-
-                            <input type="file" name="file" id="i_file" required />
-
-                            <!--input type="submit" value="Enviar" id="i_submit"  /-->
-                            <br>
-
-                            <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
-
-                        </div>
 
                     </div>
 
-                    <input type="hidden" value="heuheuuehehueuehue" name="teste">
-                    <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
-                                return confirmCompletePacote();
-                            }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+                </div>
+                <div class="col-md-9 mb-3">
+
+                    <h5 class="mb-0">
+                        <span class="text-primary">Fotos</span>
+                    </h5>                    
+
+                    <input type="file" name="file" id="i_file" required />
+
+                    <!--input type="submit" value="Enviar" id="i_submit"  /-->
+                    <br>
+
+                    <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
+
+
+
+                    <button class="btn btn-lg btn-outline-success" id='gravar' type="submit" onclick="{
+                            return confirmCompletePacote();
+                        }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
 
                 </div>
-            </div>
+            </form>    
+        </div>
 
-        </form>
+
     </body>
 
 
@@ -184,24 +186,48 @@
     <script src="js/jquery.autocomplete.js"></script>
     <script src="js/jquery.maskMoney.js"></script>
     <script src="js/customAlert.js"></script>
+    <script src="js/tamanhoArquivo.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script>
-                        $(document).ready(function () {
-                            $('[data-toggle="tooltip"]').tooltip();
-                        });
+                    $(document).ready(function () {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    });
     </script>
+
 
 
     <script src="js/feather.min.js"></script>
     <script>
-                        feather.replace()
+        feather.replace()
     </script>
 
     <script>
         $(function () {
             $('#valor').maskMoney();
+        });
+    </script>
+
+    <script>
+        $('#i_submit').click(function () {
+            //check whether browser fully supports all File API
+            if (window.File && window.FileReader && window.FileList && window.Blob)
+            {
+                //get the file size and file type from file input field
+                var fsize = $('#i_file')[0].files[0].size;
+
+                if (fsize > 1048576) //do something if file size more than 1 mb (1048576)
+                {
+                    //alert(fsize + " bites\nArquivo muito grande!");
+                    document.getElementById('filestatus').value = "Arquivo com " + fsize + " bytes é muito grande";
+                    return false;
+                } else {
+                    alert(fsize + " bites\nArquivo com tamanho aceito!");
+                }
+            } else {
+                alert("Favor atualizar seu navegador, pois seu navegador atual não possui alguns atributos necessários!");
+            }
         });
     </script>
 

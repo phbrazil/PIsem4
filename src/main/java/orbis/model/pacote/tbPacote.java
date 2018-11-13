@@ -29,6 +29,17 @@ public class tbPacote implements Serializable {
     private String localDestino;
     private String roteiro;
     private boolean ativo;
+    private String dthCadastro;
+
+    public String getDthCadastro() {
+        return dthCadastro;
+    }
+
+    public void setDthCadastro(String dthCadastro) {
+        this.dthCadastro = dthCadastro;
+    }
+    
+    
 
     public boolean isAtivo() {
         return ativo;
