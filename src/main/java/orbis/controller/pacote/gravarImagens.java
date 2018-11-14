@@ -26,13 +26,13 @@ public class gravarImagens {
         boolean gravado = false;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
-        SessionFactory sf = con.buildSessionFactory();
-
-        //abre sessao com o banco
-        Session session = sf.openSession();
 
         tbImagens tbImagens = new tbImagens();
         for (int i = 0; i < imagens.size(); i++) {
+            SessionFactory sf = con.buildSessionFactory();
+
+            //abre sessao com o banco
+            Session session = sf.openSession();
 
             try {
 

@@ -64,7 +64,8 @@ public class pacoteCriar extends HttpServlet {
 
         MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
 
-        request.setCharacterEncoding("UTF-8");
+        //request.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("ISO-8859-1");
 
         HttpSession sessao = request.getSession(true);
 

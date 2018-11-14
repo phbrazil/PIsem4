@@ -145,7 +145,7 @@
 
                     <label class="btn btn-primary">
 
-                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" style="display: none;"  name="image">
+                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" required multiple style="display: none;"  name="image">
                     </label>
                     <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 

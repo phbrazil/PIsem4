@@ -316,7 +316,7 @@
                     <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
                             <%for(int j=0;j<imagens.size();j++){%>
-                            <div class="carousel-item active">
+                            <div id='slide<%=j%>' class="carousel-item">
                                 <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
                                 <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                             </div>
@@ -383,6 +383,16 @@
     <script src="js/jquery.autocomplete.js"></script>
     <script>
             $("#query").autocomplete("getDataDestinos.jsp");
+    </script>
+    
+    <script>
+        window.onload = function(){
+            
+            $('#slide0').addClass('active');
+            
+            
+        };
+
     </script>
 
 
