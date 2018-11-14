@@ -37,6 +37,7 @@ public class listarImagens {
 
             //comita as informacoes
             tx.commit();
+            
         } finally {
             if (session != null) {
                 session.close();

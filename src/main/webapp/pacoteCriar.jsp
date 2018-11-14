@@ -142,26 +142,12 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
                     <br>
-                        <!--div class="file-field">
-                            <div class="btn btn-primary btn-sm float-left">
-                                <span>Choose files</span>
-                                <input type="file" multiple>
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Selecione uma ou mais imagens">
-                            </div>
-                        </div-->
-                    <br>
-                    <div class="col-md-9 mb-3">
 
+                    <label class="btn btn-primary">
 
-                        <input type="file" value= "Selecionar imagens" class="form-control-file" name="file" id="i_file" required multiple />
-
-                        <!--input type="submit" value="Enviar" id="i_submit"  /-->
-                        <br>
-
-                        <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
-                    </div>
+                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" style="display: none;"  name="image">
+                    </label>
+                    <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
                 </div>
 
@@ -259,6 +245,12 @@
         $(function () {
             $('#valor').maskMoney();
         });
+    </script>
+    <script>
+        $('#choose-file').inputFileText({
+            text: 'Selecione as imagens'
+        });
+
     </script>
 
     <script>
