@@ -7,10 +7,17 @@ package orbis.controller.pacote;
 
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Enumeration;
+import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +25,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import static jdk.nashorn.internal.objects.NativeError.getFileName;
 import orbis.model.pacote.tbPacote;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -45,15 +54,15 @@ public class pacoteCriar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
-        String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
+        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
 
         response.setContentType(
                 "text/html");
         PrintWriter out = response.getWriter();
-        MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
+        //OutputStream out = null;
 
-        String path = "";
+        MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
 
         request.setCharacterEncoding("UTF-8");
 
@@ -111,11 +120,11 @@ public class pacoteCriar extends HttpServlet {
                         new DiskFileItemFactory()).parseRequest(request);
 
                 //criar pasta com id do banco                
-                //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
-                File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
+                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+                //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
 
-                //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
-                UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
+                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+                //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -126,17 +135,36 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //inserir na nova pasta criada
-                //File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-                File fileToMove = new File("/home/opportunity/orbis/temp");
+                File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+                //File fileToMove = new File("/home/opportunity/orbis/temp");                
 
                 fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
 
-                //File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
-                File temp = new File("/home/opportunity/orbis/temp/");
+                File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                //File temp = new File("/home/opportunity/orbis/temp/");
                 temp.mkdir();
+                
+                List<String> nomeImagem = new ArrayList<>();
+
+                // gravar nomes das fotos
+                String dirPath = UPLOAD_DIRECTORY;
+                File dir = new File(dirPath);
+                String[] files = dir.list();
+                if (files.length == 0) {
+                    System.out.println("The directory is empty");
+                } else {
+                    for (String aFile : files) {
+                        nomeImagem.add(String.valueOf(aFile));
+
+                    }
+                }
+
+                gravarImagens gravarImagens = new gravarImagens();
+
+                boolean gravado = gravarImagens.gravar(nomeImagem, id);
 
                 //ATUALIZAR PATH NO BANCO
-                pacote.setImagePath(UPLOAD_DIRECTORY);
+                pacote.setImagePath("../../../imagens/"+id+"/");
                 try {
                     //inicia a transacao com o banco
                     Transaction tx = session.beginTransaction();
@@ -151,8 +179,6 @@ public class pacoteCriar extends HttpServlet {
                         sf.close();
                     }
                 }
-                
-
 
                 //File uploaded successfully
                 String pathModal = "gerenciarPacotes.jsp";

@@ -33,7 +33,6 @@ public class cidadesAutoComplete {
             Transaction tx = session.beginTransaction();
 
             cidades = session.createQuery("FROM tbCidades").list();
-            System.out.println(cidades+"+++++");
 
             //comita as informacoes
             tx.commit();

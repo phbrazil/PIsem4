@@ -1,3 +1,5 @@
+<%@page import="orbis.DAO.pacote.listarImagens"%>
+<%@page import="orbis.controller.imagensPacote.tbImagens"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -287,9 +289,13 @@
 
             <div class="row" style="width: 90%; height: 90%;">
 
-                <%                listarPacotes listar = new listarPacotes();
+                <%
+                    listarPacotes listar = new listarPacotes();
+                    listarImagens listarImagens = new listarImagens();
 
                     List<tbPacote> pacotes = listar.listar();
+                    List<tbImagens> imagens;
+
                     int linha = 1;
 
                     NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
@@ -299,33 +305,27 @@
 
                         for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
                             tbPacote pacote = (tbPacote) iterator.next();
+                            imagens= listarImagens.listar(pacote.getIdPacote());
+                            
+
 
 
                 %>
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
+                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath()+imagens.get(0).getNomeImagem()%>" alt="destino"></a>
                         <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                         <div class="card-body">
                             <h4 class="card-title">
                                 <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                             </h4>
                             <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+                            <p class="card-text"><%=pacote.getRoteiro()%></p>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                         </div>
                     </div>
-                    <c:forEach items="${images}" var="image" varStatus="imgCount">
-                        <c:if test="${(imgCount.count-1) mod 3 eq 0}">
-                            <div class="${gridImage.displayposition}">
-                                <img src="${imagePath}${image}"/>
-                                <img src="${imagePath}${images[imgCount.count]}"/>
-                                <img src="${imagePath}${images[imgCount.count+1]}"/>
-                            </div>
-                        </c:if>
-                    </c:forEach>
 
 
                 </div>

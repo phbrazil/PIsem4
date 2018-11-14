@@ -146,7 +146,7 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
 
-                   <input type="file" name="file" id="i_file" required multiple />
+                    <input type="file" class="form-control-file" name="file" id="i_file" required multiple />
 
                     <!--input type="submit" value="Enviar" id="i_submit"  /-->
                     <br>
@@ -194,39 +194,39 @@
 
     <script>
 
-                $("#localdestino").autocomplete({
-                    source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+                        $("#localdestino").autocomplete({
+                            source: $("#localdestino").autocomplete("getdataCidades.jsp")});
 
-                function naBaseDestino(val) {
-                    var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+                        function naBaseDestino(val) {
+                            var source = $("#localdestino").autocomplete("getdataCidades.jsp");
 
-                    var length = source.length;
-                    for (var i = 0; i < length; i++) {
-                        if (source[i] != val) {
-                            document.getElementById('localdestino').value = "";
-                            document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
+                            var length = source.length;
+                            for (var i = 0; i < length; i++) {
+                                if (source[i] != val) {
+                                    //document.getElementById('localdestino').value = "";
+                                    //document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
+                                }
+                            }
                         }
-                    }
-                }
 
 
     </script>
-        <script>
+    <script>
 
-                $("#localsaida").autocomplete({
-                    source: $("#localsaida").autocomplete("getdataCidades.jsp")});
+        $("#localsaida").autocomplete({
+            source: $("#localsaida").autocomplete("getdataCidades.jsp")});
 
-                function naBaseSaida(val) {
-                    var source = $("#localsaida").autocomplete("getdataCidades.jsp");
+        function naBaseSaida(val) {
+            var source = $("#localsaida").autocomplete("getdataCidades.jsp");
 
-                    var length = source.length;
-                    for (var i = 0; i < length; i++) {
-                        if (source[i] != val) {
-                            document.getElementById('localsaida').value = "";
-                            document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
-                        }
-                    }
+            var length = source.length;
+            for (var i = 0; i < length; i++) {
+                if (source[i] != val) {
+                    //document.getElementById('localsaida').value = "";
+                    //document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
                 }
+            }
+        }
 
 
     </script>
@@ -248,6 +248,28 @@
             $('#valor').maskMoney();
         });
     </script>
+
+    <script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+    </script>
+
 
 
 </html>
