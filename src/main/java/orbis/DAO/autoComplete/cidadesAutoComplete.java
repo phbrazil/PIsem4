@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.DAO.pacote;
+package orbis.DAO.autoComplete;
 
 import java.util.List;
-import orbis.model.pacote.tbPacote;
+import orbis.model.cidades.tbCidades;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,23 +16,24 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class destinosAutoCompleteDAO {
+public class cidadesAutoComplete {
 
-    public List<tbPacote> AutoComplete() {
+    public List<tbCidades> AutoComplete() {
         
         //popula o model com os dados
         //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbCidades.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<tbPacote> pacotes;
+        List<tbCidades> cidades;
         try {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            pacotes = session.createQuery("FROM tbPacote").list();
+            cidades = session.createQuery("FROM tbCidades").list();
+            System.out.println(cidades+"+++++");
 
             //comita as informacoes
             tx.commit();
@@ -43,7 +44,7 @@ public class destinosAutoCompleteDAO {
             }
         }
 
-        return pacotes;
+        return cidades;
     }
 
 }

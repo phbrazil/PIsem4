@@ -6,6 +6,13 @@ USE orbis;
 
     CREATE USER 'orbis'@'localhost' IDENTIFIED BY 'admin';
     GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
+    
+CREATE TABLE tbCidades(
+idcidade INT NOT NULL AUTO_INCREMENT,
+UF varchar(100) NOT NULL,
+NomeMunic VARCHAR (150) NOT NULL,
+PRIMARY KEY (idcidade));
+    
 
 
 CREATE TABLE tbPayment(

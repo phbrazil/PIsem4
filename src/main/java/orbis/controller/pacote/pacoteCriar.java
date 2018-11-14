@@ -6,18 +6,12 @@
 package orbis.controller.pacote;
 
 import com.oreilly.servlet.MultipartRequest;
-import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import javafx.scene.shape.Path;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -60,8 +54,7 @@ public class pacoteCriar extends HttpServlet {
 
         String path = "";
 
-        request.setCharacterEncoding(
-                "UTF-8");
+        request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
@@ -154,6 +147,7 @@ public class pacoteCriar extends HttpServlet {
                     }
                 }
                 
+
 
                 //File uploaded successfully
                 String pathModal = "gerenciarPacotes.jsp";

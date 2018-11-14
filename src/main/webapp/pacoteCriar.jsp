@@ -111,13 +111,13 @@
                         <div class="col-md-6 mb-3">
                             <label>Local de saída</label>
                             <div class="input-group">
-                                <input data-toggle="tooltip" title="Local de Saída" data-placement="right" name="localsaida" autocomplete="off" type="text" class="form-control" id="localsaida">
+                                <input data-toggle="tooltip" onblur="naBaseSaida(this.value)" title="Local de Saída" data-placement="right" name="localsaida" autocomplete="off" type="text" class="form-control" id="localsaida">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Local de destino</label>
                             <div class="input-group">
-                                <input data-toggle="tooltip" title="Local de Destino" data-placement="right" name="localdestino" autocomplete="off" type="text" class="form-control" id="localdestino">
+                                <input data-toggle="tooltip" onblur="naBaseDestino(this.value)" title="Local de Destino" data-placement="right" name="localdestino" autocomplete="off" type="text" class="form-control" id="localdestino">
                             </div>
                         </div>
                         <div class="col-md-12 mb-3">
@@ -144,18 +144,16 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
 
-                    <input type="file" name="file" id="i_file" required multiple="true" />
+                    Select images: <input type="file" name="file" id="i_file" required multiple />
 
                     <!--input type="submit" value="Enviar" id="i_submit"  /-->
                     <br>
 
                     <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
-
-
                     <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
-                            return confirmCompletePacote();
-                        }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+                                return confirmCompletePacote();
+                            }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
 
                 </div>
             </form>    
@@ -163,6 +161,8 @@
 
 
     </body>
+
+
 
 
 
@@ -191,9 +191,47 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script>
-                    $(document).ready(function () {
-                        $('[data-toggle="tooltip"]').tooltip();
-                    });
+
+                $("#localdestino").autocomplete({
+                    source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+
+                function naBaseDestino(val) {
+                    var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+
+                    var length = source.length;
+                    for (var i = 0; i < length; i++) {
+                        if (source[i] != val) {
+                            document.getElementById('localdestino').value = "";
+                            document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
+                        }
+                    }
+                }
+
+
+    </script>
+        <script>
+
+                $("#localsaida").autocomplete({
+                    source: $("#localsaida").autocomplete("getdataCidades.jsp")});
+
+                function naBaseSaida(val) {
+                    var source = $("#localsaida").autocomplete("getdataCidades.jsp");
+
+                    var length = source.length;
+                    for (var i = 0; i < length; i++) {
+                        if (source[i] != val) {
+                            document.getElementById('localsaida').value = "";
+                            document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
+                        }
+                    }
+                }
+
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     </script>
 
 

@@ -14,27 +14,28 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-import orbis.DAO.autoComplete.destinosAutoComplete;
+import orbis.DAO.autoComplete.cidadesAutoComplete;
+import orbis.model.cidades.tbCidades;
 import orbis.model.pacote.tbPacote;
 
-public class destinos {
+public class cidades {
 
     private int totalprojetos;
 
-    destinosAutoComplete projetosnome = new destinosAutoComplete();
-    private List<tbPacote> data = projetosnome.AutoComplete();
+    cidadesAutoComplete projetosnome = new cidadesAutoComplete();
+    private List<tbCidades> data = projetosnome.AutoComplete();
     private String destinos;
     private List<String> destinoLista;
 
-    public destinos() {
+    public cidades() {
         
         //aqui faz  uma gambis de converter
         //uma lista de Pacote para uma lista 
         //de String do destino
         
         for (Iterator iterator = data.iterator(); iterator.hasNext();) {
-            tbPacote pacote = (tbPacote) iterator.next();
-            destinos = destinos + "," + pacote.getLocalDestino();
+            tbCidades pacote = (tbCidades) iterator.next();
+            destinos = destinos + "," + pacote.getNomeMunic()+" - "+pacote.getUF();
         }
 
         destinoLista = new ArrayList<String>();
