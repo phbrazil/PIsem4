@@ -144,7 +144,7 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
 
-                    Select images: <input type="file" name="file" id="i_file" required multiple />
+                   <input type="file" name="file" id="i_file" required multiple />
 
                     <!--input type="submit" value="Enviar" id="i_submit"  /-->
                     <br>
