@@ -8,7 +8,7 @@ $('#i_submit').click(function () {
         if (fsize > 10048576) //do something if file size more than 1 mb (1048576)
         {
             //alert(fsize + " bites\nArquivo muito grande!");
-            alert("As fotos com " + fsize + " bytes são muito grandes");
+            document.getElementById('filestatus').value = "As fotos com " + fsize + " bytes são muito grandes";
             return false;
         } else {
             console.log(fsize + " bites\nArquivo com tamanho aceito!");

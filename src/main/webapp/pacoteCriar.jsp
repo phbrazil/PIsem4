@@ -77,6 +77,8 @@
 
 
         <br>
+        <br>
+        <br>
 
         <div align ="center">
             <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/criar" method="POST">
