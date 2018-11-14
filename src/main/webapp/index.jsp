@@ -315,9 +315,21 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
-                            <%for(int j=0;j<imagens.size();j++){%>
-                            <div id='slide<%=j%>' class="carousel-item">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
+                            <%for (int j = 0; j < imagens.size(); j++) {
+                                    String action = "";
+                            %>
+
+                            <%if (j == 0) {
+                                    action = "active";
+                                    
+
+                                } else {
+                                    action = "";
+                                }
+                            System.out.println(action);
+                            %>
+                            <div id='slide<%=j%>' class="carousel-item <%=action%>">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 350px; height: 200px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
                                 <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                             </div>
                             <%}%>
@@ -382,16 +394,20 @@
     <script src="js/confirmarsenha.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
     <script>
-            $("#query").autocomplete("getDataDestinos.jsp");
+        $("#query").autocomplete("getDataDestinos.jsp");
     </script>
-    
+
     <script>
-        window.onload = function(){
-            
-            $('#slide0').addClass('active');
-            
-            
-        };
+        /*window.onload = function () {
+         
+         $('#slide0').each(function (i, obj) {
+         var slide = $(this);
+         slide.addClass('active');
+         
+         console.log(obj);
+         });
+         
+         };*/
 
     </script>
 
