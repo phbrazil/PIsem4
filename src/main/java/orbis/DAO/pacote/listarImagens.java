@@ -18,7 +18,6 @@ import org.hibernate.cfg.Configuration;
  */
 public class listarImagens {
 
-
     public List<tbImagens> listar(int id) {
 
         //popula o model com os dados
@@ -28,16 +27,22 @@ public class listarImagens {
 
         //abre sessao com o banco
         Session session = sf.openSession();
+        List imagens = null;
+        
+        try {
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
 
-        //inicia a transacao com o banco
-        Transaction tx = session.beginTransaction();
+            imagens = session.createQuery("FROM tbImagens where idPacote=" + id).list();
 
-        List imagens = session.createQuery("FROM tbImagens where idPacote="+id).list();
-
-        //comita as informacoes
-        tx.commit();
-        session.close();
-
+            //comita as informacoes
+            tx.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
+            }
+        }
         return imagens;
     }
 

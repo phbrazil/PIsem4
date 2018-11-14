@@ -20,7 +20,9 @@ import org.hibernate.cfg.Configuration;
 public class gravarImagens {
 
     public boolean gravar(List<String> imagens, int id) {
-        
+
+        System.out.println("aqui chegou " + imagens.size() + " imagens");
+
         boolean gravado = false;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
@@ -30,10 +32,11 @@ public class gravarImagens {
         Session session = sf.openSession();
 
         tbImagens tbImagens = new tbImagens();
+        for (int i = 0; i < imagens.size(); i++) {
 
-        try {
+            try {
 
-            for (int i = 0; i < imagens.size(); i++) {
+                System.out.println(i + "++++");
                 tbImagens.setIdPacote(id);
                 tbImagens.setNomeImagem(imagens.get(i));
 
@@ -43,16 +46,15 @@ public class gravarImagens {
                 //comita as informacoes
                 tx.commit();
 
+                //inicia a transacao com o banco
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
             }
-            //inicia a transacao com o banco
-
-        } finally {
-            if (session != null) {
-                session.close();
-                sf.close();
-            }
-            gravado = true;
         }
+        gravado = true;
 
         return gravado;
     }

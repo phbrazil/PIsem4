@@ -3,7 +3,7 @@ $('#i_submit').click(function () {
     if (window.File && window.FileReader && window.FileList && window.Blob)
     {
         //get the file size and file type from file input field
-        var fsize = $('#i_file')[0].files[0].size;
+        var fsize = $('#inputGroupFile01')[0].files[0].size;
 
         if (fsize > 10048576) //do something if file size more than 1 mb (1048576)
         {

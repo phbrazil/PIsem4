@@ -315,16 +315,13 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
+                            <%for(int j=0;j<imagens.size();j++){%>
                             <div class="carousel-item active">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath() + imagens.get(0).getNomeImagem()%>" alt="destino"></a>
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
                                 <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                             </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="img/imagens/284/salvador.jpg" alt="Second slide">
-                            </div>
-                            <div class="carousel-item">
-                                <img class="d-block w-100" src="img/imagens/284/salvador.jpg" alt="Third slide">
-                            </div>
+                            <%}%>
+
                         </div>
                         <a class="carousel-control-prev" href="#carouselExampleControls<%=i%>" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

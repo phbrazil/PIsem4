@@ -26,18 +26,24 @@ public class listarPacotes {
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
         SessionFactory sf = con.buildSessionFactory();
 
+        List pacotes = null;    
         //abre sessao com o banco
         Session session = sf.openSession();
+        try {
 
-        //inicia a transacao com o banco
-        Transaction tx = session.beginTransaction();
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
 
-        List pacotes = session.createQuery("FROM tbPacote").list();
+            pacotes = session.createQuery("FROM tbPacote").list();
 
-        //comita as informacoes
-        tx.commit();
-        session.close();
-
+            //comita as informacoes
+            tx.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
+            }
+        }
         return pacotes;
     }
 

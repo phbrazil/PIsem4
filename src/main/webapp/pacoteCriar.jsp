@@ -138,26 +138,38 @@
                         </div> 
 
                     </div>
-
-                </div>
-                <div class="col-md-9 mb-3">
-
                     <h5 class="mb-0">
                         <span class="text-primary">Fotos</span>
                     </h5>                    
-
-                    <input type="file" class="form-control-file" name="file" id="i_file" required multiple />
-
-                    <!--input type="submit" value="Enviar" id="i_submit"  /-->
                     <br>
+                        <!--div class="file-field">
+                            <div class="btn btn-primary btn-sm float-left">
+                                <span>Choose files</span>
+                                <input type="file" multiple>
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Selecione uma ou mais imagens">
+                            </div>
+                        </div-->
+                    <br>
+                    <div class="col-md-9 mb-3">
 
-                    <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
-                    <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
-                                return confirmCompletePacote();
-                            }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+                        <input type="file" value= "Selecionar imagens" class="form-control-file" name="file" id="i_file" required multiple />
+
+                        <!--input type="submit" value="Enviar" id="i_submit"  /-->
+                        <br>
+
+                        <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
+                    </div>
 
                 </div>
+
+
+                <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
+                            return confirmCompletePacote();
+                        }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+
             </form>    
         </div>
 
@@ -194,20 +206,20 @@
 
     <script>
 
-                        $("#localdestino").autocomplete({
-                            source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+                    $("#localdestino").autocomplete({
+                        source: $("#localdestino").autocomplete("getdataCidades.jsp")});
 
-                        function naBaseDestino(val) {
-                            var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+                    function naBaseDestino(val) {
+                        var source = $("#localdestino").autocomplete("getdataCidades.jsp");
 
-                            var length = source.length;
-                            for (var i = 0; i < length; i++) {
-                                if (source[i] != val) {
-                                    //document.getElementById('localdestino').value = "";
-                                    //document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
-                                }
+                        var length = source.length;
+                        for (var i = 0; i < length; i++) {
+                            if (source[i] != val) {
+                                //document.getElementById('localdestino').value = "";
+                                //document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
                             }
                         }
+                    }
 
 
     </script>
