@@ -45,7 +45,8 @@ public class pacoteCriar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
 
         response.setContentType(
                 "text/html");
@@ -110,9 +111,11 @@ public class pacoteCriar extends HttpServlet {
                         new DiskFileItemFactory()).parseRequest(request);
 
                 //criar pasta com id do banco                
-                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+                //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+                File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
 
-                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+                //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+                UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -123,11 +126,13 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //inserir na nova pasta criada
-                File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+                //File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+                File fileToMove = new File("/home/opportunity/orbis/temp");
 
                 fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
 
-                File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                //File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                File temp = new File("/home/opportunity/orbis/temp/");
                 temp.mkdir();
 
                 //ATUALIZAR PATH NO BANCO
