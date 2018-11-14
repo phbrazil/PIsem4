@@ -296,7 +296,7 @@
                     List<tbPacote> pacotes = listar.listar();
                     List<tbImagens> imagens;
 
-                    int linha = 1;
+                    int i = 0;
 
                     NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                             new Locale("pt", "BR"));
@@ -305,32 +305,50 @@
 
                         for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
                             tbPacote pacote = (tbPacote) iterator.next();
-                            imagens= listarImagens.listar(pacote.getIdPacote());
-                            
+                            imagens = listarImagens.listar(pacote.getIdPacote());
 
+                            System.out.println(imagens.size() + "++++++");
 
 
                 %>
+
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath()+imagens.get(0).getNomeImagem()%>" alt="destino"></a>
-                        <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                            </h4>
-                            <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                            <p class="card-text"><%=pacote.getRoteiro()%></p>
+                    <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" src="<%=pacote.getImagePath() + imagens.get(0).getNomeImagem()%>" alt="destino"></a>
+                                <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/imagens/284/salvador.jpg" alt="Second slide">
+                            </div>
+                            <div class="carousel-item">
+                                <img class="d-block w-100" src="img/imagens/284/salvador.jpg" alt="Third slide">
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls<%=i%>" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls<%=i%>" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </div>
-
-
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                        </h4>
+                        <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                        <p class="card-text"><%=pacote.getRoteiro()%></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                    </div>
                 </div>
+
                 <%
-                        linha++;
+                        i++;
 
                     }
                 } else {
@@ -367,7 +385,7 @@
     <script src="js/confirmarsenha.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
     <script>
-        $("#query").autocomplete("getDataDestinos.jsp");
+            $("#query").autocomplete("getDataDestinos.jsp");
     </script>
 
 

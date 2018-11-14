@@ -120,11 +120,15 @@ public class pacoteCriar extends HttpServlet {
                         new DiskFileItemFactory()).parseRequest(request);
 
                 //criar pasta com id do banco                
-                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+                //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
                 //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
+                
+                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
 
-                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+                //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
                 //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
+
+                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -143,7 +147,7 @@ public class pacoteCriar extends HttpServlet {
                 File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
                 //File temp = new File("/home/opportunity/orbis/temp/");
                 temp.mkdir();
-                
+
                 List<String> nomeImagem = new ArrayList<>();
 
                 // gravar nomes das fotos
@@ -164,7 +168,7 @@ public class pacoteCriar extends HttpServlet {
                 boolean gravado = gravarImagens.gravar(nomeImagem, id);
 
                 //ATUALIZAR PATH NO BANCO
-                pacote.setImagePath("../../../imagens/"+id+"/");
+                pacote.setImagePath("img/imagens/" + id + "/");
                 try {
                     //inicia a transacao com o banco
                     Transaction tx = session.beginTransaction();
