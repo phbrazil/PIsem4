@@ -87,15 +87,16 @@
 </style>
 <style>
     div {
-        width: 70%;
+        width: 50%;
         height: 300%;
-        border: 1px solid #c3c3c3;
+        border: 2px solid #c3c3c3;
         display: -webkit-flex;
         display: flex;
         -webkit-flex-wrap: wrap;
         flex-wrap: wrap;
         -webkit-align-content: center;
-        align-content: center;
+        align-content: center !important;
+        align-items: center;
     }
 
 </style>
@@ -104,9 +105,10 @@
     <br>
     <br>
     <br>
-    <div align='center'>
+    <div class='row' align='center'>
         <form class="needs-validation" novalidate name = "nota"  id = "nota" action="${pageContext.request.contextPath}/nota" method="POST">
-            <h1 class='text-muted'>Dê uma nota para sua viagem</h1>
+            <h1 class='text-muted'>Dê uma nota para sua viagem para ${pacote.getDestino}</h1>
+            <br>
             <fieldset class="rating">
                 <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Demais - 5 estrelas"></label>
                 <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Muito legal - 4.5 estrelas"></label>
@@ -123,9 +125,9 @@
             <br>
             <br>
             <br>
-            <input type="submit" value="Enviar" id='enviar' class='btn-lg btn-light'>
         </form>
     </div>
+    <input type="submit" value="Enviar" id='enviar' class='btn-lg btn-light'>
 
 </body>
 
