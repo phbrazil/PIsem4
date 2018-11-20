@@ -128,19 +128,12 @@
                                     <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                                     <p class="card-text"><%=pacote.getRoteiro()%></p>
                                 </div>
-                                <div class="card-footer">
-                                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                                </div>
-                            </div>
-                            <!--div class="card-body">
-                                <h3 class="card-title"><%=pacote.getLocalDestino()%></h3>
-                                <h4><%=formatoMoeda.format(pacote.getValor())%></h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
                                 <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                                 4.0 stars
                                 <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
                                 <input type="submit" value= "Comprar Agora" style='float: right; ' class="btn btn-success">
-                            </div-->
+
+                            </div>
 
                         </div>
                         <!-- /.card -->
