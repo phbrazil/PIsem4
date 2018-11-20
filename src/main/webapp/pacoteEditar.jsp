@@ -1,3 +1,5 @@
+<%@page import="orbis.model.imagensPacote.tbImagens"%>
+<%@page import="java.util.List"%>
 <!--**
  *
  * @author paulo.bezerra
@@ -125,7 +127,7 @@
                         <div class="col-md-12 mb-3">
                             <label>Roteiro da Viagem</label>
                             <div class="input-group">
-                                <textarea data-toggle="tooltip" value="${pacote.roteiro}" title="Roteiro da Viagem" data-placement="right" name="roteiro" autocomplete="off" type="text" class="form-control" id="roteiro"></textarea>
+                                <textarea data-toggle="tooltip" title="Roteiro da Viagem" data-placement="right" name="roteiro" autocomplete="off" type="text" class="form-control" id="roteiro">${pacote.roteiro}</textarea>
                             </div>
                         </div>
                         <br>
@@ -142,6 +144,21 @@
                         <span class="text-primary">Fotos</span>
                     </h5>                    
                     <br>
+
+                    <%
+                        List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
+                    %>
+                    <div style="width: 20%; height: 20%">
+                        <div class="row">
+
+                            <div class="col-md-5 mb-3">
+                            <%for (int i = 0; i < imagens.size(); i++) {%>
+                                <img src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                            </div>
+                        </div>
+                        <%}%>
+
+                    </div>
 
                     <label class="btn btn-primary">
 

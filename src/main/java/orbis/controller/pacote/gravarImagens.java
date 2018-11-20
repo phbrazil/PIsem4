@@ -6,8 +6,7 @@
 package orbis.controller.pacote;
 
 import java.util.List;
-import orbis.controller.imagensPacote.tbImagens;
-import orbis.model.pacote.tbPacote;
+import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -1,5 +1,5 @@
 <%@page import="orbis.DAO.pacote.listarImagens"%>
-<%@page import="orbis.controller.imagensPacote.tbImagens"%>
+<%@page import="orbis.model.imagensPacote.tbImagens"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -306,6 +306,7 @@
                         for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
                             tbPacote pacote = (tbPacote) iterator.next();
                             imagens = listarImagens.listar(pacote.getIdPacote());
+                            
 
 
                 %>

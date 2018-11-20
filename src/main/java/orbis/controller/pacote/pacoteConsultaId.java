@@ -28,6 +28,8 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import static jdk.nashorn.internal.objects.NativeError.getFileName;
 import orbis.DAO.pacote.consultaPacote;
+import orbis.DAO.pacote.listarImagens;
+import orbis.model.imagensPacote.tbImagens;
 import orbis.model.cliente.tbCliente;
 import orbis.model.pacote.tbPacote;
 import org.apache.commons.fileupload.FileItem;
@@ -85,9 +87,15 @@ public class pacoteConsultaId extends HttpServlet {
             sf.close();
 
         }
-
+        
+        listarImagens imagens = new listarImagens();
+        List<tbImagens> imagensLista = imagens.listar(idpacote);
 
         request.setAttribute("pacote", pacote);
+        request.setAttribute("imagens", imagensLista);
+        
+        
+        System.out.println(imagensLista.get(0).getNomeImagem());
 
         request.getRequestDispatcher("pacoteEditar.jsp").forward(request, response);
 
