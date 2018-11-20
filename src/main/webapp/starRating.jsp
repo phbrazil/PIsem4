@@ -86,7 +86,7 @@
     .rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
 </style>
 <style>
-    div {
+   /* div {
         width: 50%;
         height: 300%;
         border: 2px solid #c3c3c3;
@@ -98,36 +98,38 @@
         align-content: center !important;
         align-items: center;
     }
-
+*/
 </style>
 
 <body>
     <br>
     <br>
     <br>
-    <div class='row' align='center'>
-        <form class="needs-validation" novalidate name = "nota"  id = "nota" action="${pageContext.request.contextPath}/nota" method="POST">
-            <h1 class='text-muted'>Dê uma nota para sua viagem para ${pacote.getDestino}</h1>
-            <br>
-            <fieldset class="rating">
-                <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Demais - 5 estrelas"></label>
-                <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Muito legal - 4.5 estrelas"></label>
-                <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Bem bom - 4 estrelas"></label>
-                <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 estrelas"></label>
-                <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 estrelas"></label>
-                <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Meio ruim - 2.5 estrelas"></label>
-                <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Meio ruim - 2 estrelas"></label>
-                <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 estrelas"></label>
-                <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Ruim o tempo todo - 1 estrela"></label>
-                <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Nunca mais vou - 0.5 estrelas"></label>
-            </fieldset>
-            <br>
-            <br>
-            <br>
-            <br>
-        </form>
+    <div class="col-md-8 order-md-1">
+        <div class="row">
+            <form class="needs-validation" novalidate name = "nota"  id = "nota" action="${pageContext.request.contextPath}/nota" method="POST">
+                <h1 class='text-muted'>Dê uma nota para sua viagem para ${pacote.getDestino}</h1>
+                <br>
+                <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Demais - 5 estrelas"></label>
+                    <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Muito legal - 4.5 estrelas"></label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label class = "full" for="star4" title="Bem bom - 4 estrelas"></label>
+                    <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 estrelas"></label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label class = "full" for="star3" title="Meh - 3 estrelas"></label>
+                    <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Meio ruim - 2.5 estrelas"></label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label class = "full" for="star2" title="Meio ruim - 2 estrelas"></label>
+                    <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 estrelas"></label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label class = "full" for="star1" title="Ruim o tempo todo - 1 estrela"></label>
+                    <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Nunca mais vou - 0.5 estrelas"></label>
+                </fieldset>
+                <br>
+                <br>
+                <br>
+                <br>
+            </form>
+        </div>
+        <input type="submit" value="Enviar" id='enviar' class='btn-lg btn-light'>
     </div>
-    <input type="submit" value="Enviar" id='enviar' class='btn-lg btn-light'>
 
 </body>
 

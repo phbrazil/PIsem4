@@ -61,7 +61,7 @@
                         <h3>Criar Pacotes
                         </h3>
                     </a></div>
-                <div class="col-lg-2 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacote.jsp">
+                <div class="col-lg-2 col-sm-6 text-center mb-4"><a style="text-decoration: none" href="consultaPacoteEditar.jsp">
                         <img class="rounded-circle img-fluid d-block mx-auto" src="img/editPacote.png" alt="">
                         <h3>Alterar Pacotes
                         </h3>

@@ -80,7 +80,7 @@
             </div>
         </nav>
         <br>
-        <form name = "ListarProjetosBusca" action="${pageContext.request.contextPath}/ListarProjetosBusca" method="POST" >
+        <form name = "consultaPacote" action="${pageContext.request.contextPath}/consulta" method="POST" >
 
             <div align ="center">
                 <br>
@@ -95,7 +95,7 @@
 
                 <div class="col-md-5 order-md-1">
 
-                    <input class="form-control form-control-lg form-control-borderless" name="valorbusca" id ='projectname' type="search"  required>
+                    <input class="form-control form-control-lg form-control-borderless" name="valorbusca" id ='valorbusca' type="search"  required>
 
                     <div class="invalid-feedback" style="width: 100%;">
                         Valor obrigatório.
