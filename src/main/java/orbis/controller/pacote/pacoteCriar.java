@@ -91,6 +91,8 @@ public class pacoteCriar extends HttpServlet {
 
         Integer id;
 
+        System.out.println(m.getParameter("localsaida") + "+++++++");
+
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
@@ -123,12 +125,10 @@ public class pacoteCriar extends HttpServlet {
                 //criar pasta com id do banco                
                 //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
                 //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
-                
                 File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
 
                 //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
                 //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
-
                 UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
 
                 if (!file.exists()) {
@@ -194,6 +194,12 @@ public class pacoteCriar extends HttpServlet {
                 out.println("</script>");
 
             } catch (Exception ex) {
+                String pathModal = "gerenciarPacotes.jsp";
+                String mensagem = "Ocorreu um erro "+ex+". Favor tentar novamente";
+                request.setAttribute("path", pathModal);
+                out.println("<script type='text/javascript'>");
+                out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+                out.println("</script>");
                 System.out.println("erro " + ex);
             }
         } else {

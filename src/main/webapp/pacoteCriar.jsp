@@ -201,8 +201,8 @@
                         var length = source.length;
                         for (var i = 0; i < length; i++) {
                             if (source[i] != val) {
-                                //document.getElementById('localdestino').value = "";
-                                //document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
+                                document.getElementById('localdestino').value = "";
+                                document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
                             }
                         }
                     }
@@ -220,8 +220,8 @@
             var length = source.length;
             for (var i = 0; i < length; i++) {
                 if (source[i] != val) {
-                    //document.getElementById('localsaida').value = "";
-                    //document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
+                    document.getElementById('localsaida').value = "";
+                    document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
                 }
             }
         }

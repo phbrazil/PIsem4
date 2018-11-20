@@ -153,11 +153,9 @@
                             <%for (int i = 0; i < imagens.size(); i++) {%>
                             <div class="col-md-3 mb-3">
                                 <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                            </div>
-                            <div class="col-md-1 mb-3">
                                 <form name = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
                                     <div class="btn-group">
-                                        <button type ="submit" id = "deletarFoto"  name = "id" value="" class="btn btn-sm btn-outline-danger">Deletar</button>
+                                        <button type ="submit" id = "deletarFoto"  name = "id" value="" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
 
                                     </div>
                                 </form>  
