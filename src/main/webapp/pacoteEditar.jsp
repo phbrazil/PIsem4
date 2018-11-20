@@ -148,12 +148,11 @@
                     <%
                         List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
                     %>
-                    <div style="width: 20%; height: 20%">
+                    <div>
                         <div class="row">
-
                             <%for (int i = 0; i < imagens.size(); i++) {%>
                             <div class="col-md-5 mb-3">
-                                <img src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                                <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
                             </div>
                             <%}%>
                         </div>
