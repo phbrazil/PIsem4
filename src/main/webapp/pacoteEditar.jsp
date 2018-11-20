@@ -149,22 +149,27 @@
                         List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
                     %>
                     <form class="needs-validation" novalidate name = "deletarFoto"  id = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
-                        <div>
-                            <div class="row">
-                                <%for (int i = 0; i < imagens.size(); i++) {%>
-                                <div class="col-md-3 mb-3">
-                                    <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                                    <br>
-                                    <input type="submit" class="btn btn-outline-danger" value="Deletar" name="deletar">
-                                </div>
-                                <%}%>
+                        <div class="row">
+                            <%for (int i = 0; i < imagens.size(); i++) {%>
+                            <div class="col-md-3 mb-3">
+                                <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                            </div>
+                            <div class="col-md-1 mb-3">
+                                <form name = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
+                                    <div class="btn-group">
+                                        <button type ="submit" id = "deletarFoto"  name = "id" value="" class="btn btn-sm btn-outline-danger">Deletar</button>
+
+                                    </div>
+                                </form>  
                             </div>
 
+                            <%}%>
                         </div>
+
                     </form>
                     <label class="btn btn-primary">
 
-                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" required multiple style="display: none;"  name="image">
+                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" multiple style="display: none;"  name="image">
                     </label>
                     <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
