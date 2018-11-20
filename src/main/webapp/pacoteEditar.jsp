@@ -148,17 +148,20 @@
                     <%
                         List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
                     %>
-                    <div>
-                        <div class="row">
-                            <%for (int i = 0; i < imagens.size(); i++) {%>
-                            <div class="col-md-5 mb-3">
-                                <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                    <form class="needs-validation" novalidate name = "deletarFoto"  id = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
+                        <div>
+                            <div class="row">
+                                <%for (int i = 0; i < imagens.size(); i++) {%>
+                                <div class="col-md-3 mb-3">
+                                    <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                                    <br>
+                                    <input type="submit" class="btn btn-outline-danger" value="Deletar" name="deletar">
+                                </div>
+                                <%}%>
                             </div>
-                            <%}%>
+
                         </div>
-
-                    </div>
-
+                    </form>
                     <label class="btn btn-primary">
 
                         <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" required multiple style="display: none;"  name="image">
