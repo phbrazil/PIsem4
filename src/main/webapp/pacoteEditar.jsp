@@ -151,12 +151,12 @@
                     <div style="width: 20%; height: 20%">
                         <div class="row">
 
-                            <div class="col-md-5 mb-3">
                             <%for (int i = 0; i < imagens.size(); i++) {%>
+                            <div class="col-md-5 mb-3">
                                 <img src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
                             </div>
+                            <%}%>
                         </div>
-                        <%}%>
 
                     </div>
 
