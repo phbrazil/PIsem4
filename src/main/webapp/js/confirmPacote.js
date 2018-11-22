@@ -1,5 +1,5 @@
 
-function confirmCompletePacote() {
+function confirmPacote() {
 
     var pacote = document.getElementById('pacote');
     var fsize = $('#i_file')[0].files[0].size;

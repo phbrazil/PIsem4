@@ -74,6 +74,8 @@ public class pacoteEditar extends HttpServlet {
         tbPacote pacote = new tbPacote();
 
         int id = Integer.valueOf(m.getParameter("idpacote"));
+        
+        System.out.println(id+"++++++++++++idPacote");
         pacote.setIdPacote(id);
         pacote.setDthevento(m.getParameter("dthevento"));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));

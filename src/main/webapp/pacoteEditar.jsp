@@ -83,102 +83,104 @@
         <br>
 
         <div align ="center">
-            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editar" method="POST">
-                <div align = "center" >
-                    <h4>Editar Pacote</h4>
-                </div>
-                <br>
-                <h5 class="mb-0">
-                    <span class="text-primary">Dados do Pacote</span>
-                </h5>
-                <br>
+            <div align = "center" >
+                <h4>Editar Pacote</h4>
+            </div>
+            <br>
+            <h5 class="mb-0">
+                <span class="text-primary">Dados do Pacote</span>
+            </h5>
+            <br>
+            <form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="POST"></form>
+            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editar" method="POST"></form>
 
-                <div class="col-md-8 order-md-1">
-                    <div class="row">
-                        <div class="col-md-5 mb-3">
-                            <label>Data da Viagem</label>
-                            <div class="input-group" title="Data da Viagem">
-                                <input data-toggle="tooltip" value="${pacote.dthevento}" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
-                            </div>
-                            <!--label id ='clientenovo' style='color: red; background-color: transparent; outline: none; border-color: inherit; box-shadow: none;'/-->
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label>Participantes</label>
-                            <div class="input-group">
-                                <input data-toggle="tooltip" value="${pacote.qtdMax}" title="Quantidade máxima de participantes" data-placement="right" name="qtdmax" autocomplete="off" type="number" class="form-control" id="qtdmax" value="0" required>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <label>Valor</label>
-                            <input name = "valor" data-toggle="tooltip" value="${pacote.valor}" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label>Local de saída</label>
-                            <div class="input-group">
-                                <input data-toggle="tooltip" value="${pacote.localSaida}" onblur="naBaseSaida(this.value)" title="Local de Saída" data-placement="right" name="localsaida" autocomplete="off" type="text" class="form-control" id="localsaida">
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label>Local de destino</label>
-                            <div class="input-group">
-                                <input data-toggle="tooltip" value="${pacote.localDestino}" onblur="naBaseDestino(this.value)" title="Local de Destino" data-placement="right" name="localdestino" autocomplete="off" type="text" class="form-control" id="localdestino">
-                            </div>
-                        </div>
-                        <div class="col-md-12 mb-3">
-                            <label>Roteiro da Viagem</label>
-                            <div class="input-group">
-                                <textarea data-toggle="tooltip" title="Roteiro da Viagem" data-placement="right" name="roteiro" autocomplete="off" type="text" class="form-control" id="roteiro">${pacote.roteiro}</textarea>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="col-md-3 mb-3">
-                            <label>Pacote ativo?</label>
-                            <select name = "ativo" class="custom-select d-block w-100" id="ativo"  required>
-                                <option>Sim</option>
-                                <option>Não</option>
-                            </select>
-                        </div> 
 
+            <div class="col-md-8 order-md-1">
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <label>Data da Viagem</label>
+                        <div class="input-group" title="Data da Viagem">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.dthevento}" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
+                        </div>
+                        <!--label id ='clientenovo' style='color: red; background-color: transparent; outline: none; border-color: inherit; box-shadow: none;'/-->
                     </div>
-                    <h5 class="mb-0">
-                        <span class="text-primary">Fotos</span>
-                    </h5>                    
-                    <br>
-
-                    <%
-                        List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
-                    %>
-                    <form class="needs-validation" novalidate name = "deletarFoto"  id = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
-                        <div class="row">
-                            <%for (int i = 0; i < imagens.size(); i++) {%>
-                            <div class="col-md-3 mb-3">
-                                <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                                <form name = "deletarFoto" action="${pageContext.request.contextPath}/deletarFoto" method="POST">
-                                    <div class="btn-group">
-                                        <button type ="submit" id = "deletarFoto"  name = "id" value="" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
-
-                                    </div>
-                                </form>  
-                            </div>
-
-                            <%}%>
+                    <div class="col-md-3 mb-3">
+                        <label>Participantes</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.qtdMax}" title="Quantidade máxima de participantes" data-placement="right" name="qtdmax" autocomplete="off" type="number" class="form-control" id="qtdmax" value="0" required>
                         </div>
-
-                    </form>
-                    <label class="btn btn-primary">
-
-                        <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" multiple style="display: none;"  name="image">
-                    </label>
-                    <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Valor</label>
+                        <input form='pacote' name = "valor" data-toggle="tooltip" value="${pacote.valor}" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Local de saída</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.localSaida}" onblur="naBaseSaida(this.value)" title="Local de Saída" data-placement="right" name="localsaida" autocomplete="off" type="text" class="form-control" id="localsaida">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Local de destino</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.localDestino}" onblur="naBaseDestino(this.value)" title="Local de Destino" data-placement="right" name="localdestino" autocomplete="off" type="text" class="form-control" id="localdestino">
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label>Roteiro da Viagem</label>
+                        <div class="input-group">
+                            <textarea form='pacote' data-toggle="tooltip" title="Roteiro da Viagem" data-placement="right" name="roteiro" autocomplete="off" type="text" class="form-control" id="roteiro">${pacote.roteiro}</textarea>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-3 mb-3">
+                        <label>Pacote ativo?</label>
+                        <select form='pacote' name = "ativo" class="custom-select d-block w-100" id="ativo"  required>
+                            <option>Sim</option>
+                            <option>Não</option>
+                        </select>
+                    </div> 
 
                 </div>
+                <h5 class="mb-0">
+                    <span class="text-primary">Fotos</span>
+                </h5>                    
+                <br>
+                </form>    
 
 
-                <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
-                            return confirmCompletePacote();
-                        }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+                <%
+                    List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
+                %>
+                <div class="row">
+                    <%for (int i = 0; i < imagens.size(); i++) {%>
+                    <div class="col-md-3 mb-3">
+                        <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                        <div class="btn-group">
+                            <button form='foto' type ="submit" onclick="{
+                                        return confirmDeleteFoto();
+                                    }" id = "deletarFoto"  name = "id" value="" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
 
-            </form>    
+                        </div>
+                        <input form="foto" type='hidden' name='idImagem' value='<%=imagens.get(i).getId()%>'>
+                        <input form='foto' type='hidden' name='idpacote' value='<%=imagens.get(i).getIdPacote()%>'>
+                    </div>
+
+                    <%}%>
+                </div>
+
+                <label class="btn btn-primary">
+
+                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" multiple style="display: none;"  name="image">
+                </label>
+                <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
+
+            </div>
+            <button form='pacote' class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
+                        return confirmPacote();
+                    }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
+            <input type='hidden' form='pacote' name='idpacote' value='${pacote.idPacote}'>
+
         </div>
 
 
@@ -200,7 +202,7 @@
     <script src="js/tamanhodata"></script>
     <script src="js/searchSuggestProjectname.js"></script>
     <script src="js/searchSuggestProjectCode.js"></script>
-    <script src="js/confirmCompletePacote.js"></script>
+    <script src="js/confirmDeleteFoto.js"></script>
     <script src="js/formatarMoeda.js"></script>
 
 
@@ -214,22 +216,60 @@
 
     <script>
 
-                    $("#localdestino").autocomplete({
-                        source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+                $("#localdestino").autocomplete({
+                    source: $("#localdestino").autocomplete("getdataCidades.jsp")});
 
-                    function naBaseDestino(val) {
-                        var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+                function naBaseDestino(val) {
+                    var source = $("#localdestino").autocomplete("getdataCidades.jsp");
 
-                        var length = source.length;
-                        for (var i = 0; i < length; i++) {
-                            if (source[i] != val) {
-                                //document.getElementById('localdestino').value = "";
-                                //document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
-                            }
+                    var length = source.length;
+                    for (var i = 0; i < length; i++) {
+                        if (source[i] != val) {
+                            document.getElementById('localdestino').value = "";
+                            document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
                         }
                     }
+                }
 
 
+    </script>
+
+    <script>
+        function confirmPacote() {
+
+            var pacote = document.getElementById('pacote');
+            //var fsize = $('#i_file')[0].files[0].size;
+
+
+            /*if (document.getElementById('dthevento').value != '' &&
+             document.getElementById('localsaida').value != '' &&
+             document.getElementById('localdestino').value != '' &&
+             document.getElementById('valor').value != '' &&
+             document.getElementById('roteiro').value != '' &&
+             document.getElementById('qtdmax').value != '') {*/
+
+            var answer = confirm("Confirma os dados do Pacote?");
+            if (answer == true) {
+
+                //do something if file size more than 1 mb (1048576)
+                /*if (fsize > 10048576) {
+                 //alert(fsize + " bites\nArquivo muito grande!");
+                 document.getElementById('filestatus').value = "As fotos com " + fsize + " bytes são muito grandes";
+                 return false;
+                 } else {*/
+                pacote.submit();
+
+                /*}*/
+
+            } else {
+                return false;
+            }
+            /*} else {
+             alert("Verificar os campos preenchidos")
+             return false;
+             }*/
+
+        }
     </script>
     <script>
 
@@ -242,8 +282,8 @@
             var length = source.length;
             for (var i = 0; i < length; i++) {
                 if (source[i] != val) {
-                    //document.getElementById('localsaida').value = "";
-                    //document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
+                    document.getElementById('localsaida').value = "";
+                    document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
                 }
             }
         }
@@ -276,7 +316,7 @@
     </script>
 
     <script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function () {
             'use strict';
             window.addEventListener('load', function () {
