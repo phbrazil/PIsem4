@@ -156,6 +156,7 @@ public class pacoteEditar extends HttpServlet {
                 System.out.println("The directory is empty");
             } else {
                 for (String aFile : files) {
+                    System.out.println(aFile+" nome aqui no servlet");
                     nomeImagem.add(String.valueOf(aFile));
 
                 }
