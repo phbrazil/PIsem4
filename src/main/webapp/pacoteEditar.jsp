@@ -216,20 +216,34 @@
 
     <script>
 
-                $("#localdestino").autocomplete({
-                    source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+                window.onload = function () {
 
-                function naBaseDestino(val) {
-                    var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+                    var valor = document.getElementById('valor');
 
-                    var length = source.length;
-                    for (var i = 0; i < length; i++) {
-                        if (source[i] != val) {
-                            document.getElementById('localdestino').value = "";
-                            document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
-                        }
-                    }
+                    document.pacote.valor.value = converteFloatMoeda(valor.value);
+
                 }
+
+
+    </script>
+
+
+    <script>
+
+        $("#localdestino").autocomplete({
+            source: $("#localdestino").autocomplete("getdataCidades.jsp")});
+
+        function naBaseDestino(val) {
+            var source = $("#localdestino").autocomplete("getdataCidades.jsp");
+
+            var length = source.length;
+            for (var i = 0; i < length; i++) {
+                if (source[i] != val) {
+                    document.getElementById('localdestino').value = "";
+                    document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
+                }
+            }
+        }
 
 
     </script>

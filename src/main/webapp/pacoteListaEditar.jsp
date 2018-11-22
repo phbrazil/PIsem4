@@ -274,7 +274,7 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="consultaiD?idpacote=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                            <a href="consultaID?idpacote=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                         <p class="card-text"><%=pacote.getRoteiro()%></p>

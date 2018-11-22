@@ -63,18 +63,30 @@ public class deletarImagensServlet extends HttpServlet {
 
         Integer idImagem = Integer.valueOf(request.getParameter("idImagem"));
         Integer idpacote = Integer.valueOf(request.getParameter("idpacote"));
-        
-        deletarImagens deletar = new deletarImagens();
-        
-        deletar.deletar(idImagem);
 
-        //File uploaded successfully
-        String pathModal = "consultaID?idpacote="+idpacote;
-        String mensagem = "Imagem Deletada com sucesso";
-        request.setAttribute("path", pathModal);
-        out.println("<script type='text/javascript'>");
-        out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
-        out.println("</script>");
+        deletarImagens deletar = new deletarImagens();
+
+        boolean deletado = deletar.deletar(idImagem);
+
+        if (deletado == true) {
+
+            String pathModal = "consultaID?idpacote=" + idpacote;
+            String mensagem = "Imagem Deletada com sucesso";
+            request.setAttribute("path", pathModal);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+
+        } else {
+
+            String pathModal = "gerenciarPacotes.jsp";
+            String mensagem = "Ocorreu um erro, tenta novamente.";
+            request.setAttribute("path", pathModal);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+
+        }
 
     }
 

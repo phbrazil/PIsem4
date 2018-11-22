@@ -20,8 +20,6 @@ public class gravarImagens {
 
     public boolean gravar(List<String> imagens, int id) {
 
-        System.out.println("aqui chegou " + imagens.size() + " imagens");
-
         boolean gravado = false;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
@@ -35,7 +33,6 @@ public class gravarImagens {
 
             try {
 
-                System.out.println(i + "++++");
                 tbImagens.setIdPacote(id);
                 tbImagens.setNomeImagem(imagens.get(i));
 

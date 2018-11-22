@@ -73,10 +73,9 @@ public class pacoteEditar extends HttpServlet {
 
         tbPacote pacote = new tbPacote();
 
-        int id = Integer.valueOf(m.getParameter("idpacote"));
+        int idpacote = Integer.valueOf(m.getParameter("idpacote"));
         
-        System.out.println(id+"++++++++++++idPacote");
-        pacote.setIdPacote(id);
+        pacote.setIdPacote(idpacote);
         pacote.setDthevento(m.getParameter("dthevento"));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));
         pacote.setValor(Double.valueOf(m.getParameter("valor").replace(".", "").replace(",", ".")));
@@ -123,11 +122,11 @@ public class pacoteEditar extends HttpServlet {
             //criar pasta com id do banco                
             //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
             //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
-            File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
+            File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote));
 
             //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
             //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
-            UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
+            UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote);
 
             if (!file.exists()) {
                 if (file.mkdir()) {
@@ -164,10 +163,10 @@ public class pacoteEditar extends HttpServlet {
 
             gravarImagens gravarImagens = new gravarImagens();
 
-            boolean gravado = gravarImagens.gravar(nomeImagem, id);
+            boolean gravado = gravarImagens.gravar(nomeImagem, idpacote);
 
             //ATUALIZAR PATH NO BANCO
-            pacote.setImagePath("img/imagens/" + id + "/");
+            pacote.setImagePath("img/imagens/" + idpacote + "/");
             try {
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
@@ -184,8 +183,8 @@ public class pacoteEditar extends HttpServlet {
             }
 
             //File uploaded successfully
-            String pathModal = "gerenciarPacotes.jsp";
-            String mensagem = "Novo pacote alterado com sucesso!";
+            String pathModal = "consultaID?idpacote=" + idpacote;
+            String mensagem = "Pacote alterado com sucesso!";
             request.setAttribute("path", pathModal);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
