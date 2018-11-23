@@ -24,7 +24,7 @@ import org.hibernate.cfg.Configuration;
  * @author paulo.bezerra
  */
 @WebServlet(name = "/pacote", urlPatterns = {"/pacote"})
-public class PacoteDetalhe extends HttpServlet {
+public class pacoteDetalhe extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

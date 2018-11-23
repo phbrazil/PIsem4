@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.DAO.pacote;
+package orbis.DAO.autoComplete;
 
-import java.sql.Connection;
 import java.util.List;
 import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
@@ -17,20 +16,19 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class listarPacotes {
+public class destinosAutoComplete {
 
-    public List<tbPacote> listar() {
-
+    public List<tbPacote> AutoComplete() {
+        
         //popula o model com os dados
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
         SessionFactory sf = con.buildSessionFactory();
 
-        List pacotes = null;    
         //abre sessao com o banco
         Session session = sf.openSession();
+        List<tbPacote> pacotes;
         try {
-
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
@@ -44,6 +42,7 @@ public class listarPacotes {
                 sf.close();
             }
         }
+
         return pacotes;
     }
 

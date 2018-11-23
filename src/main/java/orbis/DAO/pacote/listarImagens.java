@@ -5,9 +5,8 @@
  */
 package orbis.DAO.pacote;
 
-import java.sql.Connection;
 import java.util.List;
-import orbis.model.pacote.tbPacote;
+import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -17,34 +16,35 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-public class listarPacotes {
+public class listarImagens {
 
-    public List<tbPacote> listar() {
+    public List<tbImagens> listar(int id) {
 
         //popula o model com os dados
         //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
         SessionFactory sf = con.buildSessionFactory();
 
-        List pacotes = null;    
         //abre sessao com o banco
         Session session = sf.openSession();
+        List imagens = null;
+        
         try {
-
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            pacotes = session.createQuery("FROM tbPacote").list();
+            imagens = session.createQuery("FROM tbImagens where idPacote=" + id).list();
 
             //comita as informacoes
             tx.commit();
+            
         } finally {
             if (session != null) {
                 session.close();
                 sf.close();
             }
         }
-        return pacotes;
+        return imagens;
     }
 
 }

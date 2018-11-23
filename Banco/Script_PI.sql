@@ -6,6 +6,15 @@ USE orbis;
 
     CREATE USER 'orbis'@'localhost' IDENTIFIED BY 'admin';
     GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
+    
+CREATE TABLE tbCidades(
+idcidade INT NOT NULL AUTO_INCREMENT,
+UF varchar(100) NOT NULL,
+NomeMunic VARCHAR (150) NOT NULL,
+PRIMARY KEY (idcidade));
+
+
+    
 
 
 CREATE TABLE tbPayment(
@@ -87,6 +96,7 @@ localdestino VARCHAR(100) NOT NULL,
 roteiro VARCHAR(1000) NOT NULL,
 ativo BOOLEAN default TRUE,
 imagePath varchar (1000),
+dthCadastro VARCHAR (20) NOT NULL,
 PRIMARY KEY (idpacote));
 
 insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir');
@@ -94,6 +104,14 @@ insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) va
 insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,100.00,'sao paulo', 'Brotas','A definir');
 insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,210.00,'sao paulo', 'Canoas','A definir');
 insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,50.00,'sao paulo', 'HueHue','A definir');
+
+
+create table tbImagens(
+id INT NOT NULL AUTO_INCREMENT,
+idPacote INT NOT null,
+nomeImagem varchar(60) not null UNIQUE,
+PRIMARY KEY (id),
+FOREIGN KEY (idPacote) REFERENCES tbPacote (idPacote));
 
 
 

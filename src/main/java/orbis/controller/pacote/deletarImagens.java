@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.DAO.pacote;
+package orbis.controller.pacote;
 
-import java.sql.Connection;
 import java.util.List;
-import orbis.model.pacote.tbPacote;
+import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -15,36 +14,42 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author paulo.bezerra
+ * @author killuminatti08
  */
-public class listarPacotes {
+public class deletarImagens {
 
-    public List<tbPacote> listar() {
+    public boolean deletar(int idImagem) {
 
-        //popula o model com os dados
-        //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        boolean deletado = false;
+
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
+
         SessionFactory sf = con.buildSessionFactory();
 
-        List pacotes = null;    
         //abre sessao com o banco
         Session session = sf.openSession();
+
         try {
 
-            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
+            tbImagens imagem = (tbImagens) session.get(tbImagens.class, idImagem);
 
-            pacotes = session.createQuery("FROM tbPacote").list();
+            session.delete(imagem);
 
             //comita as informacoes
             tx.commit();
+
+            //inicia a transacao com o banco
         } finally {
             if (session != null) {
                 session.close();
                 sf.close();
             }
         }
-        return pacotes;
+
+        deletado = true;
+
+        return deletado;
     }
 
 }

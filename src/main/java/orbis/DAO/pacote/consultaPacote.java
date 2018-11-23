@@ -5,7 +5,6 @@
  */
 package orbis.DAO.pacote;
 
-import java.sql.Connection;
 import java.util.List;
 import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
@@ -15,36 +14,51 @@ import org.hibernate.cfg.Configuration;
 
 /**
  *
- * @author paulo.bezerra
+ * @author ASAPH-001
  */
-public class listarPacotes {
+public class consultaPacote {
 
-    public List<tbPacote> listar() {
+    public List<tbPacote> consultaPacote(String valorbusca) {
+        
 
-        //popula o model com os dados
-        //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
         SessionFactory sf = con.buildSessionFactory();
 
-        List pacotes = null;    
         //abre sessao com o banco
         Session session = sf.openSession();
+
         try {
 
+            String query = "";
+
+            //popula o model com os dados
+            //indica as configuracoes do banco
+            //pega o parametro
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
+            query = "from tbPacote WHERE "
+                    + "localDestino like '%" + valorbusca.trim() + "%' or localSaida like '%" + valorbusca + "%'";
 
-            pacotes = session.createQuery("FROM tbPacote").list();
+            List<tbPacote> pacotes = session.createQuery(query).list();
+            
+            System.out.println(query);
 
             //comita as informacoes
             tx.commit();
-        } finally {
-            if (session != null) {
-                session.close();
-                sf.close();
+            if (pacotes.iterator().hasNext()) {
+                return pacotes;
             }
+
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+        } finally {
+            session.close();
+            sf.close();
+
         }
-        return pacotes;
+        return null;
     }
 
 }

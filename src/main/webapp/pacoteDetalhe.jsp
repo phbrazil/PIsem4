@@ -1,4 +1,7 @@
 
+<%@page import="orbis.model.imagensPacote.tbImagens"%>
+<%@page import="java.util.List"%>
+<%@page import="orbis.DAO.pacote.listarImagens"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.text.NumberFormat"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
@@ -51,6 +54,12 @@
         <%
             tbPacote pacote = (tbPacote) request.getAttribute("pacote");
 
+            listarImagens listarImagens = new listarImagens();
+
+            List<tbImagens> imagens;
+
+            imagens = listarImagens.listar(pacote.getIdPacote());
+
             NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                     new Locale("pt", "BR"));
 
@@ -82,15 +91,48 @@
 
 
                         <div class="card mt-4">
-                            <img class="card-img-top img-fluid" src="img/destino1.jpg" alt="destino1">
-                            <div class="card-body">
-                                <h3 class="card-title"><%=pacote.getLocalDestino()%></h3>
-                                <h4><%=formatoMoeda.format(pacote.getValor())%></h4>
-                                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente dicta fugit fugiat hic aliquam itaque facere, soluta. Totam id dolores, sint aperiam sequi pariatur praesentium animi perspiciatis molestias iure, ducimus!</p>
+                            <div class="col-lg-12 col-md-6 mb-4">
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <%for (int j = 0; j < imagens.size(); j++) {
+                                                String action = "";
+                                        %>
+
+                                        <%if (j == 0) {
+                                                action = "active";
+
+                                            } else {
+                                                action = "";
+                                            }
+                                        %>
+                                        <div id='slide<%=j%>' class="carousel-item <%=action%>">
+                                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 800px; height: 400px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
+                                            <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                                        </div>
+                                        <%}%>
+
+                                    </div>
+                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title">
+                                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                                    </h4>
+                                    <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                                    <p class="card-text"><%=pacote.getRoteiro()%></p>
+                                </div>
                                 <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
                                 4.0 stars
                                 <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
                                 <input type="submit" value= "Comprar Agora" style='float: right; ' class="btn btn-success">
+
                             </div>
 
                         </div>

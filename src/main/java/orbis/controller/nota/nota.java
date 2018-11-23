@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.pacoteCriar;
+package orbis.controller.nota;
 
 import orbis.controller.login.*;
 import orbis.controller.busca.*;
@@ -29,8 +29,8 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/teste", urlPatterns = {"/teste"})
-public class teste extends HttpServlet {
+@WebServlet(name = "/nota", urlPatterns = {"/nota"})
+public class nota extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,10 +47,17 @@ public class teste extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession();
+        
+        String rating = request.getParameter("rating");
+        
+        System.out.println(rating);
 
-        String teste = request.getParameter("teste");
-
-        System.out.println(teste+"+++++");
+        String path = "login.jsp";
+        String mensagem = "Obrigado pela nota!";
+        request.setAttribute("path", path);
+        out.println("<script type='text/javascript'>");
+        out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+        out.println("</script>");
 
     }
 

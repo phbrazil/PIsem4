@@ -29,6 +29,27 @@ public class tbPacote implements Serializable {
     private String localDestino;
     private String roteiro;
     private boolean ativo;
+    private String dthCadastro;
+    private String imagePath;
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    
+    public String getDthCadastro() {
+        return dthCadastro;
+    }
+
+    public void setDthCadastro(String dthCadastro) {
+        this.dthCadastro = dthCadastro;
+    }
+    
+    
 
     public boolean isAtivo() {
         return ativo;
