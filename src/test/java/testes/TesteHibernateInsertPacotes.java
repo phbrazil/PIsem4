@@ -7,6 +7,7 @@ package testes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Random;
 import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
@@ -28,19 +29,25 @@ public class TesteHibernateInsertPacotes {
 
         //abre sessao com o banco
         Session session = sf.openSession();
+        
+                 Random rand = new Random();
+
 
         //inicia a transacao com o banco
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
 
             //popula o model com os dados
             tbPacote pacotes = new tbPacote();
-
+            
             pacotes.setDthevento(dataatual);
-            pacotes.setQtdMax(100);
+            pacotes.setDthCadastro(dataatual);
+            pacotes.setQtdMax(rand.nextInt(100)+1);
             pacotes.setLocalSaida("Sao Paulo");
             pacotes.setLocalDestino("Bahia teste " + i);
             pacotes.setRoteiro("role zueiro");
             pacotes.setValor(Math.random() * 100);
+            pacotes.setAtivo(true);
+            pacotes.setImagePath("/teste/teste.jpg");
 
             Transaction tx = session.beginTransaction();
 
