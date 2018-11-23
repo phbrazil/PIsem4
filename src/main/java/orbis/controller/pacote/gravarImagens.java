@@ -54,6 +54,7 @@ public class gravarImagens {
                         System.out.println("entrei no else");
                         tbImagens.setIdPacote(id);
                         tbImagens.setNomeImagem(imagens.get(i));
+                        
                         session.save(tbImagens);
                         //comita as informacoes
                         tx.commit();
