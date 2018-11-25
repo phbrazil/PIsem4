@@ -91,7 +91,7 @@
                 <span class="text-primary">Dados do Pacote</span>
             </h5>
             <br>
-            <form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="POST"></form>
+            <!--form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="GET"></form-->
             <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editar" method="POST"></form>
 
 
@@ -152,26 +152,27 @@
                 <%
                     List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
                 %>
-                <div class="row">
-                    <%for (int i = 0; i < imagens.size(); i++) {%>
-                    <div class="col-md-3 mb-3">
-                        <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                        <div class="btn-group">
-                            <button form='foto' type ="submit" onclick="{
-                                        return confirmDeleteFoto();
-                                    }" id = "deletarFoto"  name = "id" value="" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
+                <form name = "deletarImagem" id = 'foto' method="POST">
+                    <div class="row">
+                        <%for (int i = 0; i < imagens.size(); i++) {%>
 
+                        <div class="col-md-3 mb-3">
+                            <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                            <div class="btn-group">
+                                <button id ='deletarFoto' onclick="{
+                                            return confirmDeleteFoto();
+                                        }" type="submit" class="btn btn-sm" formaction="deletarImagem?idImagem=<%=imagens.get(i).getId()%>&idpacote=<%=imagens.get(i).getIdPacote()%>"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
+
+                            </div>
                         </div>
-                        <input form="foto" type='hidden' name='idImagem' value='<%=imagens.get(i).getId()%>'>
-                        <input form='foto' type='hidden' name='idpacote' value='<%=imagens.get(i).getIdPacote()%>'>
-                    </div>
 
-                    <%}%>
-                </div>
+                        <%}%>
+                    </div>
+                </form>
 
                 <label class="btn btn-primary">
 
-                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" multiple style="display: none;"  name="image">
+                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" form = 'pacote' name="file" id="i_file" multiple style="display: none;"  name="image">
                 </label>
                 <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
@@ -252,6 +253,9 @@
         function confirmPacote() {
 
             var pacote = document.getElementById('pacote');
+            var localdestino = document.getElementById('localdestino').value;
+            
+            alert(localdestino);
             //var fsize = $('#i_file')[0].files[0].size;
 
 
