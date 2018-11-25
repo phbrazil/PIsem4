@@ -66,11 +66,11 @@
                         <h3>Alterar Pacotes
                         </h3>
                     </a></div>
-                <div class="col-lg-2 col-sm-6 text-center mb-4">
+                <!--div class="col-lg-2 col-sm-6 text-center mb-4">
                     <img class="rounded-circle img-fluid d-block mx-auto" src="img/deletePacote.png" alt="">
                     <h3>Excluir Pacotes
                     </h3>
-                </div>
+                </div-->
                 <div class="col-lg-2 col-sm-6 text-center mb-4">
                     <img class="rounded-circle img-fluid d-block mx-auto" src="img/reportsPacotes.jpeg" alt="">
                     <h3>Relatórios
