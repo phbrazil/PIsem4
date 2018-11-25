@@ -5,6 +5,7 @@
  */
 package orbis.controller.pacote;
 
+import java.io.File;
 import java.util.List;
 import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.Session;
@@ -33,11 +34,13 @@ public class deletarImagens {
 
             Transaction tx = session.beginTransaction();
             tbImagens imagem = (tbImagens) session.get(tbImagens.class, idImagem);
-
+            File foto = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(imagem.getIdPacote()+"/"+imagem.getNomeImagem()));
+            foto.delete();
             session.delete(imagem);
 
             //comita as informacoes
             tx.commit();
+
 
             //inicia a transacao com o banco
         } finally {

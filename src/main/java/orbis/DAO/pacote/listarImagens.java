@@ -33,7 +33,8 @@ public class listarImagens {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            imagens = session.createQuery("FROM tbImagens where idPacote=" + id).list();
+            imagens = session.createQuery("FROM tbImagens where idPacote=" + id+" and nomeImagem like '%.jpg%' "
+                    + "or nomeImagem like '%.png%' or nomeImagem like '%.jpeg%'").list();
 
             //comita as informacoes
             tx.commit();

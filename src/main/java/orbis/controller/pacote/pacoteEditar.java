@@ -142,7 +142,7 @@ public class pacoteEditar extends HttpServlet {
 //            temp.mkdir();
             File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
             File dest = new File(UPLOAD_DIRECTORY);
-            
+
             try {
                 FileUtils.copyDirectory(source, dest);
             } catch (IOException e) {
@@ -169,12 +169,12 @@ public class pacoteEditar extends HttpServlet {
             gravarImagens gravarImagens = new gravarImagens();
 
             boolean gravado = gravarImagens.gravar(nomeImagem, idpacote);
-            
-            File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
-//            //File temp = new File("/home/opportunity/orbis/temp/");
-            temp.delete();
-            temp.mkdir();
-            
+
+            String[] entries = source.list();
+            for (String s : entries) {
+                File currentFile = new File(source.getPath(), s);
+                currentFile.delete();
+            }
             //ATUALIZAR PATH NO BANCO
             pacote.setImagePath("img/imagens/" + idpacote + "/");
             try {
