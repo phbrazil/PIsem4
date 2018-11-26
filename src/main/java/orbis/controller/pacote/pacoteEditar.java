@@ -7,17 +7,11 @@ package orbis.controller.pacote;
 
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,12 +19,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
-import static jdk.nashorn.internal.objects.NativeError.getFileName;
 import orbis.model.pacote.tbPacote;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -65,6 +58,7 @@ public class pacoteEditar extends HttpServlet {
         MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
 
         //request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("ISO-8859-1");
         request.setCharacterEncoding("ISO-8859-1");
 
         HttpSession sessao = request.getSession(true);
@@ -74,7 +68,7 @@ public class pacoteEditar extends HttpServlet {
         tbPacote pacote = new tbPacote();
 
         int idpacote = Integer.valueOf(m.getParameter("idpacote"));
-        
+
         pacote.setIdPacote(idpacote);
         pacote.setDthevento(m.getParameter("dthevento"));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));
@@ -136,15 +130,24 @@ public class pacoteEditar extends HttpServlet {
                 }
             }
 
-            //inserir na nova pasta criada
-            File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-            //File fileToMove = new File("/home/opportunity/orbis/temp");                
+//            //inserir na nova pasta criada
+//           File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+////            //File fileToMove = new File("/home/opportunity/orbis/temp");                
+//
+//            //fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
+//            fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
+//
+//            File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+////            //File temp = new File("/home/opportunity/orbis/temp/");
+//            temp.mkdir();
+            File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+            File dest = new File(UPLOAD_DIRECTORY);
 
-            fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
-
-            File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
-            //File temp = new File("/home/opportunity/orbis/temp/");
-            temp.mkdir();
+            try {
+                FileUtils.copyDirectory(source, dest);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             List<String> nomeImagem = new ArrayList<>();
 
@@ -155,9 +158,10 @@ public class pacoteEditar extends HttpServlet {
             if (files.length == 0) {
                 System.out.println("The directory is empty");
             } else {
-                for (String aFile : files) {
-                    System.out.println(aFile+" nome aqui no servlet");
-                    nomeImagem.add(String.valueOf(aFile));
+
+                for (int i = 0; i < files.length; i++) {
+                    //for (String aFile : files) {
+                    nomeImagem.add(String.valueOf(files[i]));
 
                 }
             }
@@ -166,6 +170,11 @@ public class pacoteEditar extends HttpServlet {
 
             boolean gravado = gravarImagens.gravar(nomeImagem, idpacote);
 
+            String[] entries = source.list();
+            for (String s : entries) {
+                File currentFile = new File(source.getPath(), s);
+                currentFile.delete();
+            }
             //ATUALIZAR PATH NO BANCO
             pacote.setImagePath("img/imagens/" + idpacote + "/");
             try {

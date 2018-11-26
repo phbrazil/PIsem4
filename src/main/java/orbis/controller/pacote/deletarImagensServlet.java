@@ -47,14 +47,18 @@ public class deletarImagensServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+
+
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //request.setCharacterEncoding("UTF-8");
+        System.out.println("entrei aqui no servlet ");
+        
+                //request.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("ISO-8859-1");
 
         HttpSession sessao = request.getSession(true);
@@ -63,7 +67,10 @@ public class deletarImagensServlet extends HttpServlet {
 
         Integer idImagem = Integer.valueOf(request.getParameter("idImagem"));
         Integer idpacote = Integer.valueOf(request.getParameter("idpacote"));
-
+        
+        System.out.println(idImagem);
+        System.out.println(idpacote);
+        
         deletarImagens deletar = new deletarImagens();
 
         boolean deletado = deletar.deletar(idImagem);

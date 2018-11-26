@@ -153,7 +153,7 @@
 
 
                 <button class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
-                            return confirmCompletePacote();
+                            return confirmPacote();
                         }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
 
             </form>    
@@ -178,7 +178,7 @@
     <script src="js/tamanhodata"></script>
     <script src="js/searchSuggestProjectname.js"></script>
     <script src="js/searchSuggestProjectCode.js"></script>
-    <script src="js/confirmCompletePacote.js"></script>
+    <script src="js/confirmPacote.js"></script>
     <script src="js/formatarMoeda.js"></script>
 
 

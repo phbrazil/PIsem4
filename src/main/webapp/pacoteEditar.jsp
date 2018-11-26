@@ -82,16 +82,33 @@
         <br>
         <br>
 
-        <div align ="center">
-            <div align = "center" >
-                <h4>Editar Pacote</h4>
+        <div align ="right">
+            <div class="col-md-9 order-md-1">
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <h4 class="text-muted">Editar Pacote</h4>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <form id = "deletarPacote" action="${pageContext.request.contextPath}/deletarPacote" method="POST">
+                            <div class="btn-group">
+                                <button id ='deletarPacote' onclick="{
+                                            return confirmDeletePacote();
+                                        }" type="submit" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 35%; height: 35%"></button>
+                            <input type='hidden' name ='idpacote' value ='${pacote.idPacote}'>
+                            </div>
+                        </form>  
+                    </div>
+
+
+                </div>
             </div>
+        </div>
+
+
+        <div align ="center">
+
             <br>
-            <h5 class="mb-0">
-                <span class="text-primary">Dados do Pacote</span>
-            </h5>
-            <br>
-            <form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="POST"></form>
+            <!--form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="GET"></form-->
             <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editar" method="POST"></form>
 
 
@@ -152,26 +169,27 @@
                 <%
                     List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
                 %>
-                <div class="row">
-                    <%for (int i = 0; i < imagens.size(); i++) {%>
-                    <div class="col-md-3 mb-3">
-                        <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                        <div class="btn-group">
-                            <button form='foto' type ="submit" onclick="{
-                                        return confirmDeleteFoto();
-                                    }" id = "deletarFoto"  name = "id" value="" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
+                <form name = "deletarImagem" id = 'foto' method="POST">
+                    <div class="row">
+                        <%for (int i = 0; i < imagens.size(); i++) {%>
 
+                        <div class="col-md-3 mb-3">
+                            <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
+                            <div class="btn-group">
+                                <button id ='deletarFoto' onclick="{
+                                            return confirmDeleteFoto();
+                                        }" type="submit" class="btn btn-sm" formaction="deletarImagem?idImagem=<%=imagens.get(i).getId()%>&idpacote=<%=imagens.get(i).getIdPacote()%>"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
+
+                            </div>
                         </div>
-                        <input form="foto" type='hidden' name='idImagem' value='<%=imagens.get(i).getId()%>'>
-                        <input form='foto' type='hidden' name='idpacote' value='<%=imagens.get(i).getIdPacote()%>'>
-                    </div>
 
-                    <%}%>
-                </div>
+                        <%}%>
+                    </div>
+                </form>
 
                 <label class="btn btn-primary">
 
-                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" name="file" id="i_file" multiple style="display: none;"  name="image">
+                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" form = 'pacote' name="file" id="i_file" multiple style="display: none;"  name="image">
                 </label>
                 <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
 
@@ -203,6 +221,8 @@
     <script src="js/searchSuggestProjectname.js"></script>
     <script src="js/searchSuggestProjectCode.js"></script>
     <script src="js/confirmDeleteFoto.js"></script>
+    <script src="js/confirmDeletePacote.js"></script>
+    <script src="js/confirmPacote.js"></script>
     <script src="js/formatarMoeda.js"></script>
 
 
@@ -248,43 +268,6 @@
 
     </script>
 
-    <script>
-        function confirmPacote() {
-
-            var pacote = document.getElementById('pacote');
-            //var fsize = $('#i_file')[0].files[0].size;
-
-
-            /*if (document.getElementById('dthevento').value != '' &&
-             document.getElementById('localsaida').value != '' &&
-             document.getElementById('localdestino').value != '' &&
-             document.getElementById('valor').value != '' &&
-             document.getElementById('roteiro').value != '' &&
-             document.getElementById('qtdmax').value != '') {*/
-
-            var answer = confirm("Confirma os dados do Pacote?");
-            if (answer == true) {
-
-                //do something if file size more than 1 mb (1048576)
-                /*if (fsize > 10048576) {
-                 //alert(fsize + " bites\nArquivo muito grande!");
-                 document.getElementById('filestatus').value = "As fotos com " + fsize + " bytes são muito grandes";
-                 return false;
-                 } else {*/
-                pacote.submit();
-
-                /*}*/
-
-            } else {
-                return false;
-            }
-            /*} else {
-             alert("Verificar os campos preenchidos")
-             return false;
-             }*/
-
-        }
-    </script>
     <script>
 
         $("#localsaida").autocomplete({

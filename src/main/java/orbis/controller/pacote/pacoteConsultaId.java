@@ -94,9 +94,6 @@ public class pacoteConsultaId extends HttpServlet {
         request.setAttribute("pacote", pacote);
         request.setAttribute("imagens", imagensLista);
         
-        
-        System.out.println(imagensLista.get(0).getNomeImagem());
-
         request.getRequestDispatcher("pacoteEditar.jsp").forward(request, response);
 
     }
