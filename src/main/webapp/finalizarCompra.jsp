@@ -49,13 +49,6 @@
                                 <span class="text-muted"><%=formatoMoeda.format(pacote.getValor())%></span>
                             </li>
 
-                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                <div class="text-success">
-                                    <h6 class="my-0">Bônus por fidelidade</h6>
-                                    <small>EXEMPLO</small>
-                                </div>
-                                <span class="text-success">-R$5,00</span>
-                            </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (BRL)</span>
                                 <strong><%=formatoMoeda.format(pacote.getValor())%></strong>

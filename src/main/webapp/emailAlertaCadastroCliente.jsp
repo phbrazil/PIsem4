@@ -30,14 +30,8 @@
         <form name = "email" id ="email" action="${pageContext.request.contextPath}/EmailAlertaCadastroCliente" method="POST">
 
             <input type ="hidden" id = "to1"  name = "to1" value="${to1}" </input>
-            <input type ="hidden" id = "body"  name = "body" value="Teste de e-mail" </input>
-            <input type ="hidden" id = "subject"  name = "subject" value="Teste de e-mail de cadastro" </input>
-<!--        <input type ="hidden" id = "localSaida"  name = "localSaida" value="${localSaida}" </input>
-            <input type ="hidden" id = "localDestino"  name = "localDestino" value="${localDestino}" </input>
-            <input type ="hidden" id = "roteiro"  name = "roteiro" value="${roteiro}" </input>
-            <input type ="hidden" id = "protocolo"  name = "protocolo" value="${protocolo}" </input>
-            <input type ="hidden" id = "valor"  name = "valor" value="${valor}" </input>
-            <input type ="hidden" id = "data"  name = "data" value="${data}" </input>-->-->
+            <input type ="hidden" id = "body"  name = "body" value="${body}" </input>
+            <input type ="hidden" id = "subject"  name = "subject" value="${subject}" </input>
 
         </form>    
 

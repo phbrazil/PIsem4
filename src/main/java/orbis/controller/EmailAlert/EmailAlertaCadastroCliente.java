@@ -50,12 +50,6 @@ public class EmailAlertaCadastroCliente extends HttpServlet {
         String to1 = (String) request.getParameter("to1");
         String body = (String) request.getParameter("body");
         String subject = (String) request.getParameter("subject");
-        //String localSaida = (String) request.getParameter("localSaida");
-        //String localDestino = (String) request.getParameter("localDestino");
-        //String roteiro = (String) request.getParameter("roteiro");
-        //String protocolo = (String) request.getParameter("protocolo");
-        //double valor = Double.valueOf(request.getParameter("valor"));
-        //String data = (String) request.getParameter("data");
 
         PrintWriter out = response.getWriter();
 

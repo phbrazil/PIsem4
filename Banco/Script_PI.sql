@@ -1,11 +1,11 @@
-    CREATE USER 'orbis'@'localhost' IDENTIFIED BY '0c24a188a9';    
-    GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
+--    CREATE USER 'orbis'@'localhost' IDENTIFIED BY '0c24a188a9';    
+  --  GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
 DROP DATABASE orbis;
 CREATE DATABASE orbis;
 USE orbis;
 
-    CREATE USER 'orbis'@'localhost' IDENTIFIED BY 'admin';
-    GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
+--    CREATE USER 'orbis'@'localhost' IDENTIFIED BY 'admin';
+  --  GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
     
 CREATE TABLE tbCidades(
 idcidade INT NOT NULL AUTO_INCREMENT,
@@ -56,8 +56,8 @@ INSERT INTO tbGrupos(nomegrupo, descricao) values ('Compradores', 'Usuarios comp
 
 
 CREATE TABLE tbCliente(
-idcliente INT NOT NULL AUTO_INCREMENT,
-idendereco INT NOT NULL,
+id INT NOT NULL AUTO_INCREMENT,
+idendereco INT,
 emailcliente VARCHAR (50) UNIQUE NOT NULL,
 nomecliente VARCHAR (50) NOT NULL,
 rgcliente VARCHAR (13) UNIQUE NOT NULL,
@@ -67,24 +67,24 @@ celcliente VARCHAR (14),
 passwordCliente VARCHAR (30) NOT NULL,
 changepassword boolean NOT NULL,
 cadastroIncompleto boolean NOT NULL default TRUE,
-idpayment INT NOT NULL,
-idgrupo iNT NOT NULL,
-PRIMARY KEY (idcliente),
+idpayment INT,
+idgrupo iNT DEFAULT 2,
+PRIMARY KEY (id),
 FOREIGN KEY (idpayment) REFERENCES tbPayment (idpayment),
 FOREIGN KEY (idgrupo) REFERENCES tbGrupos (idgrupo),
 FOREIGN KEY (idendereco) REFERENCES tbEndereco (idendereco));
 
-insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
-changepassword,idpayment) values (2,'pauloh2012sul@gmail.com','Paulo Henrique Bezerra','46.682.552-3','375.175.588-85','11981997228','981997228',
-'senac',false,3);
+insert into tbCliente(emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment, idgrupo) values ('pauloh2012sul@gmail.com','Paulo Henrique Bezerra','46.682.552-3','375.175.588-85','11981997228','981997228',
+'senac',false,1,1);
 
-insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
-changepassword,idpayment) values (2,'luucasmeedeiros@gmail.com','Lucas Medeiros','46.682.552-4','375.175.588-86','11981997228','981997228',
-'doc@123',false,3);
+insert into tbCliente(emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment, idgrupo) values ('luucasmeedeiros@gmail.com','Lucas Medeiros','46.682.552-4','375.175.588-86','11981997228','981997228',
+'doc@123',false,1,1);
 
-insert into tbCliente(idendereco,emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
-changepassword,idpayment) values (2,'andremartins98@hotmail.com','Andre Martins','46.682.552-5','375.175.588-87','11981997228','981997228',
-'210498',false,3);
+insert into tbCliente(emailcliente,nomecliente,rgcliente,cpfcliente,telcliente,celcliente,passwordCliente,
+changepassword,idpayment, idgrupo) values ('andremartins98@hotmail.com','Andre Martins','46.682.552-5','375.175.588-87','11981997228','981997228',
+'210498',false,1, 1);
 
 
 CREATE TABLE tbPacote(
@@ -100,11 +100,11 @@ imagePath varchar (1000),
 dthCadastro VARCHAR (20) NOT NULL,
 PRIMARY KEY (idpacote));
 
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,400.00,'sao paulo', 'Ceara','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,100.00,'sao paulo', 'Brotas','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,210.00,'sao paulo', 'Canoas','A definir');
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro) values (now(),100,50.00,'sao paulo', 'HueHue','A definir');
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir', now());
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,400.00,'sao paulo', 'Ceara','A definir', now());
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,100.00,'sao paulo', 'Brotas','A definir', now());
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,210.00,'sao paulo', 'Canoas','A definir', now());
+insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,50.00,'sao paulo', 'HueHue','A definir', now());
 
 
 create table tbImagens(
@@ -123,9 +123,9 @@ dthvenda VARCHAR(20) NOT NULL,
 total FLOAT(10,2) NOT NULL,
 idpacote INT NOT NULL,
 tipoPagamento varchar(20) NOT NULL,
-PRIMARY KEY (idvenda),
+PRIMARY KEY (id),
 FOREIGN KEY (idpacote) REFERENCES tbPacote (idpacote),
-FOREIGN KEY (idcliente) REFERENCES tbCliente (idcliente));
+FOREIGN KEY (idcliente) REFERENCES tbCliente (id));
 
 CREATE TABLE tbItemVenda(
 itemid INT NOT NULL AUTO_INCREMENT,
@@ -135,7 +135,7 @@ valor FLOAT(10,2) NOT NULL,
 dthvenda VARCHAR(20) NOT NULL,
 PRIMARY KEY (itemid),
 FOREIGN KEY (idpacote) REFERENCES tbPacote (idpacote),
-FOREIGN KEY (idvenda) REFERENCES tbVenda (idvenda));
+FOREIGN KEY (idvenda) REFERENCES tbVenda (id));
 
 
 
