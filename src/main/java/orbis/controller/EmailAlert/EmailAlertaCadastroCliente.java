@@ -80,7 +80,7 @@ public class EmailAlertaCadastroCliente extends HttpServlet {
         if (emailenviado == true) {
 
             String path = "index.jsp";
-            String mensagem = "Testando e-mail";
+            String mensagem = "Favor concluir seu cadastro acessando o link enviado no e-mail";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
