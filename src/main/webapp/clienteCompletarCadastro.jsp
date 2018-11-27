@@ -33,7 +33,7 @@
 
 
 
-        <form name = "completarCadastro" id ='completarCadastro' action="${pageContext.request.contextPath}/completarCadastro" method="POST">
+        <form name = "finalizarCadastro" id ='finalizarCadastro' action="${pageContext.request.contextPath}/finalizarCadastro" method="POST">
 
             <br>
 
@@ -49,8 +49,16 @@
                     <br>
                 </div>
                 <div class="row" style="width: 70%;">
+                    <div class="col-md-6 mb-3">
+                        <label>Nome</label>
+                        <input name ="nome" autocomplete="off" type="text" class="form-control" id="nome"   value="${nome}" readonly>
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <label>Email</label>
+                        <input name ="email" autocomplete="off" type="text" class="form-control" id="email"   value="${email}" readonly>
+                    </div>
 
-                    <div class="col-md-2 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>CEP</label>
                         <input name ="cep" autocomplete="off" type="text" class="form-control" id="cep"   placeholder="00000000" size="10" maxlength="8" onblur="pesquisacep(this.value);">
                         <div class="invalid-feedback">
@@ -66,7 +74,7 @@
                             Favor inserir a Rua
                         </div>
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label>Número</label>
                         <input name ="numero" type="text" class="form-control" id="numero" size="60" maxlength ="50">
 
@@ -74,7 +82,7 @@
                             Favor inserir o Numero
                         </div>
                     </div>
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-7 mb-3">
                         <label>Complemento</label>
                         <input name ="complemento" type="text" class="form-control" id="complemento" size="60" maxlength ="50">
 
@@ -137,10 +145,9 @@
                     </div>
 
                 </div>
-                <hr class="mb-4">
                 <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
                             return confirmCadastroCliente();
-                        }" name = "gravarcliente"><span data-feather="save"></span> Finalizar</button>
+                        }" name = "gravarcliente"><span data-feather="save"></span> Finalizar Cadastro</button>
             </div>
             <footer class="my-5 pt-5 text-muted text-center text-small">
                 <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
