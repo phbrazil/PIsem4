@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
 public class EmailAlertaCadastroCliente extends HttpServlet {
 
     @EJB
-    private EmailSessionBeanOrbis emailBeanOrbis;
+    private EmailSessionBeanOrbis emailCliente;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +47,7 @@ public class EmailAlertaCadastroCliente extends HttpServlet {
         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                 new Locale("pt", "BR"));
 
-        String to1 = (String) sessao.getAttribute("emailCliente");
+        String to1 = (String) request.getParameter("to1");
         String body = (String) request.getParameter("body");
         String subject = (String) request.getParameter("subject");
         //String localSaida = (String) request.getParameter("localSaida");
@@ -74,7 +74,7 @@ public class EmailAlertaCadastroCliente extends HttpServlet {
             out.flush();
 
             try {
-                emailenviado = emailBeanOrbis.sendEmail(to1, subject, body);
+                emailenviado = emailCliente.sendEmail(to1, subject, body);
 
             } catch (RuntimeException ex) {
                 ex.printStackTrace();

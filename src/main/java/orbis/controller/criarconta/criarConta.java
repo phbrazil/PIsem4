@@ -92,8 +92,10 @@ public class criarConta extends HttpServlet {
 
             }
             
-            request.setAttribute("to1", "luucasmeedeiros@gmail.com");
-            request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino ");
+            request.setAttribute("to1", clientes.getEmailCliente());
+            request.setAttribute("subject", "Favor completar seu Cadastro");
+            
+            System.out.println(clientes.getEmailCliente());
             
             request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
             

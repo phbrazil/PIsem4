@@ -29,7 +29,7 @@
 
         <form name = "email" id ="email" action="${pageContext.request.contextPath}/EmailAlertaCadastroCliente" method="POST">
 
-            <input type ="hidden" id = "to1"  name = "to1" value="luucasmeedeiros@gmail.com" </input>
+            <input type ="hidden" id = "to1"  name = "to1" value="${to1}" </input>
             <input type ="hidden" id = "body"  name = "body" value="Teste de e-mail" </input>
             <input type ="hidden" id = "subject"  name = "subject" value="Teste de e-mail de cadastro" </input>
 <!--        <input type ="hidden" id = "localSaida"  name = "localSaida" value="${localSaida}" </input>
