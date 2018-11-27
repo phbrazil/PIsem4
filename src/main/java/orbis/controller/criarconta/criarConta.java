@@ -50,11 +50,14 @@ public class criarConta extends HttpServlet {
         clientes.setTelCliente(request.getParameter("telefone"));
         clientes.setCelCliente(request.getParameter("celular"));
         clientes.setPasswordCliente(request.getParameter("psw"));
+        //Define que o grupo do cliente é de "Compradores"
+        clientes.setIdgrupo(2);
+        clientes.setCadastroIncompleto(true);
         String psw = request.getParameter("psw-repeat");
         String pswrepeat = request.getParameter("psw-repeat");
         clientes.setChangePassword(false);
         clientes.setIdPayment(1);
-
+        
         if (!psw.equals(pswrepeat)) {
             PrintWriter out = response.getWriter();
             String path = "index.jsp";
@@ -88,6 +91,12 @@ public class criarConta extends HttpServlet {
                 }
 
             }
+            
+            request.setAttribute("to1", "luucasmeedeiros@gmail.com");
+            request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino ");
+            
+            request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
+            
         }
 
     }
