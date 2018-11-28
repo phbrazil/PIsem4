@@ -273,7 +273,7 @@
 
                             <!--end of col-->
                             <div class="col">
-                                <input id="query" name="busca" class="form-control mr-sm-2" type="search" required placeholder="Vai aonde?">
+                                <input id="query" name="busca" class="form-control mr-sm-2" type="search" required placeholder="Experimente: Arraial">
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
@@ -291,10 +291,15 @@
 
 <body class="bg-light">
 
-    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-    <button onclick="{
-                location = 'login.jsp';
-            }" style="width:auto; float: right">Já tenho Conta</button>
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown user
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
+          <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
+        </div>
+      </li>
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -345,60 +350,31 @@
             </div>
         </form>
     </div>
+            
     <%} else {%>
 
 
-    <button onclick="{
-                location = 'sair.jsp';
-            }" style="width:auto; float: right">Sair</button>
-    <%if (idgrupo == 1) {%>
-    <button onclick="{
-                location = 'gerenciarPacotes.jsp';
-            }" style="width:auto; float: right">Gerenciar Pacotes</button>
-    <%}%>
-
-
-    <button onclick="{
-                location = 'minhasCompras';
-            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-
-    <%}%>
-
-<!--                    <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">Sobre</a>
-                        </li>-->
-
-                    </ul>
-                </div>
-
-        </nav>
-
-<!--    <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm">
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
-                        </div>
-                        end of col
-                        <div class="col">
-                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" required placeholder="Vai aonde?">
-                        </div>
-                        end of col
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                        </div>
-                        end of col
-                    </div>
-                </form>
-            </div>
-            end of col
+     <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown user
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="minhasCompras.jsp">Olá <%=nomeUser%></a>
+           <%if (idgrupo == 1) {%>
+          <a class="dropdown-item" href="gerenciarPacotes.jsp">Gerenciar Pacotes</a>
+          <%}%>
+          <a class="dropdown-item" href="sair.jsp">Sair</a>
         </div>
-    </form>-->
+      </li>
+      
+      <%}%>
+    
+            </ul>
+        </div>
 
+</nav>
 
-    <%@include  file="carrocel.jsp"%>
+ <%@include  file="carrocel.jsp"%>
 
     <div class="container">
         <br>
