@@ -25,12 +25,17 @@
 
     </head>
 
-    <body class="bg-light">
+    <body class="bg-dark">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-light text-dark fixed-top">
+
             <div class="container">
-                <a class="navbar-brand" href="index.jsp">Início</a>
+
+                <a class="navbar-brand" href="index.jsp">
+                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,13 +43,13 @@
                     <ul class="navbar-nav ml-auto">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
+                            <a class="nav-link text-dark" href="#">Sobre</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Mais pacotes</a>
+                            <a class="nav-link text-dark" href="#">Mais pacotes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
+                            <a class="nav-link text-dark" href="#">Contato</a>
                         </li>
                     </ul>
                 </div>
@@ -71,21 +76,8 @@
 
             <div class="row">
 
-                <%if (mobile == false) {%>
-                <div class="col-lg-3">
-                    <h1 class="my-4">Orbis</h1>
-                    <div class="list-group">
-                        <a href="#" class="list-group-item active">Category 1</a>
-                        <%for (int i = 2; i < 10; i++) {
-                        %>
-                        <a href="#" class="list-group-item">Category <%=i%></a>
-                        <%}%>
-                    </div>
-                </div>
-                <%}%>
-                <!-- /.col-lg-3 -->
 
-                <div class="col-lg-9">
+                <div class="col-lg-16">
 
                     <form class = "modal-content" name = "checkOut"  id = "checkOut" action="${pageContext.request.contextPath}/checkOut" method="POST">
 
@@ -170,9 +162,9 @@
         <!-- /.container -->
 
         <!-- Footer -->
-        <footer class="py-5 bg-dark">
+        <footer class="py-5 bg-light"  style="background-color: #b0cff1">
             <div class="container">
-                <p class="m-0 text-center text-white">Copyright &copy; Orbis Eu Vou</p>
+                <p class="m-0 text-center text-dark" >Copyright &copy; Orbis Eu Vou</p>
             </div>
             <!-- /.container -->
         </footer>

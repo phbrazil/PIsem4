@@ -177,6 +177,7 @@
                     <label for="inputPassword" class="sr-only">Senha</label>
                     <input type="password" autocomplete="off" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
                     <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
+                    <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" >Criar conta</button>
                     <p></p>
                     <label>
                         <a href ="modal?mensagem=Favor enviar um email para <strong>paulo.bezerra@mci-group.com</strong>&path=login.jsp">Esqueci a senha</a>
@@ -184,11 +185,11 @@
                 </div>
             </div>
         </form>
-        <div align="center">
+<!--        <div align="center">
             <div class="col-md-5 mb-3">
                 <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
             </div>
-        </div>
+        </div>-->
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
             <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
