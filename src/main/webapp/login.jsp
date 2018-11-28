@@ -167,7 +167,7 @@
             <br>
             <img class="mb-4" src="img/orbis_logo.png" alt="logo orbis">
             <h5 class="mb-0">Acessar
-                <span style = "color: lightblue">Orbis Eu Vou</span>
+                <span style = "color: lightblue">Orbis, eu vou!</span>
             </h5>
             <br>
             <div align="center">

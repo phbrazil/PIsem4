@@ -54,11 +54,11 @@
                 <br>
                 <br>
 
-
+<img width="400" height="200" class="mb-4" src="img/orbis_logo.png" alt="logo orbis">
 
                 <div class="col-md-5 order-md-1">
 
-
+                    
                     <input type="submit" name="logout" class="btn btn-lg btn-outline-success" value ="Continuar" >
                     <input type="submit" name="logout" class="btn btn-lg btn-outline-danger" value ="Sair" >
 

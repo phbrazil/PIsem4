@@ -197,8 +197,8 @@
                     <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
                             <!--end of col-->
-                            <div class="mr-1">
-                                <input id="query" name="busca" class="form-control" type="search" required placeholder="Experimente: ''Arraial''">
+                            <div class="mr-2">
+                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Tente: ''campos do jordão''">
                             </div>
                             <!--end of col-->
                             <div class="">
@@ -214,7 +214,7 @@
     %>
     <ul class="navbar-nav ml-auto">
 
-     <li class="nav-item dropdown">
+     <div class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown user
         </button>
@@ -222,7 +222,7 @@
           <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
           <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
         </div>
-      </li>
+      </div>
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -276,7 +276,7 @@
             
     <%} else {%>
 
-     <li class="nav-item dropdown">
+     <div class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Olá <%=nomeUser%>
         </button>
@@ -287,7 +287,7 @@
           <%}%>
           <a class="dropdown-item" href="sair.jsp">Sair</a>
         </div>
-      </li>
+      </div>
       
       <%}%>
     
