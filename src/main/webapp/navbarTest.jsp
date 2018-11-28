@@ -1,37 +1,9 @@
 
 <!DOCTYPE html>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <link rel="icon" href="../../favicon.ico">
+<html>
 
-        <title>Opportunity</title>
-
-        <!-- nao sei pq nao funciona no bootstrap 4-->
-        <!-- Bootstrap core CSS -->
-        <link href="https://getbootstrap.com/docs/3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="navbar-fixed-top.css" rel="stylesheet">
-
-    </head>
-    <style type="text/css">
-        .cores {
-            color: white !important;
-            background-color: #ff0080 !important;
-
-        }
-        .cores a:hover {background-color: #000000 !important;}
-
-    </style>
-
-  <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
+ <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
                 <a class="navbar-brand" href="index.jsp">
                   <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
@@ -40,25 +12,28 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
                     <ul class="navbar-nav mr-auto">
                         
-                  
                     
                     </ul>
 
  <%if (nomeUser == null) {
 
     %>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-10">
+        
 
      <div class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown user
+          Menu
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
-          <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
+          <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+
         </div>
       </div>
 
@@ -121,8 +96,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
            <%if (idgrupo == 1) {%>
-          <a class="dropdown-item" href="gerenciarPacotes.jsp">Gerenciar Pacotes</a>
+          <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
           <%}%>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
           <a class="dropdown-item" href="sair.jsp">Sair</a>
         </div>
       </div>
