@@ -31,6 +31,7 @@ public class tbCliente implements Serializable {
     private String celCliente;
     private String passwordCliente;
     private boolean changePassword;
+    private boolean cadastroIncompleto;
     private long idPayment;
     private int idgrupo;
 
@@ -114,6 +115,14 @@ public class tbCliente implements Serializable {
 
     public void setChangePassword(boolean changePassword) {
         this.changePassword = changePassword;
+    }
+    
+    public boolean isCadastroIncompleto() {
+        return cadastroIncompleto;
+    }
+
+    public void setCadastroIncompleto(boolean cadastroIncompleto) {
+        this.cadastroIncompleto = cadastroIncompleto;
     }
 
     public long getIdPayment() {

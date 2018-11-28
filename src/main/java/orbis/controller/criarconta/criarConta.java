@@ -50,11 +50,16 @@ public class criarConta extends HttpServlet {
         clientes.setTelCliente(request.getParameter("telefone"));
         clientes.setCelCliente(request.getParameter("celular"));
         clientes.setPasswordCliente(request.getParameter("psw"));
+        //Define que o grupo do cliente é de "Compradores"
+        clientes.setIdgrupo(2);
+        clientes.setCadastroIncompleto(true);
         String psw = request.getParameter("psw-repeat");
         String pswrepeat = request.getParameter("psw-repeat");
         clientes.setChangePassword(false);
         clientes.setIdPayment(1);
-
+        
+        int idcliente = 0;
+        
         if (!psw.equals(pswrepeat)) {
             PrintWriter out = response.getWriter();
             String path = "index.jsp";
@@ -77,7 +82,7 @@ public class criarConta extends HttpServlet {
 
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
-                session.save(clientes);
+                idcliente = (Integer) session.save(clientes);
 
                 //comita as informacoes
                 tx.commit();
@@ -88,6 +93,15 @@ public class criarConta extends HttpServlet {
                 }
 
             }
+            
+            request.setAttribute("to1", clientes.getEmailCliente());
+            request.setAttribute("subject", "Favor completar seu Cadastro - Orbis alerta!");
+            request.setAttribute("body", "Confirme seus dados de endereço clicando no link abaixo:"
+                    + "\n http://localhost:8080/Orbis/completarCadastro?idcliente="+idcliente);
+            
+            
+            request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
+            
         }
 
     }
