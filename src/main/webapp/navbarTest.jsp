@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -30,79 +31,107 @@
 
     </style>
 
+  <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
-    <body>
+                <a class="navbar-brand" href="index.jsp">
+                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                </a>
 
-        <!-- Fixed navbar -->
-        <nav class="navbar navbar-default navbar-fixed-top cores">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav mr-auto">
+                        
+                  
+                    
+                    </ul>
+
+ <%if (nomeUser == null) {
+
+    %>
+    <ul class="navbar-nav ml-auto">
+
+     <div class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown user
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
+          <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
+        </div>
+      </div>
+
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+        <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
             <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar js-scroll-trigger fonte" style="text-decoration:none; color: white;" href="Home.jsp">
-                        <span class="d-block d-lg-block"><img style ="width: 20%;" src = "img/mci_brazil.png"></span>
-                    </a>
+                <h1>Criar Conta</h1>
+                <p>Preencha os dados para criar sua conta.</p>
+                <hr>
+                
+                <label for="nome"><b>Nome</b></label>
+                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
+                
+                <label for="email"><b>Email</b></label>
+                <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
+
+                <label for="cpf"><b>RG</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+
+                <label for="cpf"><b>CPF</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+
+                <label for="sexo"><b>Sexo</b></label>
+                <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
+                    <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
+                    <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="fonte"><a href="Home.jsp" style='color: white;'>Home</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color: white;'>Consultas <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="ConsultaProjeto.jsp" style='color: white; background-color: #ff0080;'>Projeto (BL)</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ConsultaCliente.jsp" style='color: white; background-color: #ff0080;'>Cliente</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ConsultaProspect.jsp" style='color: white;background-color: #ff0080;'>Prospect</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ConsultaSuspect.jsp" style='color: white;background-color: #ff0080;'>Suspect</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color: white;'>Cadastrar <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="CadastrarProjeto.jsp" style='color: white; background-color: #ff0080;'>Projeto (BL)</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="CadastrarCliente.jsp"style='color: white; background-color: #ff0080;'>Cliente</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="CadastrarProspect.jsp" style='color: white;background-color: #ff0080;'>Prospect</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="CadastrarSuspect.jsp" style='color: white;background-color: #ff0080;'>Suspect</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style='color: white;'>Gerenciamento <span class="caret"></span></a>
-                            <ul class="dropdown-menu fonte">
-                                <li><a href="FiltroBL.jsp" style='color: white;background-color: #ff0080;'>Listar Projetos (BL)</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ListarClientesGeral" style='color: white;background-color: #ff0080;'>Listar Cliente</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ListarProspectsGeral" style='color: white;background-color: #ff0080;'>Listar Prospect</a></li>
-                                <li role="separator" class="divider" style='background-color: #ff0080;'></li>
-                                <li><a href="ListarSuspectsGeral" style='color: white;background-color: #ff0080;'>Listar Suspect</a></li>
-                            </ul>
-                        </li>
-                        <li class="fonte"><a href="MemoBL.jsp" style='color: white;'>Dicas</a></li>
 
+                <label for="telefone"><b>Telefone</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
 
-                    </ul>
-                    <ul class="nav navbar-nav navbar-right">
-                        <!--li><a href="../navbar-static-top/">Static top</a></li-->
-                        <li class="fonte"><a href="Logout.jsp" style='color: white;'>Sair <span class="sr-only">(current)</span></a></li>
-                    </ul>
-                </div><!--/.nav-collapse -->
+                <label for="celular"><b>Celular</b></label>
+                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
+
+                <label for="psw"><b>Senha</b></label>
+                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
+
+                <label for="psw-repeat"><b>Confirmar Senha</b></label>
+                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
+                
+                <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
+                    <button type="submit" class="signupbtn" onclick="{
+                                return ConfirmPassword();
+                            }">Criar</button>
+                </div>
             </div>
-        </nav>
+        </form>
+    </div>
+            
+    <%} else {%>
 
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="assets/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="assets/jquery.min.js"><\/script>')</script>
-        <script src="js/bootstrap.min.js"></script>
-    </body>
+     <div class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Olá <%=nomeUser%>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
+           <%if (idgrupo == 1) {%>
+          <a class="dropdown-item" href="gerenciarPacotes.jsp">Gerenciar Pacotes</a>
+          <%}%>
+          <a class="dropdown-item" href="sair.jsp">Sair</a>
+        </div>
+      </div>
+      
+      <%}%>
+    
+            </ul>
+        </div>
+
+</nav>
+ 
 </html>

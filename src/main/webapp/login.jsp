@@ -148,7 +148,7 @@
         </style>
     </head>
 
-    <body class="text-center" style="background-color: white;">
+    <body class="text-center" style="background-color: #acadb3">
         <form class="form-signin" action="Login"  method="POST">
             <input type="hidden" name ="mobile" value ="<%=mobile%>">
 
@@ -167,7 +167,7 @@
             <br>
             <img class="mb-4" src="img/orbis_logo.png" alt="logo orbis">
             <h5 class="mb-0">Acessar
-                <span style = "color: lightblue">Orbis Eu Vou</span>
+                <span style = "color: #4b5b61">Orbis, eu vou!</span>
             </h5>
             <br>
             <div align="center">
@@ -177,6 +177,7 @@
                     <label for="inputPassword" class="sr-only">Senha</label>
                     <input type="password" autocomplete="off" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
                     <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
+                    <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" >Criar conta</button>
                     <p></p>
                     <label>
                         <a href ="modal?mensagem=Favor enviar um email para <strong>paulo.bezerra@mci-group.com</strong>&path=login.jsp">Esqueci a senha</a>
@@ -184,11 +185,11 @@
                 </div>
             </div>
         </form>
-        <div align="center">
+<!--        <div align="center">
             <div class="col-md-5 mb-3">
                 <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
             </div>
-        </div>
+        </div>-->
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
             <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
@@ -240,10 +241,10 @@
         </div>
 
         <footer class="my-5 pt-5 text-muted text-center text-small">
-            <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
-            <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-            <a href="termo"><span class="text-primary">Política de Uso</span></a>
-            <p class="mb-0">&copy; Orbis Eu Vou</p>
+            <a href="#"><span class="text-primary">Sobre Orbis</span></a>
+            <a href="#"><span class="text-primary">Termo de Cancelamento</span></a>
+            <a href="#"><span class="text-primary">Política de Uso</span></a>
+            <p class="mb-0">&copy; Orbis, eu vou! - 2018</p>
         </footer>
 
     </body>
