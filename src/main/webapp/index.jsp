@@ -188,13 +188,13 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav mr-auto">
                         
                     <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
                             <!--end of col-->
                             <div class="col">
-                                <input id="query" name="busca" class="form-control mr-sm-2" type="search" required placeholder="Experimente: Arraial">
+                                <input id="query" name="busca" class="form-control mr-sm-2" type="search" required placeholder="Experimente: ''Arraial''">
                             </div>
                             <!--end of col-->
                             <div class="col-auto">
@@ -203,14 +203,17 @@
 
                         </form>
                     
+                    </ul>
+                    
 <!--                    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
                     <button onclick="{location = 'login.jsp';}" style="width:auto; float: right">Já tenho Conta</button>-->
 
  <%if (nomeUser == null) {
 
     %>
+    <ul class="navbar-nav ml-auto">
 
-<body class="bg-light">
+
 
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -274,7 +277,8 @@
             
     <%} else {%>
 
-
+     <body class="bg-light">
+         
      <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown user
