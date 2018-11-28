@@ -18,8 +18,6 @@
         <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
 
-
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
 
@@ -30,8 +28,6 @@
 
 
     <body id="page-top">
-
-
 
         <form name = "finalizarCadastro" id ='finalizarCadastro' action="${pageContext.request.contextPath}/finalizarCadastro" method="POST">
 
@@ -200,23 +196,9 @@
 
     </script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#cnpjcpf").mask("99.999.999/9999-99");
-        });
-    </script>
-
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
         feather.replace();
-    </script>
-    <script>
-
-
-
-        $("#cnpjcpf").autocomplete({
-            source: $("#cnpjcpf").autocomplete("getdataCNPJ.jsp")});
-
     </script>
 </body>
 </html>
