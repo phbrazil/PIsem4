@@ -167,85 +167,6 @@
         }
     </style>
 
-    <%if (nomeUser == null) {
-
-    %>
-
-<body class="bg-light">
-
-    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-    <button onclick="{
-                location = 'login.jsp';
-            }" style="width:auto; float: right">Já tenho Conta</button>
-
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-        <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
-            <div class="container">
-                <h1>Criar Conta</h1>
-                <p>Preencha os dados para criar sua conta.</p>
-                <hr>
-                
-                <label for="nome"><b>Nome</b></label>
-                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
-                
-                <label for="email"><b>Email</b></label>
-                <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
-
-                <label for="cpf"><b>RG</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
-
-                <label for="cpf"><b>CPF</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
-
-                <label for="sexo"><b>Sexo</b></label>
-                <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
-                    <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
-                    <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
-                </div>
-
-                <label for="telefone"><b>Telefone</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
-
-                <label for="celular"><b>Celular</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
-
-                <label for="psw"><b>Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
-
-                <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
-                
-                <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
-
-                <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
-                    <button type="submit" class="signupbtn" onclick="{
-                                return ConfirmPassword();
-                            }">Criar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-    <%} else {%>
-
-
-    <button onclick="{
-                location = 'sair.jsp';
-            }" style="width:auto; float: right">Sair</button>
-    <%if (idgrupo == 1) {%>
-    <button onclick="{
-                location = 'gerenciarPacotes.jsp';
-            }" style="width:auto; float: right">Gerenciar Pacotes</button>
-    <%}%>
-
-
-    <button onclick="{
-                location = 'minhasCompras';
-            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-
-    <%}%>
-
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
@@ -378,7 +299,7 @@
 
     <div class="container">
         <br>
-        <form  name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
+        <form name="pacote" id="pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
 
             <div class="row" style="width: 90%; height: 90%;">
 
