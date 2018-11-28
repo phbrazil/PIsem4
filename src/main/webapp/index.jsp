@@ -178,7 +178,11 @@
         }
     </script>
     
-            <nav class="navbar navbar-expand-lg navbar-dark  text-dark fixed-top" style="background-color:#c5c5c1">
+    <body class="bg-light">
+    
+
+<!-- Insira o nav aqui -->
+<nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
                 <a class="navbar-brand" href="index.jsp">
                   <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
@@ -193,34 +197,29 @@
                     <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
                             <!--end of col-->
-                            <div class="col">
-                                <input id="query" name="busca" class="form-control mr-sm-2" type="search" required placeholder="Experimente: ''Arraial''">
+                            <div class="mr-1">
+                                <input id="query" name="busca" class="form-control" type="search" required placeholder="Experimente: ''Arraial''">
                             </div>
                             <!--end of col-->
-                            <div class="col-auto">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+                            <div class="">
+                                <button class="btn btn-outline-success" type="submit">Buscar</button>
                             </div>
 
                         </form>
                     
                     </ul>
-                    
-<!--                    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-                    <button onclick="{location = 'login.jsp';}" style="width:auto; float: right">Já tenho Conta</button>-->
 
  <%if (nomeUser == null) {
 
     %>
     <ul class="navbar-nav ml-auto">
 
-
-
      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown user
-        </a>
+        </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
+          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
           <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
         </div>
       </li>
@@ -277,14 +276,12 @@
             
     <%} else {%>
 
-     <body class="bg-light">
-         
      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown user
-        </a>
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Olá <%=nomeUser%>
+        </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="minhasCompras.jsp">Olá <%=nomeUser%></a>
+          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Gerenciar Pacotes</a>
           <%}%>
@@ -299,13 +296,15 @@
 
 </nav>
 
+<div align="center" style="margin-top: 6%">
+
  <%@include  file="carrocel.jsp"%>
 
     <div class="container">
         <br>
         <form name="pacote" id="pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
 
-            <div class="row" style="width: 90%; height: 90%;">
+            <div class="row">
 
                 <%
                     listarPacotes listar = new listarPacotes();
@@ -396,6 +395,8 @@
         </form>
 
     </div>
+                
+</div>
 
 
     <footer class="my-5 pt-5 text-muted text-center text-small">

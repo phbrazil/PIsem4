@@ -145,12 +145,7 @@
         }
     </style>
 
-<body class="bg-light">
-
-
-    <div align='center'>
-
-        <div  id="demo" class="carousel slide" data-ride="carousel" style="height: 70%; width: 70%;">
+        <div id="demo" class="carousel slide col-10 align-middle" data-ride="carousel">
 
             <!-- Indicators -->
             <ul class="carousel-indicators">
@@ -184,6 +179,5 @@
                     <span class="carousel-control-next-icon"></span>
                 </a>
         </div>
-        <br>
 
 </html>
