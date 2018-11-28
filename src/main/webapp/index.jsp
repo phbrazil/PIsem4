@@ -178,7 +178,7 @@
         }
     </script>
     
-    <body class="bg-light">
+    <body style="background: #dcdee4">
     
 
 <!-- Insira o nav aqui -->
@@ -198,7 +198,7 @@
 
                             <!--end of col-->
                             <div class="mr-2">
-                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Tente: ''campos do jordão''">
+                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
                             </div>
                             <!--end of col-->
                             <div class="">

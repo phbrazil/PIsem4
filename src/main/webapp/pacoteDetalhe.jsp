@@ -46,7 +46,7 @@
 
     </head>
 
-    <body class="bg-dark">
+    <body style="background: #dcdee4">
 
         <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">

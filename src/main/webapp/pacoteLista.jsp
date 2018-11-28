@@ -158,7 +158,7 @@
         }
     </style>
     
-    <body class="bg-light">
+    <body style="background: #dcdee4">
     
 
 <!-- Insira o nav aqui -->
@@ -178,7 +178,7 @@
 
                             <!--end of col-->
                             <div class="mr-1">
-                                <input id="query" name="busca" class="form-control" type="search" required placeholder="Experimente: ''Arraial''">
+                                <input id="query" name="busca" class="form-control" type="search" required placeholder="Pesquisar">
                             </div>
                             <!--end of col-->
                             <div class="">
