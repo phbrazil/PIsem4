@@ -94,8 +94,6 @@ public class pacoteCriar extends HttpServlet {
 
         Integer id;
 
-        System.out.println(m.getParameter("localsaida") + "+++++++");
-
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);

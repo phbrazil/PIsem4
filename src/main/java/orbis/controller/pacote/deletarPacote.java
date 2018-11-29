@@ -42,7 +42,7 @@ public class deletarPacote {
 
             listaImagens = listarImagens.listar(idPacote);
 
-            //NMO VAMOS DELETAR PACOTE DEVIDO A AMARRACAO COM CHAVES ESTRANGEIRAS
+            //NAO VAMOS DELETAR PACOTE DEVIDO A AMARRACAO COM CHAVES ESTRANGEIRAS NAS VENDAS
 //            for (int i = 0; i < listaImagens.size(); i++) {
 //                
 //                Transaction txImagens = sessionImagens.beginTransaction();
