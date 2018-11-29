@@ -6,6 +6,7 @@
 
     HttpSession sessao = request.getSession();
 
+    Integer idUser = (Integer) sessao.getAttribute("idcliente");
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
