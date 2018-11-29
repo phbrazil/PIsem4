@@ -371,6 +371,7 @@
                             <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                        <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
                         <p class="card-text"><%=pacote.getRoteiro()%></p>
                     </div>
                     <div class="card-footer">

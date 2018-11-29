@@ -115,33 +115,12 @@ public class finalizarCompra extends HttpServlet {
                 }
 
             }
-            for (int i = 0; i < quantidade; i++) {
 
-                Configuration conItem = new Configuration().configure().addAnnotatedClass(tbItemVenda.class);
-                SessionFactory sfItem = conItem.buildSessionFactory();
+            gravarIngressos gravarIngressos = new gravarIngressos();
+            gravarIngressos.gravarIngressos(ingressos, quantidade);
 
-                //abre sessao com o banco
-                Session sessionItem = sfItem.openSession();
-
-                try {
-
-                    //inicia a transacao com o banco
-                    Transaction txItem = sessionItem.beginTransaction();
-
-                    ingressos.setIdvenda(idvenda);
-
-                    sessionItem.save(ingressos);
-
-                    txItem.commit();
-
-                } finally {
-                    if (sessionItem != null) {
-                        sessionItem.close();
-                        sfItem.close();
-                    }
-
-                }
-            }
+            ingressosEstoque ingressosEstoque = new ingressosEstoque();
+            ingressosEstoque.ingressosEstoque(idpacote, quantidade);
 
         }
 
