@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import orbis.model.cliente.tbCliente;
+import orbis.model.itemVenda.tbItemVenda;
 import orbis.model.venda.tbVenda;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -55,21 +56,28 @@ public class finalizarCompra extends HttpServlet {
                 new Locale("pt", "BR"));
 
         tbVenda venda = new tbVenda();
+        tbItemVenda ingressos = new tbItemVenda();
+
         double valor = Double.valueOf(request.getParameter("valor"));
+        double total = Double.valueOf(request.getParameter("total").replace(".", "").replace(",", "."));
         String localSaida = (String) request.getParameter("localSaida");
         String localDestino = (String) request.getParameter("localDestino");
         String data = (String) request.getParameter("data");
         int idpacote = Integer.valueOf(request.getParameter("idpacote"));
         String tipoPagamento = String.valueOf(request.getParameter("paymentMethod"));
-        
+
         Integer idcliente = (Integer) sessao.getAttribute("idcliente");
+        int quantidade = Integer.valueOf(request.getParameter("quantidade"));
 
         venda.setIdcliente(idcliente);
         venda.setDthvenda(String.valueOf(datavenda));
-        venda.setTotal(valor);
+        venda.setTotal(total);
         venda.setIdpacote(idpacote);
         venda.setTipoPagamento(tipoPagamento);
 
+        ingressos.setValor(valor);
+        ingressos.setDthvenda(String.valueOf(datavenda));
+        ingressos.setIdpacote(idpacote);
         int idvenda = 0;
 
         if (venda.getTotal() <= 0) {
@@ -93,10 +101,13 @@ public class finalizarCompra extends HttpServlet {
 
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
+
                 idvenda = (Integer) session.save(venda);
+                ingressos.setIdvenda(idvenda);
 
                 //comita as informacoes
                 tx.commit();
+
             } finally {
                 if (session != null) {
                     session.close();
@@ -104,6 +115,34 @@ public class finalizarCompra extends HttpServlet {
                 }
 
             }
+            for (int i = 0; i < quantidade; i++) {
+
+                Configuration conItem = new Configuration().configure().addAnnotatedClass(tbItemVenda.class);
+                SessionFactory sfItem = conItem.buildSessionFactory();
+
+                //abre sessao com o banco
+                Session sessionItem = sfItem.openSession();
+
+                try {
+
+                    //inicia a transacao com o banco
+                    Transaction txItem = sessionItem.beginTransaction();
+
+                    ingressos.setIdvenda(idvenda);
+
+                    sessionItem.save(ingressos);
+
+                    txItem.commit();
+
+                } finally {
+                    if (sessionItem != null) {
+                        sessionItem.close();
+                        sfItem.close();
+                    }
+
+                }
+            }
+
         }
 
         request.setAttribute("to1", "pauloh2012sul@gmail.com");

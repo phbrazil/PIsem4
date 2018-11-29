@@ -285,10 +285,7 @@
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-<<<<<<< HEAD
           <a class="dropdown-item" href="minhasCompras">Minha conta</a>
-=======
->>>>>>> f107590ccee4bef2416506e972a50ed6b9237f16
           <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>

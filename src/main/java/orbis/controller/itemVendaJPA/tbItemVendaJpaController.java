@@ -16,15 +16,15 @@ import javax.persistence.criteria.Root;
 import javax.transaction.UserTransaction;
 import orbis.controller.itemVendaJPA.exceptions.NonexistentEntityException;
 import orbis.controller.itemVendaJPA.exceptions.RollbackFailureException;
-import orbis.model.itemVenda.itemVenda;
+import orbis.model.itemVenda.tbItemVenda;
 
 /**
  *
  * @author ASAPH-001
  */
-public class itemVendaJpaController implements Serializable {
+public class tbItemVendaJpaController implements Serializable {
 
-    public itemVendaJpaController(UserTransaction utx, EntityManagerFactory emf) {
+    public tbItemVendaJpaController(UserTransaction utx, EntityManagerFactory emf) {
         this.utx = utx;
         this.emf = emf;
     }
@@ -35,7 +35,7 @@ public class itemVendaJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(itemVenda itemVenda) throws RollbackFailureException, Exception {
+    public void create(tbItemVenda itemVenda) throws RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -56,7 +56,7 @@ public class itemVendaJpaController implements Serializable {
         }
     }
 
-    public void edit(itemVenda itemVenda) throws NonexistentEntityException, RollbackFailureException, Exception {
+    public void edit(tbItemVenda itemVenda) throws NonexistentEntityException, RollbackFailureException, Exception {
         EntityManager em = null;
         try {
             utx.begin();
@@ -89,9 +89,9 @@ public class itemVendaJpaController implements Serializable {
         try {
             utx.begin();
             em = getEntityManager();
-            itemVenda itemVenda;
+            tbItemVenda itemVenda;
             try {
-                itemVenda = em.getReference(itemVenda.class, id);
+                itemVenda = em.getReference(tbItemVenda.class, id);
                 itemVenda.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The itemVenda with id " + id + " no longer exists.", enfe);
@@ -112,19 +112,19 @@ public class itemVendaJpaController implements Serializable {
         }
     }
 
-    public List<itemVenda> finditemVendaEntities() {
+    public List<tbItemVenda> finditemVendaEntities() {
         return finditemVendaEntities(true, -1, -1);
     }
 
-    public List<itemVenda> finditemVendaEntities(int maxResults, int firstResult) {
+    public List<tbItemVenda> finditemVendaEntities(int maxResults, int firstResult) {
         return finditemVendaEntities(false, maxResults, firstResult);
     }
 
-    private List<itemVenda> finditemVendaEntities(boolean all, int maxResults, int firstResult) {
+    private List<tbItemVenda> finditemVendaEntities(boolean all, int maxResults, int firstResult) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            cq.select(cq.from(itemVenda.class));
+            cq.select(cq.from(tbItemVenda.class));
             Query q = em.createQuery(cq);
             if (!all) {
                 q.setMaxResults(maxResults);
@@ -136,10 +136,10 @@ public class itemVendaJpaController implements Serializable {
         }
     }
 
-    public itemVenda finditemVenda(Integer id) {
+    public tbItemVenda finditemVenda(Integer id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(itemVenda.class, id);
+            return em.find(tbItemVenda.class, id);
         } finally {
             em.close();
         }
@@ -149,7 +149,7 @@ public class itemVendaJpaController implements Serializable {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
-            Root<itemVenda> rt = cq.from(itemVenda.class);
+            Root<tbItemVenda> rt = cq.from(tbItemVenda.class);
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
