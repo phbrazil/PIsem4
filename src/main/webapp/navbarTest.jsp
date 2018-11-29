@@ -14,8 +14,7 @@
                 </button>
                 <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
                     <ul class="navbar-nav mr-auto">
-                        
-                    
+         
                     </ul>
 
  <%if (nomeUser == null) {
@@ -94,7 +93,11 @@
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
+
+
+          <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+
+          <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
           <%}%>

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package orbis.controller.pacote;
+package orbis.controller.ClienteJPA;
 
+import orbis.controller.pacote.*;
 import com.oreilly.servlet.MultipartRequest;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -44,8 +45,8 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/consultaID", urlPatterns = {"/consultaID"})
-public class pacoteConsultaId extends HttpServlet {
+@WebServlet(name = "/clienteConsultaID", urlPatterns = {"/clienteConsultaID"})
+public class clienteConsultaId extends HttpServlet {
 
     //private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
     @Override
@@ -59,12 +60,12 @@ public class pacoteConsultaId extends HttpServlet {
 
         String data = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
 
-        tbPacote pacote = new tbPacote();
+        tbCliente cliente = new tbCliente();
         request.setCharacterEncoding("UTF-8");
 
-        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
+        int idcliente = Integer.valueOf(request.getParameter("id"));
 
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
         SessionFactory sf = con.buildSessionFactory();
 
         //abre sessao com o banco
@@ -75,7 +76,7 @@ public class pacoteConsultaId extends HttpServlet {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            pacote = (tbPacote) session.get(tbPacote.class, idpacote);
+            cliente = (tbCliente) session.get(tbCliente.class, idcliente);
 
             //comita as informacoes
             tx.commit();
@@ -87,9 +88,13 @@ public class pacoteConsultaId extends HttpServlet {
             sf.close();
 
         }
+        
+        listarImagens imagens = new listarImagens();
+        List<tbImagens> imagensLista = imagens.listar(idcliente);
 
-        request.setAttribute("pacote", pacote);
-
+        request.setAttribute("pacote", cliente);
+        request.setAttribute("imagens", imagensLista);
+        
         request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
 
     }

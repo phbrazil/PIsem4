@@ -54,7 +54,7 @@
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
 
 
-        <title>Editar Pacote</title>
+        <title>Editar dados do usuário</title>
 
     </head>
     <body id="page-top" style="background: #dcdee4">
@@ -82,26 +82,8 @@
         <br>
         <br>
 
-        <div align ="right">
-            <div class="col-md-9 order-md-1">
-                <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <h4 class="text-muted">Editar Pacote</h4>
-                    </div>
-                    <div class="col-md-2 mb-3">
-                        <form id = "deletarPacote" action="${pageContext.request.contextPath}/deletarPacote" method="POST">
-                            <div class="btn-group">
-                                <button id ='deletarPacote' onclick="{
-                                            return confirmDeletePacote();
-                                        }" type="submit" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 35%; height: 35%"></button>
-                            <input type='hidden' name ='idpacote' value ='${pacote.idPacote}'>
-                            </div>
-                        </form>  
-                    </div>
-
-
-                </div>
-            </div>
+        <div align ="center">  
+              <h4 class="text-muted">Editar dados do usuário</h4>  
         </div>
 
 
@@ -109,95 +91,74 @@
 
             <br>
             <!--form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="GET"></form-->
-            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editar" method="POST"></form>
+            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editarCliente" method="POST"></form>
 
+            <input form='pacote' data-toggle="tooltip" value="${pacote.idEndereco}" title="tel" data-placement="right" name="idEndereco" autocomplete="off" type="hidden" class="form-control" id="idEndereco">
+            <input form='pacote' data-toggle="tooltip" value="${pacote.idPayment}" title="tel" data-placement="right" name="idPayment" autocomplete="off" type="hidden" class="form-control" id="idPayment">
+            <input form='pacote' data-toggle="tooltip" value="${pacote.idgrupo}" title="tel" data-placement="right" name="idGrupo" autocomplete="off" type="hidden" class="form-control" id="idGrupo">
 
             <div class="col-md-8 order-md-1">
                 <div class="row">
-                    <div class="col-md-5 mb-3">
-                        <label>Data da Viagem</label>
-                        <div class="input-group" title="Data da Viagem">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.dthevento}" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
-                        </div>
-                        <!--label id ='clientenovo' style='color: red; background-color: transparent; outline: none; border-color: inherit; box-shadow: none;'/-->
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <label>Participantes</label>
+                    <div class="col-md-6 mb-3">
+                      <label>Nome</label>
                         <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.qtdMax}" title="Quantidade máxima de participantes" data-placement="right" name="qtdmax" autocomplete="off" type="number" class="form-control" id="qtdmax" value="0" required>
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.nomeCliente}" title="Nome" data-placement="left" type="text" autocomplete="off" class="form-control" id="nome" name="nome"  required>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <label>Valor</label>
-                        <input form='pacote' name = "valor" data-toggle="tooltip" value="${pacote.valor}" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
+
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Local de saída</label>
+                        <label>E-mail</label>
                         <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.localSaida}" onblur="naBaseSaida(this.value)" title="Local de Saída" data-placement="right" name="localsaida" autocomplete="off" type="text" class="form-control" id="localsaida">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.emailCliente}" title="email" readonly data-placement="right" name="email" autocomplete="off" type="text" class="form-control" id="email">
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label>Local de destino</label>
+                        <label>RG</label>
                         <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.localDestino}" onblur="naBaseDestino(this.value)" title="Local de Destino" data-placement="right" name="localdestino" autocomplete="off" type="text" class="form-control" id="localdestino">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.rgCliente}" title="RG" data-placement="right" name="rg" autocomplete="off" type="text" class="form-control" id="rg">
                         </div>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label>Roteiro da Viagem</label>
+                    <div class="col-md-6 mb-3">
+                        <label>CPF</label>
                         <div class="input-group">
-                            <textarea form='pacote' data-toggle="tooltip" title="Roteiro da Viagem" data-placement="right" name="roteiro" autocomplete="off" type="text" class="form-control" id="roteiro">${pacote.roteiro}</textarea>
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.cpfCliente}" title="CPF" data-placement="right" name="cpf" autocomplete="off" type="text" class="form-control" id="cpf">
                         </div>
                     </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Telefone</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.telCliente}" title="tel" data-placement="right" name="tel" autocomplete="off" type="text" class="form-control" id="tel">
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Celular</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.celCliente}" title="cel" data-placement="right" name="cel" autocomplete="off" type="text" class="form-control" id="cel">
+                        </div>
+                    </div>
+                        <div class="col-md-6 mb-3">
+                        <label>Senha</label>
+                        <div class="input-group">
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.passwordCliente}" title="pass" data-placement="right" name="pass" autocomplete="off" type="password" class="form-control" id="pass">
+                        </div>
+                    </div>
+
+
                     <br>
-                    <div class="col-md-3 mb-3">
-                        <label>Pacote ativo?</label>
-                        <select form='pacote' name = "ativo" class="custom-select d-block w-100" id="ativo"  required>
-                            <option>Sim</option>
-                            <option>Não</option>
-                        </select>
-                    </div> 
+
 
                 </div>
-                <h5 class="mb-0">
-                    <span class="text-primary">Fotos</span>
-                </h5>                    
+                       
                 <br>
                 </form>    
 
 
-                <%
-                    List<tbImagens> imagens = (List<tbImagens>) request.getAttribute("imagens");
-                %>
-                <form name = "deletarImagem" id = 'foto' method="POST">
-                    <div class="row">
-                        <%for (int i = 0; i < imagens.size(); i++) {%>
-
-                        <div class="col-md-3 mb-3">
-                            <img style="width: 200px; height: 100px" src="${pacote.imagePath}<%=imagens.get(i).getNomeImagem()%>"/>
-                            <div class="btn-group">
-                                <button id ='deletarFoto' onclick="{
-                                            return confirmDeleteFoto();
-                                        }" type="submit" class="btn btn-sm" formaction="deletarImagem?idImagem=<%=imagens.get(i).getId()%>&idpacote=<%=imagens.get(i).getIdPacote()%>"><img src="img/deletePacote.png" style="width: 25%; height: 25%"></button>
-
-                            </div>
-                        </div>
-
-                        <%}%>
-                    </div>
-                </form>
-
-                <label class="btn btn-primary">
-
-                    <i class="fa fa-image"></i> Selecione as imagens<input type="file" form = 'pacote' name="file" id="i_file" multiple style="display: none;"  name="image">
-                </label>
-                <input type ="text" style="border: none; color: red; width: 100%" id="filestatus" readonly>
-
             </div>
+                    
             <button form='pacote' class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
                         return confirmPacote();
-                    }" name = "gravarprojeto"><span data-feather="save"></span> Salvar Pacote</button>
-            <input type='hidden' form='pacote' name='idpacote' value='${pacote.idPacote}'>
+                    }" name = "gravarprojeto"><span data-feather="save"></span>Salvar</button>
+            <input type='hidden' form='pacote' name='id' value='${pacote.id}'>
 
         </div>
 
@@ -205,11 +166,8 @@
     </body>
 
 
-
-
-
     <footer class="my-5 pt-5 text-muted text-center text-small">
-        <p class="mb-0">&copy; Orbis Eu Vou</p>
+        <p class="mb-0">&copy; Orbis, eu vou!</p>
     </footer>
 
 

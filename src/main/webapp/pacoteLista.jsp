@@ -7,12 +7,12 @@
 <%@page import="orbis.DAO.pacote.listarPacotes"%>
 <!DOCTYPE html>
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
 <%
     String userAgent = request.getHeader("user-agent");
 
     HttpSession sessao = request.getSession();
 
+    Integer idUser = (Integer) sessao.getAttribute("idcliente");
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
@@ -266,7 +266,11 @@
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
+
+
+          <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+
+          <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
           <%}%>

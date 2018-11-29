@@ -14,6 +14,7 @@
 
     HttpSession sessao = request.getSession();
 
+    Integer idUser = (Integer) sessao.getAttribute("idcliente");
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
@@ -232,7 +233,7 @@
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
         <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
             <div class="container">
-                <h1>Criar Conta</h1>
+                <h1>Criar conta</h1>
                 <p>Preencha os dados para criar sua conta.</p>
                 <hr>
                 
@@ -285,7 +286,10 @@
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="minhasCompras">Minha conta</a>
+
+
+          <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+
           <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
