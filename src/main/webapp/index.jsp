@@ -233,7 +233,7 @@
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
         <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
             <div class="container">
-                <h1>Criar Conta</h1>
+                <h1>Criar conta</h1>
                 <p>Preencha os dados para criar sua conta.</p>
                 <hr>
                 
