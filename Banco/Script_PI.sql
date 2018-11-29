@@ -111,7 +111,7 @@ insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,ro
 create table tbImagens(
 id INT NOT NULL AUTO_INCREMENT,
 idPacote INT NOT null,
-nomeImagem varchar(60) not null UNIQUE,
+nomeImagem varchar(60) not null,
 PRIMARY KEY (id),
 FOREIGN KEY (idPacote) REFERENCES tbPacote (idPacote));
 

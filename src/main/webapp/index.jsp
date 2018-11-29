@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="orbis.DAO.pacote.listarImagens"%>
 <%@page import="orbis.model.imagensPacote.tbImagens"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
@@ -18,6 +19,13 @@
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
+    //String cwd = System.getProperty("user.dir");
+    String cwd = System.getProperty("user.home");
+       
+    File temp = new File(cwd+"/Documents/NetbeansProjects/Orbis/src/main/webapp/img/imagens/teste");
+    //temp.mkdir();
+        
+    
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
             || userAgent.toUpperCase().contains("MOBILE")) {
@@ -177,238 +185,238 @@
             }
         }
     </script>
-    
-    <body style="background: #dcdee4">
-    
 
-<!-- Insira o nav aqui -->
-<nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
+<body style="background: #dcdee4">
 
-                <a class="navbar-brand" href="index.jsp">
-                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
-                </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
-                    <ul class="navbar-nav mr-auto">
-                        
-                    <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
+    <!-- Insira o nav aqui -->
+    <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
-                            <!--end of col-->
-                            <div class="mr-2">
-                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
-                            </div>
-                            <!--end of col-->
-                            <div class="">
-                                <button class="btn btn-outline-success" type="submit"><img src="img/search_icon.png" width="25" height="25" class="d-inline-block align-top" alt=""></button>
-                            </div>
-                            <span class="glyphicon glyphicon-search"></span>
+        <a class="navbar-brand" href="index.jsp">
+            <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+        </a>
 
-                        </form>
-                    
-                    </ul>
-
- <%if (nomeUser == null) {
-
-    %>
-    <ul class="navbar-nav ml-10">
-        
-
-     <div class="nav-item dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="login.jsp">Efetuar login</a>
-          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
-          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
-          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+        <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
+            <ul class="navbar-nav mr-auto">
 
-        </div>
-      </div>
+                <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-        <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
-            <div class="container">
-                <h1>Criar conta</h1>
-                <p>Preencha os dados para criar sua conta.</p>
-                <hr>
-                
-                <label for="nome"><b>Nome</b></label>
-                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
-                
-                <label for="email"><b>Email</b></label>
-                <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
+                    <!--end of col-->
+                    <div class="mr-2">
+                        <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
+                    </div>
+                    <!--end of col-->
+                    <div class="">
+                        <button class="btn btn-outline-success" type="submit"><img src="img/search_icon.png" width="25" height="25" class="d-inline-block align-top" alt=""></button>
+                    </div>
+                    <span class="glyphicon glyphicon-search"></span>
 
-                <label for="cpf"><b>RG</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+                </form>
 
-                <label for="cpf"><b>CPF</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+            </ul>
 
-                <label for="sexo"><b>Sexo</b></label>
-                <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
-                    <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
-                    <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
+            <%if (nomeUser == null) {
+
+            %>
+            <ul class="navbar-nav ml-10">
+
+
+                <div class="nav-item dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+                        <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
+                        <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+                        <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+
+                    </div>
                 </div>
 
-                <label for="telefone"><b>Telefone</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
+                <div id="id01" class="modal">
+                    <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+                    <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
+                        <div class="container">
+                            <h1>Criar conta</h1>
+                            <p>Preencha os dados para criar sua conta.</p>
+                            <hr>
 
-                <label for="celular"><b>Celular</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
+                            <label for="nome"><b>Nome</b></label>
+                            <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
 
-                <label for="psw"><b>Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
+                            <label for="email"><b>Email</b></label>
+                            <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
 
-                <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
-                
-                <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+                            <label for="cpf"><b>RG</b></label>
+                            <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
 
-                <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
-                    <button type="submit" class="signupbtn" onclick="{
-                                return ConfirmPassword();
-                            }">Criar</button>
+                            <label for="cpf"><b>CPF</b></label>
+                            <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+
+                            <label for="sexo"><b>Sexo</b></label>
+                            <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
+                                <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
+                                <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
+                            </div>
+
+                            <label for="telefone"><b>Telefone</b></label>
+                            <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
+
+                            <label for="celular"><b>Celular</b></label>
+                            <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
+
+                            <label for="psw"><b>Senha</b></label>
+                            <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
+
+                            <label for="psw-repeat"><b>Confirmar Senha</b></label>
+                            <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
+
+                            <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+
+                            <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
+                                <button type="submit" class="signupbtn" onclick="{
+                                            return ConfirmPassword();
+                                        }">Criar</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
-        </form>
-    </div>
-            
-    <%} else {%>
 
-     <div class="nav-item dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Olá <%=nomeUser%>
-        </button>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%} else {%>
+
+                <div class="nav-item dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Olá <%=nomeUser%>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
 
-          <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+                        <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
 
-          <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
-           <%if (idgrupo == 1) {%>
-          <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
-          <%}%>
-          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
-          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
-          <a class="dropdown-item" href="sair.jsp">Sair</a>
-        </div>
-      </div>
-      
-      <%}%>
-    
+                        <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
+                        <%if (idgrupo == 1) {%>
+                        <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
+                        <%}%>
+                        <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+                        <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+                        <a class="dropdown-item" href="sair.jsp">Sair</a>
+                    </div>
+                </div>
+
+                <%}%>
+
             </ul>
         </div>
 
-</nav>
+    </nav>
 
-<div align="center" style="margin-top: 6%">
+    <div align="center" style="margin-top: 6%">
 
- <%@include  file="carrocel.jsp"%>
+        <%@include  file="carrocel.jsp"%>
 
-    <div class="container">
-        <br>
-        <form name="pacote" id="pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
+        <div class="container">
+            <br>
+            <form name="pacote" id="pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
 
-            <div class="row">
+                <div class="row">
 
-                <%
-                    listarPacotes listar = new listarPacotes();
-                    listarImagens listarImagens = new listarImagens();
+                    <%
+                        listarPacotes listar = new listarPacotes();
+                        listarImagens listarImagens = new listarImagens();
 
-                    List<tbPacote> pacotes = listar.listar();
-                    List<tbImagens> imagens;
+                        List<tbPacote> pacotes = listar.listar();
+                        List<tbImagens> imagens;
 
-                    int i = 0;
+                        int i = 0;
 
-                    NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
-                            new Locale("pt", "BR"));
+                        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                                new Locale("pt", "BR"));
 
-                    if (pacotes.size() > 0) {
+                        if (pacotes.size() > 0) {
 
-                        for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                            tbPacote pacote = (tbPacote) iterator.next();
-                            imagens = listarImagens.listar(pacote.getIdPacote());
-                            
+                            for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                                tbPacote pacote = (tbPacote) iterator.next();
+                                imagens = listarImagens.listar(pacote.getIdPacote());
 
 
-                %>
+                    %>
 
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner">
-                            <%for (int j = 0; j < imagens.size(); j++) {
-                                    String action = "";
-                            %>
+                    <div class="col-lg-4 col-md-6 mb-4">
+                        <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <%for (int j = 0; j < imagens.size(); j++) {
+                                        String action = "";
+                                %>
 
-                            <%if (j == 0) {
-                                    action = "active";
-                                    
+                                <%if (j == 0) {
+                                        action = "active";
 
-                                } else {
-                                    action = "";
-                                }
-                            %>
-                            <div id='slide<%=j%>' class="carousel-item <%=action%>">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 350px; height: 200px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
-                                <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                                    } else {
+                                        action = "";
+                                    }
+                                %>
+                                <div id='slide<%=j%>' class="carousel-item <%=action%>">
+                                    <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 350px; height: 200px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
+                                    <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
+                                </div>
+                                <%}%>
+
                             </div>
-                            <%}%>
-
+                            <a class="carousel-control-prev" href="#carouselExampleControls<%=i%>" role="button" data-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselExampleControls<%=i%>" role="button" data-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="sr-only">Next</span>
+                            </a>
                         </div>
-                        <a class="carousel-control-prev" href="#carouselExampleControls<%=i%>" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#carouselExampleControls<%=i%>" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                        <div class="card-body">
+                            <h4 class="card-title">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                            </h4>
+                            <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                            <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
+                            <p class="card-text"><%=pacote.getRoteiro()%></p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <h4 class="card-title">
-                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                        </h4>
-                        <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                        <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
-                        <p class="card-text"><%=pacote.getRoteiro()%></p>
+
+                    <%
+                            i++;
+
+                        }
+                    } else {
+
+                    %>
+                    <style>
+                        .center {
+                            margin: auto;
+                            width: 60%;
+                            border: 3px solid #73AD21;
+                            padding: 10px;
+                        }
+                    </style>
+                    <div class='center'>
+                        <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
                     </div>
-                    <div class="card-footer">
-                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-                    </div>
+                    <%}%>
+
                 </div>
+            </form>
 
-                <%
-                        i++;
+        </div>
 
-                    }
-                } else {
 
-                %>
-                <style>
-                    .center {
-                        margin: auto;
-                        width: 60%;
-                        border: 3px solid #73AD21;
-                        padding: 10px;
-                    }
-                </style>
-                <div class='center'>
-                    <h3 class="text-muted">Nenhum pacote recomendado encontrado</h3>
-                </div>
-                <%}%>
-
-            </div>
-        </form>
 
     </div>
-                
-</div>
 
 
     <footer class="my-5 pt-5 text-muted text-center text-small">
@@ -423,7 +431,7 @@
     <script src="js/confirmarsenha.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
     <script>
-        $("#query").autocomplete("getDataDestinos.jsp");
+                                    $("#query").autocomplete("getDataDestinos.jsp");
     </script>
 
     <script>

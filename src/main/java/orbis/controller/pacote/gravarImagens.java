@@ -24,8 +24,6 @@ public class gravarImagens {
 
     public boolean gravar(List<String> imagens, int id) {
         
-        System.out.println("entrei aqui +++++++++++++++++++++==");
-
         boolean gravado = false;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);

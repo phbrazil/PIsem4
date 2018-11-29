@@ -21,6 +21,8 @@ public class deletarImagens {
 
     public boolean deletar(int idImagem) {
 
+        String home = System.getProperty("user.home");
+
         boolean deletado = false;
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbImagens.class);
@@ -34,19 +36,18 @@ public class deletarImagens {
 
             Transaction tx = session.beginTransaction();
             tbImagens imagem = (tbImagens) session.get(tbImagens.class, idImagem);
-            
+
             //MAC
             //File foto = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(imagem.getIdPacote()+"/"+imagem.getNomeImagem()));
-
             //WINDOWS
-            File foto = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(imagem.getIdPacote()+"\\"+imagem.getNomeImagem()));
-
+            //File foto = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(imagem.getIdPacote()+"\\"+imagem.getNomeImagem()));
+            //UBUNTU
+            File foto = new File(home+"/orbis/imagens/" + String.valueOf(imagem.getIdPacote() + "/" + imagem.getNomeImagem()));
             foto.delete();
             session.delete(imagem);
 
             //comita as informacoes
             tx.commit();
-
 
             //inicia a transacao com o banco
         } finally {

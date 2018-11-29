@@ -55,13 +55,16 @@ public class pacoteCriar extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+            String home = System.getProperty("user.home");
+
 
         //MAC
         //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
         //UBUNTU SERVER
-        //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
+        String UPLOAD_DIRECTORY = home+"/orbis/temp/";
         //WINDOWS
-        String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
+        //String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
 
         response.setContentType(
                 "text/html");
@@ -129,18 +132,18 @@ public class pacoteCriar extends HttpServlet {
 
                 //criar pasta com id do banco                
                 //UBUNTU SERVER
-                //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
+                File file = new File(home+"/orbis/imagens/" + String.valueOf(id));
                 //MAC
                 //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
                 //WINDOWS
-                File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id));
+                //File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id));
 
                 //UBUNTU SERVER
-                //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
+                UPLOAD_DIRECTORY = home+"/orbis/imagens/" + String.valueOf(id);
                 //MAC
                 //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
                 //WINDOWS
-                UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id);
+                //UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -149,18 +152,15 @@ public class pacoteCriar extends HttpServlet {
                         System.out.println("Failed to create directory!");
                     }
                 }
+                //UBUNTU
+                File source = new File(home+"/orbis/temp");
 
-                //inserir na nova pasta criada
+                
                 //MAC
-                //File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-                //UBUNTU SERVER
-                //File fileToMove = new File("/home/opportunity/orbis/temp");    
-                //WINDOWS
-                //File fileToMove = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
-                //fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
+                //File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
                 
                 //WINDOWS
-                File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
+                //File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
 
                 File dest = new File(UPLOAD_DIRECTORY);
 
@@ -172,17 +172,21 @@ public class pacoteCriar extends HttpServlet {
 
                 //MAC
                 //File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                
                 //UBUNTU SERVER
-                //File temp = new File("/home/opportunity/orbis/temp/");
+                File temp = new File(home+"/orbis/temp/");
                 
                   //WINDOWS
-                File temp = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp\\");
+                //File temp = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp\\");
 
                 try {
                     FileUtils.deleteDirectory(temp);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                
+                temp.mkdir();
+                
                 List<String> nomeImagem = new ArrayList<>();
 
                 // gravar nomes das fotos
