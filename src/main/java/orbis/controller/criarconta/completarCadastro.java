@@ -33,6 +33,8 @@ public class completarCadastro extends HttpServlet {
             throws ServletException, IOException {
 
         int idcliente = Integer.valueOf(request.getParameter("idcliente"));
+        
+        System.out.println("id aqui "+idcliente);
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
 

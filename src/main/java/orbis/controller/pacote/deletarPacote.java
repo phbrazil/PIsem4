@@ -42,22 +42,23 @@ public class deletarPacote {
 
             listaImagens = listarImagens.listar(idPacote);
 
-            for (int i = 0; i < listaImagens.size(); i++) {
-                
-                Transaction txImagens = sessionImagens.beginTransaction();
-
-                //tbImagens imagem = (tbImagens) session.get(tbImagens.class, idPacote);
-
-                sessionImagens.delete(listaImagens.get(i));
-                txImagens.commit();
-
-            }
+            //NMO VAMOS DELETAR PACOTE DEVIDO A AMARRACAO COM CHAVES ESTRANGEIRAS
+//            for (int i = 0; i < listaImagens.size(); i++) {
+//                
+//                Transaction txImagens = sessionImagens.beginTransaction();
+//
+//                //tbImagens imagem = (tbImagens) session.get(tbImagens.class, idPacote);
+//
+//                sessionImagens.delete(listaImagens.get(i));
+//                txImagens.commit();
+//
+//            }
 
             Transaction tx = session.beginTransaction();
 
             tbPacote pacote = (tbPacote) session.get(tbPacote.class, idPacote);
-
-            session.delete(pacote);
+            pacote.setAtivo(false);
+            session.update(pacote);
 
             //comita as informacoes
             tx.commit();

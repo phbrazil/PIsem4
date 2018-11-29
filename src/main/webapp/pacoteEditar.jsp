@@ -1,3 +1,4 @@
+<%@page import="orbis.model.pacote.tbPacote"%>
 <%@page import="orbis.model.imagensPacote.tbImagens"%>
 <%@page import="java.util.List"%>
 <!--**
@@ -15,6 +16,7 @@
     Integer idUser = (Integer) sessao.getAttribute("idcliente");
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
+    tbPacote pacote = (tbPacote) request.getAttribute("pacote");
 
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
@@ -59,7 +61,7 @@
     </head>
     <body id="page-top" style="background: #dcdee4">
 
-    <%@include  file="navbarTest.jsp"%>
+        <%@include  file="navbarTest.jsp"%>
 
 
 
@@ -88,16 +90,16 @@
                     <div class="col-md-5 mb-3">
                         <h4 class="text-muted">Editar Pacote</h4>
                     </div>
-                    <div class="col-md-2 mb-3">
+                    <!--div class="col-md-2 mb-3">
                         <form id = "deletarPacote" action="${pageContext.request.contextPath}/deletarPacote" method="POST">
                             <div class="btn-group">
                                 <button id ='deletarPacote' onclick="{
                                             return confirmDeletePacote();
                                         }" type="submit" class="btn btn-sm"><img src="img/deletePacote.png" style="width: 35%; height: 35%"></button>
-                            <input type='hidden' name ='idpacote' value ='${pacote.idPacote}'>
+                                <input type='hidden' name ='idpacote' value ='${pacote.idPacote}'>
                             </div>
                         </form>  
-                    </div>
+                    </div-->
 
 
                 </div>
@@ -114,20 +116,26 @@
 
             <div class="col-md-8 order-md-1">
                 <div class="row">
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-4 mb-3">
                         <label>Data da Viagem</label>
                         <div class="input-group" title="Data da Viagem">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.dthevento}" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
+                            <input form='pacote' data-toggle="tooltip" value="${pacote.dthevento}" placeholder="dd/mm/aaaa" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
                         </div>
-                        <!--label id ='clientenovo' style='color: red; background-color: transparent; outline: none; border-color: inherit; box-shadow: none;'/-->
                     </div>
+                    <div class="col-md-2 mb-3">
+                        <label>Horário</label>
+                        <div class="input-group" title="Horario de saída">
+                            <input data-toggle="tooltip" value="${pacote.horario}" title="Horario de saída" data-placement="left"  type="time" autocomplete="off" class="form-control" id="horario" name="horario"  required>
+                        </div>
+                    </div>
+
                     <div class="col-md-3 mb-3">
                         <label>Participantes</label>
                         <div class="input-group">
                             <input form='pacote' data-toggle="tooltip" value="${pacote.qtdMax}" title="Quantidade máxima de participantes" data-placement="right" name="qtdmax" autocomplete="off" type="number" class="form-control" id="qtdmax" value="0" required>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-3">
+                    <div class="col-md-3 mb-3">
                         <label>Valor</label>
                         <input form='pacote' name = "valor" data-toggle="tooltip" value="${pacote.valor}" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
                     </div>
@@ -150,11 +158,17 @@
                         </div>
                     </div>
                     <br>
+
                     <div class="col-md-3 mb-3">
                         <label>Pacote ativo?</label>
-                        <select form='pacote' name = "ativo" class="custom-select d-block w-100" id="ativo"  required>
-                            <option>Sim</option>
-                            <option>Não</option>
+                        <select form='pacote' name = "ativo" class="custom-select d-block w-100" id="ativo"  required>                            
+                            <%if (pacote.isAtivo() == true) {%>
+                            <option selected>Sim</option> 
+                            <option>Não</option> 
+                            <%} else {%>
+                            <option>Sim</option> 
+                            <option selected>Não</option> 
+                            <%}%>
                         </select>
                     </div> 
 

@@ -13,7 +13,9 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
@@ -74,6 +76,7 @@ public class pacoteCriar extends HttpServlet {
         tbPacote pacote = new tbPacote();
 
         pacote.setDthevento(m.getParameter("dthevento"));
+        pacote.setHorario(Time.valueOf(m.getParameter("horario")));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));
         pacote.setValor(Double.valueOf(m.getParameter("valor").replace(".", "").replace(",", ".")));
         pacote.setLocalSaida(m.getParameter("localsaida"));

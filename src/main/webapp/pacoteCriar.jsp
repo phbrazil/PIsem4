@@ -58,7 +58,7 @@
     </head>
     <body id="page-top" style="background: #dcdee4">
 
-   <%@include  file="navbarTest.jsp"%>
+        <%@include  file="navbarTest.jsp"%>
 
 
 
@@ -95,12 +95,18 @@
 
                 <div class="col-md-8 order-md-1">
                     <div class="row">
-                        <div class="col-md-5 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label>Data da Viagem</label>
                             <div class="input-group" title="Data da Viagem">
                                 <input data-toggle="tooltip" title="Data da Viagem" data-placement="left" oninput="TamanhoData()" type="date" autocomplete="off" class="form-control" id="dthevento" name="dthevento"  required>
                             </div>
                             <!--label id ='clientenovo' style='color: red; background-color: transparent; outline: none; border-color: inherit; box-shadow: none;'/-->
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <label>Horário</label>
+                            <div class="input-group" title="Horario de saída">
+                                <input data-toggle="tooltip" title="Horario de saída" data-placement="left"  type="time" autocomplete="off" class="form-control" id="horario" name="horario"  required>
+                            </div>
                         </div>
                         <div class="col-md-3 mb-3">
                             <label>Participantes</label>
@@ -108,7 +114,7 @@
                                 <input data-toggle="tooltip" title="Quantidade máxima de participantes" data-placement="right" name="qtdmax" autocomplete="off" type="number" class="form-control" id="qtdmax" value="0" required>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label>Valor</label>
                             <input name = "valor" data-toggle="tooltip" title="Valor do pacote" data-placement="left" type="text" class="form-control" id="valor" value = "0,00" required>
                         </div>

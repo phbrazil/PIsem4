@@ -6,6 +6,7 @@
 package orbis.model.pacote;
 
 import java.io.Serializable;
+import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,17 @@ public class tbPacote implements Serializable {
     private boolean ativo;
     private String dthCadastro;
     private String imagePath;
+    private Time horario;
+
+    public Time getHorario() {
+        return horario;
+    }
+
+    public void setHorario(Time horario) {
+        this.horario = horario;
+    }
+    
+    
 
     public String getImagePath() {
         return imagePath;

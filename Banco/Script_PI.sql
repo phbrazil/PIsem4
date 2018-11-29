@@ -57,7 +57,7 @@ INSERT INTO tbGrupos(nomegrupo, descricao) values ('Compradores', 'Usuarios comp
 
 CREATE TABLE tbCliente(
 id INT NOT NULL AUTO_INCREMENT,
-idendereco INT,
+idendereco INT DEFAULT 1,
 emailcliente VARCHAR (50) UNIQUE NOT NULL,
 nomecliente VARCHAR (50) NOT NULL,
 rgcliente VARCHAR (13) UNIQUE NOT NULL,
@@ -89,7 +89,8 @@ changepassword,idpayment, idgrupo) values ('andremartins98@hotmail.com','Andre M
 
 CREATE TABLE tbPacote(
 idpacote INT NOT NULL AUTO_INCREMENT,
-dthevento VARCHAR (20) NOT NULL,
+dthevento DATE NOT NULL,
+horario TIME NOT NULL DEFAULT 0,
 qtdmax INT NOT NULL,
 valor FLOAT(10,2) NOT NULL,
 localsaida VARCHAR(100) NOT NULL,
@@ -100,11 +101,11 @@ imagePath varchar (1000),
 dthCadastro VARCHAR (20) NOT NULL,
 PRIMARY KEY (idpacote));
 
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,200.00,'sao paulo', 'Bahia','A definir', now());
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,400.00,'sao paulo', 'Ceara','A definir', now());
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,100.00,'sao paulo', 'Brotas','A definir', now());
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,210.00,'sao paulo', 'Canoas','A definir', now());
-insert into tbPacote(dthevento, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(),100,50.00,'sao paulo', 'HueHue','A definir', now());
+insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,200.00,'sao paulo', 'Bahia','A definir', now());
+insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,400.00,'sao paulo', 'Ceara','A definir', now());
+insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,100.00,'sao paulo', 'Brotas','A definir', now());
+insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,210.00,'sao paulo', 'Canoas','A definir', now());
+insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,50.00,'sao paulo', 'HueHue','A definir', now());
 
 
 create table tbImagens(
