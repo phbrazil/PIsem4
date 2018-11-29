@@ -32,13 +32,13 @@ public class tbPacote implements Serializable {
     private boolean ativo;
     private String dthCadastro;
     private String imagePath;
-    private Time horario;
+    private String horario;
 
-    public Time getHorario() {
+    public String getHorario() {
         return horario;
     }
 
-    public void setHorario(Time horario) {
+    public void setHorario(String horario) {
         this.horario = horario;
     }
     

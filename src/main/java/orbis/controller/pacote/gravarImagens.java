@@ -23,6 +23,8 @@ import org.hibernate.cfg.Configuration;
 public class gravarImagens {
 
     public boolean gravar(List<String> imagens, int id) {
+        
+        System.out.println("entrei aqui +++++++++++++++++++++==");
 
         boolean gravado = false;
 

@@ -125,7 +125,7 @@
                     <div class="col-md-2 mb-3">
                         <label>Horário</label>
                         <div class="input-group" title="Horario de saída">
-                            <input data-toggle="tooltip" value="${pacote.horario}" title="Horario de saída" data-placement="left"  type="time" autocomplete="off" class="form-control" id="horario" name="horario"  required>
+                            <input form= 'pacote' data-toggle="tooltip" value="${pacote.horario}" title="Horario de saída" data-placement="left"  type="time" autocomplete="off" class="form-control" id="horario" name="horario"  required>
                         </div>
                     </div>
 

@@ -36,7 +36,6 @@ import org.hibernate.cfg.Configuration;
 @WebServlet(name = "/editar", urlPatterns = {"/editar"})
 public class pacoteEditar extends HttpServlet {
 
-    //private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -47,9 +46,14 @@ public class pacoteEditar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
-        //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
+        //Mac
+        //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        
+        //WINDOWS
+        String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
 
+        //Ubuntu Server
+        //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
         response.setContentType(
                 "text/html");
         PrintWriter out = response.getWriter();
@@ -71,6 +75,7 @@ public class pacoteEditar extends HttpServlet {
 
         pacote.setIdPacote(idpacote);
         pacote.setDthevento(m.getParameter("dthevento"));
+        pacote.setHorario(m.getParameter("horario"));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));
         pacote.setValor(Double.valueOf(m.getParameter("valor").replace(".", "").replace(",", ".")));
         pacote.setLocalSaida(m.getParameter("localsaida"));
@@ -113,14 +118,24 @@ public class pacoteEditar extends HttpServlet {
             List<FileItem> multiparts = new ServletFileUpload(
                     new DiskFileItemFactory()).parseRequest(request);
 
-            //criar pasta com id do banco                
-            //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+            //criar pasta com id do banco             
+            //UBUNTU SERVER
             //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
-            File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote));
+            
+            //MAC
+            //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote));
+            
+            //WINDOWS
+            File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\"+String.valueOf(idpacote));
 
-            //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+            //UBUNTU SERVER
             //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
-            UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote);
+            
+            //MAC
+            //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote);
+            
+            //WINDOWS
+            UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(idpacote);
 
             if (!file.exists()) {
                 if (file.mkdir()) {
@@ -129,18 +144,13 @@ public class pacoteEditar extends HttpServlet {
                     System.out.println("Failed to create directory!");
                 }
             }
-
-//            //inserir na nova pasta criada
-//           File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-////            //File fileToMove = new File("/home/opportunity/orbis/temp");                
-//
-//            //fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
-//            fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
-//
-//            File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
-////            //File temp = new File("/home/opportunity/orbis/temp/");
-//            temp.mkdir();
-            File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+            
+            //MAC
+            //File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+            
+            //WINDOWS
+            File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
+            
             File dest = new File(UPLOAD_DIRECTORY);
 
             try {

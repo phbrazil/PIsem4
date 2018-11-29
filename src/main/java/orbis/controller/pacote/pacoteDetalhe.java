@@ -37,8 +37,6 @@ public class pacoteDetalhe extends HttpServlet {
 
         Integer destino = Integer.valueOf(request.getParameter("destino"));
         
-        System.out.println("chegou aqui "+destino);
-
         //popula o model com os dados
         tbPacote pacote;
 

@@ -33,6 +33,7 @@ import orbis.model.pacote.tbPacote;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -45,7 +46,6 @@ import org.hibernate.cfg.Configuration;
 @WebServlet(name = "/criar", urlPatterns = {"/criar"})
 public class pacoteCriar extends HttpServlet {
 
-    //private String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -56,8 +56,12 @@ public class pacoteCriar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        //MAC
+        //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
+        //UBUNTU SERVER
         //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
+        //WINDOWS
+        String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
 
         response.setContentType(
                 "text/html");
@@ -76,7 +80,7 @@ public class pacoteCriar extends HttpServlet {
         tbPacote pacote = new tbPacote();
 
         pacote.setDthevento(m.getParameter("dthevento"));
-        pacote.setHorario(Time.valueOf(m.getParameter("horario")));
+        pacote.setHorario(m.getParameter("horario"));
         pacote.setQtdMax(Integer.valueOf(m.getParameter("qtdmax")));
         pacote.setValor(Double.valueOf(m.getParameter("valor").replace(".", "").replace(",", ".")));
         pacote.setLocalSaida(m.getParameter("localsaida"));
@@ -124,13 +128,19 @@ public class pacoteCriar extends HttpServlet {
                         new DiskFileItemFactory()).parseRequest(request);
 
                 //criar pasta com id do banco                
-                //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id));
+                //UBUNTU SERVER
                 //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
-                File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
+                //MAC
+                //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
+                //WINDOWS
+                File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id));
 
-                //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/imagens/" + String.valueOf(id);
+                //UBUNTU SERVER
                 //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
-                UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
+                //MAC
+                //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
+                //WINDOWS
+                UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id);
 
                 if (!file.exists()) {
                     if (file.mkdir()) {
@@ -141,15 +151,38 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //inserir na nova pasta criada
-                File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-                //File fileToMove = new File("/home/opportunity/orbis/temp");                
+                //MAC
+                //File fileToMove = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
+                //UBUNTU SERVER
+                //File fileToMove = new File("/home/opportunity/orbis/temp");    
+                //WINDOWS
+                //File fileToMove = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
+                //fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
+                
+                //WINDOWS
+                File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
 
-                fileToMove.renameTo(new File(UPLOAD_DIRECTORY));
+                File dest = new File(UPLOAD_DIRECTORY);
 
-                File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                try {
+                    FileUtils.copyDirectory(source, dest);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                //MAC
+                //File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
+                //UBUNTU SERVER
                 //File temp = new File("/home/opportunity/orbis/temp/");
-                temp.mkdir();
+                
+                  //WINDOWS
+                File temp = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp\\");
 
+                try {
+                    FileUtils.deleteDirectory(temp);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 List<String> nomeImagem = new ArrayList<>();
 
                 // gravar nomes das fotos
@@ -187,7 +220,7 @@ public class pacoteCriar extends HttpServlet {
                 }
 
                 //File uploaded successfully
-                String pathModal = "gerenciarPacotes.jsp";
+                String pathModal = "pacote?destino="+id;
                 String mensagem = "Novo pacote criado com sucesso!";
                 request.setAttribute("path", pathModal);
                 out.println("<script type='text/javascript'>");
@@ -196,7 +229,7 @@ public class pacoteCriar extends HttpServlet {
 
             } catch (Exception ex) {
                 String pathModal = "gerenciarPacotes.jsp";
-                String mensagem = "Ocorreu um erro "+ex+". Favor tentar novamente";
+                String mensagem = "Ocorreu um erro " + ex + ". Favor tentar novamente";
                 request.setAttribute("path", pathModal);
                 out.println("<script type='text/javascript'>");
                 out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
