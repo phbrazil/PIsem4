@@ -87,14 +87,10 @@ public class pacoteConsultaId extends HttpServlet {
             sf.close();
 
         }
-        
-        listarImagens imagens = new listarImagens();
-        List<tbImagens> imagensLista = imagens.listar(idpacote);
 
         request.setAttribute("pacote", pacote);
-        request.setAttribute("imagens", imagensLista);
-        
-        request.getRequestDispatcher("pacoteEditar.jsp").forward(request, response);
+
+        request.getRequestDispatcher("clienteEditar.jsp").forward(request, response);
 
     }
 

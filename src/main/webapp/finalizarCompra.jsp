@@ -48,11 +48,15 @@
                                 </div>
                                 <span class="text-muted"><%=formatoMoeda.format(pacote.getValor())%></span>
                             </li>
-
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>Quantidade</span>
+                                <input type="number" name="quantidade" onchange="calcularIngressos(this.value)" min='1' value='1' max='<%=pacote.getQtdMax()%>'/>
+                            </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (BRL)</span>
-                                <strong><%=formatoMoeda.format(pacote.getValor())%></strong>
+                                <input class='input-group-sm' type='text' readonly value='<%=formatoMoeda.format(pacote.getValor()).replace("R$", "")%>' name = 'total' id='total'>
                                 <input type="hidden" name="valor" value="<%=pacote.getValor()%>"/>
+                                <input type="hidden" name="valor" id='valor' value="<%=formatoMoeda.format(pacote.getValor()).replace("R$","")%>"/>
                                 <input type="hidden" name="localSaida" value="<%=pacote.getLocalSaida()%>"/>
                                 <input type="hidden" name="localDestino" value="<%=pacote.getLocalDestino()%>"/>
                                 <input type="hidden" name="roteiro" value="<%=pacote.getRoteiro()%>"/>
@@ -125,17 +129,17 @@
                         <button class="btn btn-primary btn-lg btn-block" type="submit">Finalizar</button>
                     </div>
                 </div>
-
-
-                <footer class="my-5 pt-5 text-muted text-center text-small">
-                    <a href="termo"><span class="text-primary">Sobre Orbis</span></a>
-                    <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-                    <a href="termo"><span class="text-primary">Política de Uso</span></a>
-                    <p class="mb-0">&copy; Orbis Eu Vou</p>
-                </footer>
             </div>
         </body>
+
     </form>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <a href="termo"><span class="text-primary">Sobre Orbis</span></a>
+        <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
+        <a href="termo"><span class="text-primary">Política de Uso</span></a>
+        <p class="mb-0">&copy; Orbis Eu Vou</p>
+    </footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -146,6 +150,7 @@
     <script src="dist/js/"></script>
     <script src="../../assets/js/vendor/holder.min.js"></script>
     <script src="js/boletoCredito.js"></script>
+    <script src="js/formatarMoeda.js"></script>
 
     <script>
                                     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -184,6 +189,20 @@
             font-weight: bold;
         }
     </style>
+
+    <script>
+        function calcularIngressos(quantidade) {
+
+            var valor = converteMoedaFloat(document.getElementById('valor').value);
+            
+            console.log(total);
+            console.log(quantidade);
+
+            document.getElementById('total').value = converteFloatMoeda(valor*quantidade);
+
+        }
+
+    </script>
 
 </body>
 </html>

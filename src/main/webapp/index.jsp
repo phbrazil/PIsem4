@@ -286,9 +286,13 @@
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+<<<<<<< HEAD
 
           <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
 
+=======
+          <a class="dropdown-item" href="minhasCompras">Minha conta</a>
+>>>>>>> 145beecb121df2cffabea87432a346cd84282e9c
           <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
           <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
@@ -374,6 +378,7 @@
                             <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                        <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
                         <p class="card-text"><%=pacote.getRoteiro()%></p>
                     </div>
                     <div class="card-footer">

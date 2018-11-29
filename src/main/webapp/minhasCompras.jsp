@@ -210,7 +210,8 @@
                             <h4 class="card-title">
                                 <a href="pacote?destino=<%=compra.getIdpacote()%>" style="text-decoration: none">Ver Detalhe</a>
                             </h4>
-                            <h5>Valor do Pacote: <%=formatoMoeda.format(compra.getTotal())%></h5>
+                            <h5>Valor total: <%=formatoMoeda.format(compra.getTotal())%></h5>
+                            <h5>Quantidade: <%=compra.getIngressos()%></h5>
                             <h5>Data da compra: <%=compra.getDthvenda()%></h5>
                             <h5>Protocolo: <%=compra.getId()%></h5>
                             <h5>Tipo Pagamento: <%=compra.getTipoPagamento()%></h5>
