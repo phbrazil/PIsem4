@@ -74,6 +74,7 @@ public class finalizarCompra extends HttpServlet {
         venda.setTotal(total);
         venda.setIdpacote(idpacote);
         venda.setTipoPagamento(tipoPagamento);
+        venda.setIngressos(quantidade);
 
         ingressos.setValor(valor);
         ingressos.setDthvenda(String.valueOf(datavenda));

@@ -27,6 +27,17 @@ public class tbVenda implements Serializable {
     private String dthvenda;
     private double total;
     String tipoPagamento;
+    int ingressos;
+
+    public int getIngressos() {
+        return ingressos;
+    }
+
+    public void setIngressos(int ingressos) {
+        this.ingressos = ingressos;
+    }
+    
+    
 
     public String getTipoPagamento() {
         return tipoPagamento;
