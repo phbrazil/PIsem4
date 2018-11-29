@@ -20,7 +20,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title" style="color: black;"><strong><img src="img/orbis_logo.png" style="width: 20%;height: 20%"> Orbis</strong></h4>
+                            <h4 class="modal-title" style="color: black;"><strong><img src="img/orbis_logo.png" style="width: 20%;height: 20%"></strong></h4>
                         </div>
                         <div class="modal-body">
                             <p><strong>${mensagem}</strong></p>

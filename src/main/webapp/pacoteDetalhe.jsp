@@ -6,6 +6,27 @@
 <%@page import="java.text.NumberFormat"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
 <!DOCTYPE html>
+
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String userAgent = request.getHeader("user-agent");
+
+    HttpSession sessao = request.getSession();
+
+    String nomeUser = (String) sessao.getAttribute("nomeUser");
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
+
+    boolean mobile = false;
+    if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+            || userAgent.toUpperCase().contains("MOBILE")) {
+        mobile = true;
+    } else {
+        mobile = false;
+
+    }
+    sessao.setAttribute("mobile", mobile);
+
+%>
 <html lang="en">
 
     <head>
@@ -25,37 +46,10 @@
 
     </head>
 
-    <body class="bg-dark">
+    <body style="background: #dcdee4">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-light text-dark fixed-top">
-
-            <div class="container">
-
-                <a class="navbar-brand" href="index.jsp">
-                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
-                </a>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">Mais pacotes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" href="#">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+  <%@include  file="navbarTest.jsp"%>
         <%
             tbPacote pacote = (tbPacote) request.getAttribute("pacote");
 
@@ -67,8 +61,6 @@
 
             NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                     new Locale("pt", "BR"));
-
-            Boolean mobile = (Boolean) session.getAttribute("mobile");
 
         %>
         <!-- Page Content -->
@@ -144,7 +136,7 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
                                 <small class="text-muted">Posted by Anonymous on 3/1/17</small>
                                 <hr>
-                                <a href="#" class="btn btn-success">Deixe um coment·rio</a>
+                                <a href="#" class="btn btn-success">Deixe um coment√°rio</a>
                             </div>
                         </div>
 

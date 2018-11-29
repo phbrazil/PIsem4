@@ -123,6 +123,7 @@ dthvenda VARCHAR(20) NOT NULL,
 total FLOAT(10,2) NOT NULL,
 idpacote INT NOT NULL,
 tipoPagamento varchar(20) NOT NULL,
+ingressos int NOT NULL,
 PRIMARY KEY (id),
 FOREIGN KEY (idpacote) REFERENCES tbPacote (idpacote),
 FOREIGN KEY (idcliente) REFERENCES tbCliente (id));

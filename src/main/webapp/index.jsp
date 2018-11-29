@@ -42,7 +42,6 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
@@ -178,7 +177,7 @@
         }
     </script>
     
-    <body class="bg-light">
+    <body style="background: #dcdee4">
     
 
 <!-- Insira o nav aqui -->
@@ -191,19 +190,20 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
+                <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
                     <ul class="navbar-nav mr-auto">
                         
                     <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
 
                             <!--end of col-->
-                            <div class="mr-1">
-                                <input id="query" name="busca" class="form-control" type="search" required placeholder="Experimente: ''Arraial''">
+                            <div class="mr-2">
+                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
                             </div>
                             <!--end of col-->
                             <div class="">
-                                <button class="btn btn-outline-success" type="submit">Buscar</button>
+                                <button class="btn btn-outline-success" type="submit"><img src="img/search_icon.png" width="25" height="25" class="d-inline-block align-top" alt=""></button>
                             </div>
+                            <span class="glyphicon glyphicon-search"></span>
 
                         </form>
                     
@@ -212,17 +212,21 @@
  <%if (nomeUser == null) {
 
     %>
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-10">
+        
 
-     <li class="nav-item dropdown">
+     <div class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown user
+          Menu
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Criar Conta</a>
-          <a class="dropdown-item" href="login.jsp">Já tenho Conta</a>
+          <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+
         </div>
-      </li>
+      </div>
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -276,18 +280,21 @@
             
     <%} else {%>
 
-     <li class="nav-item dropdown">
+     <div class="nav-item dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Olá <%=nomeUser%>
         </button>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
+          <a class="dropdown-item" href="minhasCompras">Minha conta</a>
+          <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
-          <a class="dropdown-item" href="gerenciarPacotes.jsp">Gerenciar Pacotes</a>
+          <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
           <%}%>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
           <a class="dropdown-item" href="sair.jsp">Sair</a>
         </div>
-      </li>
+      </div>
       
       <%}%>
     
@@ -364,6 +371,7 @@
                             <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
                         </h4>
                         <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                        <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
                         <p class="card-text"><%=pacote.getRoteiro()%></p>
                     </div>
                     <div class="card-footer">

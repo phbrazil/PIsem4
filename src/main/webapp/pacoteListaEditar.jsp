@@ -180,7 +180,7 @@
 
     %>
 
-<body class="bg-light">
+<body class="bg-light" style="background: #dcdee4">
 
 
     <%} else {%>

@@ -1,4 +1,25 @@
 <!DOCTYPE html>
+
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String userAgent = request.getHeader("user-agent");
+
+    HttpSession sessao = request.getSession();
+
+    String nomeUser = (String) sessao.getAttribute("nomeUser");
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
+
+    boolean mobile = false;
+    if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+            || userAgent.toUpperCase().contains("MOBILE")) {
+        mobile = true;
+    } else {
+        mobile = false;
+
+    }
+    sessao.setAttribute("mobile", mobile);
+
+%>
 <html lang="en">
 
     <head>
@@ -18,35 +39,11 @@
 
     </head>
 
-    <body>
+    <body style="background: #dcdee4">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">Orbis - Gerenciar Pacotes</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.jsp">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Mais Pacotes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+  <%@include  file="navbarTest.jsp"%>
+  
         <br>
         <br>
         <br>
@@ -73,7 +70,7 @@
                 </div-->
                 <div class="col-lg-2 col-sm-6 text-center mb-4">
                     <img class="rounded-circle img-fluid d-block mx-auto" src="img/reportsPacotes.jpeg" alt="">
-                    <h3>Relatórios
+                    <h3>RelatÃ³rios
                     </h3>
                 </div>
 
@@ -86,7 +83,7 @@
         <footer class="my-5 pt-5 text-muted text-center text-small">
             <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
             <a href="termo"><span class="text-primary">Termo de Cancelamento</span></a>
-            <a href="termo"><span class="text-primary">Política de Uso</span></a>
+            <a href="termo"><span class="text-primary">PolÃ­tica de Uso</span></a>
             <p class="mb-0">&copy; Orbis Eu Vou</p>
         </footer>
 

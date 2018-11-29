@@ -3,11 +3,24 @@
  * @author paulo.bezerra
  *-->
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+    String userAgent = request.getHeader("user-agent");
+
     HttpSession sessao = request.getSession();
 
-    boolean mobile = (Boolean) sessao.getAttribute("mobile");
+    String nomeUser = (String) sessao.getAttribute("nomeUser");
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
+
+    boolean mobile = false;
+    if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
+            || userAgent.toUpperCase().contains("MOBILE")) {
+        mobile = true;
+    } else {
+        mobile = false;
+
+    }
+    sessao.setAttribute("mobile", mobile);
 
 %>
 <!DOCTYPE html>
@@ -51,34 +64,10 @@
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <title>Consultar Projeto</title>
     </head>
-    <body id="page-top">
+    <body id="page-top" style="background: #dcdee4">
 
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <div class="container">
-                <a class="navbar-brand" href="#">Orbis - Gerenciar Pacotes</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.jsp">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sobre</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Mais Pacotes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contato</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+    <%@include  file="navbarTest.jsp"%>
+    
         <br>
         <form name = "consultaPacote" action="${pageContext.request.contextPath}/consulta" method="POST" >
 

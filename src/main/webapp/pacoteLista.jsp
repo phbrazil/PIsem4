@@ -14,6 +14,7 @@
     HttpSession sessao = request.getSession();
 
     String nomeUser = (String) sessao.getAttribute("nomeUser");
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
@@ -26,6 +27,7 @@
     sessao.setAttribute("mobile", mobile);
 
 %>
+
 
 <head>
     <title>Orbis Eu Vou</title>
@@ -155,20 +157,57 @@
             }
         }
     </style>
-    <%if (nomeUser == null) {
+    
+    <body style="background: #dcdee4">
+    
+
+<!-- Insira o nav aqui -->
+<nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
+
+                <a class="navbar-brand" href="index.jsp">
+                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
+                    <ul class="navbar-nav mr-auto">
+                        
+                    <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
+
+                            <!--end of col-->
+                            <div class="mr-2">
+                                <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
+                            </div>
+                            <!--end of col-->
+                            <div class="">
+                                <button class="btn btn-outline-success" type="submit"><img src="img/search_icon.png" width="25" height="25" class="d-inline-block align-top" alt=""></button>
+                            </div>
+                            <span class="glyphicon glyphicon-search"></span>
+
+                        </form>
+                    
+                    </ul>
+
+ <%if (nomeUser == null) {
 
     %>
+    <ul class="navbar-nav ml-10">
+        
 
+     <div class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Menu
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+          <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
 
-
-<body class="bg-light">
-    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-    <button onclick="{
-                location = 'acessar.jsp';
-            }" style="width:auto; float: right">Já tenho Conta</button>
-    <button onclick="{
-                location = 'index.jsp';
-            }" style="width:auto; float: right">Início</button>    
+        </div>
+      </div>
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
@@ -177,23 +216,18 @@
                 <h1>Criar Conta</h1>
                 <p>Preencha os dados para criar sua conta.</p>
                 <hr>
+                
+                <label for="nome"><b>Nome</b></label>
+                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
+                
                 <label for="email"><b>Email</b></label>
                 <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
 
-                <label for="psw"><b>Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
-
-                <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
-
                 <label for="cpf"><b>RG</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="14" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
 
                 <label for="cpf"><b>CPF</b></label>
                 <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
-
-                <label for="nome"><b>Nome</b></label>
-                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
 
                 <label for="sexo"><b>Sexo</b></label>
                 <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
@@ -202,11 +236,17 @@
                 </div>
 
                 <label for="telefone"><b>Telefone</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="telefone" id = 'telefone'>
+                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
 
                 <label for="celular"><b>Celular</b></label>
                 <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
 
+                <label for="psw"><b>Senha</b></label>
+                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
+
+                <label for="psw-repeat"><b>Confirmar Senha</b></label>
+                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
+                
                 <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
 
                 <div class="clearfix">
@@ -218,22 +258,30 @@
             </div>
         </form>
     </div>
-
+            
     <%} else {%>
 
-    <button onclick="{
-                location = 'sair.jsp';
-            }" style="width:auto; float: right">Sair</button>
-    <button onclick="{
-                location = 'minhasCompras';
-            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-    <button onclick="{
-                location = 'index.jsp';
-            }" style="width:auto; float: right">Início</button>    
+     <div class="nav-item dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Olá <%=nomeUser%>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="minhasCompras.jsp">Minhas compras</a>
+           <%if (idgrupo == 1) {%>
+          <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
+          <%}%>
+          <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+          <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+          <a class="dropdown-item" href="sair.jsp">Sair</a>
+        </div>
+      </div>
+      
+      <%}%>
+    
+            </ul>
+        </div>
 
-
-
-    <%}%>
+</nav>
 
     <script>
         // Get the modal
@@ -246,34 +294,12 @@
         }
     </script>
 
-    <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm">
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
-                        </div>
-                        <!--end of col-->
-                        <div class="col">
-                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" required placeholder="Vai aonde?">
-                        </div>
-                        <!--end of col-->
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                        </div>
-                        <!--end of col-->
-                    </div>
-                </form>
-            </div>
-            <!--end of col-->
-        </div>
-    </form>
+   
 
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 
 
-        <div align='center'>
+        <div align='center' style="margin-top: 6%">
 
             <div class="row" style="width: 90%; height: 90%;">
 
