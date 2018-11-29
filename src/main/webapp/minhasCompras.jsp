@@ -15,6 +15,7 @@
     HttpSession sessao = request.getSession();
 
     String nomeUser = (String) sessao.getAttribute("nomeUser");
+    Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
@@ -156,85 +157,9 @@
             }
         }
     </style>
-    <%if (nomeUser == null) {
-
-    %>
 
 
 
-<body class="bg-light">
-    <button onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-    <button onclick="{
-                location = 'acessar.jsp';
-            }" style="width:auto; float: right">Já tenho Conta</button>
-    <button onclick="{
-                location = 'index.jsp';
-            }" style="width:auto; float: right">Início</button>    
-
-    <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
-        <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
-            <div class="container">
-                <h1>Criar Conta</h1>
-                <p>Preencha os dados para criar sua conta.</p>
-                <hr>
-                <label for="email"><b>Email</b></label>
-                <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
-
-                <label for="psw"><b>Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
-
-                <label for="psw-repeat"><b>Confirmar Senha</b></label>
-                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
-
-                <label for="cpf"><b>RG</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="14" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
-
-                <label for="cpf"><b>CPF</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
-
-                <label for="nome"><b>Nome</b></label>
-                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
-
-                <label for="sexo"><b>Sexo</b></label>
-                <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
-                    <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
-                    <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
-                </div>
-
-                <label for="telefone"><b>Telefone</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="telefone" id = 'telefone'>
-
-                <label for="celular"><b>Celular</b></label>
-                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
-
-                <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
-
-                <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
-                    <button type="submit" class="signupbtn" onclick="{
-                                return ConfirmPassword();
-                            }">Criar</button>
-                </div>
-            </div>
-        </form>
-    </div>
-
-    <%} else {%>
-
-    <button onclick="{
-                location = 'sair.jsp';
-            }" style="width:auto; float: right">Sair</button>
-    <button onclick="{
-                location = 'minhasCompras?';
-            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-    <button onclick="{
-                location = 'index.jsp';
-            }" style="width:auto; float: right">Início</button>    
-
-
-
-    <%}%>
 
     <script>
         // Get the modal
@@ -247,41 +172,19 @@
         }
     </script>
 
-    <form  name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8">
-                <form class="card card-sm">
-                    <div class="card-body row no-gutters align-items-center">
-                        <div class="col-auto">
-                            <i class="fas fa-search h4 text-body"></i>
-                        </div>
-                        <!--end of col-->
-                        <div class="col">
-                            <input id="query" name="busca" class="form-control form-control-lg form-control-borderless" type="search" required placeholder="Vai aonde?">
-                        </div>
-                        <!--end of col-->
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-success" type="submit">Buscar</button>
-                        </div>
-                        <!--end of col-->
-                    </div>
-                </form>
-            </div>
-            <!--end of col-->
-        </div>
-    </form>
-
-    <div class="py-5 text-center">
-        <h2 class="text-muted">Minhas Compras</h2>
-    </div>
-
+ <body style="background: #dcdee4">
+    
+      <%@include  file="navbarTest.jsp"%>
 
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 
 
-        <div align='center'>
-
-
+        <div align='center' >
+            
+               <div class="py-5 mt-5 text-center">
+                 <h2 class="text-muted">Minhas Compras</h2>
+               </div>
+            
             <div class="row" style="width: 90%; height: 90%;">
 
                 <%
