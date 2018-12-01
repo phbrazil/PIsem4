@@ -21,7 +21,8 @@ public class deletarImagens {
 
     public boolean deletar(int idImagem) {
 
-        String home = System.getProperty("user.home");
+        //String home = System.getProperty("user.home");
+        String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps";
 
         boolean deletado = false;
 
@@ -42,7 +43,7 @@ public class deletarImagens {
             //WINDOWS
             //File foto = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(imagem.getIdPacote()+"\\"+imagem.getNomeImagem()));
             //UBUNTU
-            File foto = new File(home+"/orbis/imagens/" + String.valueOf(imagem.getIdPacote() + "/" + imagem.getNomeImagem()));
+            File foto = new File(home + "/orbis/img/imagens/" + String.valueOf(imagem.getIdPacote() + "/" + imagem.getNomeImagem()));
             foto.delete();
             session.delete(imagem);
 
@@ -54,6 +55,7 @@ public class deletarImagens {
             if (session != null) {
                 session.close();
                 sf.close();
+                System.out.println("Imagem deletada");
             }
         }
 

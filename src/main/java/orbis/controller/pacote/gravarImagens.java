@@ -59,6 +59,7 @@ public class gravarImagens {
                     if (session != null) {
                         session.close();
                         sf.close();
+                        System.out.println("Imagens Gravadas no Banco");
                     }
                 }
             }

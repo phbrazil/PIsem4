@@ -56,13 +56,13 @@ public class pacoteCriar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-            String home = System.getProperty("user.home");
-
+            //String home = System.getProperty("user.home");
+            String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps";
 
         //MAC
         //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
         //UBUNTU SERVER
-        String UPLOAD_DIRECTORY = home+"/orbis/temp/";
+        String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
         //WINDOWS
         //String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
 
@@ -132,14 +132,14 @@ public class pacoteCriar extends HttpServlet {
 
                 //criar pasta com id do banco                
                 //UBUNTU SERVER
-                File file = new File(home+"/orbis/imagens/" + String.valueOf(id));
+                File file = new File(home+"/orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
                 //MAC
                 //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
                 //WINDOWS
                 //File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id));
 
                 //UBUNTU SERVER
-                UPLOAD_DIRECTORY = home+"/orbis/imagens/" + String.valueOf(id);
+                UPLOAD_DIRECTORY = home+"/orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
                 //MAC
                 //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
                 //WINDOWS
@@ -153,7 +153,7 @@ public class pacoteCriar extends HttpServlet {
                     }
                 }
                 //UBUNTU
-                File source = new File(home+"/orbis/temp");
+                File source = new File("/home/opportunity/orbis/temp");
 
                 
                 //MAC
@@ -166,6 +166,7 @@ public class pacoteCriar extends HttpServlet {
 
                 try {
                     FileUtils.copyDirectory(source, dest);
+                    System.out.println("Fotos copiadas da temp para imagens");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -174,13 +175,14 @@ public class pacoteCriar extends HttpServlet {
                 //File temp = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp/");
                 
                 //UBUNTU SERVER
-                File temp = new File(home+"/orbis/temp/");
+                File temp = new File("/home/opportunity/orbis/temp/");
                 
                   //WINDOWS
                 //File temp = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp\\");
 
                 try {
                     FileUtils.deleteDirectory(temp);
+                    System.out.println("Pasta temp deletada");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -194,10 +196,11 @@ public class pacoteCriar extends HttpServlet {
                 File dir = new File(dirPath);
                 String[] files = dir.list();
                 if (files.length == 0) {
-                    System.out.println("The directory is empty");
+                    System.out.println("Pasta de imagens vazia");
                 } else {
                     for (String aFile : files) {
                         nomeImagem.add(String.valueOf(aFile));
+                        System.out.println("Imagem "+aFile+" adicionada na lista");
 
                     }
                 }
