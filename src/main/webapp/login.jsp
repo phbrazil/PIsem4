@@ -185,11 +185,11 @@
                 </div>
             </div>
         </form>
-<!--        <div align="center">
-            <div class="col-md-5 mb-3">
-                <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
-            </div>
-        </div>-->
+        <!--        <div align="center">
+                    <div class="col-md-5 mb-3">
+                        <button class="btn btn-lg btn-secondary btn-block" onclick="document.getElementById('id01').style.display = 'block'" style="width:auto; float: right">Criar Conta</button>
+                    </div>
+                </div>-->
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
             <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">

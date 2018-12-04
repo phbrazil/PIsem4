@@ -57,7 +57,7 @@ public class pacoteCriar extends HttpServlet {
             throws ServletException, IOException {
         
             //String home = System.getProperty("user.home");
-            String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps";
+            String home = "/imagens/";
 
         //MAC
         //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
@@ -132,24 +132,25 @@ public class pacoteCriar extends HttpServlet {
 
                 //criar pasta com id do banco                
                 //UBUNTU SERVER
-                File file = new File(home+"/orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
+                File file = new File(home + String.valueOf(id));
                 //MAC
                 //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id));
                 //WINDOWS
                 //File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id));
 
                 //UBUNTU SERVER
-                UPLOAD_DIRECTORY = home+"/orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
+                UPLOAD_DIRECTORY = home + String.valueOf(id);
                 //MAC
                 //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(id);
                 //WINDOWS
                 //UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(id);
 
                 if (!file.exists()) {
+                    System.out.println("entrei na criacao da pasta");
                     if (file.mkdir()) {
-                        System.out.println("Directory is created!");
+                        System.out.println("Diretório criado no caminho "+String.valueOf(file));
                     } else {
-                        System.out.println("Failed to create directory!");
+                        System.out.println("Falha ao criar o diretório "+String.valueOf(file));
                     }
                 }
                 //UBUNTU
@@ -188,6 +189,7 @@ public class pacoteCriar extends HttpServlet {
                 }
                 
                 temp.mkdir();
+                System.out.println("Pasta temp criada novamente");
                 
                 List<String> nomeImagem = new ArrayList<>();
 
@@ -210,7 +212,7 @@ public class pacoteCriar extends HttpServlet {
                 boolean gravado = gravarImagens.gravar(nomeImagem, id);
 
                 //ATUALIZAR PATH NO BANCO
-                pacote.setImagePath("img/imagens/" + id + "/");
+                pacote.setImagePath("/imagens/" + id + "/");
                 try {
                     //inicia a transacao com o banco
                     Transaction tx = session.beginTransaction();
