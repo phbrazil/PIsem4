@@ -139,20 +139,20 @@
                         </div>
 
                     </div>
-                                            <div class="col-md-5 mb-3">
-                            <label>Referencia</label>
-                            <input name ="referencia" type="text" class="form-control" id="referencia" placeholder="Referencia" size = "35" maxlength ="35">
-                            <div class="invalid-feedback">
-                                Favor inserir a Cidade.
-                            </div>
+                    <div class="col-md-5 mb-3">
+                        <label>Referencia</label>
+                        <input name ="referencia" type="text" class="form-control" id="referencia" placeholder="Referencia" size = "35" maxlength ="35">
+                        <div class="invalid-feedback">
+                            Favor inserir a Cidade.
                         </div>
+                    </div>
 
 
                 </div>
                 <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
                             return confirmCadastroCliente();
                         }" name = "gravarcliente"><span data-feather="save"></span> Finalizar Cadastro</button>
-            <input type="hidden" name="idcliente" value="${idcliente}">
+                <input type="hidden" name="idcliente" value="${idcliente}">
             </div>
             <footer class="my-5 pt-5 text-muted text-center text-small">
                 <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>

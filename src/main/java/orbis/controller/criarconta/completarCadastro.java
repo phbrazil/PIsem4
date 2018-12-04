@@ -58,6 +58,8 @@ public class completarCadastro extends HttpServlet {
         }
 
         if (cliente.isCadastroIncompleto() == true) {
+            
+            System.out.println("cadastro incompleto");
 
             request.setAttribute("nome", cliente.getNomeCliente());
             request.setAttribute("email", cliente.getEmailCliente());
@@ -66,6 +68,7 @@ public class completarCadastro extends HttpServlet {
             request.getRequestDispatcher("clienteCompletarCadastro.jsp").forward(request, response);
 
         } else {
+            System.out.println("cadastro completo");
             PrintWriter out = response.getWriter();
             String path = "index.jsp";
             String mensagem = "Seu cadastro já foi finalizado anteriormente";
@@ -73,8 +76,6 @@ public class completarCadastro extends HttpServlet {
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
             out.println("</script>");
-
-            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
     }
