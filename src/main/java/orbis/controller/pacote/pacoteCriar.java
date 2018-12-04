@@ -57,8 +57,8 @@ public class pacoteCriar extends HttpServlet {
             throws ServletException, IOException {
         
             //String home = System.getProperty("user.home");
-            String home = "/opt/tomcat7/webapps/imagens/";
-            //String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/imagens/";
+            //String home = "/opt/tomcat7/webapps/imagens/";
+            String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/imagens/";
             
             
 
