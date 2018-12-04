@@ -34,7 +34,7 @@ public class listarPacotes {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            pacotes = session.createQuery("FROM tbPacote where ativo = true and qtdmax >1").list();
+            pacotes = session.createQuery("FROM tbPacote where ativo = true and qtdmax >=1").list();
 
             //comita as informacoes
             tx.commit();

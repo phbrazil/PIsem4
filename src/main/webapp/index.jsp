@@ -252,10 +252,10 @@
                             <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
 
                             <label for="cpf"><b>RG</b></label>
-                            <input type="text" onkeydown="javascript: fMasc(this, mRG());" maxlength="9" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+                            <input type="text" onkeydown="javascript: fMasc(this, mRG);" maxlength="15" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
 
                             <label for="cpf"><b>CPF</b></label>
-                            <input type="text" onkeydown="javascript: fMasc(this, mCPF());" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+                            <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
 
                             <label for="sexo"><b>Sexo</b></label>
                             <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
@@ -264,10 +264,10 @@
                             </div>
 
                             <label for="telefone"><b>Telefone</b></label>
-                            <input type="text" onkeydown="javascript: fMasc(this, mTel());" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
+                            <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
 
                             <label for="celular"><b>Celular</b></label>
-                            <input type="text" onkeydown="javascript: fMasc(this, mTel());" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
+                            <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
 
                             <label for="psw"><b>Senha</b></label>
                             <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
