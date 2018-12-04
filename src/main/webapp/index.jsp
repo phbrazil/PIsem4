@@ -332,15 +332,16 @@
                         List<tbPacote> pacotes = listar.listar();
                         List<tbImagens> imagens;
 
-                        int i = 0;
+                        
 
                         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                                 new Locale("pt", "BR"));
 
                         if (pacotes.size() > 0) {
 
-                            for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                                tbPacote pacote = (tbPacote) iterator.next();
+                            //for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                            for(int i=0;i<pacotes.size();i++){
+                                tbPacote pacote = (tbPacote) pacotes.get(i);
                                 imagens = listarImagens.listar(pacote.getIdPacote());
 
 
@@ -390,7 +391,7 @@
                     </div>
 
                     <%
-                            i++;
+                          imagens=null;  
 
                         }
                     } else {
