@@ -56,7 +56,7 @@
 
                     <div class="col-md-3 mb-3">
                         <label>CEP</label>
-                        <input name ="cep" autocomplete="off" type="text" class="form-control" id="cep"   placeholder="00000000" size="10" maxlength="8" onblur="pesquisacep(this.value);">
+                        <input name ="cep" autocomplete="off" type="text" class="form-control" id="cep"   placeholder="00000000" size="10" maxlength="8" required onblur="pesquisacep(this.value);">
                         <div class="invalid-feedback">
                             CEP obrigatório
                         </div>
@@ -64,7 +64,7 @@
 
                     <div class="col-md-8 mb-3">
                         <label>Rua</label>
-                        <input name ="rua" type="text" class="form-control" id="rua"  size="60" maxlength ="50">
+                        <input name ="rua" type="text" class="form-control" id="rua" required size="60" maxlength ="50">
 
                         <div class="invalid-feedback">
                             Favor inserir a Rua
@@ -72,7 +72,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Número</label>
-                        <input name ="numero" type="text" class="form-control" id="numero" size="60" maxlength ="50">
+                        <input name ="numero" type="text" class="form-control" required id="numero" size="60" maxlength ="50">
 
                         <div class="invalid-feedback">
                             Favor inserir o Numero
@@ -88,7 +88,7 @@
                     </div>
                     <div class="col-md-6 mb-3">
                         <label>Bairro</label>
-                        <input name ="bairro" type="text" class="form-control" id="bairro" size="60" maxlength ="50">
+                        <input name ="bairro" type="text" class="form-control" required id="bairro" size="60" maxlength ="50">
 
                         <div class="invalid-feedback">
                             Favor inserir o Bairro
@@ -97,14 +97,14 @@
 
                     <div class="col-md-5 mb-3">
                         <label>Cidade</label>
-                        <input name ="cidade" type="text" class="form-control" id="cidade" placeholder="Cidade" size = "40" maxlength ="50">
+                        <input name ="cidade" type="text" class="form-control" required id="cidade" placeholder="Cidade" size = "40" maxlength ="50">
                         <div class="invalid-feedback">
                             Favor inserir a Cidade.
                         </div>
                     </div>
                     <div class="col-md-2 mb-3">
                         <label>State / UF</label>
-                        <select name = "uf" class="custom-select d-block w-100" id="uf">
+                        <select name = "uf" class="custom-select d-block w-100" required id="uf">
                             <option>AC</option>
                             <option>AL</option>
                             <option>AP</option>
@@ -139,11 +139,20 @@
                         </div>
 
                     </div>
+                                            <div class="col-md-5 mb-3">
+                            <label>Referencia</label>
+                            <input name ="referencia" type="text" class="form-control" id="referencia" placeholder="Referencia" size = "35" maxlength ="35">
+                            <div class="invalid-feedback">
+                                Favor inserir a Cidade.
+                            </div>
+                        </div>
+
 
                 </div>
                 <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
                             return confirmCadastroCliente();
                         }" name = "gravarcliente"><span data-feather="save"></span> Finalizar Cadastro</button>
+            <input type="hidden" name="idcliente" value="${idcliente}">
             </div>
             <footer class="my-5 pt-5 text-muted text-center text-small">
                 <a href="sobre.jsp"><span class="text-primary">Sobre Orbis</span></a>
@@ -198,7 +207,7 @@
 
     <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
     <script>
-        feather.replace();
+                    feather.replace();
     </script>
 </body>
 </html>

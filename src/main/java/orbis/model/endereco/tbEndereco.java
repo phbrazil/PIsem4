@@ -21,7 +21,7 @@ public class tbEndereco implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idEndereco;
+    private Integer idEndereco;
     
     private String rua;
     private String numero;
@@ -106,11 +106,11 @@ public class tbEndereco implements Serializable {
     }
     
 
-    public Long getIdEndereco() {
+    public Integer getIdEndereco() {
         return idEndereco;
     }
 
-    public void setIdEndereco(Long idEndereco) {
+    public void setIdEndereco(Integer idEndereco) {
         this.idEndereco = idEndereco;
     }
 

@@ -71,7 +71,7 @@ public class tbEnderecoJpaController implements Serializable {
             }
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = tbEndereco.getIdEndereco();
+                Integer id = tbEndereco.getIdEndereco();
                 if (findtbEndereco(id) == null) {
                     throw new NonexistentEntityException("The tbEndereco with id " + id + " no longer exists.");
                 }
@@ -136,7 +136,7 @@ public class tbEnderecoJpaController implements Serializable {
         }
     }
 
-    public tbEndereco findtbEndereco(Long id) {
+    public tbEndereco findtbEndereco(Integer id) {
         EntityManager em = getEntityManager();
         try {
             return em.find(tbEndereco.class, id);

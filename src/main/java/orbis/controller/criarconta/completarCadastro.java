@@ -33,8 +33,6 @@ public class completarCadastro extends HttpServlet {
             throws ServletException, IOException {
 
         int idcliente = Integer.valueOf(request.getParameter("idcliente"));
-        
-        System.out.println("id aqui "+idcliente);
 
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
 
@@ -59,10 +57,25 @@ public class completarCadastro extends HttpServlet {
             }
         }
 
-        request.setAttribute("nome", cliente.getNomeCliente());
-        request.setAttribute("email", cliente.getEmailCliente());
+        if (cliente.isCadastroIncompleto() == true) {
 
-        request.getRequestDispatcher("clienteCompletarCadastro.jsp").forward(request, response);
+            request.setAttribute("nome", cliente.getNomeCliente());
+            request.setAttribute("email", cliente.getEmailCliente());
+            request.setAttribute("idcliente", cliente.getId());
+            
+            request.getRequestDispatcher("clienteCompletarCadastro.jsp").forward(request, response);
+
+        } else {
+            PrintWriter out = response.getWriter();
+            String path = "index.jsp";
+            String mensagem = "Seu cadastro já foi finalizado anteriormente";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
 
     }
 
