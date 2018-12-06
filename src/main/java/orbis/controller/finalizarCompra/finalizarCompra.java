@@ -128,13 +128,16 @@ public class finalizarCompra extends HttpServlet {
         request.setAttribute("to1", "pauloh2012sul@gmail.com");
         request.setAttribute("subject", "Compra Efetuada com Sucesso para o Destino " + localDestino);
         request.setAttribute("body", "Sua compra foi finalizada para o Destino " + localDestino + ". \n A data de "
-                + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda);
+                + "saída será " + data + " com saída de " + localSaida + ". O número do protocolo é " + idvenda+".\n"
+                        + "Após a aprovação do pagamento você receberá os ingressos por email.");
         request.setAttribute("localSaida", "Venda Bahia");
         request.setAttribute("localDestino", "comprador");
         request.setAttribute("protocolo", idvenda);
         request.setAttribute("roteiro", "Rolezinho");
         request.setAttribute("data", data);
-        request.setAttribute("valor", valor);
+        request.setAttribute("idcliente", idcliente);
+        request.setAttribute("idvenda", idvenda);
+        request.setAttribute("idpacote", idpacote);
 
         request.getRequestDispatcher("emailAlertaVenda.jsp").forward(request, response);
 

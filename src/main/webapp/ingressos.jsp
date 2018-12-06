@@ -1,3 +1,7 @@
+<%@page import="orbis.model.venda.tbVenda"%>
+<%             tbVenda venda = (tbVenda) request.getAttribute("venda");
+%>
+
 <!--**
  *
  * @author paulo.bezerra
@@ -33,26 +37,33 @@
 
     <body  style="background-color: white;">
         <div align ="center">
+
+            <% for (int i = 0; i < venda.getIngressos(); i++) {%>
+
             <div class="content" style = "background-color: white;">
                 <div class="row" style='width: 100%;'>
-                    <div class="col-md-6 mb-3 round1">
+                    <div class="col-md-5 mb-3 round1">
                         <span  type ='text' style='color: rgb(128, 128, 128);font-size:14px;'><br>Orbis<br>
                             Avenida Engenheiro Eusébio Stevaux <br>
                             <br>
                             www.9ember.com/orbis</span>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <img  src="img/orbis_logo.png" style="width: 90%" alt="logo orbis">
+                        <img  src="img/orbis_logo.png" style="width: 80%" alt="logo orbis">
                     </div>
+                    <div class="col-md-2 mb-3">
+                        <img  src="img/qr_code.png" style="width: 70%" alt="QR Code">
+                    </div>
+
                 </div>
                 <div align ='center'>
                     <h3 class='text-muted'><strong>I n g r e s s o</strong></h3>
                 </div>
-                <div class="col-md-10 order-md-1">
+                <div class="col-md-12 order-md-1">
                     <div class="row" style='width: 100%;'>
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-5 mb-3">
                             <label><strong>Nome</strong></label>
-                            <input readonly value="${nome}" name="nome" data-toggle="tooltip" title="Nome do Cliente" data-placement="bottom"  type="text"  class="form-control" id="nomecli" required>
+                            <input readonly value="${cliente.nomeCliente}" name="nome" data-toggle="tooltip" title="Nome do Cliente" data-placement="bottom"  type="text"  class="form-control" id="nomecli" required>
                         </div>
                         <div class="col-md-2 mb-3">
                             <label><strong>Valor</strong></label>
@@ -60,26 +71,28 @@
                                 <input readonly value= "${valor}" name="valor" data-toggle="tooltip" title="Valor do Ingresso" data-placement="bottom" type="text"  class="form-control" id="valor" required>
                             </div>
                         </div>
-                        <div class="col-md-2 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label><strong>Data/Hora</strong></label>
                             <div class="input-group">
-                                <input readonly value= "${data}" name="data" data-toggle="tooltip" title="Data Hora" data-placement="bottom" type="text"  class="form-control" id="valor" required>
+                                <input readonly value= "${pacote.dthevento} / ${pacote.horario}" name="data" data-toggle="tooltip" title="Data Hora" data-placement="bottom" type="text"  class="form-control" id="valor" required>
                             </div>
                         </div>
 
 
                         <div class="col-md-5 mb-3">
                             <label><strong>Local Saída</strong></label>
-                            <input  readonly name="localSaida" value="${localSaida}" title="Local Saida" data-placement="bottom"  type="text"  class="form-control" id="localSaida" required>
+                            <input  readonly name="localSaida" value="${pacote.localSaida}" title="Local Saida" data-placement="bottom"  type="text"  class="form-control" id="localSaida" required>
                         </div>
                         <div class="col-md-5 mb-3">
                             <label><strong>Local Destino</strong></label>
-                            <input  readonly name="localSaida" value="${localDestino}" title="Local Saida" data-placement="bottom"  type="text"  class="form-control" id="localSaida" required>
+                            <input  readonly name="localSaida" value="${pacote.localDestino}" title="Local Saida" data-placement="bottom"  type="text"  class="form-control" id="localSaida" required>
                         </div>
 
                     </div>
                 </div>
             </div>
+
+            <%}%>             
         </div>
         <hr>
 

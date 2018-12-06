@@ -9,8 +9,10 @@ import orbis.controller.minhasCompras.*;
 import orbis.controller.busca.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,53 +32,83 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/ingressos", urlPatterns = {"/ingressos"})
+@WebServlet(name = "/imprimirIngressos", urlPatterns = {"/imprimirIngressos"})
 public class ingressos extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                request.setCharacterEncoding("UTF-8");
+
+        request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        int idcliente = (Integer) sessao.getAttribute("idcliente");
+        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
+        int idvenda = Integer.valueOf(request.getParameter("idvenda"));
+        int idcliente = Integer.valueOf(request.getParameter("idcliente"));
+
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                new Locale("pt", "BR"));
 
         //indica as configuracoes do banco
-        Configuration con = new Configuration().configure().addAnnotatedClass(tbVenda.class);
-        SessionFactory sf = con.buildSessionFactory();
+        Configuration conVenda = new Configuration().configure().addAnnotatedClass(tbVenda.class);
+        Configuration conPacote = new Configuration().configure().addAnnotatedClass(tbPacote.class);
+        Configuration conCliente = new Configuration().configure().addAnnotatedClass(tbCliente.class);
+        SessionFactory sfVenda = conVenda.buildSessionFactory();
+        SessionFactory sfPacote = conPacote.buildSessionFactory();
+        SessionFactory sfCliente = conCliente.buildSessionFactory();
 
         //abre sessao com o banco
-        Session session = sf.openSession();
-        List<tbVenda> pacotes;
-
+        Session sessionVenda = sfVenda.openSession();
+        Session sessionPacote = sfPacote.openSession();
+        Session sessionCliente = sfCliente.openSession();
+        tbVenda venda;
+        tbPacote pacote;
+        tbCliente cliente;
         try {
 
-            //inicia a transacao com o banco
-            Transaction tx = session.beginTransaction();
-            String hql = "from tbVenda where idcliente =" + idcliente ;
+            Transaction txVenda = sessionVenda.beginTransaction();
+            Transaction txpacote = sessionPacote.beginTransaction();
+            Transaction txCliente = sessionCliente.beginTransaction();
 
-            pacotes = session.createQuery(hql).list();
+            venda = (tbVenda) sessionVenda.get(tbVenda.class, idvenda);
 
+            pacote = (tbPacote) sessionPacote.get(tbPacote.class, idpacote);
+
+            cliente = (tbCliente) sessionCliente.get(tbCliente.class, idcliente);
             //comita as informacoes
-            tx.commit();
-        } finally {
-            if (session != null) {
-                session.close();
-                sf.close();
-            }
-        }
-        request.setAttribute("minhasCompras", pacotes);
+            txVenda.commit();
+            txpacote.commit();
+            txCliente.commit();
 
-        request.getRequestDispatcher("minhasCompras.jsp").forward(request, response);
+        } finally {
+            if (sessionVenda != null) {
+                sessionVenda.close();
+                sfVenda.close();
+            }
+            if (sessionPacote != null) {
+                sessionPacote.close();
+                sfPacote.close();
+            }
+            if (sessionCliente != null) {
+                sessionCliente.close();
+                sfCliente.close();
+            }
+
+        }
+        request.setAttribute("venda", venda);
+        request.setAttribute("pacote", pacote);
+        request.setAttribute("cliente", cliente);
+        request.setAttribute("valor", formatoMoeda.format(pacote.getValor()));
+        request.setAttribute("quantidade", venda.getIngressos());
+
+        request.getRequestDispatcher("ingressos.jsp").forward(request, response);
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
     }
 

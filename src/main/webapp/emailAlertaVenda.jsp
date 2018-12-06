@@ -38,6 +38,9 @@
             <input type ="hidden" id = "protocolo"  name = "protocolo" value="${protocolo}" </input>
             <input type ="hidden" id = "valor"  name = "valor" value="${valor}" </input>
             <input type ="hidden" id = "data"  name = "data" value="${data}" </input>
+            <input type ="hidden" id = "data"  name = "idcliente" value="${idcliente}" </input>
+            <input type ="hidden" id = "data"  name = "idpacote" value="${idpacote}" </input>
+            <input type ="hidden" id = "data"  name = "idvenda" value="${idvenda}" </input>
 
         </form>    
 

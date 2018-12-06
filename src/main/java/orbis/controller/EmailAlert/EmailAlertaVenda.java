@@ -42,7 +42,8 @@ public class EmailAlertaVenda extends HttpServlet {
 
         HttpSession sessao = request.getSession(true);
 
-        boolean emailenviado = false;
+        boolean emailVenda = false;
+        boolean emailIngressos = false;
 
         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                 new Locale("pt", "BR"));
@@ -50,12 +51,10 @@ public class EmailAlertaVenda extends HttpServlet {
         String to1 = (String) sessao.getAttribute("emailCliente");
         String body = (String) request.getParameter("body");
         String subject = (String) request.getParameter("subject");
-        String localSaida = (String) request.getParameter("localSaida");
-        String localDestino = (String) request.getParameter("localDestino");
-        String roteiro = (String) request.getParameter("roteiro");
+        int idcliente = Integer.valueOf(request.getParameter("idcliente"));
+        int idvenda = Integer.valueOf(request.getParameter("idvenda"));
+        int idpacote = Integer.valueOf(request.getParameter("idpacote"));
         String protocolo = (String) request.getParameter("protocolo");
-        double valor = Double.valueOf(request.getParameter("valor"));
-        String data = (String) request.getParameter("data");
 
         PrintWriter out = response.getWriter();
 
@@ -74,19 +73,31 @@ public class EmailAlertaVenda extends HttpServlet {
             out.flush();
 
             try {
-                emailenviado = emailBeanOrbis.sendEmail(to1, subject, body);
+                emailVenda = emailBeanOrbis.sendEmail(to1, subject, body);
 
             } catch (RuntimeException ex) {
                 ex.printStackTrace();
             }
-        } while (emailenviado == false);
+        } while (emailVenda == false);
 
-        System.out.println("retornou " + emailenviado);
+        if (emailVenda == true) {
+            
+            subject="Imprima seus ingressos!";
+            body = "Clique no link abaixo e imprima seus ingressos: \n"
+                    + "\nhttp://9ember.com/orbis/imprimirIngressos?idcliente="+idcliente+"&idpacote="
+                    +idpacote+"&idvenda="+idvenda;
+            try {
+                emailIngressos = emailBeanOrbis.sendEmail(to1, subject, body);
 
-        if (emailenviado == true) {
+            } catch (RuntimeException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        if (emailIngressos == true) {
 
             String path = "index.jsp";
-            String mensagem = "Compra efetuada com sucesso. Protocolo " + protocolo +" enviado por e-mail.";
+            String mensagem = "Compra efetuada com sucesso. Protocolo " + protocolo + " enviado por e-mail.";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
