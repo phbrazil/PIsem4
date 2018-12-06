@@ -100,8 +100,8 @@ public class esqueciSenha extends HttpServlet {
             }
 
             request.setAttribute("to1", emailCliente);
-            request.setAttribute("body", "Redefina sua senha - Orbis");
-            request.setAttribute("subject", "Sua senha provisória é: \n"
+            request.setAttribute("subject", "Redefina sua senha - Orbis");
+            request.setAttribute("body", "Sua senha provisória é: \n"
                     +senhaProvisoria);
             
             request.getRequestDispatcher("emailAlertaSenha.jsp").forward(request, response);

@@ -62,7 +62,7 @@ public class EmailAlertaSenha extends HttpServlet {
             out.println("<br><br><br>");
             out.println("<center><h1><strong>Redefinindo sua senha</strong><br>");
             out.println("<br>");
-            out.println("<img src='img/email.gif'  width='200' height'200'");
+            out.println("<img src='img/email.gif'  width='400' height'400'");
             out.println("Favor aguardar....</h1>");
             out.flush();
 
