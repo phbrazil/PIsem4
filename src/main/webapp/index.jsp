@@ -19,17 +19,11 @@
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
-    //String cwd = System.getProperty("user.dir");
-    String cwd = System.getProperty("user.home");
-
-    File temp = new File(cwd + "/Documents/NetbeansProjects/Orbis/src/main/webapp/img/imagens/teste");
-    //temp.mkdir();
-
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
             || userAgent.toUpperCase().contains("MOBILE")) {
         mobile = true;
-    } else {f
+    } else {
         mobile = false;
 
     }

@@ -35,8 +35,8 @@ public class minhasCompras extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-                request.setCharacterEncoding("UTF-8");
+
+        request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
@@ -48,13 +48,38 @@ public class minhasCompras extends HttpServlet {
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<tbVenda> pacotes;
+        List<tbVenda> vendas;
+        List<tbPacote> pacotes;
 
         try {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            String hql = "from tbVenda where idcliente =" + idcliente ;
+            String hql = "from tbVenda where idcliente =" + idcliente;
+
+            vendas = session.createQuery(hql).list();
+
+            //comita as informacoes
+            tx.commit();
+        } finally {
+            if (session != null) {
+                session.close();
+                sf.close();
+            }
+        }
+
+        con = new Configuration().configure().
+                addAnnotatedClass(tbPacote.class).addAnnotatedClass(tbVenda.class);
+
+        sf = con.buildSessionFactory();
+
+        session = sf.openSession();
+
+        try {
+
+            //inicia a transacao com o banco
+            Transaction tx = session.beginTransaction();
+            String hql = "from tbPacote where idpacote in(select idpacote from tbVenda where idcliente =" + idcliente+")";
 
             pacotes = session.createQuery(hql).list();
 
@@ -66,7 +91,9 @@ public class minhasCompras extends HttpServlet {
                 sf.close();
             }
         }
-        request.setAttribute("minhasCompras", pacotes);
+
+        request.setAttribute("minhasCompras", vendas);
+        request.setAttribute("pacotes", pacotes);
 
         request.getRequestDispatcher("minhasCompras.jsp").forward(request, response);
 
@@ -75,7 +102,6 @@ public class minhasCompras extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
 
     }
 

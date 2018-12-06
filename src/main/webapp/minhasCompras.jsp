@@ -1,3 +1,5 @@
+<%@page import="orbis.model.imagensPacote.tbImagens"%>
+<%@page import="orbis.DAO.pacote.listarImagens"%>
 <%@page import="orbis.model.venda.tbVenda"%>
 <%@page import="orbis.model.pacote.tbPacote"%>
 <%@page import="java.util.Iterator"%>
@@ -173,60 +175,90 @@
         }
     </script>
 
- <body style="background: #dcdee4">
-    
-      <%@include  file="navbarTest.jsp"%>
+<body style="background: #dcdee4">
+
+    <%@include  file="navbarTest.jsp"%>
 
     <form  name = "pacote"  id = "buscar" action="${pageContext.request.contextPath}/pacote" method="POST">
 
 
         <div align='center' >
-            
-               <div class="py-5 mt-5 text-center">
-                 <h2 class="text-muted">Minhas Compras</h2>
-               </div>
-            
-            <div class="row" style="width: 90%; height: 90%;">
+
+            <div class="py-5 mt-5 text-center">
+                <h2 class="text-muted">Minhas Compras</h2>
+            </div>
+
+            <div class="row">
 
                 <%
-                    List<tbVenda> compras = (List<tbVenda>) request.getAttribute("minhasCompras");
-                    int linha = 1;
+                    listarImagens listarImagens = new listarImagens();
+
+                    List<tbVenda> vendas = (List<tbVenda>) request.getAttribute("minhasCompras");
+                    List<tbPacote> pacotes = (List<tbPacote>) request.getAttribute("pacotes");
+
+                    List<tbImagens> imagens;
 
                     NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                             new Locale("pt", "BR"));
 
-                    if (compras.size() > 0) {
+                    if (pacotes.size() > 0) {
 
-                        for (Iterator iterator = compras.iterator(); iterator.hasNext();) {
-                            tbVenda compra = (tbVenda) iterator.next();
+                        //for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
+                        for (int i = 0; i < pacotes.size(); i++) {
+                            tbVenda venda = (tbVenda) vendas.get(i);
+                            imagens = listarImagens.listar(venda.getIdpacote());
 
 
                 %>
 
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
-                        <a href="pacote?destino=<%=compra.getIdpacote()%>"><img class="card-img-top" src="https://picsum.photos/1200/600/?random" alt="destino"></a>
-                        <input type ='hidden' name ='destino' value="<%=compra.getIdpacote()%>">
-                        <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="pacote?destino=<%=compra.getIdpacote()%>" style="text-decoration: none">Ver Detalhe</a>
-                            </h4>
-                            <h5>Valor total: <%=formatoMoeda.format(compra.getTotal())%></h5>
-                            <h5>Quantidade: <%=compra.getIngressos()%></h5>
-                            <h5>Data da compra: <%=compra.getDthvenda()%></h5>
-                            <h5>Protocolo: <%=compra.getId()%></h5>
-                            <h5>Tipo Pagamento: <%=compra.getTipoPagamento()%></h5>
+                    <div id="carouselExampleControls<%=i%>" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <%for (int j = 0; j < imagens.size(); j++) {
+                                    String action = "";
+                            %>
+
+                            <%if (j == 0) {
+                                    action = "active";
+
+                                } else {
+                                    action = "";
+                                }
+                            %>
+                            <div id='slide<%=j%>' class="carousel-item <%=action%>">
+                                <a href="pacote?destino=<%=venda.getIdpacote()%>" ><img class="card-img-top" style='width: 350px; height: 200px' src="<%=pacotes.get(i).getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
+                                <input type ='hidden' name ='destino' value="<%=venda.getIdpacote()%>">
+                            </div>
+                            <%}%>
+
                         </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls<%=i%>" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls<%=i%>" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="pacote?destino=<%=venda.getIdpacote()%>" style="text-decoration: none"><%=venda.getTipoPagamento()%></a>
+                        </h4>
+                        <h5><%=formatoMoeda.format(venda.getTotal())%></h5>
+                        <h5><strong><%=venda.getIngressos()%></strong> ingressos comprados</h5>
+                        <p class="card-text">Data compra: <%=venda.getDthvenda()%></p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
                     </div>
                 </div>
 
                 <%
-                        linha++;
+                                imagens = null;
 
-                    }
-                } else {
-
-                %>
+                            }
+                        }else{%>
 
                 <style>
                     .center {
