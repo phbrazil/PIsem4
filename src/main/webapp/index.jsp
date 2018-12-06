@@ -29,7 +29,7 @@
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
             || userAgent.toUpperCase().contains("MOBILE")) {
         mobile = true;
-    } else {
+    } else {f
         mobile = false;
 
     }
@@ -443,9 +443,9 @@
 
             var length = source.length;
             for (var i = 0; i < length; i++) {
-                if (source[i] != val) {
-                    document.getElementById('cpf').value = "";
-                    alert('Já existe cadastro para este CPF');
+                if (source[i] == val) {
+                    //document.getElementById('cpf').value = "";
+                    //alert('Já existe cadastro para este CPF');
                     //document.getElementById('mcistdcliname').placeholder = "Client is not in the database, please include";
                 }
             }

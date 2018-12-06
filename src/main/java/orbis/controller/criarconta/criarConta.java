@@ -7,6 +7,7 @@ package orbis.controller.criarconta;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +43,8 @@ public class criarConta extends HttpServlet {
 
         tbCliente clientes = new tbCliente();
 
+        PrintWriter out = response.getWriter();
+
         clientes.setIdEndereco(1);
         clientes.setEmailCliente(request.getParameter("email"));
         clientes.setNomeCliente(request.getParameter("nome"));
@@ -57,11 +60,11 @@ public class criarConta extends HttpServlet {
         String pswrepeat = request.getParameter("psw-repeat");
         clientes.setChangePassword(false);
         clientes.setIdPayment(1);
-        
+
         int idcliente = 0;
-        
+
         if (!psw.equals(pswrepeat)) {
-            PrintWriter out = response.getWriter();
+            out = response.getWriter();
             String path = "index.jsp";
             String mensagem = "Ocorreu um erro. Favor tentar novamente";
             request.setAttribute("path", path);
@@ -78,30 +81,64 @@ public class criarConta extends HttpServlet {
             //abre sessao com o banco
             Session session = sf.openSession();
 
+            List<tbCliente> clienteList;
+
             try {
 
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
-                idcliente = (Integer) session.save(clientes);
-
+                String hql = "from tbCliente where cpfCliente = '" + clientes.getCpfCliente()+ "'";
+                clienteList = session.createQuery(hql).list();
+                
                 //comita as informacoes
                 tx.commit();
             } finally {
+                // if (session != null) {
+                //   session.close();
+                // sf.close();
+                // }
+            }
+
+            if (clienteList.size() > 0) {
+
                 if (session != null) {
                     session.close();
                     sf.close();
                 }
 
+                String path = "login.jsp";
+                String mensagem = "Esse CPF já se encontra cadastrado";
+                request.setAttribute("path", path);
+                out.println("<script type='text/javascript'>");
+                out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+                out.println("</script>");
+
+            } else {
+
+                try {
+
+                    //inicia a transacao com o banco
+                    Transaction tx = session.beginTransaction();
+                    idcliente = (Integer) session.save(clientes);
+
+                    //comita as informacoes
+                    tx.commit();
+                } finally {
+                    if (session != null) {
+                        session.close();
+                        sf.close();
+                    }
+
+                }
+
+                request.setAttribute("to1", clientes.getEmailCliente());
+                request.setAttribute("subject", "Favor completar seu Cadastro - Orbis alerta!");
+                request.setAttribute("body", "Confirme seus dados de endereço clicando no link abaixo:"
+                        + "\n http://localhost:8080/Orbis/completarCadastro?idcliente=" + idcliente);
+
+                request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
+
             }
-            
-            request.setAttribute("to1", clientes.getEmailCliente());
-            request.setAttribute("subject", "Favor completar seu Cadastro - Orbis alerta!");
-            request.setAttribute("body", "Confirme seus dados de endereço clicando no link abaixo:"
-                    + "\n http://localhost:8080/Orbis/completarCadastro?idcliente="+idcliente);
-            
-            
-            request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
-            
         }
 
     }

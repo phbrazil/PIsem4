@@ -254,24 +254,26 @@
     <script src="js/mascaraCNPJ.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
+    <script src="js/confirmarsenha.js"></script>
 
     <script>
 
-                        $("#cpf").autocomplete({
-                            source: $("#cpf").autocomplete("getdataCPF.jsp")});
 
-                        function naBase(val) {
-                            var source = $("#cpf").autocomplete("getdataCPF.jsp");
+                            function naBase(val) {
 
-                            var length = source.length;
-                            for (var i = 0; i < length; i++) {
-                                if (source[i] != val) {
-                                    document.getElementById('cpf').value = "";
-                                    alert('Já existe cadastro para este CPF');
+                                var source = $("#cpf").autocomplete("getdataCPF.jsp");
+                              
+                                var length = source.length;
+                                //for (var i = 0; i < length; i++) {
+                                if (source[0] == val) {
+                                    //document.getElementById('cpf').value = "";
+                                    //alert('Já existe cadastro para este CPF');
                                     //document.getElementById('mcistdcliname').placeholder = "Client is not in the database, please include";
+
+                                } else {
                                 }
+                                // }
                             }
-                        }
 
 
     </script>
