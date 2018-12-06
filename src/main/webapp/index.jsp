@@ -21,11 +21,10 @@
 
     //String cwd = System.getProperty("user.dir");
     String cwd = System.getProperty("user.home");
-       
-    File temp = new File(cwd+"/Documents/NetbeansProjects/Orbis/src/main/webapp/img/imagens/teste");
+
+    File temp = new File(cwd + "/Documents/NetbeansProjects/Orbis/src/main/webapp/img/imagens/teste");
     //temp.mkdir();
-        
-    
+
     boolean mobile = false;
     if (userAgent.toUpperCase().contains("IPHONE") || userAgent.toUpperCase().contains("ANDROID")
             || userAgent.toUpperCase().contains("MOBILE")) {
@@ -44,12 +43,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script-->
     <script type="text/javascript" 
     src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!--link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script-->
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -251,11 +251,11 @@
                             <label for="email"><b>Email</b></label>
                             <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
 
-                            <label for="cpf"><b>RG</b></label>
+                            <label for="rg"><b>RG</b></label>
                             <input type="text" onkeydown="javascript: fMasc(this, mRG);" maxlength="15" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
 
                             <label for="cpf"><b>CPF</b></label>
-                            <input type="text" onkeydown="javascript: fMasc(this, mCPF);" maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+                            <input type="text" onkeydown="javascript: fMasc(this, mCPF);" onblur="naBase(this.value)"  maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
 
                             <label for="sexo"><b>Sexo</b></label>
                             <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
@@ -332,15 +332,13 @@
                         List<tbPacote> pacotes = listar.listar();
                         List<tbImagens> imagens;
 
-                        
-
                         NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                                 new Locale("pt", "BR"));
 
                         if (pacotes.size() > 0) {
 
                             //for (Iterator iterator = pacotes.iterator(); iterator.hasNext();) {
-                            for(int i=0;i<pacotes.size();i++){
+                            for (int i = 0; i < pacotes.size(); i++) {
                                 tbPacote pacote = (tbPacote) pacotes.get(i);
                                 imagens = listarImagens.listar(pacote.getIdPacote());
 
@@ -391,7 +389,7 @@
                     </div>
 
                     <%
-                          imagens=null;  
+                            imagens = null;
 
                         }
                     } else {
@@ -430,10 +428,30 @@
     <script src="js/confirmarsenha.js"></script>
     <script src="js/mascaraCNPJ.js"></script>
     <script src="js/confirmarsenha.js"></script>
+    <script src="js/jquery.js"></script>
     <script src="js/jquery.autocomplete.js"></script>
-      <script src="js/jquery.js"></script>
-  <script>
+    <script>
                                     $("#query").autocomplete("getDataDestinos.jsp");
+    </script>
+    <script>
+
+        $("#cpf").autocomplete({
+            source: $("#cpf").autocomplete("getdataCPF.jsp")});
+
+        function naBase(val) {
+            var source = $("#cpf").autocomplete("getdataCPF.jsp");
+
+            var length = source.length;
+            for (var i = 0; i < length; i++) {
+                if (source[i] != val) {
+                    document.getElementById('cpf').value = "";
+                    alert('Já existe cadastro para este CPF');
+                    //document.getElementById('mcistdcliname').placeholder = "Client is not in the database, please include";
+                }
+            }
+        }
+
+
     </script>
 
     <script>
