@@ -28,8 +28,8 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "/esqueciSenha", urlPatterns = {"/esqueciSenha"})
+public class esqueciSenha extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,8 +47,7 @@ public class Login extends HttpServlet {
 
         HttpSession sessao = request.getSession();
 
-        String emailCliente = request.getParameter("userName");
-        String passwordCliente = request.getParameter("password");
+        String emailCliente = request.getParameter("emailCliente");
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
@@ -62,7 +61,7 @@ public class Login extends HttpServlet {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            String hql = "from tbCliente where emailCliente = '" + emailCliente + "' and passwordCliente ='" + passwordCliente + "'";
+            String hql = "from tbCliente where emailCliente = '" + emailCliente + "'";
             cliente = session.createQuery(hql).list();
 
             //comita as informacoes
@@ -73,50 +72,21 @@ public class Login extends HttpServlet {
                 sf.close();
             }
         }
-        String primeironome = "";
 
-        if (cliente.size() > 0) {
+        if (cliente.size() > 0 && cliente.get(0).getEmailCliente().equals(emailCliente)) {
 
-            if (cliente.get(0).isChangePassword() == true) {
 
-                request.setAttribute("nomeCliente", cliente.get(0).getNomeCliente());
-                request.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                request.setAttribute("idcliente", cliente.get(0).getId());
-
-                request.getRequestDispatcher("trocarSenha.jsp").forward(request, response);
-
-            } else {
-
-                for (int i = 0; i < cliente.get(0).getNomeCliente().length(); i++) {
-
-                    if (i == 0) {
-                        primeironome = primeironome + cliente.get(0).getNomeCliente().toUpperCase().charAt(i);
-
-                    } else {
-                        primeironome = primeironome + cliente.get(0).getNomeCliente().toLowerCase().charAt(i);
-
-                    }
-
-                    if (String.valueOf(cliente.get(0).getNomeCliente().charAt(i)).equals(" ")) {
-
-                        break;
-
-                    }
-
-                }
-                sessao.setAttribute("nomeUser", primeironome);
-                sessao.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                sessao.setAttribute("idcliente", cliente.get(0).getId());
-                sessao.setAttribute("idgrupo", cliente.get(0).getIdgrupo());
-
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-
-            }
+            String path = "index.jsp";
+            String mensagem = "Sua nova senha foi enviada por email";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
 
         } else {
 
-            String path = "login.jsp";
-            String mensagem = "Acesso negado!";
+            String path = "esqueciSenha.jsp";
+            String mensagem = "Email não encontrado!";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");

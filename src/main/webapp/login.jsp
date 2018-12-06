@@ -183,7 +183,7 @@
                     <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="document.getElementById('id01').style.display = 'block'" >Criar conta</button>
                     <p></p>
                     <label>
-                        <a href ="modal?mensagem=Favor enviar um email para <strong>paulo.bezerra@mci-group.com</strong>&path=login.jsp">Esqueci a senha</a>
+                        <a href ="esqueciSenha.jsp">Esqueci a senha</a>
                     </label>
                 </div>
             </div>

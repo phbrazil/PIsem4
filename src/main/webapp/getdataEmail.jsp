@@ -1,8 +1,8 @@
-<%@page import="orbis.controller.autoComplete.CPF"%>
+<%@page import="orbis.controller.autoComplete.email"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%
-    CPF db = new CPF();
+    email db = new email();
 
     String query = request.getParameter("q");
 
@@ -10,8 +10,9 @@
 
     Iterator<String> iterator = countries.iterator();
     do {
-        String cpfs = (String) iterator.next();
-        out.println(cpfs);
+        String emails = (String) iterator.next();
+        out.println(emails);
+        System.out.println(emails+"+++++++++");
     } while (iterator.hasNext());
 
 %>

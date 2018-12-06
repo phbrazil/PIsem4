@@ -28,8 +28,8 @@ import org.hibernate.cfg.Configuration;
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "/Login", urlPatterns = {"/Login"})
-public class Login extends HttpServlet {
+@WebServlet(name = "/trocarSenha", urlPatterns = {"/trocarSenha"})
+public class trocarSenha extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,8 +47,10 @@ public class Login extends HttpServlet {
 
         HttpSession sessao = request.getSession();
 
-        String emailCliente = request.getParameter("userName");
-        String passwordCliente = request.getParameter("password");
+        String emailCliente = request.getParameter("emailCliente");
+        String password = request.getParameter("password");
+        String confirmpassword = request.getParameter("confirmpassword");
+        int idcliente = Integer.valueOf(request.getParameter("idcliente"));
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);
@@ -56,67 +58,55 @@ public class Login extends HttpServlet {
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<tbCliente> cliente;
+        tbCliente cliente;
 
         try {
 
-            //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
-            String hql = "from tbCliente where emailCliente = '" + emailCliente + "' and passwordCliente ='" + passwordCliente + "'";
-            cliente = session.createQuery(hql).list();
 
+            cliente = (tbCliente) session.get(tbCliente.class, idcliente);
             //comita as informacoes
             tx.commit();
         } finally {
+            //if (session != null) {
+            //  session.close();
+            //sf.close();
+            // }
+        }
+
+        if (password.equals(confirmpassword)) {
+
+            cliente.setPasswordCliente(password);
+            cliente.setChangePassword(false);
+
+            try {
+
+                Transaction tx = session.beginTransaction();
+                session.update(cliente);
+                //comita as informacoes
+                tx.commit();
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
+            }
+            
+            String path = "login.jsp";
+            String mensagem = "Sua senha foi alterada, favor efetuar o acesso novamente";
+            request.setAttribute("path", path);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+            
+        } else {
+
             if (session != null) {
                 session.close();
                 sf.close();
             }
-        }
-        String primeironome = "";
-
-        if (cliente.size() > 0) {
-
-            if (cliente.get(0).isChangePassword() == true) {
-
-                request.setAttribute("nomeCliente", cliente.get(0).getNomeCliente());
-                request.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                request.setAttribute("idcliente", cliente.get(0).getId());
-
-                request.getRequestDispatcher("trocarSenha.jsp").forward(request, response);
-
-            } else {
-
-                for (int i = 0; i < cliente.get(0).getNomeCliente().length(); i++) {
-
-                    if (i == 0) {
-                        primeironome = primeironome + cliente.get(0).getNomeCliente().toUpperCase().charAt(i);
-
-                    } else {
-                        primeironome = primeironome + cliente.get(0).getNomeCliente().toLowerCase().charAt(i);
-
-                    }
-
-                    if (String.valueOf(cliente.get(0).getNomeCliente().charAt(i)).equals(" ")) {
-
-                        break;
-
-                    }
-
-                }
-                sessao.setAttribute("nomeUser", primeironome);
-                sessao.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                sessao.setAttribute("idcliente", cliente.get(0).getId());
-                sessao.setAttribute("idgrupo", cliente.get(0).getIdgrupo());
-
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-
-            }
-
-        } else {
-
             String path = "login.jsp";
-            String mensagem = "Acesso negado!";
+            String mensagem = "Ocorreu um erro, tente novamente";
             request.setAttribute("path", path);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
