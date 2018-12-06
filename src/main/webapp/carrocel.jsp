@@ -155,18 +155,46 @@
             </ul>
             <form  name = "destinobusca"  id = "destinobusca" action="${pageContext.request.contextPath}/pacote" method="GET">
                 <!-- The slideshow -->
-                <div class="carousel-inner">
+                <div class="carousel-inner" style='width: 80%; height: 80%'>
                     <div class="carousel-item active">
 
-                        <a href="pacote?destino=2"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
+                        <a href="#"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
                         <input type ='hidden' name ='destino' value='1'>
                     </div>
                     <div class="carousel-item">
-                        <a href="pacote?destino=3"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
+                        <a href="#"><img src="img/destino2.JPG" alt="Angra dos Reis" ></a>
                         <input type ='hidden' name ='destino' value='2'>
                     </div>
                     <div class="carousel-item">
-                        <a href="pacote?destino=4"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
+                        <a href="#"><img src="img/destino3.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino4.jpg" alt="Capitólio"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino5.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino6.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino7.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino8.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino9.jpg" alt="São Tomé das Letras"></a>
+                        <input type ='hidden' name ='destino' value='3'>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img src="img/destino10.jpg" alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                 </div>
