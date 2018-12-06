@@ -55,35 +55,63 @@ public class esqueciSenha extends HttpServlet {
 
         //abre sessao com o banco
         Session session = sf.openSession();
-        List<tbCliente> cliente;
+        List<tbCliente> clienteList;
 
         try {
 
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
             String hql = "from tbCliente where emailCliente = '" + emailCliente + "'";
-            cliente = session.createQuery(hql).list();
+            clienteList = session.createQuery(hql).list();
 
             //comita as informacoes
             tx.commit();
         } finally {
+            // if (session != null) {
+            //   session.close();
+            // sf.close();
+            // }
+        }
+
+        tbCliente cliente;
+        String senhaProvisoria = "0c24a188a9";
+
+        if (clienteList.size() > 0 && clienteList.get(0).getEmailCliente().equals(emailCliente)) {
+
+            //indica as configuracoes do banco
+            try {
+
+                Transaction tx = session.beginTransaction();
+
+                cliente = (tbCliente) session.get(tbCliente.class, clienteList.get(0).getId());
+
+                
+                cliente.setPasswordCliente(senhaProvisoria);
+                cliente.setChangePassword(true);
+                session.update(cliente);
+
+                //comita as informacoes
+                tx.commit();
+            } finally {
+                if (session != null) {
+                    session.close();
+                    sf.close();
+                }
+            }
+
+            request.setAttribute("to1", emailCliente);
+            request.setAttribute("body", "Redefina sua senha - Orbis");
+            request.setAttribute("subject", "Sua senha provisória é: \n"
+                    +senhaProvisoria);
+            
+            request.getRequestDispatcher("emailAlertaSenha.jsp").forward(request, response);
+
+        } else {
+
             if (session != null) {
                 session.close();
                 sf.close();
             }
-        }
-
-        if (cliente.size() > 0 && cliente.get(0).getEmailCliente().equals(emailCliente)) {
-
-
-            String path = "index.jsp";
-            String mensagem = "Sua nova senha foi enviada por email";
-            request.setAttribute("path", path);
-            out.println("<script type='text/javascript'>");
-            out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
-            out.println("</script>");
-
-        } else {
 
             String path = "esqueciSenha.jsp";
             String mensagem = "Email não encontrado!";
