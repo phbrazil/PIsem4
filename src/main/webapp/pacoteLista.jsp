@@ -155,7 +155,17 @@
             .cancelbtn, .signupbtn {
                 width: 100%;
             }
-        }
+            }
+        @media only screen and (max-width: 990px) {
+            div.logo {
+             display: none;
+               }
+            }
+        @media only screen and (min-width: 990px) {
+            div.espaco {
+             display: none;
+               }
+            }
     </style>
     
     <body style="background: #dcdee4">
@@ -164,9 +174,11 @@
 <!-- Insira o nav aqui -->
 <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
-                <a class="navbar-brand" href="index.jsp">
-                  <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
-                </a>
+                <div class="logo" id="logo" name="logo">
+                    <a class="navbar-brand" href="index.jsp" >
+                    <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                    </a>
+                </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -286,6 +298,13 @@
         </div>
 
 </nav>
+      
+      <div class="espaco" >
+    <br>
+    <br>
+    <br>
+
+</div>
 
     <script>
         // Get the modal
