@@ -134,7 +134,7 @@ public class criarConta extends HttpServlet {
                 request.setAttribute("to1", clientes.getEmailCliente());
                 request.setAttribute("subject", "Favor completar seu Cadastro - Orbis alerta!");
                 request.setAttribute("body", "Confirme seus dados de endereço clicando no link abaixo:"
-                        + "\n http://localhost:8080/Orbis/completarCadastro?idcliente=" + idcliente);
+                        + "\n http://9ember.com/orbis/completarCadastro?idcliente=" + idcliente);
 
                 request.getRequestDispatcher("emailAlertaCadastroCliente.jsp").forward(request, response);
 
