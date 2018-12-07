@@ -50,13 +50,13 @@
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Quantidade</span>
-                                <input type="number" name="quantidade" onchange="calcularIngressos(this.value)" min='1' value='1' max='<%=pacote.getQtdMax()%>'/>
+                                <input type="number" id='qtdmax' name="quantidade" onchange="calcularIngressos(this.value)" min='1' onkeydown="maxIngressos(this.value)" value='1' max='<%=pacote.getQtdMax()%>'/>
                             </li>
                             <li class="list-group-item d-flex justify-content-between">
                                 <span>Total (BRL)</span>
                                 <input class='input-group-sm' type='text' readonly value='<%=formatoMoeda.format(pacote.getValor()).replace("R$", "")%>' name = 'total' id='total'>
                                 <input type="hidden" name="valor" value="<%=pacote.getValor()%>"/>
-                                <input type="hidden" name="valor" id='valor' value="<%=formatoMoeda.format(pacote.getValor()).replace("R$","")%>"/>
+                                <input type="hidden" name="valor" id='valor' value="<%=formatoMoeda.format(pacote.getValor()).replace("R$", "")%>"/>
                                 <input type="hidden" name="localSaida" value="<%=pacote.getLocalSaida()%>"/>
                                 <input type="hidden" name="localDestino" value="<%=pacote.getLocalDestino()%>"/>
                                 <input type="hidden" name="roteiro" value="<%=pacote.getRoteiro()%>"/>
@@ -191,14 +191,34 @@
     </style>
 
     <script>
+
+        function maxIngressos(entrada) {
+
+            var maximo = <%=pacote.getQtdMax()%>
+
+            if (entrada > maximo) {
+                alert('Quantide de ingressos não disponível');
+
+                document.getElementById('qtdmax').value = 1;
+                document.getElementById('qtdmax').focus();
+
+            }
+
+        }
+
+
+    </script>
+
+    <script>
         function calcularIngressos(quantidade) {
 
+
             var valor = converteMoedaFloat(document.getElementById('valor').value);
-            
+
             console.log(total);
             console.log(quantidade);
 
-            document.getElementById('total').value = converteFloatMoeda(valor*quantidade);
+            document.getElementById('total').value = converteFloatMoeda(valor * quantidade);
 
         }
 

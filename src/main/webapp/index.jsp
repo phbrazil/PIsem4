@@ -391,9 +391,12 @@
                             </a>
                         </div>
                         <div class="card-body">
-                            <h4 class="card-title">
-                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                            </h4>
+                            <h3 class="card-title">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Destino: <%=pacote.getLocalDestino()%></a>
+                            </h3>
+                            <h5 class="card-subtitle">
+                                <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none">Saída: <%=pacote.getLocalSaida()%></a>
+                            </h5>
                             <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                             <h5><strong><%=pacote.getQtdMax()%></strong> ingressos disponíveis</h5>
                             <p class="card-text"><%=pacote.getRoteiro()%></p>

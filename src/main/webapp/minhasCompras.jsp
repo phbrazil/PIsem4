@@ -243,9 +243,9 @@
                     </div>
                     <div class="card-body">
                         <h4 class="card-title">
-                            <a href="pacote?destino=<%=venda.getIdpacote()%>" style="text-decoration: none"><%=venda.getTipoPagamento()%></a>
+                            <a href="pacote?destino=<%=venda.getIdpacote()%>" style="text-decoration: none"><%=pacotes.get(i).getLocalDestino()%></a>
                         </h4>
-                        <h5><%=formatoMoeda.format(venda.getTotal())%></h5>
+                        <h5>Valor total: <%=formatoMoeda.format(venda.getTotal())%></h5>
                         <h5><strong><%=venda.getIngressos()%></strong> ingressos comprados</h5>
                         <p class="card-text">Data compra: <%=venda.getDthvenda()%></p>
                     </div>
