@@ -27,18 +27,8 @@ public class tbComentario implements Serializable {
     private String nome;
     private String comentario;
     private String email;
-    private int nota;
+    private double nota;
     private String dthComentario;
-
-    public tbComentario(Integer id, int idpacote, String nome, String comentario, String email, int nota, String dthComentario) {
-        this.id = id;
-        this.idpacote = idpacote;
-        this.nome = nome;
-        this.comentario = comentario;
-        this.email = email;
-        this.nota = nota;
-        this.dthComentario = dthComentario;
-    }
 
     public String getNome() {
         return nome;
@@ -82,11 +72,11 @@ public class tbComentario implements Serializable {
         this.email = email;
     }
 
-    public int getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(int nota) {
+    public void setNota(double nota) {
         this.nota = nota;
     }
 

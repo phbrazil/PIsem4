@@ -108,7 +108,7 @@ insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,ro
 insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,50.00,'sao paulo', 'HueHue','A definir', now());
 
 
-create table tbComentarios(
+create table tbComentario(
 id INT NOT NULL AUTO_INCREMENT,
 nome varchar(60) not null,
 idpacote INT NOT NULL,

@@ -65,12 +65,19 @@ public class comentario extends HttpServlet {
         String data = new SimpleDateFormat("dd/MM/yyyy hh:mm").format(Calendar.getInstance().getTime());
 
         int idpacote = Integer.valueOf(request.getParameter("idpacote"));
-        int nota = Integer.valueOf(request.getParameter("rating"));
+        double nota = Double.valueOf(request.getParameter("rating"));
         String nome = request.getParameter("nome");
         String comentario = request.getParameter("comentario");
         String email = request.getParameter("email");
 
-        tbComentario tbcomentario = new tbComentario(nota, idpacote,nome, comentario, email, nota, data);
+        tbComentario tbcomentario = new tbComentario();
+
+        tbcomentario.setNota(nota);
+        tbcomentario.setEmail(email);
+        tbcomentario.setNome(nome);
+        tbcomentario.setComentario(comentario);
+        tbcomentario.setIdpacote(idpacote);
+        tbcomentario.setDthComentario(data);
 
         //GRAVAR NO BANCO
         //indica as configuracoes do banco
@@ -80,7 +87,7 @@ public class comentario extends HttpServlet {
         //abre sessao com o banco
         Session session = sf.openSession();
 
-        Integer id;
+        Integer id = null;
 
         try {
             //inicia a transacao com o banco
@@ -97,14 +104,27 @@ public class comentario extends HttpServlet {
             }
         }
 
-        PrintWriter out = response.getWriter();
+        if (id != null) {
 
-        String pathModal = "pacote?destino=" + id;
-        String mensagem = "Novo comentário adicionado. Obrigado!";
-        request.setAttribute("path", pathModal);
-        out.println("<script type='text/javascript'>");
-        out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
-        out.println("</script>");
+            PrintWriter out = response.getWriter();
+
+            String pathModal = "pacote?destino=" + id;
+            String mensagem = "Novo comentário adicionado. Obrigado!";
+            request.setAttribute("path", pathModal);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+
+        } else {
+            PrintWriter out = response.getWriter();
+
+            String pathModal = "pacote?destino=" + id;
+            String mensagem = "Ocorreu um erro, tente novamente.";
+            request.setAttribute("path", pathModal);
+            out.println("<script type='text/javascript'>");
+            out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
+            out.println("</script>");
+        }
 
     }
 
