@@ -108,6 +108,18 @@ insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,ro
 insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,50.00,'sao paulo', 'HueHue','A definir', now());
 
 
+create table tbComentarios(
+id INT NOT NULL AUTO_INCREMENT,
+nome varchar(60) not null,
+idpacote INT NOT NULL,
+comentario varchar(100) not null,
+email varchar(60) not null,
+nota int not null,
+dthComentario varchar(20) not null,
+PRIMARY KEY (id),
+FOREIGN KEY (idPacote) REFERENCES tbPacote (idPacote));
+
+
 create table tbImagens(
 id INT NOT NULL AUTO_INCREMENT,
 idPacote INT NOT null,
