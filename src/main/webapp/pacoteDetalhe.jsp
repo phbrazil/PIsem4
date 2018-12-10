@@ -187,14 +187,9 @@
         %>
         <!-- Page Content -->
         <div class="container">
-
-
-
             <div class="col-lg-16">
 
                 <form class = "modal-content" name = "checkOut"  id = "checkOut" action="${pageContext.request.contextPath}/checkOut" method="POST">
-
-
                     <div class="card mt-4">
                         <div class="col-lg-12 col-md-6 mb-4">
                             <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
@@ -233,7 +228,38 @@
                                 <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                                 <p class="card-text"><%=pacote.getRoteiro()%></p>
                             </div>
-                            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                                <% double notaMedia = (Double) request.getAttribute("notaMedia");
+                                int notaMedia1 = 4;
+                                int notaMedia2 = 4;
+                                int notaMedia3 = 4;
+                                int notaMedia4 = 4;
+                                int notaMedia5 = 4;
+                                for (int j = 1; j <= notaMedia; j++) {
+                                    if (j == 1) {
+                                        notaMedia1 = 3;
+                                    }
+                                    if (j == 2) {
+                                        notaMedia2 = 3;
+
+                                    }
+                                    if (j == 3) {
+                                        notaMedia3 = 3;
+
+                                    }
+                                    if (j == 4) {
+                                        notaMedia4 = 3;
+
+                                    }
+                                    if (j == 5) {
+                                        notaMedia5 = 3;
+                                    }
+
+                                }
+                            %>
+
+
+
+                            <span class="text-warning">&#973<%=notaMedia1%>; &#973<%=notaMedia2%>; &#973<%=notaMedia3%>; &#973<%=notaMedia4%>; &#973<%=notaMedia5%>;</span>
                             ${notaMedia} estrelas
                             <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
                             <input type="submit" value= "Comprar Agora" style='float: right; ' class="btn btn-success">
@@ -252,28 +278,27 @@
                             <p><%=comentarios.get(i).getComentario()%></p>
                             <small class="text-muted">Postado por <%=comentarios.get(i).getNome()%> em <%=comentarios.get(i).getDthComentario()%></small>
                             <%for (int j = 1; j <= comentarios.get(i).getNota(); j++) {
-                                        if (j == 1) {
-                                            nota1 = 3;
-                                        }
-                                        if (j == 2) {
-                                            nota2 = 3;
-
-                                        }
-                                        if (j == 3) {
-                                            nota3 = 3;
-
-                                        }
-                                        if (j == 4) {
-                                            nota4 = 3;
-
-                                        }
-                                        if (j == 5) {
-                                            nota5 = 3;
-                                        }
-                                        
+                                    if (j == 1) {
+                                        nota1 = 3;
+                                    }
+                                    if (j == 2) {
+                                        nota2 = 3;
 
                                     }
-                                }%>
+                                    if (j == 3) {
+                                        nota3 = 3;
+
+                                    }
+                                    if (j == 4) {
+                                        nota4 = 3;
+
+                                    }
+                                    if (j == 5) {
+                                        nota5 = 3;
+                                    }
+
+                                }
+                            %>
                             <span class="text-warning">&#973<%=nota1%>; &#973<%=nota2%>; &#973<%=nota3%>; &#973<%=nota4%>; &#973<%=nota5%>;</span>
                             <hr>
                             <%}%>
@@ -322,7 +347,7 @@
                         </fieldset>
                         <br>
                         <br>
-                        
+
                         <input type="hidden" value= "${pacote.idPacote}" name="idpacote">
 
                         <div class="clearfix">

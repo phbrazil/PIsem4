@@ -332,7 +332,7 @@
 
     <div align="center" style="margin-top: 6%">
 
-        <%//@include  file="carrocel.jsp"%>
+        <%@include  file="carrocel.jsp"%>
 
         <div class="container">
             <br>
