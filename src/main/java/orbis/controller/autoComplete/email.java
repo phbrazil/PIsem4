@@ -14,10 +14,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-import orbis.DAO.autoComplete.destinosAutoComplete;
 import orbis.DAO.autoComplete.emailAutoComplete;
 import orbis.model.cliente.tbCliente;
-import orbis.model.pacote.tbPacote;
 
 public class email {
 

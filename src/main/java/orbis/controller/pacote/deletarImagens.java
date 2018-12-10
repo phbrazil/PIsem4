@@ -6,7 +6,6 @@
 package orbis.controller.pacote;
 
 import java.io.File;
-import java.util.List;
 import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

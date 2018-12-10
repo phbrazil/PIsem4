@@ -12,7 +12,6 @@
 
     HttpSession sessao = request.getSession();
 
-    Integer idUser = (Integer) sessao.getAttribute("idcliente");
     String nomeUser = (String) sessao.getAttribute("nomeUser");
     Integer idgrupo = (Integer) (sessao.getAttribute("idgrupo"));
 
@@ -59,7 +58,7 @@
     </head>
     <body id="page-top" style="background: #dcdee4">
 
-    <%@include  file="navbarTest.jsp"%>
+        <%@include  file="navbarTest.jsp"%>
 
 
 
@@ -83,7 +82,7 @@
         <br>
 
         <div align ="center">  
-              <h4 class="text-muted">Editar dados do usuário</h4>  
+            <h4 class="text-muted">Editar perfil</h4>  
         </div>
 
 
@@ -91,74 +90,73 @@
 
             <br>
             <!--form id = 'foto' name = "deletarImagem" action="${pageContext.request.contextPath}/deletarImagem" method="GET"></form-->
-            <form enctype="multipart/form-data" class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editarCliente" method="POST"></form>
+            <form class="needs-validation" novalidate name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/editarCliente" method="POST">
 
-            <input form='pacote' data-toggle="tooltip" value="${pacote.idEndereco}" title="tel" data-placement="right" name="idEndereco" autocomplete="off" type="hidden" class="form-control" id="idEndereco">
-            <input form='pacote' data-toggle="tooltip" value="${pacote.idPayment}" title="tel" data-placement="right" name="idPayment" autocomplete="off" type="hidden" class="form-control" id="idPayment">
-            <input form='pacote' data-toggle="tooltip" value="${pacote.idgrupo}" title="tel" data-placement="right" name="idGrupo" autocomplete="off" type="hidden" class="form-control" id="idGrupo">
-
-            <div class="col-md-8 order-md-1">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                      <label>Nome</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.nomeCliente}" title="Nome" data-placement="left" type="text" autocomplete="off" class="form-control" id="nome" name="nome"  required>
-                        </div>
-
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>E-mail</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.emailCliente}" title="email" readonly data-placement="right" name="email" autocomplete="off" type="text" class="form-control" id="email">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>RG</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.rgCliente}" title="RG" data-placement="right" name="rg" autocomplete="off" type="text" class="form-control" id="rg">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>CPF</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.cpfCliente}" title="CPF" data-placement="right" name="cpf" autocomplete="off" type="text" class="form-control" id="cpf">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Telefone</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.telCliente}" title="tel" data-placement="right" name="tel" autocomplete="off" type="text" class="form-control" id="tel">
-                        </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label>Celular</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.celCliente}" title="cel" data-placement="right" name="cel" autocomplete="off" type="text" class="form-control" id="cel">
-                        </div>
-                    </div>
+                <div class="col-md-8 order-md-1">
+                    <div class="row">
                         <div class="col-md-6 mb-3">
-                        <label>Senha</label>
-                        <div class="input-group">
-                            <input form='pacote' data-toggle="tooltip" value="${pacote.passwordCliente}" title="pass" data-placement="right" name="pass" autocomplete="off" type="password" class="form-control" id="pass">
-                        </div>
-                    </div>
+                            <label>Nome</label>
+                            <div class="input-group">
+                                <input form='pacote' data-toggle="tooltip" value="${cliente.nomeCliente}" title="Nome" data-placement="left" type="text" autocomplete="off" class="form-control" id="nome" name="nome"  required>
+                            </div>
 
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>E-mail</label>
+                            <div class="input-group">
+                                <input form='pacote' data-toggle="tooltip" value="${cliente.emailCliente}" title="email" readonly data-placement="right" name="email" autocomplete="off" type="text" class="form-control" id="email">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>RG</label>
+                            <div class="input-group">
+                                <input form='pacote' data-toggle="tooltip" onkeydown="javascript: fMasc(this, mRG);" value="${cliente.rgCliente}" title="RG" data-placement="right" name="rg" autocomplete="off" type="text" class="form-control" id="rg">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>CPF</label>
+                            <div class="input-group">
+                                <input form='pacote' data-toggle="tooltip" onkeydown="javascript: fMasc(this, mCPF);"value="${cliente.cpfCliente}" title="CPF" data-placement="right" name="cpf" autocomplete="off" type="text" class="form-control" id="cpf">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Telefone</label>
+                            <div class="input-group">
+                                <input form='pacote' onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.telCliente}" title="tel" data-placement="right" name="tel" autocomplete="off" type="text" class="form-control" id="tel">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Celular</label>
+                            <div class="input-group">
+                                <input form='pacote' onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.celCliente}" title="cel" data-placement="right" name="cel" autocomplete="off" type="text" class="form-control" id="cel">
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label>Senha</label>
+                            <div class="input-group">
+                                <input form='pacote' data-toggle="tooltip" value="${cliente.passwordCliente}" title="pass" data-placement="right" name="pass" autocomplete="off" type="password" class="form-control" id="pass">
+                            </div>
+                        </div>
+
+
+                        <br>
+
+
+                    </div>
 
                     <br>
 
+                    <button form='pacote' class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
+                                return confirmPacote();
+                            }" name = "gravarprojeto"><span data-feather="save"></span>Salvar</button>
 
                 </div>
-                       
-                <br>
-                </form>    
 
-
-            </div>
-                    
-            <button form='pacote' class="btn btn-lg btn-outline-success" id='i_submit' type="submit" onclick="{
-                        return confirmPacote();
-                    }" name = "gravarprojeto"><span data-feather="save"></span>Salvar</button>
-            <input type='hidden' form='pacote' name='id' value='${pacote.id}'>
+                <input type='hidden' form='pacote' name='idCliente' value='${cliente.id}'>
+                <input type='hidden' form='pacote' name='idPayment' value='${cliente.idPayment}'>
+                <input type='hidden' form='pacote' name='idEndereco' value='${cliente.idEndereco}'>
+                <input type='hidden' form='pacote' name='idgrupo' value='${cliente.idgrupo}'>
+            </form>    
 
         </div>
 
@@ -182,6 +180,7 @@
     <script src="js/confirmDeletePacote.js"></script>
     <script src="js/confirmPacote.js"></script>
     <script src="js/formatarMoeda.js"></script>
+    <script src="js/mascaraCNPJ.js"></script>
 
 
     <script src="js/jquery.js"></script>
@@ -192,103 +191,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-    <script>
-
-                window.onload = function () {
-
-                    var valor = document.getElementById('valor');
-
-                    document.pacote.valor.value = converteFloatMoeda(valor.value);
-
-                }
-
-
-    </script>
-
 
     <script>
-
-        $("#localdestino").autocomplete({
-            source: $("#localdestino").autocomplete("getdataCidades.jsp")});
-
-        function naBaseDestino(val) {
-            var source = $("#localdestino").autocomplete("getdataCidades.jsp");
-
-            var length = source.length;
-            for (var i = 0; i < length; i++) {
-                if (source[i] != val) {
-                    document.getElementById('localdestino').value = "";
-                    document.getElementById('localdestino').placeholder = "Destino não cadastrado, solicitar inclusão";
-                }
-            }
-        }
-
-
-    </script>
-
-    <script>
-
-        $("#localsaida").autocomplete({
-            source: $("#localsaida").autocomplete("getdataCidades.jsp")});
-
-        function naBaseSaida(val) {
-            var source = $("#localsaida").autocomplete("getdataCidades.jsp");
-
-            var length = source.length;
-            for (var i = 0; i < length; i++) {
-                if (source[i] != val) {
-                    document.getElementById('localsaida').value = "";
-                    document.getElementById('localsaida').placeholder = "Destino não cadastrado, solicitar inclusão";
-                }
-            }
-        }
-
-
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-        });
+                        $(document).ready(function () {
+                            $('[data-toggle="tooltip"]').tooltip();
+                        });
     </script>
 
 
 
     <script src="js/feather.min.js"></script>
     <script>
-        feather.replace()
-    </script>
-
-    <script>
-        $(function () {
-            $('#valor').maskMoney();
-        });
+                        feather.replace()
     </script>
     <script>
-        $('#choose-file').inputFileText({
-            text: 'Selecione as imagens'
-        });
-
-    </script>
-
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
+                // Example starter JavaScript for disabling form submissions if there are invalid fields
+                        (function () {
+                            'use strict';
+                            window.addEventListener('load', function () {
+                                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                                var forms = document.getElementsByClassName('needs-validation');
+                                // Loop over them and prevent submission
+                                var validation = Array.prototype.filter.call(forms, function (form) {
+                                    form.addEventListener('submit', function (event) {
+                                        if (form.checkValidity() === false) {
+                                            event.preventDefault();
+                                            event.stopPropagation();
+                                        }
+                                        form.classList.add('was-validated');
+                                    }, false);
+                                });
+                            }, false);
+                        })();
     </script>
 
 

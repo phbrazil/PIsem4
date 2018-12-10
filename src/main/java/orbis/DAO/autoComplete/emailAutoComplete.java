@@ -7,7 +7,6 @@ package orbis.DAO.autoComplete;
 
 import java.util.List;
 import orbis.model.cliente.tbCliente;
-import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

@@ -5,10 +5,8 @@
  */
 package orbis.controller.login;
 
-import orbis.controller.busca.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,9 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.JOptionPane;
 import orbis.model.cliente.tbCliente;
-import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -106,7 +102,7 @@ public class Login extends HttpServlet {
                 }
                 sessao.setAttribute("nomeUser", primeironome);
                 sessao.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                sessao.setAttribute("idcliente", cliente.get(0).getId());
+                sessao.setAttribute("idCliente", cliente.get(0).getId());
                 sessao.setAttribute("idgrupo", cliente.get(0).getIdgrupo());
 
                 request.getRequestDispatcher("index.jsp").forward(request, response);

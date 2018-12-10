@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.StringTokenizer;
 import orbis.DAO.autoComplete.cidadesAutoComplete;
 import orbis.model.cidades.tbCidades;
-import orbis.model.pacote.tbPacote;
 
 public class cidades {
 

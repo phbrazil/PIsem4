@@ -10,7 +10,6 @@ import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.Locale;
 import javax.ejb.EJB;
-import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

@@ -15,9 +15,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 import orbis.DAO.autoComplete.CPFAutoComplete;
-import orbis.DAO.autoComplete.destinosAutoComplete;
 import orbis.model.cliente.tbCliente;
-import orbis.model.pacote.tbPacote;
 
 public class CPF {
 

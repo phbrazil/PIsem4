@@ -6,7 +6,6 @@
 package orbis.DAO.pacote;
 
 import orbis.model.cliente.tbCliente;
-import orbis.model.endereco.tbEndereco;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

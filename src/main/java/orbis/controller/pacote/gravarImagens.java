@@ -5,10 +5,7 @@
  */
 package orbis.controller.pacote;
 
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import orbis.DAO.pacote.listarImagens;
 import orbis.model.imagensPacote.tbImagens;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
