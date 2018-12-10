@@ -7,12 +7,15 @@ package orbis.controller.pacote;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import orbis.DAO.comentario.listarComentario;
+import orbis.model.comentario.tbComentario;
 import orbis.model.pacote.tbPacote;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,14 +32,13 @@ public class pacoteDetalhe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
 
         request.setCharacterEncoding("UTF-8");
 
         HttpSession sessao = request.getSession(true);
 
-        Integer destino = Integer.valueOf(request.getParameter("destino"));
-        
+        Integer idpacote = Integer.valueOf(request.getParameter("destino"));
+
         //popula o model com os dados
         tbPacote pacote;
 
@@ -51,7 +53,7 @@ public class pacoteDetalhe extends HttpServlet {
             //inicia a transacao com o banco
             Transaction tx = session.beginTransaction();
 
-            pacote = (tbPacote) session.get(tbPacote.class, destino);
+            pacote = (tbPacote) session.get(tbPacote.class, idpacote);
 
             //comita as informacoes
             tx.commit();
@@ -64,7 +66,19 @@ public class pacoteDetalhe extends HttpServlet {
             }
         }
 
+        listarComentario listarComentario = new listarComentario();
+
+        List<tbComentario> listaComentario = listarComentario.listar(idpacote);
+
+        request.setAttribute("listaComentario", listaComentario);
+        double notaMedia = 0;
+
+        for (int i = 0; i < listaComentario.size(); i++) {
+            notaMedia = notaMedia + listaComentario.get(i).getNota();
+        }
+
         request.setAttribute("pacote", pacote);
+        request.setAttribute("notaMedia", pacote);
         request.getRequestDispatcher("pacoteDetalhe.jsp").forward(request, response);
     }
 

@@ -1,4 +1,5 @@
 
+<%@page import="orbis.model.comentario.tbComentario"%>
 <%@page import="orbis.model.imagensPacote.tbImagens"%>
 <%@page import="java.util.List"%>
 <%@page import="orbis.DAO.pacote.listarImagens"%>
@@ -170,94 +171,120 @@
             listarImagens listarImagens = new listarImagens();
 
             List<tbImagens> imagens;
+            List<tbComentario> comentarios = (List<tbComentario>) request.getAttribute("listaComentario");
 
             imagens = listarImagens.listar(pacote.getIdPacote());
 
             NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
                     new Locale("pt", "BR"));
 
+            int nota1 = 4;
+            int nota2 = 4;
+            int nota3 = 4;
+            int nota4 = 4;
+            int nota5 = 4;
+
         %>
         <!-- Page Content -->
         <div class="container">
 
-            <div class="row">
 
 
-                <div class="col-lg-16">
+            <div class="col-lg-16">
 
-                    <form class = "modal-content" name = "checkOut"  id = "checkOut" action="${pageContext.request.contextPath}/checkOut" method="POST">
+                <form class = "modal-content" name = "checkOut"  id = "checkOut" action="${pageContext.request.contextPath}/checkOut" method="POST">
 
 
-                        <div class="card mt-4">
-                            <div class="col-lg-12 col-md-6 mb-4">
-                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <%for (int j = 0; j < imagens.size(); j++) {
-                                                String action = "";
-                                        %>
+                    <div class="card mt-4">
+                        <div class="col-lg-12 col-md-6 mb-4">
+                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <%for (int j = 0; j < imagens.size(); j++) {
+                                            String action = "";
+                                    %>
 
-                                        <%if (j == 0) {
-                                                action = "active";
+                                    <%if (j == 0) {
+                                            action = "active";
 
-                                            } else {
-                                                action = "";
-                                            }
-                                        %>
-                                        <div id='slide<%=j%>' class="carousel-item <%=action%>">
-                                            <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 800px; height: 400px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
-                                            <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
-                                        </div>
-                                        <%}%>
-
+                                        } else {
+                                            action = "";
+                                        }
+                                    %>
+                                    <div id='slide<%=j%>' class="carousel-item <%=action%>">
+                                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" ><img class="card-img-top" style='width: 800px; height: 400px' src="<%=pacote.getImagePath() + imagens.get(j).getNomeImagem()%>" alt="destino"></a>
+                                        <input type ='hidden' name ='destino' value="<%=pacote.getIdPacote()%>">
                                     </div>
-                                    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
+                                    <%}%>
+
                                 </div>
-                                <div class="card-body">
-                                    <h4 class="card-title">
-                                        <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
-                                    </h4>
-                                    <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
-                                    <p class="card-text"><%=pacote.getRoteiro()%></p>
-                                </div>
-                                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
-                                4.0 stars
-                                <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
-                                <input type="submit" value= "Comprar Agora" style='float: right; ' class="btn btn-success">
-
-                            </div>
-
-                        </div>
-                        <!-- /.card -->
-
-                        <div class="card card-outline-secondary my-4">
-                            <div class="card-header">
-                                Reviews do Pacote
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
                             <div class="card-body">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                                <hr>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                                <hr>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis et enim aperiam inventore, similique necessitatibus neque non! Doloribus, modi sapiente laboriosam aperiam fugiat laborum. Sequi mollitia, necessitatibus quae sint natus.</p>
-                                <small class="text-muted">Posted by Anonymous on 3/1/17</small>
-                                <hr>
-                                <a href="#"  onclick="document.getElementById('comentarioModal').style.display = 'block'" class="btn btn-success">Deixe um comentário</a>
+                                <h4 class="card-title">
+                                    <a href="pacote?destino=<%=pacote.getIdPacote()%>" style="text-decoration: none"><%=pacote.getLocalDestino()%></a>
+                                </h4>
+                                <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
+                                <p class="card-text"><%=pacote.getRoteiro()%></p>
                             </div>
+                            <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                            ${notaMedia} estrelas
+                            <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
+                            <input type="submit" value= "Comprar Agora" style='float: right; ' class="btn btn-success">
+
                         </div>
 
-                    </form>
+                    </div>
                     <!-- /.card -->
 
-                </div>
+                    <div class="card card-outline-secondary my-4">
+                        <div class="card-header">
+                            Reviews do Pacote
+                        </div>
+                        <div class="card-body">
+                            <%for (int i = 0; i < comentarios.size(); i++) {%>
+                            <p><%=comentarios.get(i).getComentario()%></p>
+                            <small class="text-muted">Postado por <%=comentarios.get(i).getNome()%> em <%=comentarios.get(i).getDthComentario()%></small>
+                            <%for (int j = 1; j <= comentarios.get(i).getNota(); j++) {
+                                        if (j == 1) {
+                                            nota1 = 3;
+                                        }
+                                        if (j == 2) {
+                                            nota2 = 3;
+
+                                        }
+                                        if (j == 3) {
+                                            nota3 = 3;
+
+                                        }
+                                        if (j == 4) {
+                                            nota4 = 3;
+
+                                        }
+                                        if (j == 5) {
+                                            nota5 = 3;
+                                        }
+                                        
+
+                                    }
+                                }%>
+                            <span class="text-warning">&#973<%=nota1%>; &#973<%=nota2%>; &#973<%=nota3%>; &#973<%=nota4%>; &#973<%=nota5%>;</span>
+                            <hr>
+                            <%}%>
+                            <a href="#"  onclick="document.getElementById('comentarioModal').style.display = 'block'" class="btn btn-success">Deixe um comentário</a>
+
+                        </div>
+                    </div>
+
+                </form>
+                <!-- /.card -->
+
 
 
                 <!-- /.col-lg-9 -->
@@ -295,7 +322,8 @@
                         </fieldset>
                         <br>
                         <br>
-                        <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
+                        
+                        <input type="hidden" value= "${pacote.idPacote}" name="idpacote">
 
                         <div class="clearfix">
                             <button type="button" onclick="document.getElementById('comentarioModal').style.display = 'none'" class="cancelbtn">Cancelar</button>
