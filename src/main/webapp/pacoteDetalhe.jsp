@@ -257,8 +257,6 @@
                                 }
                             %>
 
-
-
                             <span class="text-warning">&#973<%=notaMedia1%>; &#973<%=notaMedia2%>; &#973<%=notaMedia3%>; &#973<%=notaMedia4%>; &#973<%=notaMedia5%>;</span>
                             ${notaMedia} estrelas
                             <input type="hidden" value= "<%=pacote.getIdPacote()%>" name="idpacote">
