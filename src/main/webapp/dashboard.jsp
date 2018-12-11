@@ -245,14 +245,14 @@
 
                 }],
             labels: [
-                "Janeiro " + "${janeiro}",
-                "Fevereiro " + "${fevereiro}",
-                "Março " + "${marco}",
+                "Janeiro: " + "${janeiro}",
+                "Fevereiro: " + "${fevereiro}",
+                "Março: " + "${marco}",
                 "Abril: " + "${abril}",
                 "Maio: " + "${maio}",
                 "Junho: " + "${junho}",
                 "Julho: " + "${julho}",
-                "Agostot: " + "${agosto}",
+                "Agosto: " + "${agosto}",
                 "Setembro: " + "${setembro}",
                 "Outubro: " + "${outubro}",
                 "Novembro: " + "${novembro}",
@@ -263,7 +263,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '01 - Vendas por mes ' + year
+                text: '01 - Quantidade Vendas por mês ' + year
             },
             legend: {
                 display: false
@@ -341,14 +341,14 @@
 
                 }],
             labels: [
-                "Janeiro " + "${janeiroV}",
-                "Fevereiro " + "${fevereiroV}",
-                "Março " + "${marcoV}",
+                "Janeiro: " + "${janeiroV}",
+                "Fevereiro: " + "${fevereiroV}",
+                "Março: " + "${marcoV}",
                 "Abril: " + "${abrilV}",
                 "Maio: " + "${maioV}",
                 "Junho: " + "${junhoV}",
                 "Julho: " + "${julhoV}",
-                "Agostot: " + "${agostoV}",
+                "Agosto: " + "${agostoV}",
                 "Setembro: " + "${setembroV}",
                 "Outubro: " + "${outubroV}",
                 "Novembro: " + "${novembroV}",
@@ -359,7 +359,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '02 - Valores Vendas por mes ' + year
+                text: '02 - Valores Vendas por mês ' + year
             },
             legend: {
                 display: false
@@ -375,7 +375,7 @@
                 callbacks: {
                     label: function (tooltipItem) {
                         return tooltipItem.yLabel;
-                    }
+                    
                 }
             }
         }
