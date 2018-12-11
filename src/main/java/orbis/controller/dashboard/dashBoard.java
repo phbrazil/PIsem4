@@ -55,65 +55,56 @@ public class dashboard extends HttpServlet {
                 agostoV = 0, setembroV = 0, outubroV = 0, novembroV = 0, dezembroV = 0;
 
         for (int i = 0; i < vendas.size(); i++) {
-            String mes = String.valueOf(vendas.get(i).getDthvenda().charAt(5));
-            mes = mes + String.valueOf(vendas.get(i).getDthvenda().charAt(6));
-
-            if (mes.equals("12")) {
-                dezembroV += vendas.get(i).getTotal();
-            }
-
-        }
-        for (int i = 0; i < pacotes.size(); i++) {
-
-            String mes = String.valueOf(pacotes.get(i).getDthCadastro().charAt(5));
-            mes = mes + String.valueOf(pacotes.get(i).getDthCadastro().charAt(6));
+            String mes = String.valueOf(vendas.get(i).getDthvenda().charAt(3));
+            mes = mes + String.valueOf(vendas.get(i).getDthvenda().charAt(4));
 
             switch (mes) {
                 case "01":
+                    janeiroV += vendas.get(i).getTotal();
                     janeiro++;
-                    janeiroV += pacotes.get(i).getValor();
                     break;
                 case "02":
+                    fevereiroV += vendas.get(i).getTotal();
                     fevereiro++;
-                    fevereiroV += pacotes.get(i).getValor();
                     break;
                 case "03":
+                    marcoV += vendas.get(i).getTotal();
                     marco++;
-                    marcoV += pacotes.get(i).getValor();
                     break;
                 case "04":
+                    abrilV += vendas.get(i).getTotal();
                     abril++;
-                    abrilV += pacotes.get(i).getValor();
                     break;
                 case "05":
+                    maioV += vendas.get(i).getTotal();
                     maio++;
-                    maioV += pacotes.get(i).getValor();
                     break;
                 case "06":
+                    junhoV += vendas.get(i).getTotal();
                     junho++;
-                    julhoV += pacotes.get(i).getValor();
                     break;
                 case "07":
+                    julhoV += vendas.get(i).getTotal();
                     julho++;
-                    julhoV += pacotes.get(i).getValor();
                     break;
                 case "08":
+                    agostoV += vendas.get(i).getTotal();
                     agosto++;
-                    agostoV += pacotes.get(i).getValor();
                     break;
                 case "09":
+                    setembroV += vendas.get(i).getTotal();
                     setembro++;
-                    setembroV += pacotes.get(i).getValor();
                     break;
                 case "10":
+                    outubroV += vendas.get(i).getTotal();
                     outubro++;
-                    outubroV += pacotes.get(i).getValor();
                     break;
                 case "11":
+                    novembroV += vendas.get(i).getTotal();
                     novembro++;
-                    novembroV += pacotes.get(i).getValor();
                     break;
                 case "12":
+                    dezembroV += vendas.get(i).getTotal();
                     dezembro++;
                     break;
                 default:
@@ -148,6 +139,19 @@ public class dashboard extends HttpServlet {
         request.setAttribute("novembroV", novembroV);
         request.setAttribute("dezembroV", dezembroV);
 
+        request.setAttribute("janeiroF", formatoMoeda.format(janeiroV));
+        request.setAttribute("fevereiroF", formatoMoeda.format(fevereiroV));
+        request.setAttribute("marcoF", formatoMoeda.format(marcoV));
+        request.setAttribute("abrilF", formatoMoeda.format(abrilV));
+        request.setAttribute("maioF", formatoMoeda.format(maioV));
+        request.setAttribute("junhoF", formatoMoeda.format(junhoV));
+        request.setAttribute("julhoF", formatoMoeda.format(julhoV));
+        request.setAttribute("agostoF", formatoMoeda.format(agostoV));
+        request.setAttribute("setembroF", formatoMoeda.format(setembroV));
+        request.setAttribute("outubroF", formatoMoeda.format(outubroV));
+        request.setAttribute("novembroF", formatoMoeda.format(novembroV));
+        request.setAttribute("dezembroF", formatoMoeda.format(dezembroV));
+        
         request.setAttribute("year", year);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);

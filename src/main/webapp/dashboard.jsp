@@ -382,14 +382,14 @@
 
                 }],
             labels: [
-                "Janeiro " + "${janeiro}",
-                "Fevereiro " + "${fevereiro}",
-                "Março " + "${marco}",
+                "Janeiro: " + "${janeiro}",
+                "Fevereiro: " + "${fevereiro}",
+                "Março: " + "${marco}",
                 "Abril: " + "${abril}",
                 "Maio: " + "${maio}",
                 "Junho: " + "${junho}",
                 "Julho: " + "${julho}",
-                "Agostot: " + "${agosto}",
+                "Agosto: " + "${agosto}",
                 "Setembro: " + "${setembro}",
                 "Outubro: " + "${outubro}",
                 "Novembro: " + "${novembro}",
@@ -478,18 +478,18 @@
 
                 }],
             labels: [
-                "Janeiro " + "${janeiroV}",
-                "Fevereiro " + "${fevereiroV}",
-                "Março " + "${marcoV}",
-                "Abril: " + "${abrilV}",
-                "Maio: " + "${maioV}",
-                "Junho: " + "${junhoV}",
-                "Julho: " + "${julhoV}",
-                "Agostot: " + "${agostoV}",
-                "Setembro: " + "${setembroV}",
-                "Outubro: " + "${outubroV}",
-                "Novembro: " + "${novembroV}",
-                "Dezembro: " + "${dezembroV}"
+                "Janeiro: " + "${janeiroF}",
+                "Fevereiro: " + "${fevereiroF}",
+                "Março: " + "${marcoF}",
+                "Abril: " + "${abrilF}",
+                "Maio: " + "${maioF}",
+                "Junho: " + "${junhoF}",
+                "Julho: " + "${julhoF}",
+                "Agosto: " + "${agostoF}",
+                "Setembro: " + "${setembroF}",
+                "Outubro: " + "${outubroF}",
+                "Novembro: " + "${novembroF}",
+                "Dezembro: " + "${dezembroF}"
             ]
         },
         options: {

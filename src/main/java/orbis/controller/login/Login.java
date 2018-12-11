@@ -77,7 +77,7 @@ public class Login extends HttpServlet {
 
                 request.setAttribute("nomeCliente", cliente.get(0).getNomeCliente());
                 request.setAttribute("emailCliente", cliente.get(0).getEmailCliente());
-                request.setAttribute("idcliente", cliente.get(0).getId());
+                request.setAttribute("idCliente", cliente.get(0).getId());
 
                 request.getRequestDispatcher("trocarSenha.jsp").forward(request, response);
 

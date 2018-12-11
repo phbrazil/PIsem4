@@ -45,7 +45,7 @@ public class trocarSenha extends HttpServlet {
         String emailCliente = request.getParameter("emailCliente");
         String password = request.getParameter("password");
         String confirmpassword = request.getParameter("confirmpassword");
-        int idcliente = Integer.valueOf(request.getParameter("idcliente"));
+        int idcliente = Integer.valueOf(request.getParameter("idCliente"));
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbCliente.class);

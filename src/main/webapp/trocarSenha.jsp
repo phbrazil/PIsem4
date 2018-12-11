@@ -85,7 +85,7 @@
                     <button class="btn btn-lg btn-outline-success" type="submit" onclick="{
                                 return ConfirmPassword();
                             }" name = "trocarsenha"><span data-feather="save"></span> Confirmar</button> 
-                            <input type="hidden" name='idcliente' value='${idcliente}'>
+                            <input type="hidden" name='idCliente' value='${idcliente}'>
                 </div>
             </div>
 

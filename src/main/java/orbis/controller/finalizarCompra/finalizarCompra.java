@@ -63,7 +63,7 @@ public class finalizarCompra extends HttpServlet {
         int idpacote = Integer.valueOf(request.getParameter("idpacote"));
         String tipoPagamento = String.valueOf(request.getParameter("paymentMethod"));
 
-        Integer idcliente = (Integer) sessao.getAttribute("idcliente");
+        Integer idcliente = (Integer) sessao.getAttribute("idCliente");
         int quantidade = Integer.valueOf(request.getParameter("quantidade"));
 
         venda.setIdcliente(idcliente);
