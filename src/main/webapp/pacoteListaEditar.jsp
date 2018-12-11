@@ -168,40 +168,13 @@
         }
     </style>
 
-    <%if (nomeUser == null) {
-        
-                String pathModal = "index.jsp";
-                String mensagem = "Favor efetuar acesso ao sistema";
-                request.setAttribute("path", pathModal);
-                out.println("<script type='text/javascript'>");
-                out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
-                out.println("</script>");
 
-    
-
-    %>
 
 <body class="bg-light" style="background: #fff">
 
 
-    <%} else {%>
-
-
-    <button onclick="{
-                location = 'sair.jsp';
-            }" style="width:auto; float: right">Sair</button>
-    <%if (idgrupo == 1) {%>
-    <button onclick="{
-                location = 'gerenciarPacotes.jsp';
-            }" style="width:auto; float: right">Gerenciar Pacotes</button>
-    <%}%>
-
-
-    <button onclick="{
-                location = 'minhasCompras';
-            }" style="width:auto; float: right">Olá <%=nomeUser%></button>
-
-    <%}%>
+       <%@include  file="navbarTest.jsp"%>
+    
 
     <script>
         // Get the modal
@@ -214,7 +187,7 @@
         }
     </script>
 
-    <div align='center'>
+    <div class="mt-5" align='center'>
         <br>
        
         <form  name = "pacote"  id = "pacote" action="${pageContext.request.contextPath}/pacote" method="POST">
