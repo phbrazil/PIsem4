@@ -73,9 +73,6 @@ function converteMoedaFloat(valor) {
  */
 function converteFloatMoeda(valor) {
     
-    alert(valor+" aqui");
-
-
     var inteiro = null, decimal = null, c = null, j = null;
     var aux = new Array();
     valor = "" + valor;

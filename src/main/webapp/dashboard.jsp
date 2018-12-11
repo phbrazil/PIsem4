@@ -400,7 +400,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '01 - Vendas por mes ' + year
+                text: '01 - Vendas por mês ' + year
             },
             legend: {
                 display: false
@@ -496,7 +496,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '01 - Valores Vendas por mes ' + year
+                text: '01 - Valores Vendas por mês ' + year
             },
             legend: {
                 display: false

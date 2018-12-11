@@ -197,7 +197,7 @@
             var maximo = <%=pacote.getQtdMax()%>
 
             if (entrada > maximo) {
-                alert('Quantide de ingressos não disponível');
+                alert('Quantidade de ingressos não disponível');
 
                 document.getElementById('qtdmax').value = 1;
                 document.getElementById('qtdmax').focus();
@@ -214,9 +214,6 @@
 
 
             var valor = converteMoedaFloat(document.getElementById('valor').value);
-
-            console.log(total);
-            console.log(quantidade);
 
             document.getElementById('total').value = converteFloatMoeda(valor * quantidade);
 
