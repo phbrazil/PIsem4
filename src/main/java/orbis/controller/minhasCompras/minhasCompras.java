@@ -35,7 +35,7 @@ public class minhasCompras extends HttpServlet {
 
         HttpSession sessao = request.getSession(true);
 
-        int idcliente = (Integer) sessao.getAttribute("idcliente");
+        int idcliente = (Integer) sessao.getAttribute("idCliente");
 
         //indica as configuracoes do banco
         Configuration con = new Configuration().configure().addAnnotatedClass(tbVenda.class);

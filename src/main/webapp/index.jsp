@@ -33,6 +33,14 @@
 
 
 <head>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     <title>Orbis Eu Vou</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -166,19 +174,19 @@
             .cancelbtn, .signupbtn {
                 width: 100%;
             }
-            }
+        }
         @media only screen and (max-width: 990px) {
             div.logo {
-             display: none;
-               }
+                display: none;
             }
+        }
         @media only screen and (min-width: 990px) {
             div.espaco {
-             display: none;
-               }
+                display: none;
             }
-         
-        
+        }
+
+
     </style>
 
     <script>
@@ -199,9 +207,9 @@
     <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
 
         <div class="logo" id="logo" name="logo">
-        <a class="navbar-brand" href="index.jsp" >
-            <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
-        </a>
+            <a class="navbar-brand" href="index.jsp" >
+                <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+            </a>
         </div>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -322,13 +330,13 @@
         </div>
 
     </nav>
-                
-          <div class="espaco" >
-              <br>
-              <br>
-              <br>
-                      
-          </div>
+
+    <div class="espaco" >
+        <br>
+        <br>
+        <br>
+
+    </div>
 
     <div align="center" style="margin-top: 6%">
 

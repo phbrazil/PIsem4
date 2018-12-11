@@ -33,6 +33,14 @@
 
     <head>
 
+        <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+        <link rel="manifest" href="favicon/site.webmanifest">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="site de pacotes de excursao senac">
@@ -228,7 +236,7 @@
                                 <h5><%=formatoMoeda.format(pacote.getValor())%></h5>
                                 <p class="card-text"><%=pacote.getRoteiro()%></p>
                             </div>
-                                <% double notaMedia = (Double) request.getAttribute("notaMedia");
+                            <% double notaMedia = (Double) request.getAttribute("notaMedia");
                                 int notaMedia1 = 4;
                                 int notaMedia2 = 4;
                                 int notaMedia3 = 4;
