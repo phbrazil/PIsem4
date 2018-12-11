@@ -81,7 +81,7 @@
 
         <%        if (mobile == false) {
 
-        %>
+                %>
         <%@include  file = "navbarTest.jsp"%>        
         <p></p>
         <%}%>  
@@ -92,7 +92,7 @@
             <form name ="home">    
                 <li class="nav-item">
 
-                    <button  formaction="Home.jsp" class = "button" ><span data-feather="home"></span> Back</button>
+                    <button  formaction="gerenciarPacotes.jsp" class = "button" ><span data-feather="home"></span> Voltar</button>
                 </li>
             </form>
         </div>
@@ -122,7 +122,7 @@
                                 <div class="invalid-feedback">
                                     Favor selecionar o Ano..
                                 </div>
-                                <button  type="submit" name = "type" class = "button" value = "Won"><strong>Atualizar</strong></button>
+                                <button  type="submit" class = "button" ><strong>Atualizar</strong></button>
 
                             </div>
                         </div>
@@ -151,7 +151,9 @@
                     <!--style = "background-color: #454545"-->
                     <main  role="main" class ="col-md-10 ml-sm-auto col-lg-10 pt-3 px-4">
                         <div class = "fonteDash zoom" align ="center">
-                            <canvas  id="GM"></canvas>
+                            <canvas  id="Quantidades"></canvas>
+                            <br>
+                            <canvas  id="Valores"></canvas>
                             <br>
                         </div>
                     </main>
@@ -203,10 +205,9 @@
     var novembro = "${novembro}"
     var dezembro = "${dezembro}"
 
-    var type = "${type}"
     var year = "${year}"
 
-    var gmconfig = {
+    var quantideConfig = {
         type: 'bar',
         data: {
 
@@ -284,15 +285,114 @@
         }
     };
 
+
+    // 02 - Valores vendas por mes
+
+    var janeiro = "${janeiroV}"
+    var fevereiro = "${fevereiroV}"
+    var marco = "${marcoV}"
+    var abril = "${abrilV}"
+    var maio = "${maioV}"
+    var junho = "${junhoV}"
+    var julho = "${julhoV}"
+    var agosto = "${agostoV}"
+    var setembro = "${setembroV}"
+    var outubro = "${outubroV}"
+    var novembro = "${novembroV}"
+    var dezembro = "${dezembroV}"
+
+    var year = "${year}"
+
+    var valoresConfig = {
+        type: 'bar',
+        data: {
+
+            datasets: [{
+
+                    data: [
+                        janeiro,
+                        fevereiro,
+                        marco,
+                        abril,
+                        maio,
+                        junho,
+                        julho,
+                        agosto,
+                        setembro,
+                        outubro,
+                        novembro,
+                        dezembro
+                    ],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.orange,
+                        window.chartColors.yellow,
+                        window.chartColors.grey,
+                        window.chartColors.aqua,
+                        window.chartColors.yellowgreen,
+                        window.chartColors.darkmagenta,
+                        window.chartColors.olive,
+                        window.chartColors.darkcyan,
+                        window.chartColors.purple,
+                        window.chartColors.darkgreen,
+                        window.chartColors.lightcoral
+
+                    ],
+
+                }],
+            labels: [
+                "Janeiro " + "${janeiroV}",
+                "Fevereiro " + "${fevereiroV}",
+                "Março " + "${marcoV}",
+                "Abril: " + "${abrilV}",
+                "Maio: " + "${maioV}",
+                "Junho: " + "${junhoV}",
+                "Julho: " + "${julhoV}",
+                "Agostot: " + "${agostoV}",
+                "Setembro: " + "${setembroV}",
+                "Outubro: " + "${outubroV}",
+                "Novembro: " + "${novembroV}",
+                "Dezembro: " + "${dezembroV}"
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 30,
+                text: '02 - Valores Vendas por mes ' + year
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    };
+
+
     window.onload = function () {
 
 
         Chart.defaults.global.defaultFontColor = 'yellow';
 
-        var gm = document.getElementById("GM").getContext("2d");
-        window.myPie = new Chart(gm, gmconfig);
+        var quantidadeMes = document.getElementById("Quantidades").getContext("2d");
+        window.myPie = new Chart(quantidadeMes, quantideConfig);
 
 
+        var valoresMes = document.getElementById("Valores").getContext("2d");
+        window.myPie = new Chart(valoresMes, valoresConfig);
 
 
     }

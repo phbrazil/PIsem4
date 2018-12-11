@@ -72,6 +72,8 @@ function converteMoedaFloat(valor) {
  @return valor(string) - o valor em moeda
  */
 function converteFloatMoeda(valor) {
+    
+    alert(valor+" aqui");
 
 
     var inteiro = null, decimal = null, c = null, j = null;
