@@ -5,10 +5,9 @@
  */
 package orbis.controller.dashboard;
 
-
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.util.Iterator;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.ServletException;
@@ -17,140 +16,101 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import orbis.DAO.pacote.listarPacotes;
+import orbis.DAO.dashboard.extrairPacotes;
+import orbis.DAO.dashboard.extrairVendas;
 import orbis.model.pacote.tbPacote;
+import orbis.model.venda.tbVenda;
+import java.util.Calendar;
 
 /**
  *
- * @author Paulo.Bezerra
+ * @author paulo.bezerra
  */
-@WebServlet(name = "SessaoServlet", urlPatterns = {"/dashboard"})
+@WebServlet(name = "dashboard", urlPatterns = {"/dashboard"})
+public class dashboard extends HttpServlet {
 
-public class dashBoard extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+
+        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
+                new Locale("pt", "BR"));
+
+        String year = request.getParameter("year");
+
+        request.setAttribute("year", year);
+
+        extrairVendas extrairVendas = new extrairVendas();
+        extrairPacotes extrairPacotes = new extrairPacotes();
+
+        List<tbVenda> vendas = extrairVendas.listar(year);
+        List<tbPacote> pacotes = extrairPacotes.listar(year);
+
+        int janeiro = 0, fevereiro = 0, marco = 0, abril = 0, maio = 0, junho = 0, julho = 0,
+                agosto = 0, setembro = 0, outubro = 0, novembro = 0, dezembro = 0;
+
+        for (int i = 0; i < pacotes.size(); i++) {
+
+            String mes = String.valueOf(pacotes.get(i).getDthCadastro().charAt(5));
+            mes = mes + String.valueOf(pacotes.get(i).getDthCadastro().charAt(6));
+
+            if (mes.equals("01")) {
+                janeiro++;
+            } else if (mes.equals("02")) {
+                fevereiro++;
+            } else if (mes.equals("03")) {
+                marco++;
+            } else if (mes.equals("04")) {
+                abril++;
+            } else if (mes.equals("05")) {
+                maio++;
+            } else if (mes.equals("06")) {
+                junho++;
+            } else if (mes.equals("07")) {
+                julho++;
+            } else if (mes.equals("08")) {
+                agosto++;
+            } else if (mes.equals("09")) {
+                setembro++;
+            } else if (mes.equals("10")) {
+                outubro++;
+            } else if (mes.equals("11")) {
+                novembro++;
+            } else if (mes.equals("12")) {
+                dezembro++;
+            }
+
+        }
+
+        request.setAttribute("janeiro", janeiro);
+        request.setAttribute("fevereiro", fevereiro);
+        request.setAttribute("marco", marco);
+        request.setAttribute("abril", abril);
+        request.setAttribute("maio", maio);
+        request.setAttribute("junho", junho);
+        request.setAttribute("julho", julho);
+        request.setAttribute("agosto", agosto);
+        request.setAttribute("setembro", setembro);
+        request.setAttribute("outubro", outubro);
+        request.setAttribute("novembro", novembro);
+        request.setAttribute("dezembro", dezembro);
+
+        request.setAttribute("year", year);
+        
+        request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        HttpSession sessao = request.getSession();
-        request.setCharacterEncoding("UTF-8");
-
-
-        String emailuser = (String) sessao.getAttribute("emailuser");
-        String nomecomp = (String) sessao.getAttribute("nomecomp");
-
-
-
-
-        String status = String.valueOf(request.getParameter("status"));
-        String year = String.valueOf(request.getParameter("year"));
-        String areaselect = String.valueOf(request.getParameter("areaselect"));
-
-        listarPacotes projetosdao = new listarPacotes();
-
-        List<tbPacote> dashhome = projetosdao.listar();
-
-        int qtdhub = 0;
-        int qtdkey = 0;
-        int qtdservices = 0;
-        int qtdincentive = 0;
-        int qtdproprietarios = 0;
-
-        double gmhub = 0;
-        double gmkey = 0;
-        double gmservices = 0;
-        double gmincentive = 0;
-        double gmproprietarios = 0;
-
-        double hubaverage = 0;
-        double keyaverage = 0;
-        double servicesaverage = 0;
-        double incentiveaverage = 0;
-        double proprietariosaverage = 0;
-
-        for (Iterator iterator = dashhome.iterator(); iterator.hasNext();) {
-            tbPacote projeto = (tbPacote) iterator.next();
-            
-//            if (projeto.getSubarea().toUpperCase().equals("HUB")
-//                    && projeto.getProjectstatus().toUpperCase().equals("OPEN")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")
-//                    || projeto.getSubarea().toUpperCase().equals("HUB")
-//                    && projeto.getProjectstatus().toUpperCase().equals("WON")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")) {
-//                qtdhub++;
-//                gmhub = gmhub + projeto.getGmforowner();
-//                hubaverage = gmhub / qtdhub;
-//
-//            } else if (projeto.getSubarea().toUpperCase().equals("SERVICES")
-//                    && projeto.getProjectstatus().toUpperCase().equals("OPEN")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")
-//                    || projeto.getSubarea().toUpperCase().equals("SERVICES")
-//                    && projeto.getProjectstatus().toUpperCase().equals("WON")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")) {
-//                qtdservices++;
-//                gmservices = gmservices + projeto.getGmforowner();
-//                servicesaverage = gmservices / qtdservices;
-//
-//            } else if (projeto.getSubarea().toUpperCase().equals("KEY ACCOUNTS")
-//                    && projeto.getProjectstatus().toUpperCase().equals("OPEN")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")
-//                    || projeto.getSubarea().toUpperCase().equals("KEY ACCOUNTS")
-//                    && projeto.getProjectstatus().toUpperCase().equals("WON")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")) {
-//                qtdkey++;
-//                gmkey = gmkey + projeto.getGmforowner();
-//                keyaverage = gmkey / qtdkey;
-//
-//            } else if (projeto.getSubarea().toUpperCase().equals("INCENTIVE/OVATION")
-//                    && projeto.getProjectstatus().toUpperCase().equals("OPEN")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")
-//                    || projeto.getSubarea().toUpperCase().equals("INCENTIVE/OVATION")
-//                    && projeto.getProjectstatus().toUpperCase().equals("WON")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")) {
-//                qtdincentive++;
-//                gmincentive = gmincentive + projeto.getGmforowner();
-//                incentiveaverage = gmincentive / qtdincentive;
-//
-//            } else if (projeto.getSubarea().toUpperCase().equals("PROJETOS PROPRIETÁRIOS")
-//                    && projeto.getProjectstatus().toUpperCase().equals("OPEN")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")
-//                    || projeto.getSubarea().toUpperCase().equals("PROJETOS PROPRIETÁRIOS")
-//                    && projeto.getProjectstatus().toUpperCase().equals("WON")
-//                    && projeto.isArchived() == false && projeto.getPropreqdate().contains("2018")) {
-//                qtdproprietarios++;
-//                gmproprietarios = gmproprietarios + projeto.getGmforowner();
-//                proprietariosaverage = gmproprietarios / qtdproprietarios;
-//            }
-
-        }
-
-        // QUANTIDADES 
-        sessao.setAttribute("qtdhub", qtdhub);
-        sessao.setAttribute("qtdkey", qtdkey);
-        sessao.setAttribute("qtdservices", qtdservices);
-        sessao.setAttribute("qtdincentive", qtdincentive);
-        sessao.setAttribute("qtdproprietarios", qtdproprietarios);
-
-        NumberFormat formatoMoeda = NumberFormat.getCurrencyInstance(
-                new Locale("pt", "BR"));
-
-        //GROSS MARGIN
-        sessao.setAttribute("gmhub", formatoMoeda.format(gmhub));
-        sessao.setAttribute("gmkey", formatoMoeda.format(gmkey));
-        sessao.setAttribute("gmservices", formatoMoeda.format(gmservices));
-        sessao.setAttribute("gmincentive", formatoMoeda.format(gmincentive));
-        sessao.setAttribute("gmproprietarios", formatoMoeda.format(gmproprietarios));
-
-        //AVERAGE 
-        sessao.setAttribute("hubaverage", formatoMoeda.format(hubaverage));
-        sessao.setAttribute("keyaverage", formatoMoeda.format(keyaverage));
-        sessao.setAttribute("servicesaverage", formatoMoeda.format(servicesaverage));
-        sessao.setAttribute("incentiveaverage", formatoMoeda.format(incentiveaverage));
-        sessao.setAttribute("propaverage", formatoMoeda.format(proprietariosaverage));
-
-
-        request.getRequestDispatcher("reports/reports.jsp").forward(request, response);
-
     }
+
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }
