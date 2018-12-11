@@ -217,7 +217,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
 
-          <a class="dropdown-item" href="clienteConsultaID>" style="color: blue"><strong>Minha conta</strong></a>
+          <a class="dropdown-item" href="clienteConsultaID" style="color: blue"><strong>Minha conta</strong></a>
 
           <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
            <%if (idgrupo == 1) {%>
