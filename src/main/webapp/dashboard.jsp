@@ -37,6 +37,9 @@
         <!-- Bootstrap core CSS -->
         <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+        <script type="text/javascript" 
+        src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
         <!-- Custom styles for this template -->
         <link href="css/shop-item.css" rel="stylesheet">
         <link href="css/estrelas.css" rel="stylesheet">
@@ -78,10 +81,144 @@
     </style>
     <body  background="img/dashbg.jpg" style="opacity: 0.9;">
 
+        <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
+
+            <div class="logo" id="logo" name="logo">
+                <a class="navbar-brand" href="index.jsp" >
+                    <img src="img/orbis_logo.png" width="80" height="40" class="d-inline-block align-top" alt="">
+                </a>
+            </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse collapse navbar-collapse mr-5" id="navbarResponsive">
+                <ul class="navbar-nav mr-auto">
+
+                    <form  class="form-inline" name = "buscar"  id = "buscar" action="${pageContext.request.contextPath}/Buscar" method="POST">
+
+                        <!--end of col-->
+                        <div class="mr-2">
+                            <input id="query" name="busca" class="form-control col-lg-25" type="search" required placeholder="Pesquisar">
+                        </div>
+                        <!--end of col-->
+                        <div class="">
+                            <button class="btn btn-outline-success" type="submit"><img src="img/search_icon.png" width="25" height="25" class="d-inline-block align-top" alt=""></button>
+                        </div>
+                        <span class="glyphicon glyphicon-search"></span>
+
+                    </form>
+
+                </ul>
+
+                <%if (nomeUser == null) {
+
+                %>
+                <ul class="navbar-nav ml-10">
+
+
+                    <div class="nav-item dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Menu
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+                            <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
+                            <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+                            <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+
+                        </div>
+                    </div>
+
+                    <div id="id01" class="modal">
+                        <span onclick="document.getElementById('id01').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+                        <form class = "modal-content" name = "SignUp"  id = "criarconta" action="${pageContext.request.contextPath}/CriarConta" method="POST">
+                            <div class="container">
+                                <h1>Criar conta</h1>
+                                <p>Preencha os dados para criar sua conta.</p>
+                                <hr>
+
+                                <label for="nome"><b>Nome</b></label>
+                                <input type="text" autocomplete="off" placeholder="Exemplo: Wilson ou Dora" name="nome" id = 'nome' required>
+
+                                <label for="email"><b>Email</b></label>
+                                <input type="text" autocomplete="off" placeholder="Inserir Email" name="email" id='email' required>
+
+                                <label for="rg"><b>RG</b></label>
+                                <input type="text" onkeydown="javascript: fMasc(this, mRG);" maxlength="15" autocomplete="off" placeholder="RG" name="rg" id = 'rg' required>
+
+                                <label for="cpf"><b>CPF</b></label>
+                                <input type="text" onkeydown="javascript: fMasc(this, mCPF);" onblur="naBase(this.value)"  maxlength="14" autocomplete="off" placeholder="CPF" name="cpf" id = 'cpf' required>
+
+                                <label for="sexo"><b>Sexo</b></label>
+                                <div class ="col-md-2 mb-3" data-toggle="tooltip" title='Projeto envolve'  data-placement="right">
+                                    <input type="radio" name="sexo" value = "Masculino" > Masculino<br>
+                                    <input type="radio" name="sexo" value = "Feminino"> Feminino<br>
+                                </div>
+
+                                <label for="telefone"><b>Telefone</b></label>
+                                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxx-xxxx" maxlength="13" name="telefone" id = 'telefone'>
+
+                                <label for="celular"><b>Celular</b></label>
+                                <input type="text" onkeydown="javascript: fMasc(this, mTel);" autocomplete="off" placeholder="(xx)xxxxx-xxxx" maxlength="14" name="celular" id = 'celular' required>
+
+                                <label for="psw"><b>Senha</b></label>
+                                <input type="password" autocomplete="off" placeholder="Insira a Senha" name="psw" id='psw' required>
+
+                                <label for="psw-repeat"><b>Confirmar Senha</b></label>
+                                <input type="password" autocomplete="off" placeholder="Repetir Senha" name="psw-repeat" id = 'psw-repeat' required>
+
+                                <p>Para criar sua conta você declara que concorda com <a href="#" style="color:dodgerblue">Termos & Privacidade</a>.</p>
+
+                                <div class="clearfix">
+                                    <button type="button" onclick="document.getElementById('id01').style.display = 'none'" class="cancelbtn">Cancelar</button>
+                                    <button type="submit" class="signupbtn" onclick="{
+                                                return ConfirmPassword();
+                                            }">Criar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <%} else {%>
+
+                    <div class="nav-item dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Olá <%=nomeUser%>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+
+                            <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+
+                            <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
+                            <%if (idgrupo == 1) {%>
+                            <a class="dropdown-item" href="gerenciarPacotes.jsp">Administração</a>
+                            <%}%>
+                            <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
+                            <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
+                            <a class="dropdown-item" href="sair.jsp">Sair</a>
+                        </div>
+                    </div>
+
+                    <%}%>
+
+                </ul>
+            </div>
+
+        </nav>
+
+        <div class="espaco" >
+            <br>
+            <br>
+            <br>
+
+        </div>
+
 
         <%        if (mobile == false) {
 
-                %>
+        %>
         <%@include  file = "navbarTest.jsp"%>        
         <p></p>
         <%}%>  
@@ -185,7 +322,7 @@
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
-    feather.replace()
+                                        feather.replace()
 </script>
 <script>
 
@@ -245,14 +382,14 @@
 
                 }],
             labels: [
-                "Janeiro: " + "${janeiro}",
-                "Fevereiro: " + "${fevereiro}",
-                "Março: " + "${marco}",
+                "Janeiro " + "${janeiro}",
+                "Fevereiro " + "${fevereiro}",
+                "Março " + "${marco}",
                 "Abril: " + "${abril}",
                 "Maio: " + "${maio}",
                 "Junho: " + "${junho}",
                 "Julho: " + "${julho}",
-                "Agosto: " + "${agosto}",
+                "Agostot: " + "${agosto}",
                 "Setembro: " + "${setembro}",
                 "Outubro: " + "${outubro}",
                 "Novembro: " + "${novembro}",
@@ -263,7 +400,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '01 - Quantidade Vendas por mês ' + year
+                text: '01 - Vendas por mes ' + year
             },
             legend: {
                 display: false
@@ -341,14 +478,14 @@
 
                 }],
             labels: [
-                "Janeiro: " + "${janeiroV}",
-                "Fevereiro: " + "${fevereiroV}",
-                "Março: " + "${marcoV}",
+                "Janeiro " + "${janeiroV}",
+                "Fevereiro " + "${fevereiroV}",
+                "Março " + "${marcoV}",
                 "Abril: " + "${abrilV}",
                 "Maio: " + "${maioV}",
                 "Junho: " + "${junhoV}",
                 "Julho: " + "${julhoV}",
-                "Agosto: " + "${agostoV}",
+                "Agostot: " + "${agostoV}",
                 "Setembro: " + "${setembroV}",
                 "Outubro: " + "${outubroV}",
                 "Novembro: " + "${novembroV}",
@@ -359,7 +496,7 @@
             title: {
                 display: true,
                 fontSize: 30,
-                text: '02 - Valores Vendas por mês ' + year
+                text: '01 - Valores Vendas por mes ' + year
             },
             legend: {
                 display: false
@@ -375,7 +512,7 @@
                 callbacks: {
                     label: function (tooltipItem) {
                         return tooltipItem.yLabel;
-                    
+                    }
                 }
             }
         }
@@ -400,6 +537,8 @@
 
 </script>
 <script src="js/formatarMoeda.js"></script>
+<script src="js/jquery.js"></script>
+
 
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>

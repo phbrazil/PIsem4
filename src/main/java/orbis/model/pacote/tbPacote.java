@@ -6,7 +6,6 @@
 package orbis.model.pacote;
 
 import java.io.Serializable;
-import java.sql.Time;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

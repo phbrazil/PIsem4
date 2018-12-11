@@ -54,47 +54,70 @@ public class dashboard extends HttpServlet {
         double janeiroV = 0, fevereiroV = 0, marcoV = 0, abrilV = 0, maioV = 0, junhoV = 0, julhoV = 0,
                 agostoV = 0, setembroV = 0, outubroV = 0, novembroV = 0, dezembroV = 0;
 
+        for (int i = 0; i < vendas.size(); i++) {
+            String mes = String.valueOf(vendas.get(i).getDthvenda().charAt(5));
+            mes = mes + String.valueOf(vendas.get(i).getDthvenda().charAt(6));
+
+            if (mes.equals("12")) {
+                dezembroV += vendas.get(i).getTotal();
+            }
+
+        }
         for (int i = 0; i < pacotes.size(); i++) {
 
             String mes = String.valueOf(pacotes.get(i).getDthCadastro().charAt(5));
             mes = mes + String.valueOf(pacotes.get(i).getDthCadastro().charAt(6));
 
-            if (mes.equals("01")) {
-                janeiro++;
-                janeiroV += pacotes.get(i).getValor();
-            } else if (mes.equals("02")) {
-                fevereiro++;
-                fevereiroV += pacotes.get(i).getValor();
-            } else if (mes.equals("03")) {
-                marco++;
-                marcoV += pacotes.get(i).getValor();
-            } else if (mes.equals("04")) {
-                abril++;
-                abrilV += pacotes.get(i).getValor();
-            } else if (mes.equals("05")) {
-                maio++;
-                maioV += pacotes.get(i).getValor();
-            } else if (mes.equals("06")) {
-                junho++;
-                julhoV += pacotes.get(i).getValor();
-            } else if (mes.equals("07")) {
-                julho++;
-                julhoV += pacotes.get(i).getValor();
-            } else if (mes.equals("08")) {
-                agosto++;
-                agostoV += pacotes.get(i).getValor();
-            } else if (mes.equals("09")) {
-                setembro++;
-                setembroV += pacotes.get(i).getValor();
-            } else if (mes.equals("10")) {
-                outubro++;
-                outubroV += pacotes.get(i).getValor();
-            } else if (mes.equals("11")) {
-                novembro++;
-                novembroV += pacotes.get(i).getValor();
-            } else if (mes.equals("12")) {
-                dezembro++;
-                dezembroV += pacotes.get(i).getValor();
+            switch (mes) {
+                case "01":
+                    janeiro++;
+                    janeiroV += pacotes.get(i).getValor();
+                    break;
+                case "02":
+                    fevereiro++;
+                    fevereiroV += pacotes.get(i).getValor();
+                    break;
+                case "03":
+                    marco++;
+                    marcoV += pacotes.get(i).getValor();
+                    break;
+                case "04":
+                    abril++;
+                    abrilV += pacotes.get(i).getValor();
+                    break;
+                case "05":
+                    maio++;
+                    maioV += pacotes.get(i).getValor();
+                    break;
+                case "06":
+                    junho++;
+                    julhoV += pacotes.get(i).getValor();
+                    break;
+                case "07":
+                    julho++;
+                    julhoV += pacotes.get(i).getValor();
+                    break;
+                case "08":
+                    agosto++;
+                    agostoV += pacotes.get(i).getValor();
+                    break;
+                case "09":
+                    setembro++;
+                    setembroV += pacotes.get(i).getValor();
+                    break;
+                case "10":
+                    outubro++;
+                    outubroV += pacotes.get(i).getValor();
+                    break;
+                case "11":
+                    novembro++;
+                    novembroV += pacotes.get(i).getValor();
+                    break;
+                case "12":
+                    dezembro++;
+                    break;
+                default:
+                    break;
             }
 
         }
@@ -126,8 +149,6 @@ public class dashboard extends HttpServlet {
         request.setAttribute("dezembroV", dezembroV);
 
         request.setAttribute("year", year);
-        
-        System.out.println(dezembroV);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }
