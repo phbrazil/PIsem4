@@ -8,6 +8,7 @@ package orbis.controller.dashboard;
 import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import javax.servlet.ServletException;
@@ -21,6 +22,7 @@ import orbis.DAO.dashboard.extrairVendas;
 import orbis.model.pacote.tbPacote;
 import orbis.model.venda.tbVenda;
 import java.util.Calendar;
+import orbis.DAO.dashboard.extrairTopDestinos;
 
 /**
  *
@@ -151,8 +153,69 @@ public class dashboard extends HttpServlet {
         request.setAttribute("outubroF", formatoMoeda.format(outubroV));
         request.setAttribute("novembroF", formatoMoeda.format(novembroV));
         request.setAttribute("dezembroF", formatoMoeda.format(dezembroV));
-        
+
         request.setAttribute("year", year);
+
+        extrairTopDestinos topdestinos = new extrairTopDestinos();
+
+        List<tbPacote> topdestinosLista = (List<tbPacote>) topdestinos.listar(year);
+
+        String destino1 = "";
+        String destino2 = "";
+        String destino3 = "";
+        String destino4 = "";
+        String destino5 = "";
+
+        int destino1Qtd = 0, destino2Qtd = 0, destino3Qtd = 0, destino4Qtd = 0, destino5Qtd = 0;
+
+        List<String> destinos = new ArrayList();
+
+        for (int i = 0; i < topdestinosLista.size(); i++) {
+            destinos.add(topdestinosLista.get(i).getLocalDestino());
+
+        }
+
+        do {
+            if (destinos.size() <= 4 || destinos == null) {
+                destinos.add("");
+            }
+        } while (destinos.size() <= 4);
+
+        for (int i = 0; i < destinos.size(); i++) {
+            destino1 = destinos.get(0);
+            destino2 = destinos.get(1);
+            destino3 = destinos.get(2);
+            destino4 = destinos.get(3);
+            destino5 = destinos.get(4);
+
+        }
+
+        for (int i = 0; i < topdestinosLista.size(); i++) {
+
+            if (topdestinosLista.get(i).getLocalDestino().equalsIgnoreCase(destino1)) {
+                destino1Qtd++;
+            } else if (topdestinosLista.get(i).getLocalDestino().equalsIgnoreCase(destino2)) {
+                destino2Qtd++;
+            } else if (topdestinosLista.get(i).getLocalDestino().equalsIgnoreCase(destino3)) {
+                destino3Qtd++;
+            } else if (topdestinosLista.get(i).getLocalDestino().equalsIgnoreCase(destino4)) {
+                destino4Qtd++;
+            } else if (topdestinosLista.get(i).getLocalDestino().equalsIgnoreCase(destino5)) {
+                destino5Qtd++;
+            }
+        }
+
+        request.setAttribute("destino1", destino1);
+        request.setAttribute("destino2", destino2);
+        request.setAttribute("destino3", destino3);
+        request.setAttribute("destino4", destino4);
+        request.setAttribute("destino5", destino5);
+
+        request.setAttribute("destino1Qtd", destino1Qtd);
+        request.setAttribute("destino2Qtd", destino2Qtd);
+        request.setAttribute("destino3Qtd", destino3Qtd);
+        request.setAttribute("destino4Qtd", destino4Qtd);
+        request.setAttribute("destino5Qtd", destino5Qtd);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
     }

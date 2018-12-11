@@ -234,7 +234,7 @@
 
         <%        if (mobile == false) {
 
-        %>
+                %>
         <%@include  file = "navbarTest.jsp"%>        
         <p></p>
         <%}%>  
@@ -307,6 +307,8 @@
                             <canvas  id="Quantidades"></canvas>
                             <br>
                             <canvas  id="Valores"></canvas>
+                            <br>
+                            <canvas  id="TopDestinos"></canvas>
                             <br>
                         </div>
                     </main>
@@ -534,6 +536,82 @@
         }
     };
 
+    //TOP Destinos
+
+    var destino1 = "${destino1}"
+    var destino2 = "${destino2}"
+    var destino3 = "${destino3}"
+    var destino4 = "${destino4}"
+    var destino5 = "${destino5}"
+
+    var destino1Qtd = "${destino1Qtd}"
+    var destino2Qtd = "${destino2Qtd}"
+    var destino3Qtd = "${destino3Qtd}"
+    var destino4Qtd = "${destino4Qtd}"
+    var destino5Qtd = "${destino5Qtd}"
+
+    var year = "${year}"
+
+
+    document.Dashboard.year = year;
+    var topDestinoConfig = {
+        type: 'bar',
+        data: {
+
+            datasets: [{
+
+                    data: [
+                        destino1Qtd,
+                        destino2Qtd,
+                        destino3Qtd,
+                        destino4Qtd,
+                        destino5Qtd,
+                    ],
+                    backgroundColor: [
+                        window.chartColors.red,
+                        window.chartColors.orange,
+                        window.chartColors.yellow,
+                        window.chartColors.green,
+                        window.chartColors.grey,
+                    ],
+
+                }],
+            labels: [
+                destino1 + ' ' + destino1Qtd,
+                destino2 + ' ' + destino2Qtd,
+                destino3 + ' ' + destino3Qtd,
+                destino4 + ' ' + destino4Qtd,
+                destino5 + ' ' + destino5Qtd
+            ]
+        },
+        options: {
+            title: {
+                display: true,
+                fontSize: 30,
+                text: '03 - Top 5 Destinos ' + year
+            },
+            legend: {
+                display: false
+            },
+            scales: {
+                yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+            },
+            tooltips: {
+                callbacks: {
+                    label: function (tooltipItem) {
+                        return tooltipItem.yLabel;
+                    }
+                }
+            }
+        }
+    };
+
+
+
 
     window.onload = function () {
 
@@ -547,6 +625,8 @@
         var valoresMes = document.getElementById("Valores").getContext("2d");
         window.myPie = new Chart(valoresMes, valoresConfig);
 
+        var topDestinos = document.getElementById("TopDestinos").getContext("2d");
+        window.myPie = new Chart(topDestinos, topDestinoConfig);
 
     }
 
