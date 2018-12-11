@@ -200,11 +200,11 @@
         }
     </script>
 
-<body style="background: #dcdee4">
+<body style="background: #fff">
 
 
     <!-- Insira o nav aqui -->
-    <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top" style="background-color:#c5c5c1">
+    <nav class="navbar navbar-expand-lg navbar-light  text-dark fixed-top border-bottom" style="background-color:#fafcff">
 
         <div class="logo" id="logo" name="logo">
             <a class="navbar-brand" href="index.jsp" >
@@ -241,11 +241,11 @@
 
 
                 <div class="nav-item dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Menu
                     </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="login.jsp">Efetuar login</a>
+                        <a class="dropdown-item" href="login.jsp"  style="color: blue"><strong>Efetuar login</strong></a>
                         <a class="dropdown-item" href="#" onclick="document.getElementById('id01').style.display = 'block'" >Cadastre-se</a>
                         <a class="dropdown-item" href="sobre.jsp">Sobre o Orbis</a>
                         <a class="dropdown-item" href="ajuda.jsp">Ajuda</a>
@@ -306,13 +306,13 @@
                 <%} else {%>
 
                 <div class="nav-item dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-outline-success  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Olá <%=nomeUser%>
                     </button>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
 
-                        <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>">Minha conta</a>
+                        <a class="dropdown-item" href="clienteConsultaID?id=<%=idUser%>" style="color: blue"><strong>Minha conta</strong></a>
 
                         <a class="dropdown-item" href="minhasCompras">Minhas compras</a>
                         <%if (idgrupo == 1) {%>

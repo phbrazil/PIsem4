@@ -167,7 +167,7 @@
         }
     </style>
 
-    <body style="background: #dcdee4">
+    <body style="background: #fff">
 
         <!-- Navigation -->
         <%@include  file="navbarTest.jsp"%>

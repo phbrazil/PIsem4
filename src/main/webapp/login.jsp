@@ -158,7 +158,7 @@
         </style>
     </head>
 
-    <body class="text-center" style="background-color: #acadb3">
+    <body class="text-center" style="background-color: #fafcff">
         <form class="form-signin" action="Login"  method="POST">
             <input type="hidden" name ="mobile" value ="<%=mobile%>">
 

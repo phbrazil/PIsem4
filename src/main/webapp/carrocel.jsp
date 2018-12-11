@@ -158,7 +158,7 @@
                 <div class="carousel-inner" style='width: 80%; height: 80%'>
                     <div class="carousel-item active">
 
-                        <a href="#"><img src="img/destino1.jpg" alt="Porto Seguro" ></a>
+                        <a href="#"><img src="img/destino1.jpg"  alt="Porto Seguro" ></a>
                         <input type ='hidden' name ='destino' value='1'>
                     </div>
                     <div class="carousel-item">
@@ -170,15 +170,15 @@
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">
-                        <a href="#"><img src="img/destino4.jpg" alt="Capitólio"></a>
+                        <a href="#"><img src="img/destino4.jpg"  alt="Capitólio"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">
-                        <a href="#"><img src="img/destino5.jpg" alt="São Tomé das Letras"></a>
+                        <a href="#"><img src="img/destino5.jpg"  alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">
-                        <a href="#"><img src="img/destino6.jpg" alt="São Tomé das Letras"></a>
+                        <a href="#"><img src="img/destino6.jpg"  alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">
@@ -186,7 +186,7 @@
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">
-                        <a href="#"><img src="img/destino8.jpg" alt="São Tomé das Letras"></a>
+                        <a href="#"><img src="img/destino8.jpg"  alt="São Tomé das Letras"></a>
                         <input type ='hidden' name ='destino' value='3'>
                     </div>
                     <div class="carousel-item">

@@ -182,7 +182,7 @@
         }
     </script>
 
-<body style="background: #dcdee4">
+<body style="background: #fff">
 
     <%@include  file="navbarTest.jsp"%>
 

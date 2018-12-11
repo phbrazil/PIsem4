@@ -181,7 +181,7 @@
 
     %>
 
-<body class="bg-light" style="background: #dcdee4">
+<body class="bg-light" style="background: #fff">
 
 
     <%} else {%>

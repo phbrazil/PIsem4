@@ -65,7 +65,7 @@
         <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <title>Consultar Projeto</title>
     </head>
-    <body id="page-top" style="background: #dcdee4">
+    <body id="page-top" style="background: #fff">
 
     <%@include  file="navbarTest.jsp"%>
     

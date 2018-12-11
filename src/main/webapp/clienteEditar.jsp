@@ -56,7 +56,7 @@
         <title>Editar dados do usuário</title>
 
     </head>
-    <body id="page-top" style="background: #dcdee4">
+    <body id="page-top" style="background: #fff">
 
         <%@include  file="navbarTest.jsp"%>
 
@@ -110,25 +110,25 @@
                         <div class="col-md-6 mb-3">
                             <label>RG</label>
                             <div class="input-group">
-                                <input form='pacote' data-toggle="tooltip" onkeydown="javascript: fMasc(this, mRG);" value="${cliente.rgCliente}" title="RG" data-placement="right" name="rg" autocomplete="off" type="text" class="form-control" id="rg">
+                                <input form='pacote' data-toggle="tooltip" maxlength="15" onkeydown="javascript: fMasc(this, mRG);" value="${cliente.rgCliente}" title="RG" data-placement="right" name="rg" autocomplete="off" type="text" class="form-control" id="rg">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>CPF</label>
                             <div class="input-group">
-                                <input form='pacote' data-toggle="tooltip" onkeydown="javascript: fMasc(this, mCPF);"value="${cliente.cpfCliente}" title="CPF" data-placement="right" name="cpf" autocomplete="off" type="text" class="form-control" id="cpf">
+                                <input form='pacote' data-toggle="tooltip" maxlength="14" onkeydown="javascript: fMasc(this, mCPF);"value="${cliente.cpfCliente}" title="CPF" data-placement="right" name="cpf" autocomplete="off" type="text" class="form-control" id="cpf">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Telefone</label>
                             <div class="input-group">
-                                <input form='pacote' onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.telCliente}" title="tel" data-placement="right" name="tel" autocomplete="off" type="text" class="form-control" id="tel">
+                                <input form='pacote' maxlength="13" onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.telCliente}" title="tel" data-placement="right" name="tel" autocomplete="off" type="text" class="form-control" id="tel">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
                             <label>Celular</label>
                             <div class="input-group">
-                                <input form='pacote' onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.celCliente}" title="cel" data-placement="right" name="cel" autocomplete="off" type="text" class="form-control" id="cel">
+                                <input form='pacote' maxlength="14" onkeydown="javascript: fMasc(this, mTel);" data-toggle="tooltip" value="${cliente.celCliente}" title="cel" data-placement="right" name="cel" autocomplete="off" type="text" class="form-control" id="cel">
                             </div>
                         </div>
                         <div class="col-md-6 mb-3">
