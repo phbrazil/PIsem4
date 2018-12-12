@@ -12,6 +12,10 @@
         <meta name="msapplication-TileColor" content="#da532c">
         <meta name="theme-color" content="#ffffff">
 
+        <link rel="stylesheet" type="text/css" href="css/loading.css"/>
+        <link rel="stylesheet" type="text/css" href="css/loading-btn.css"/>
+
+
         <%
             String userAgent = request.getHeader("user-agent");
 
@@ -181,19 +185,22 @@
             </h5>
             <br>
             <div align="center">
-                <div class="col-md-5 mb-3">
+                <div class="col-md-3 mb-3">
                     <label for="inputEmail" class="sr-only">Email</label>
                     <input type="email" autocomplete="off" id="inputEmail" class="form-control" placeholder="Email address" name = "userName" required autofocus>
                     <label for="inputPassword" class="sr-only">Senha</label>
                     <input type="password" autocomplete="off" id="inputPassword" class="form-control" placeholder="Password" name = "password" required>
-                    <button class="btn btn-lg btn-secondary btn-block" type="submit">Entrar</button>
-                    <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="document.getElementById('id01').style.display = 'block'" >Criar conta</button>
-                    <p></p>
-                    <label>
-                        <a href ="esqueciSenha.jsp">Esqueci a senha</a>
-                    </label>
+                    <div id = 'entrar' class="btn btn-default ld-ext-bottom">
+                        <button class="btn btn-lg btn-secondary btn-block" onclick="loading()" type="submit">Entrar</button>
+                        <div class="ld ld-ring ld-spin-fast">
+                        </div>
+                        <button class="btn btn-lg btn-secondary btn-block" type="button" onclick="document.getElementById('id01').style.display = 'block'" >Criar conta</button>
+                        <p></p>
+                        <label>
+                            <a href ="esqueciSenha.jsp">Esqueci a senha</a>
+                        </label>
+                    </div>
                 </div>
-            </div>
         </form>
         <!--        <div align="center">
                     <div class="col-md-5 mb-3">
@@ -265,22 +272,32 @@
 
     <script>
 
+                            function loading() {
 
-                            function naBase(val) {
 
-                                var source = $("#cpf").autocomplete("getdataCPF.jsp");
+                                $('#entrar').addClass('running');
 
-                                var length = source.length;
-                                //for (var i = 0; i < length; i++) {
-                                if (source[0] == val) {
-                                    //document.getElementById('cpf').value = "";
-                                    //alert('Já existe cadastro para este CPF');
-                                    //document.getElementById('mcistdcliname').placeholder = "Client is not in the database, please include";
-
-                                } else {
-                                }
-                                // }
                             }
+    </script>
+
+    <script>
+
+
+        function naBase(val) {
+
+            var source = $("#cpf").autocomplete("getdataCPF.jsp");
+
+            var length = source.length;
+            //for (var i = 0; i < length; i++) {
+            if (source[0] == val) {
+                //document.getElementById('cpf').value = "";
+                //alert('Já existe cadastro para este CPF');
+                //document.getElementById('mcistdcliname').placeholder = "Client is not in the database, please include";
+
+            } else {
+            }
+            // }
+        }
 
 
     </script>

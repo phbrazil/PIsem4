@@ -77,7 +77,7 @@ public class pacoteDetalhe extends HttpServlet {
         }
         
         request.setAttribute("pacote", pacote);
-        request.setAttribute("notaMedia", notaMedia);
+        request.setAttribute("notaMedia", notaMedia/listaComentario.size());
         request.getRequestDispatcher("pacoteDetalhe.jsp").forward(request, response);
     }
 

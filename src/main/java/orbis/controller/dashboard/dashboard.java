@@ -7,7 +7,6 @@ package orbis.controller.dashboard;
 
 import java.io.IOException;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -16,19 +15,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import orbis.DAO.dashboard.extrairPacotes;
+import orbis.DAO.dashboard.extrairTopDestinos;
 import orbis.DAO.dashboard.extrairVendas;
 import orbis.model.pacote.tbPacote;
 import orbis.model.venda.tbVenda;
-import java.util.Calendar;
-import orbis.DAO.dashboard.extrairTopDestinos;
 
 /**
  *
  * @author paulo.bezerra
  */
-@WebServlet(name = "dashboard", urlPatterns = {"/dashboard"})
+@WebServlet(name = "/dashboard", urlPatterns = {"/dashboard"})
 public class dashboard extends HttpServlet {
 
     @Override
@@ -218,16 +215,21 @@ public class dashboard extends HttpServlet {
         request.setAttribute("destino5Qtd", destino5Qtd);
 
         request.getRequestDispatcher("dashboard.jsp").forward(request, response);
-    }
+    
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+}
+
+@Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+        
+
     }
 
     @Override
-    public String getServletInfo() {
+        public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 
