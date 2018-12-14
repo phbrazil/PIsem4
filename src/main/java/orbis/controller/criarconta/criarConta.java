@@ -87,7 +87,8 @@ public class criarConta extends HttpServlet {
 
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
-                String hql = "from tbCliente where cpfCliente = '" + clientes.getCpfCliente()+ "'";
+                String hql = "from tbCliente where cpfCliente = '" + clientes.getCpfCliente()+ "' or"
+                        + " rgCliente = '"+clientes.getRgCliente()+"'";
                 clienteList = session.createQuery(hql).list();
                 
                 //comita as informacoes
@@ -107,7 +108,7 @@ public class criarConta extends HttpServlet {
                 }
 
                 String path = "login.jsp";
-                String mensagem = "Esse CPF já se encontra cadastrado";
+                String mensagem = "Esse CPF ou RG já se encontra cadastrado";
                 request.setAttribute("path", path);
                 out.println("<script type='text/javascript'>");
                 out.println("location='modal?path=" + path + "&mensagem=" + mensagem + "';");
