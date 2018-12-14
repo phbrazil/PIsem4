@@ -1,11 +1,8 @@
---    CREATE USER 'orbis'@'localhost' IDENTIFIED BY '0c24a188a9';    
-  --  GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
-DROP DATABASE orbis;
+CREATE USER 'orbis'@'localhost' IDENTIFIED BY '0c24a188a9';    
+GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
+-- DROP DATABASE orbis;
 CREATE DATABASE orbis;
 USE orbis;
-
---    CREATE USER 'orbis'@'localhost' IDENTIFIED BY 'admin';
-  --  GRANT ALL PRIVILEGES ON * . * TO 'orbis'@'localhost';
     
 CREATE TABLE tbCidades(
 idcidade INT NOT NULL AUTO_INCREMENT,
@@ -60,7 +57,7 @@ id INT NOT NULL AUTO_INCREMENT,
 idendereco INT DEFAULT 1,
 emailcliente VARCHAR (50) UNIQUE NOT NULL,
 nomecliente VARCHAR (50) NOT NULL,
-rgcliente VARCHAR (13) UNIQUE NOT NULL,
+rgcliente VARCHAR (15) UNIQUE NOT NULL,
 cpfcliente VARCHAR (14) UNIQUE NOT NULL,
 telcliente VARCHAR (13) NOT NULL,
 celcliente VARCHAR (14),
@@ -100,12 +97,6 @@ ativo BOOLEAN default TRUE,
 imagePath varchar (1000),
 dthCadastro VARCHAR (20) NOT NULL,
 PRIMARY KEY (idpacote));
-
-insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,200.00,'sao paulo', 'Bahia','A definir', now());
-insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,400.00,'sao paulo', 'Ceara','A definir', now());
-insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,100.00,'sao paulo', 'Brotas','A definir', now());
-insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,210.00,'sao paulo', 'Canoas','A definir', now());
-insert into tbPacote(dthevento, horario, qtdmax,valor,localsaida,localdestino,roteiro, dthCadastro) values (now(), '08:00:00', 100,50.00,'sao paulo', 'HueHue','A definir', now());
 
 
 create table tbComentario(

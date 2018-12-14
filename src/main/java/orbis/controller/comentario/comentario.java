@@ -138,7 +138,7 @@ public class comentario extends HttpServlet {
             PrintWriter out = response.getWriter();
 
             String pathModal = "login.jsp";
-            String mensagem = "Você precisa estar logado no sistema para comentar";
+            String mensagem = "Você precisa ter um email cadastrado no sistema para comentar";
             request.setAttribute("path", pathModal);
             out.println("<script type='text/javascript'>");
             out.println("location='modal?path=" + pathModal + "&mensagem=" + mensagem + "';");
