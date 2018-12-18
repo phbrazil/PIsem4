@@ -46,23 +46,22 @@ public class pacoteEditar extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String home = "/opt/tomcat/apache-tomee-webprofile-7.0.2/webapps/imagens/";
+
         //Mac
         //String UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/temp/";
-        
         //WINDOWS
-        String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
-
+        //String UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp";
         //Ubuntu Server
-        //String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
+        String UPLOAD_DIRECTORY = "/home/opportunity/orbis/temp/";
         response.setContentType(
                 "text/html");
         PrintWriter out = response.getWriter();
         //OutputStream out = null;
 
-        MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY);
+        MultipartRequest m = new MultipartRequest(request, UPLOAD_DIRECTORY, 5000000, "UTF-8");
 
         //request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("ISO-8859-1");
         request.setCharacterEncoding("ISO-8859-1");
 
         HttpSession sessao = request.getSession(true);
@@ -120,23 +119,19 @@ public class pacoteEditar extends HttpServlet {
 
             //criar pasta com id do banco             
             //UBUNTU SERVER
-            //File file = new File("/home/opportunity/orbis/imagens/" + String.valueOf(id));
-            
+            File file = new File(home + String.valueOf(idpacote));
+
             //MAC
             //File file = new File("/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote));
-            
             //WINDOWS
-            File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\"+String.valueOf(idpacote));
-
+            //File file = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\"+String.valueOf(idpacote));
             //UBUNTU SERVER
-            //UPLOAD_DIRECTORY = "/home/opportunity/orbis/imagens/" + String.valueOf(id);
-            
+            UPLOAD_DIRECTORY = home + String.valueOf(idpacote);
+
             //MAC
             //UPLOAD_DIRECTORY = "/Users/killuminatti08/NetBeansProjects/Orbis/src/main/webapp/img/imagens/" + String.valueOf(idpacote);
-            
             //WINDOWS
-            UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(idpacote);
-
+            //UPLOAD_DIRECTORY = "C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\src\\main\\webapp\\img\\imagens\\" + String.valueOf(idpacote);
             if (!file.exists()) {
                 if (file.mkdir()) {
                     System.out.println("Directory is created!");
@@ -144,13 +139,14 @@ public class pacoteEditar extends HttpServlet {
                     System.out.println("Failed to create directory!");
                 }
             }
-            
+
             //MAC
             //File source = new File("/Users/killuminatti08/NetBeansProjects/Orbis/temp");
-            
             //WINDOWS
-            File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
-            
+            //File source = new File("C:\\Users\\ASAPH-001\\Documents\\NetBeansProjects\\Orbis\\temp");
+            //UBUNTU
+            File source = new File("/home/opportunity/orbis/temp");
+
             File dest = new File(UPLOAD_DIRECTORY);
 
             try {
@@ -180,13 +176,8 @@ public class pacoteEditar extends HttpServlet {
 
             boolean gravado = gravarImagens.gravar(nomeImagem, idpacote);
 
-            String[] entries = source.list();
-            for (String s : entries) {
-                File currentFile = new File(source.getPath(), s);
-                currentFile.delete();
-            }
             //ATUALIZAR PATH NO BANCO
-            pacote.setImagePath("img/imagens/" + idpacote + "/");
+            pacote.setImagePath("/imagens/" + idpacote + "/");
             try {
                 //inicia a transacao com o banco
                 Transaction tx = session.beginTransaction();
